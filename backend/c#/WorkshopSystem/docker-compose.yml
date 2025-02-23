@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5050:80"
+      - "5051:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80;https://+:443
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/root/.aspnet/https/aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Endpoints__Http__Url=http://+:80
+      - ASPNETCORE_Kestrel__Endpoints__Https__Url=https://+:443
+      - ConnectionStrings__DefaultConnection=Server=db;Database=WorkshopSystem;User=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
+    volumes:
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/root/.aspnet/https:ro 
+    depends_on:
+      - db
+    networks:
+      - workshop-network
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - workshop-network
+
+networks:
+  workshop-network:
+    driver: bridge
+
+volumes:
+  sqlserver_data:
