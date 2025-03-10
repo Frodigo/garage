@@ -2,25 +2,19 @@
 {
     static async Task Main(string[] args)
     {
+        // Load environment variables
+        DotNetEnv.Env.Load();
+        
         var reader = new EmailReader(
-            "imap_address", 
-            993,                    
-            "email",        
-            "password"         
+            Environment.GetEnvironmentVariable("IMAP_ADDRESS") ?? throw new ArgumentNullException("IMAP_ADDRESS"),
+            int.Parse(Environment.GetEnvironmentVariable("IMAP_PORT") ?? "993"),
+            Environment.GetEnvironmentVariable("EMAIL") ?? throw new ArgumentNullException("EMAIL"),
+            Environment.GetEnvironmentVariable("PASSWORD") ?? throw new ArgumentNullException("PASSWORD")
         );
         
         try
         {
-            // Read last 5 emails
-            //await reader.ReadEmails(10);
-
-            await reader.ReadUnreadEmails();
-            
-            // // read all emails (in batches of 100)
-            // await reader.ReadAllEmails(100);
-            
-            // // search emails by subject
-            // await reader.ReadEmailsBySubject("ważne");
+            await reader.ReadEmails(1);
         }
         catch (Exception ex)
         {

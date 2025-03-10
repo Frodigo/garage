@@ -19,7 +19,7 @@ public class EmailReader
         _port = port;
         _username = username;
         _password = password;
-        _summarizer = new ClaudeSummarizer("api_key");
+        _summarizer = new ClaudeSummarizer(Environment.GetEnvironmentVariable("CLAUDE_API_KEY") ?? throw new ArgumentNullException("CLAUDE_API_KEY is not set"));
     }
     
     public async Task ReadEmails(int maxEmails = 10)
@@ -46,34 +46,29 @@ public class EmailReader
             foreach (var uid in uids)
             {
                 var message = inbox.GetMessage(uid);
-                Console.WriteLine($"------------------------");
-                Console.WriteLine($"From: {message.From}");
-                Console.WriteLine($"Subject: {message.Subject}");
-                Console.WriteLine($"Date: {message.Date}");
-                Console.WriteLine($"message: {message.TextBody ?? message.HtmlBody}");
+                await SummarizeEmail(message);
             }
             
             await client.DisconnectAsync(true);
         }
     }
     
-    private async Task DisplayEmailContent(MimeMessage message)
+    private async Task SummarizeEmail(MimeMessage message)
     {
-        Console.WriteLine($"------------------------");
-        Console.WriteLine($"Od: {message.From}");
-        Console.WriteLine($"Do: {message.To}");
-        Console.WriteLine($"Temat: {message.Subject}");
-        Console.WriteLine($"Data: {message.Date}");
+        Console.WriteLine("\n------------------------");
+        Console.WriteLine($"From: {message.From}");
+        Console.WriteLine($"To: {message.To}");
+        Console.WriteLine($"Subject: {message.Subject}");
+        Console.WriteLine($"Date: {message.Date.ToLocalTime():g}");
         
         var content = message.TextBody ?? message.HtmlBody;
-        //Console.WriteLine($"Treść: {content}");
         
         if (!string.IsNullOrEmpty(content))
         {
             try
             {
                 var summary = await _summarizer.SummarizeAsync(content);
-                Console.WriteLine($"\nAI summary:");
+                Console.WriteLine($"\nAI Summary:");
                 Console.WriteLine(summary);
             }
             catch (Exception ex)
@@ -82,17 +77,20 @@ public class EmailReader
             }
         }
         
-        // checking attachments
-        foreach (var attachment in message.Attachments)
+        if (message.Attachments.Any())
         {
-            if (attachment is MessagePart rfc822)
+            Console.WriteLine("\nAttachments:");
+            foreach (var attachment in message.Attachments)
             {
-                Console.WriteLine($"Attached mail: {rfc822.Message.Subject}");
-            }
-            else
-            {
-                var fileName = attachment.ContentDisposition?.FileName ?? attachment.ContentType.Name;
-                Console.WriteLine($"Attachment: {fileName}");
+                if (attachment is MessagePart rfc822)
+                {
+                    Console.WriteLine($"- Attached email: {rfc822.Message.Subject}");
+                }
+                else
+                {
+                    var fileName = attachment.ContentDisposition?.FileName ?? attachment.ContentType.Name;
+                    Console.WriteLine($"- {fileName}");
+                }
             }
         }
     }
@@ -112,19 +110,16 @@ public class EmailReader
             
             Console.WriteLine($"Found {uids.Count} unread messages");
             
-            var uid = uids[0];
-            var message = await inbox.GetMessageAsync(uid);
-            await DisplayEmailContent(message);
-            // foreach (var uid in uids)
-            // {
-            //     var message = await inbox.GetMessageAsync(uid);
-            //     await DisplayEmailContent(message);
+            foreach (var uid in uids)
+            {
+                var message = await inbox.GetMessageAsync(uid);
+                await SummarizeEmail(message);
                 
-            //     if (markAsRead)
-            //     {
-            //         await inbox.AddFlagsAsync(uid, MessageFlags.Seen, true);
-            //     }
-            // }
+                if (markAsRead)
+                {
+                    await inbox.AddFlagsAsync(uid, MessageFlags.Seen, true);
+                }
+            }
             
             await client.DisconnectAsync(true);
         }
