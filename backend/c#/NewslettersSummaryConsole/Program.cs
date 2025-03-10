@@ -2,7 +2,7 @@
 {
     static async Task Main(string[] args)
     {
-        // Wczytaj zmienne środowiskowe z pliku .env
+        // Load environment variables
         DotNetEnv.Env.Load();
         
         var reader = new EmailReader(
@@ -14,16 +14,7 @@
         
         try
         {
-            // Read last 5 emails
-            //await reader.ReadEmails(10);
-
-            await reader.ReadUnreadEmails();
-            
-            // // read all emails (in batches of 100)
-            // await reader.ReadAllEmails(100);
-            
-            // // search emails by subject
-            // await reader.ReadEmailsBySubject("ważne");
+            await reader.ReadEmails(1);
         }
         catch (Exception ex)
         {
