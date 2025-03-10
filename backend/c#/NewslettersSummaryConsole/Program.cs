@@ -2,11 +2,14 @@
 {
     static async Task Main(string[] args)
     {
+        // Wczytaj zmienne środowiskowe z pliku .env
+        DotNetEnv.Env.Load();
+        
         var reader = new EmailReader(
-            "imap_address", 
-            993,                    
-            "email",        
-            "password"         
+            Environment.GetEnvironmentVariable("IMAP_ADDRESS") ?? throw new ArgumentNullException("IMAP_ADDRESS"),
+            int.Parse(Environment.GetEnvironmentVariable("IMAP_PORT") ?? "993"),
+            Environment.GetEnvironmentVariable("EMAIL") ?? throw new ArgumentNullException("EMAIL"),
+            Environment.GetEnvironmentVariable("PASSWORD") ?? throw new ArgumentNullException("PASSWORD")
         );
         
         try
