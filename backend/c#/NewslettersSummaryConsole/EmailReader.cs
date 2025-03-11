@@ -67,7 +67,7 @@ public class EmailReader
         {
             try
             {
-                var summary = await _summarizer.SummarizeAsync(content);
+                var summary = await _summarizer.SummarizeAsync(content, message.Subject);
                 Console.WriteLine($"\nAI Summary:");
                 Console.WriteLine(summary);
             }

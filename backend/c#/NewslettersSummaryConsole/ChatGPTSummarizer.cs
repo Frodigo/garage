@@ -1,6 +1,8 @@
 using System;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using System.IO;
+using System.Text;
 
 public class ChatGPTSummarizer : ISummarizer
 {
@@ -18,7 +20,7 @@ public class ChatGPTSummarizer : ISummarizer
         _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
     }
 
-    public async Task<string> SummarizeAsync(string text)
+    public async Task<string> SummarizeAsync(string text, string emailTitle)
     {
         try 
         {
@@ -59,7 +61,11 @@ public class ChatGPTSummarizer : ISummarizer
                     response.EnsureSuccessStatusCode();
                     
                     var result = await response.Content.ReadFromJsonAsync<ChatGPTResponse>();
-                    return result?.Choices?[0]?.Message?.Content ?? "Failed to generate summary.";
+                    var summary = result?.Choices?[0]?.Message?.Content ?? "Failed to generate summary.";
+                    
+                    await SaveSummaryToFileAsync(summary, emailTitle);
+                    
+                    return summary;
                 }
                 catch (HttpRequestException ex)
                 {
@@ -81,19 +87,43 @@ public class ChatGPTSummarizer : ISummarizer
             return $"Failed to generate summary: {ex.Message}";
         }
     }
+
+    private async Task SaveSummaryToFileAsync(string summary, string emailTitle)
+    {
+        var summariesDir = Path.Combine(Directory.GetCurrentDirectory(), "content", "summaries");
+        Directory.CreateDirectory(summariesDir);
+
+        // Sanitize email title for file name
+        var sanitizedTitle = string.Join("_", emailTitle.Split(Path.GetInvalidFileNameChars()));
+        var fileName = $"{sanitizedTitle}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.md";
+        var filePath = Path.Combine(summariesDir, fileName);
+
+        var frontMatter = $@"---
+title: ""{emailTitle}""
+date: {DateTime.Now:yyyy-MM-dd HH:mm:ss}
+summary_generated: true
+model: ""gpt-4o-mini""
+---
+
+";
+
+        var contentWithMetadata = frontMatter + summary;
+        await File.WriteAllTextAsync(filePath, contentWithMetadata, Encoding.UTF8);
+        Console.WriteLine($"Summary saved to: {filePath}");
+    }
 }
 
 public class ChatGPTResponse
 {
-    public Choice[] Choices { get; set; }
+    public Choice[]? Choices { get; set; }
 }
 
 public class Choice
 {
-    public Message Message { get; set; }
+    public Message? Message { get; set; }
 }
 
 public class Message
 {
-    public string Content { get; set; }
+    public string? Content { get; set; }
 } 

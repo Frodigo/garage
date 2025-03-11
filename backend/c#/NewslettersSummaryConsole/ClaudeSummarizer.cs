@@ -2,6 +2,8 @@ using System;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Linq;
+using System.IO;
+using System.Text;
 
 public class ClaudeSummarizer : ISummarizer
 {
@@ -62,7 +64,7 @@ Format of the answer:
         _httpClient.DefaultRequestHeaders.Add("anthropic-version", "2023-06-01");
     }
 
-    public async Task<string> SummarizeAsync(string text)
+    public async Task<string> SummarizeAsync(string text, string emailTitle)
     {
         try
         {
@@ -88,10 +90,12 @@ Format of the answer:
             }
 
             var responseContent = await response.Content.ReadAsStringAsync();
-            //Console.WriteLine($"Odpowiedź API: {responseContent}");
-
             var result = await response.Content.ReadFromJsonAsync<ClaudeResponse>();
-            return result?.Content?.FirstOrDefault()?.Text ?? "Failed to generate summary.";
+            var summary = result?.Content?.FirstOrDefault()?.Text ?? "Failed to generate summary.";
+            
+            await SaveSummaryToFileAsync(summary, emailTitle);
+            
+            return summary;
         }
         catch (Exception ex)
         {
@@ -99,19 +103,43 @@ Format of the answer:
             return $"Failed to generate summary: {ex.Message}";
         }
     }
+
+    private async Task SaveSummaryToFileAsync(string summary, string emailTitle)
+    {
+        var summariesDir = Path.Combine(Directory.GetCurrentDirectory(), "content", "summaries");
+        Directory.CreateDirectory(summariesDir);
+
+        // Sanitize email title for file name
+        var sanitizedTitle = string.Join("_", emailTitle.Split(Path.GetInvalidFileNameChars()));
+        var fileName = $"{sanitizedTitle}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.md";
+        var filePath = Path.Combine(summariesDir, fileName);
+
+        var frontMatter = $@"---
+title: ""{emailTitle}""
+date: {DateTime.Now:yyyy-MM-dd HH:mm:ss}
+summary_generated: true
+model: ""claude-3-sonnet-20240229""
+---
+
+";
+
+        var contentWithMetadata = frontMatter + summary;
+        await File.WriteAllTextAsync(filePath, contentWithMetadata, Encoding.UTF8);
+        Console.WriteLine($"Summary saved to: {filePath}");
+    }
 }
 
 public class ClaudeResponse
 {
-    public string Id { get; set; }
-    public string Type { get; set; }
-    public string Role { get; set; }
-    public string Model { get; set; }
-    public ClaudeContent[] Content { get; set; }
+    public string? Id { get; set; }
+    public string? Type { get; set; }
+    public string? Role { get; set; }
+    public string? Model { get; set; }
+    public ClaudeContent[]? Content { get; set; }
 }
 
 public class ClaudeContent
 {
-    public string Type { get; set; }
-    public string Text { get; set; }
+    public string? Type { get; set; }
+    public string? Text { get; set; }
 }

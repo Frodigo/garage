@@ -43,6 +43,6 @@ public class OllamaSummarizer
 
     private class OllamaResponse
     {
-        public string Response { get; set; }
+        public string? Response { get; set; }
     }
 }
