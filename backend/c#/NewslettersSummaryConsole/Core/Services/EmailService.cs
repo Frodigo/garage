@@ -25,7 +25,7 @@ public class EmailService
         var unreadCount = await inbox.SearchAsync(SearchQuery.NotSeen);
         Console.WriteLine($"Unread emails: {unreadCount.Count}");
         
-        var uids = inbox.Search(SearchQuery.All).Reverse().Take(maxEmails);
+        var uids = (await inbox.SearchAsync(SearchQuery.All)).Reverse().Take(maxEmails);
         
         foreach (var uid in uids)
         {

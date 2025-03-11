@@ -10,13 +10,11 @@ public class ClaudeSummarizer : ISummarizer
     private readonly string _apiKey;
     private readonly HttpClient _httpClient;
 
-    public ClaudeSummarizer(string apiKey)
+    public ClaudeSummarizer(string apiKey, HttpClient httpClient)
     {
         _apiKey = apiKey;
-        _httpClient = new HttpClient
-        {
-            BaseAddress = new Uri("https://api.anthropic.com/v1/")
-        };
+        _httpClient = httpClient;
+        _httpClient.BaseAddress = new Uri("https://api.anthropic.com/v1/");
         _httpClient.DefaultRequestHeaders.Add("x-api-key", _apiKey);
         _httpClient.DefaultRequestHeaders.Add("anthropic-version", "2023-06-01");
     }

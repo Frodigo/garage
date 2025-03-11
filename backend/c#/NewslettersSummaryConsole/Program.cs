@@ -12,8 +12,9 @@ var username = Environment.GetEnvironmentVariable("IMAP_USERNAME") ?? throw new 
 var password = Environment.GetEnvironmentVariable("IMAP_PASSWORD") ?? throw new ArgumentNullException("IMAP_PASSWORD is not set");
 var summariesPath = Environment.GetEnvironmentVariable("SUMMARIES_PATH") ?? throw new ArgumentNullException("SUMMARIES_PATH is not set");
 
+var httpClient = new HttpClient();
 var connectionManager = new ImapConnectionManager(host, port, username, password);
-var summarizer = new ClaudeSummarizer(Environment.GetEnvironmentVariable("CLAUDE_API_KEY") ?? throw new ArgumentNullException("CLAUDE_API_KEY is not set"));
+var summarizer = new ClaudeSummarizer(Environment.GetEnvironmentVariable("CLAUDE_API_KEY") ?? throw new ArgumentNullException("CLAUDE_API_KEY is not set"), httpClient);
 var formatter = new EmailFormatter();
 var summaryFileService = new SummaryFileService(summariesPath);
 var emailProcessor = new EmailProcessor(summarizer, formatter, summaryFileService);
