@@ -1,5 +1,5 @@
-# Sandbox
+# Garage
 
-This is the repository where I store my experiments, ideas, learnings, and other stuff.
+This is my monorepo where I store all my code. This is my *garage*.
 
-At the moment here is the huge chaos because I am in  process to import here code from different sources.
+At the moment here is the huge chaos because I am in process of importing here code from different sources.
