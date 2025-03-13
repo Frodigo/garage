@@ -1,8 +1,0 @@
-POST http://localhost:8080
-content-type: application/json
-
-{
-    "message": {
-        "data": "eyJ0ZWFtQSI6IlRlYW0gQWxwaGEiLCJ0ZWFtQiI6IlRlYW0gQmV0YSIsInNjb3JlIjoiMy0xIn0="
-    }
-}
