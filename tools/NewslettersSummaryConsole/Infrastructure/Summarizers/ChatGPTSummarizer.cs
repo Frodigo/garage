@@ -1,38 +1,31 @@
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Core.Interfaces;
+using Infrastructure.Prompts;
 
 namespace Infrastructure.Summarizers;
 
 public class ChatGPTSummarizer : ISummarizer
 {
-    private readonly string _apiKey;
     private readonly HttpClient _httpClient;
 
-    public ChatGPTSummarizer(string apiKey)
+    public ChatGPTSummarizer(string apiKey, HttpClient httpClient)
     {
-        _apiKey = apiKey;
-        _httpClient = new HttpClient
-        {
-            BaseAddress = new Uri("https://api.openai.com/v1/")
-        };
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_apiKey}");
+        _httpClient = httpClient;
+        _httpClient.BaseAddress = new Uri("https://api.openai.com/v1/");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
     }
 
     public async Task<string> SummarizeAsync(string content, string subject)
     {
-        var prompt = $"Summarize the following email with subject '{subject}' in English. Focus on the most important information and key points:\n\n{content}";
+        var prompt = EmailSummaryPrompt.GetPrompt(subject, content);
 
         var request = new
         {
             model = "gpt-4-turbo-preview",
             messages = new[]
             {
-                new
-                {
-                    role = "system",
-                    content = "You are a helpful assistant who summarizes emails in English."
-                },
                 new
                 {
                     role = "user",
@@ -53,22 +46,36 @@ public class ChatGPTSummarizer : ISummarizer
         }
 
         var responseContent = await response.Content.ReadAsStringAsync();
-        var responseObject = JsonSerializer.Deserialize<ChatGPTResponse>(responseContent);
+        
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
 
-        return responseObject?.Choices?[0]?.Message?.Content ?? "Failed to generate summary.";
+        var responseObject = JsonSerializer.Deserialize<ChatGPTResponse>(responseContent, options);
+
+        if (responseObject?.Choices == null || responseObject.Choices.Length == 0 || responseObject.Choices[0].Message?.Content == null)
+        {
+            return "Failed to generate summary.";
+        }
+
+        return responseObject.Choices[0].Message.Content;
     }
 
     private class ChatGPTResponse
     {
+        [JsonPropertyName("choices")]
         public required Choice[] Choices { get; set; }
 
         public class Choice
         {
+            [JsonPropertyName("message")]
             public required Message Message { get; set; }
         }
 
         public class Message
         {
+            [JsonPropertyName("content")]
             public required string Content { get; set; }
         }
     }

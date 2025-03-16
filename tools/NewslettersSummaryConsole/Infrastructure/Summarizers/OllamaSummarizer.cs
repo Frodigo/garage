@@ -1,6 +1,8 @@
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Core.Interfaces;
+using Infrastructure.Prompts;
 
 namespace Infrastructure.Summarizers;
 
@@ -9,18 +11,16 @@ public class OllamaSummarizer : ISummarizer
     private readonly HttpClient _httpClient;
     private readonly string _model;
 
-    public OllamaSummarizer(string model = "mistral")
+    public OllamaSummarizer(string model, HttpClient httpClient, string apiUrl)
     {
         _model = model;
-        _httpClient = new HttpClient
-        {
-            BaseAddress = new Uri("http://localhost:11434/api/")
-        };
+        _httpClient = httpClient;
+        _httpClient.BaseAddress = new Uri($"{apiUrl}/api/");
     }
 
     public async Task<string> SummarizeAsync(string content, string subject)
     {
-        var prompt = $"Summarize the following email with subject '{subject}' in English. Focus on the most important information and key points:\n\n{content}";
+        var prompt = EmailSummaryPrompt.GetPrompt(subject, content);
 
         var request = new
         {
@@ -40,13 +40,25 @@ public class OllamaSummarizer : ISummarizer
         }
 
         var responseContent = await response.Content.ReadAsStringAsync();
-        var responseObject = JsonSerializer.Deserialize<OllamaResponse>(responseContent);
+        
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
 
-        return responseObject?.Response ?? "Failed to generate summary.";
+        var responseObject = JsonSerializer.Deserialize<OllamaResponse>(responseContent, options);
+
+        if (responseObject?.Response == null)
+        {
+            return "Failed to generate summary.";
+        }
+
+        return responseObject.Response;
     }
 
     private class OllamaResponse
     {
+        [JsonPropertyName("response")]
         public required string Response { get; set; }
     }
 } 
