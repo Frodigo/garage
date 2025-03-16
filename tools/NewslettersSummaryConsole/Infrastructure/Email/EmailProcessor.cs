@@ -1,4 +1,5 @@
 using Core.Interfaces;
+using Core.Models;
 using MimeKit;
 
 namespace Infrastructure.Email;
@@ -8,12 +9,14 @@ public class EmailProcessor : IEmailProcessor
     private readonly ISummarizer _summarizer;
     private readonly IEmailFormatter _formatter;
     private readonly ISummaryFileService _summaryFileService;
+    private readonly string _activeSummarizer;
 
-    public EmailProcessor(ISummarizer summarizer, IEmailFormatter formatter, ISummaryFileService summaryFileService)
+    public EmailProcessor(ISummarizer summarizer, IEmailFormatter formatter, ISummaryFileService summaryFileService, string activeSummarizer)
     {
         _summarizer = summarizer;
         _formatter = formatter;
         _summaryFileService = summaryFileService;
+        _activeSummarizer = activeSummarizer;
     }
 
     public async Task ProcessEmailAsync(MimeMessage message)
@@ -28,9 +31,22 @@ public class EmailProcessor : IEmailProcessor
                 var summary = await _summarizer.SummarizeAsync(content, message.Subject);
                 Console.WriteLine(_formatter.FormatSummary(summary));
                 
+                // Get sender's email address and create metadata
+                var sender = message.From.First();
+                var metadata = new EmailMetadata
+                {
+                    Subject = message.Subject ?? "No Subject",
+                    Sender = sender.ToString(),
+                    SenderName = (sender as MailboxAddress)?.Name ?? "Unknown",
+                    Date = message.Date.DateTime,
+                    Summarizer = _activeSummarizer,
+                    Recipients = string.Join(", ", message.To.Select(r => r.ToString())),
+                    HasAttachments = message.Attachments.Any()
+                };
+                
                 // Save summary to file
-                await _summaryFileService.SaveSummaryAsync(message.Subject, summary);
-                Console.WriteLine($"Summary saved to: {_summaryFileService.GetSummaryPath(message.Subject)}");
+                await _summaryFileService.SaveSummaryAsync(message.Subject!, summary, metadata.Sender, metadata);
+                Console.WriteLine($"Summary saved to: {_summaryFileService.GetSummaryPath(message.Subject!, metadata.Sender)}");
             }
             catch (Exception ex)
             {

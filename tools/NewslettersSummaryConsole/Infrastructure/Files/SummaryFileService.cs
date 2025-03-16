@@ -1,4 +1,5 @@
 using Core.Interfaces;
+using Core.Models;
 using System.Text.RegularExpressions;
 
 namespace Infrastructure.Files;
@@ -16,16 +17,44 @@ public class SummaryFileService : ISummaryFileService
         }
     }
 
-    public async Task SaveSummaryAsync(string subject, string summary)
+    public async Task SaveSummaryAsync(string subject, string summary, string sender, EmailMetadata metadata)
     {
-        var filePath = GetSummaryPath(subject);
-        await File.WriteAllTextAsync(filePath, summary);
+        var filePath = GetSummaryPath(subject, sender);
+        var directoryPath = Path.GetDirectoryName(filePath);
+        
+        if (directoryPath != null && !Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
+        var content = FormatContentWithMetadata(summary, metadata);
+        await File.WriteAllTextAsync(filePath, content);
     }
 
-    public string GetSummaryPath(string subject)
+    public string GetSummaryPath(string subject, string sender)
     {
+        var sanitizedSender = SanitizeFileName(sender);
         var sanitizedSubject = SanitizeFileName(subject);
-        return Path.Combine(_summariesPath, $"{sanitizedSubject}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.md");
+        return Path.Combine(_summariesPath, sanitizedSender, $"{DateTime.Now:yyyy-MM-dd}_{sanitizedSubject}.md");
+    }
+
+    private static string FormatContentWithMetadata(string content, EmailMetadata metadata)
+    {
+        var yaml = $"""
+        ---
+        subject: "{metadata.Subject}"
+        sender: "{metadata.Sender}"
+        sender_name: "{metadata.SenderName}"
+        date: {metadata.Date:yyyy-MM-dd HH:mm:ss}
+        summarizer: {metadata.Summarizer}
+        recipients: "{metadata.Recipients}"
+        has_attachments: {metadata.HasAttachments.ToString().ToLower()}
+        ---
+
+        {content}
+        """;
+
+        return yaml;
     }
 
     private static string SanitizeFileName(string fileName)
