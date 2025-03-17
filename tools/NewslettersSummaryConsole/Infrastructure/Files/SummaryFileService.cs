@@ -17,7 +17,7 @@ public class SummaryFileService : ISummaryFileService
         }
     }
 
-    public async Task SaveSummaryAsync(string subject, string summary, string sender, EmailMetadata metadata)
+    public async Task SaveSummaryAsync(string subject, string summary, string originalContent, string sender, EmailMetadata metadata)
     {
         var filePath = GetSummaryPath(subject, sender);
         var directoryPath = Path.GetDirectoryName(filePath);
@@ -27,7 +27,7 @@ public class SummaryFileService : ISummaryFileService
             Directory.CreateDirectory(directoryPath);
         }
 
-        var content = FormatContentWithMetadata(summary, metadata);
+        var content = FormatContentWithMetadata(summary, originalContent, metadata);
         await File.WriteAllTextAsync(filePath, content);
     }
 
@@ -38,7 +38,7 @@ public class SummaryFileService : ISummaryFileService
         return Path.Combine(_summariesPath, sanitizedSender, $"{DateTime.Now:yyyy-MM-dd}_{sanitizedSubject}.md");
     }
 
-    private static string FormatContentWithMetadata(string content, EmailMetadata metadata)
+    private static string FormatContentWithMetadata(string summary, string originalContent, EmailMetadata metadata)
     {
         var yaml = $"""
         ---
@@ -51,7 +51,11 @@ public class SummaryFileService : ISummaryFileService
         has_attachments: {metadata.HasAttachments.ToString().ToLower()}
         ---
 
-        {content}
+        ## AI Summary
+        {summary}
+
+        ## Original Content
+        {originalContent}
         """;
 
         return yaml;
