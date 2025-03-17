@@ -2,6 +2,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Core.Interfaces;
+using Infrastructure.Prompts;
 
 namespace Infrastructure.Summarizers;
 
@@ -21,23 +22,11 @@ public class ClaudeSummarizer : ISummarizer
 
     public async Task<string> SummarizeAsync(string content, string subject)
     {
-        var prompt = $@"Summarize the following email in English, formatting the result as a Markdown document.
-
-Format requirements:
-1. Start with a level 1 header containing the email subject
-2. Add the date as a level 2 header
-3. Present main points as a bullet list
-4. Use appropriate Markdown formatting for highlighting important elements (bold, italic, etc.)
-5. If there are any links or references, preserve them in Markdown format
-
-Email subject: '{subject}'
-
-Content:
-{content}";
+        var prompt = EmailSummaryPrompt.GetPrompt(subject, content);
 
         var request = new
         {
-            model = "claude-3-opus-20240229",
+            model = "claude-3-sonnet-20240229",
             max_tokens = 1000,
             messages = new[]
             {

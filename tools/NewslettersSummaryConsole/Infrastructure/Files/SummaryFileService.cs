@@ -35,7 +35,8 @@ public class SummaryFileService : ISummaryFileService
     {
         var sanitizedSender = SanitizeFileName(sender);
         var sanitizedSubject = SanitizeFileName(subject);
-        return Path.Combine(_summariesPath, sanitizedSender, $"{DateTime.Now:yyyy-MM-dd}_{sanitizedSubject}.md");
+        var dateFolder = DateTime.Now.ToString("yyyy-MM-dd");
+        return Path.Combine(_summariesPath, dateFolder, sanitizedSender, $"{sanitizedSubject}.md");
     }
 
     private static string FormatContentWithMetadata(string summary, string originalContent, EmailMetadata metadata)
@@ -45,7 +46,8 @@ public class SummaryFileService : ISummaryFileService
         subject: "{metadata.Subject}"
         sender: "{metadata.Sender}"
         sender_name: "{metadata.SenderName}"
-        date: {metadata.Date:yyyy-MM-dd HH:mm:ss}
+        email_date: {metadata.Date:yyyy-MM-dd HH:mm:ss}
+        summary_date: {DateTime.Now:yyyy-MM-dd HH:mm:ss}
         summarizer: {metadata.Summarizer}
         recipients: "{metadata.Recipients}"
         has_attachments: {metadata.HasAttachments.ToString().ToLower()}

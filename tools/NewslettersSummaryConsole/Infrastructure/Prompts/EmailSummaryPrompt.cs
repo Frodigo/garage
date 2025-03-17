@@ -13,15 +13,14 @@ Analyze and summarize the following email in English, formatting the result as a
 
 Format requirements:
 1. Start with a level 1 header containing the email subject
-2. Add the date as a level 2 header (extract from the email if possible)
-3. Add a brief 1-2 sentence overview of the email's purpose in a blockquote
-4. Present main points as a bullet list, with sub-bullets for supporting details
-5. If action items exist, create a separate 'Action Items' section with checkboxes
-6. If deadlines/dates are mentioned, list them in a 'Key Dates' section
-7. Use appropriate Markdown formatting for highlighting important elements (bold for critical information, italic for emphasis)
-8. If there are any links, references, or contact information, preserve them in Markdown format
-9. If the email is a newsletter, include a 'Featured Topics' section
-10. Keep the summary concise while capturing all essential information
+2. Add a brief 1-2 sentence overview of the email's purpose in a blockquote
+3. Present main points as a bullet list, with sub-bullets for supporting details. Each item should have a link if available.
+4. If action items exist, create a separate 'Action Items' section with checkboxes. Add links to the action items if available.
+5. If deadlines/dates are mentioned, list them in a 'Key Dates' section
+6. Use appropriate Markdown formatting for highlighting important elements (bold for critical information, italic for emphasis)
+7. If there are any links, references, or contact information, preserve them in Markdown format
+8. If the email is a newsletter, include a 'Featured Topics' section
+9. Keep the summary concise while capturing all essential information
 
 Important filtering instructions:
 - Skip promotional and marketing content that doesn't provide substantial information
