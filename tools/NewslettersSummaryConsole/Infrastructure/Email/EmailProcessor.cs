@@ -1,6 +1,7 @@
 using Core.Interfaces;
 using Core.Models;
 using MimeKit;
+using NewslettersSummaryConsole.Core;
 
 namespace Infrastructure.Email;
 
@@ -45,7 +46,7 @@ public class EmailProcessor : IEmailProcessor
                 };
                 
                 // Save summary to file
-                await _summaryFileService.SaveSummaryAsync(message.Subject!, summary, metadata.Sender, metadata);
+                await _summaryFileService.SaveSummaryAsync(message.Subject!, summary, content, metadata.Sender, metadata);
                 Console.WriteLine($"Summary saved to: {_summaryFileService.GetSummaryPath(message.Subject!, metadata.Sender)}");
             }
             catch (Exception ex)
@@ -59,6 +60,14 @@ public class EmailProcessor : IEmailProcessor
 
     public Task<string> GetEmailContentAsync(MimeMessage message)
     {
-        return Task.FromResult(message.TextBody ?? message.HtmlBody ?? string.Empty);
+        var content = message.TextBody ?? message.HtmlBody ?? string.Empty;
+        
+        // If content is in HTML, clean it
+        if (!string.IsNullOrEmpty(message.HtmlBody))
+        {
+            content = HtmlExtractor.ExtractText(content);
+        }
+        
+        return Task.FromResult(content);
     }
 } 
