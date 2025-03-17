@@ -40,4 +40,4 @@ var summaryFileService = new SummaryFileService(summariesPath);
 var emailProcessor = new EmailProcessor(summarizer, formatter, summaryFileService, activeSummarizer);
 var emailService = new EmailService(connectionManager, emailProcessor);
 
-await emailService.ReadUnreadEmails(maxEmails: 1, markAsRead: false);
+await emailService.ReadUnreadEmails(maxEmails: 5, markAsRead: true);

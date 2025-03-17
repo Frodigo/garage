@@ -6,4 +6,5 @@ public interface IEmailProcessor
 {
     Task ProcessEmailAsync(MimeMessage message);
     Task<string> GetEmailContentAsync(MimeMessage message);
+    void DisplayProcessedEmailsSummary();
 } 

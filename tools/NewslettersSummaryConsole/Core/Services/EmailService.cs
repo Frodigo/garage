@@ -34,6 +34,7 @@ public class EmailService
         }
         
         await _connectionManager.DisconnectAsync(client);
+        _emailProcessor.DisplayProcessedEmailsSummary();
     }
 
     public async Task ReadUnreadEmails(int maxEmails = 10, bool markAsRead = false)
@@ -59,5 +60,6 @@ public class EmailService
         }
         
         await _connectionManager.DisconnectAsync(client);
+        _emailProcessor.DisplayProcessedEmailsSummary();
     }
 } 
