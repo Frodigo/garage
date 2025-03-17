@@ -1,4 +1,5 @@
 using HtmlAgilityPack;
+using System.Text.RegularExpressions;
 
 namespace NewslettersSummaryConsole.Core;
 
@@ -32,8 +33,13 @@ public static class HtmlExtractor
         // Extract text
         var text = doc.DocumentNode.InnerText;
 
+        // Decode HTML entities
+        text = System.Web.HttpUtility.HtmlDecode(text);
+
         // Clean text
-        text = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ");
+        text = Regex.Replace(text, @"\s+", " "); // Replace multiple spaces with single space
+        text = Regex.Replace(text, @"[^\x20-\x7E\n\r]", ""); // Remove non-printable characters
+        text = Regex.Replace(text, @"\n\s*\n", "\n\n"); // Replace multiple newlines with double newline
         text = text.Trim();
 
         return text;

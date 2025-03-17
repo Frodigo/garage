@@ -2,8 +2,14 @@ namespace Infrastructure.Prompts;
 
 public static class EmailSummaryPrompt
 {
-    public static string GetPrompt(string subject, string content) => $@"
-Analyze and summarize the following email in English, formatting the result as a structured Markdown document.
+    public static string GetPrompt(string subject, string content, string? partInfo = null)
+    {
+        var partHeader = !string.IsNullOrEmpty(partInfo) 
+            ? $"\nThis is {partInfo} of the email content." 
+            : string.Empty;
+
+        return $@"
+Analyze and summarize the following email in English, formatting the result as a structured Markdown document.{partHeader}
 
 Format requirements:
 1. Start with a level 1 header containing the email subject
@@ -28,4 +34,5 @@ Important filtering instructions:
 Email subject: '{subject}'
 
 Content: {content}";
+    }
 }
