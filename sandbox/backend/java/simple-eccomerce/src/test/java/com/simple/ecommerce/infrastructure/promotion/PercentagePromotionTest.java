@@ -8,6 +8,8 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.simple.ecommerce.application.exception.EmptyCartException;
+import com.simple.ecommerce.application.exception.InvalidPromotionException;
 import com.simple.ecommerce.application.port.PromotionStrategy;
 import com.simple.ecommerce.domain.entity.Category;
 import com.simple.ecommerce.domain.entity.Product;
@@ -58,16 +60,16 @@ public class PercentagePromotionTest {
         assertEquals(expectedDiscount, discount, 0.001);
     }
     
-    @Test
+    @Test(expected = EmptyCartException.class)
     public void testPercentagePromotionWithEmptyCart() {
         // given
         PromotionStrategy promotion = new PercentagePromotion("10PERCENTOFF");
         
         // when
-        double discount = promotion.calculateDiscount(cart);
+        promotion.calculateDiscount(cart);
         
         // then
-        assertEquals(0.0, discount, 0.001);
+        // exception is expected
     }
     
     @Test
@@ -83,7 +85,7 @@ public class PercentagePromotionTest {
         assertEquals(promotionCode, returnedCode);
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = InvalidPromotionException.class)
     public void testPercentagePromotionWithNullCode() {
         // when
         new PercentagePromotion(null);
@@ -92,7 +94,7 @@ public class PercentagePromotionTest {
         // exception is expected
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = InvalidPromotionException.class)
     public void testPercentagePromotionWithEmptyCode() {
         // when
         new PercentagePromotion("");
@@ -101,7 +103,7 @@ public class PercentagePromotionTest {
         // exception is expected
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = InvalidPromotionException.class)
     public void testPercentagePromotionWithNegativeDiscount() {
         // when
         new PercentagePromotion("INVALID", -10.0);
@@ -110,7 +112,7 @@ public class PercentagePromotionTest {
         // exception is expected
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = InvalidPromotionException.class)
     public void testPercentagePromotionWithTooHighDiscount() {
         // when
         new PercentagePromotion("INVALID", 110.0);

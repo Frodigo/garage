@@ -1,5 +1,6 @@
 package com.simple.ecommerce.application.port;
 
+import com.simple.ecommerce.application.exception.EmptyCartException;
 import com.simple.ecommerce.domain.entity.Product;
 
 import java.util.Map;
@@ -17,6 +18,7 @@ public interface PromotionStrategy {
      *
      * @param products a map of products and their quantities in the cart
      * @return the total discount amount
+     * @throws EmptyCartException if the cart is empty
      */
     double calculateDiscount(Map<Product, Integer> products);
     

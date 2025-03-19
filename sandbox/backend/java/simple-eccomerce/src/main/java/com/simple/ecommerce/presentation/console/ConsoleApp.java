@@ -1,5 +1,10 @@
 package com.simple.ecommerce.presentation.console;
 
+import com.simple.ecommerce.application.exception.CategoryNotFoundException;
+import com.simple.ecommerce.application.exception.EmptyCartException;
+import com.simple.ecommerce.application.exception.InvalidPromotionException;
+import com.simple.ecommerce.application.exception.ProductNotFoundException;
+import com.simple.ecommerce.application.exception.ProductUnavailableException;
 import com.simple.ecommerce.application.service.CatalogService;
 import com.simple.ecommerce.application.service.ShoppingCartService;
 import com.simple.ecommerce.domain.entity.Category;
@@ -47,6 +52,10 @@ public class ConsoleApp {
         
         // Demonstrate promotions
         demonstratePromotions(cartService);
+        
+        // Demonstrate exception handling
+        System.out.println("\n=== Exception Handling Demonstration ===");
+        demonstrateExceptionHandling(catalogService, cartService);
     }
     
     /**
@@ -136,6 +145,94 @@ public class ConsoleApp {
         cartService.activatePromotion(secondHalfPricePromotion);
         System.out.println("\nWith second item half price promotion:");
         System.out.println("Total Price: $" + String.format("%.2f", cartService.calculateCartPrice()));
+    }
+    
+    /**
+     * Demonstrates exception handling for various scenarios.
+     *
+     * @param catalogService the catalog service to use
+     * @param cartService the shopping cart service to use
+     */
+    private static void demonstrateExceptionHandling(CatalogService catalogService, ShoppingCartService cartService) {
+        // 1. ProductNotFoundException
+        System.out.println("\n1. ProductNotFoundException handling:");
+        try {
+            System.out.println("  Trying to find non-existent product 'Gaming Console'...");
+            Product nonExistentProduct = catalogService.findProductByName("Gaming Console");
+            System.out.println("  Found product: " + nonExistentProduct.getName());
+        } catch (ProductNotFoundException e) {
+            System.out.println("  Error: " + e.getMessage());
+        }
+        
+        // 2. ProductUnavailableException
+        System.out.println("\n2. ProductUnavailableException handling:");
+        try {
+            System.out.println("  Trying to add unavailable product to cart...");
+            Product unavailableProduct = findProductByName(catalogService.getAllProducts(), "Out of Stock Item");
+            cartService.addProduct(unavailableProduct);
+            System.out.println("  Product added successfully");
+        } catch (ProductUnavailableException e) {
+            System.out.println("  Error: " + e.getMessage());
+            System.out.println("  Unavailable product: " + e.getProduct().getName());
+        }
+        
+        // 3. CategoryNotFoundException
+        System.out.println("\n3. CategoryNotFoundException handling:");
+        try {
+            System.out.println("  Trying to get products with null category...");
+            catalogService.getAvailableProductsByCategory(null);
+            System.out.println("  Products retrieved successfully");
+        } catch (CategoryNotFoundException e) {
+            System.out.println("  Error: " + e.getMessage());
+        }
+        
+        // 4. InvalidPromotionException
+        System.out.println("\n4. InvalidPromotionException handling:");
+        try {
+            System.out.println("  Trying to create promotion with invalid discount percentage...");
+            PercentagePromotion invalidPromotion = new PercentagePromotion("INVALID_PROMO", 110.0);
+            System.out.println("  Promotion created successfully: " + invalidPromotion.getPromotionCode());
+        } catch (InvalidPromotionException e) {
+            System.out.println("  Error: " + e.getMessage());
+        }
+        
+        // 5. EmptyCartException
+        System.out.println("\n5. EmptyCartException handling:");
+        try {
+            System.out.println("  Trying to calculate price with empty cart...");
+            // Create a new cart that is empty
+            ShoppingCartService emptyCart = new ShoppingCartService();
+            emptyCart.calculateCartPrice();
+            System.out.println("  Price calculated successfully");
+        } catch (EmptyCartException e) {
+            System.out.println("  Error: " + e.getMessage());
+        }
+        
+        // 6. Demonstrate proper exception recovery
+        System.out.println("\n6. Exception recovery demonstration:");
+        ShoppingCartService recoveryCart = new ShoppingCartService();
+        
+        // Try to calculate price with empty cart
+        try {
+            System.out.println("  Trying to calculate price with empty cart...");
+            recoveryCart.calculateCartPrice();
+        } catch (EmptyCartException e) {
+            System.out.println("  Error: " + e.getMessage());
+            System.out.println("  Recovering by adding a product to cart...");
+            
+            // Add a product and try again
+            Product laptop = findProductByName(catalogService.getAllProducts(), "Laptop");
+            recoveryCart.addProduct(laptop);
+            
+            try {
+                double price = recoveryCart.calculateCartPrice();
+                System.out.println("  Recovery successful! Cart price: $" + String.format("%.2f", price));
+            } catch (Exception recoveryException) {
+                System.out.println("  Recovery failed: " + recoveryException.getMessage());
+            }
+        }
+        
+        System.out.println("\nException handling demonstration completed.");
     }
     
     /**

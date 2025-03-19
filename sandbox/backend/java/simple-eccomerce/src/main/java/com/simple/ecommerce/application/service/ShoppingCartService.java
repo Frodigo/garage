@@ -1,5 +1,7 @@
 package com.simple.ecommerce.application.service;
 
+import com.simple.ecommerce.application.exception.EmptyCartException;
+import com.simple.ecommerce.application.exception.ProductUnavailableException;
 import com.simple.ecommerce.application.port.PromotionStrategy;
 import com.simple.ecommerce.domain.entity.Product;
 
@@ -33,7 +35,8 @@ public class ShoppingCartService {
      * the quantity is increased by 1.
      *
      * @param product the product to add
-     * @throws IllegalArgumentException if product is null or unavailable
+     * @throws IllegalArgumentException if product is null
+     * @throws ProductUnavailableException if product is unavailable
      */
     public void addProduct(Product product) {
         if (product == null) {
@@ -41,7 +44,7 @@ public class ShoppingCartService {
         }
         
         if (!product.isAvailable()) {
-            throw new IllegalArgumentException("Cannot add unavailable product to cart: " + product.getName());
+            throw new ProductUnavailableException(product);
         }
         
         products.put(product, products.getOrDefault(product, 0) + 1);
@@ -85,8 +88,13 @@ public class ShoppingCartService {
      * applying any active promotion.
      *
      * @return the total price
+     * @throws EmptyCartException if the cart is empty
      */
     public double calculateCartPrice() {
+        if (products.isEmpty()) {
+            throw new EmptyCartException("Cannot calculate price for an empty cart");
+        }
+        
         double totalPrice = products.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
@@ -106,5 +114,21 @@ public class ShoppingCartService {
      */
     public void activatePromotion(PromotionStrategy promotion) {
         this.activePromotion = promotion;
+    }
+    
+    /**
+     * Checks if the cart is empty.
+     *
+     * @return true if cart is empty, false otherwise
+     */
+    public boolean isEmpty() {
+        return products.isEmpty();
+    }
+    
+    /**
+     * Clears all products from the cart.
+     */
+    public void clear() {
+        products.clear();
     }
 } 

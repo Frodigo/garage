@@ -7,6 +7,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.simple.ecommerce.application.exception.ProductUnavailableException;
 import com.simple.ecommerce.application.port.PromotionStrategy;
 import com.simple.ecommerce.domain.entity.Category;
 import com.simple.ecommerce.domain.entity.Product;
@@ -74,7 +75,7 @@ public class ShoppingCartServiceTest {
         // exception is expected
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ProductUnavailableException.class)
     public void testAddUnavailableProduct() {
         // given
         laptop.setAvailable(false);

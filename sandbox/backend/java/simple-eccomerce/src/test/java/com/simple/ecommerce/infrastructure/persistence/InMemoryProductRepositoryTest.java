@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.simple.ecommerce.application.exception.CategoryNotFoundException;
 import com.simple.ecommerce.domain.entity.Category;
 import com.simple.ecommerce.domain.entity.Product;
 import com.simple.ecommerce.domain.repository.ProductRepository;
@@ -100,7 +101,7 @@ public class InMemoryProductRepositoryTest {
         // exception is expected
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = CategoryNotFoundException.class)
     public void testGetAvailableProductsByNullCategory() {
         // when
         repository.getAvailableProductsByCategory(null);

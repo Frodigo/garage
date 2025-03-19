@@ -1,5 +1,6 @@
 package com.simple.ecommerce.infrastructure.persistence;
 
+import com.simple.ecommerce.application.exception.CategoryNotFoundException;
 import com.simple.ecommerce.domain.entity.Category;
 import com.simple.ecommerce.domain.entity.Product;
 import com.simple.ecommerce.domain.repository.ProductRepository;
@@ -46,7 +47,7 @@ public class InMemoryProductRepository implements ProductRepository {
     @Override
     public List<Product> getAvailableProductsByCategory(Category category) {
         if (category == null) {
-            throw new IllegalArgumentException("Category cannot be null");
+            throw new CategoryNotFoundException("Category cannot be null");
         }
         
         return products.stream()

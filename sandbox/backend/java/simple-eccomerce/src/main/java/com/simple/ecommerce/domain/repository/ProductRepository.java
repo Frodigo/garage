@@ -1,5 +1,6 @@
 package com.simple.ecommerce.domain.repository;
 
+import com.simple.ecommerce.application.exception.CategoryNotFoundException;
 import com.simple.ecommerce.domain.entity.Category;
 import com.simple.ecommerce.domain.entity.Product;
 
@@ -14,6 +15,7 @@ public interface ProductRepository {
      * Adds a product to the repository.
      *
      * @param product the product to add
+     * @throws IllegalArgumentException if product is null
      */
     void addProduct(Product product);
     
@@ -36,6 +38,7 @@ public interface ProductRepository {
      *
      * @param category the category to filter by
      * @return a list of available products in the category sorted by price
+     * @throws CategoryNotFoundException if category is null
      */
     List<Product> getAvailableProductsByCategory(Category category);
 } 
