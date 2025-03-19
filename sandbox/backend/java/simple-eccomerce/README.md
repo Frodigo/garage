@@ -1,262 +1,268 @@
-Create a console backend for a simple eCommerce platform enabling customers to shop online.
+# Simple eCommerce Backend
 
-## Tasks
-- Implement Product class
-- Design and implement Product Catalog
-- Design and implement Shopping Cart
-- Add Promotion functionality
-- Create a simple class diagram
-- Implement unit tests
+A console-based eCommerce application backend written in Java, following Clean Architecture principles.
 
-## Acceptance Criteria
+## Project Overview
 
-### Product Class
-- [ ] Implement Product class with attributes: name, price, category
-- [ ] Functionality to mark products as available/unavailable
+This project demonstrates a simple yet implementation of an eCommerce system with the following features:
 
-### Product Catalog
-- [ ] Store all products available for purchase
-- [ ] Auto-populate catalog with predefined products at application startup
-- [ ] Ability to retrieve and display names and prices of all products (alphabetical sorting)
-- [ ] Ability to filter products by category (sorting from cheapest, filtering unavailable products)
+- Product and category management
+- Shopping cart functionality
+- Various promotion strategies
+- Custom exception handling
+- Clean Architecture implementation
 
-### Shopping Cart
-- [ ] Ability to add products to cart (including multiple instances of the same product)
-- [ ] Ability to remove products from cart
-- [ ] Display cart contents (product names and quantities)
-- [ ] Calculate and display the total price of all products in the cart
+## Architecture
 
-### Promotions
-- [ ] Add promotions to shopping cart using discount codes
-- [ ] Implement "10% off all products in cart" promotion
-- [ ] Implement "when buying 3 products, the cheapest one costs 1 PLN" promotion
-- [ ] Implement "when buying 2 identical products, the second one is half price" promotion
+The application follows Clean Architecture with the following layers:
 
-### Documentation and Testing
-- [ ] Create a simple class diagram showing relationships between classes
-- [ ] Implement unit tests using JUnit5 and the given-when-then technique
+### Domain Layer
 
+- Core business entities like `Product` and `Category`
+- Repository interfaces
 
----
+### Application Layer
 
-## Diagram 
+- Business services: `CatalogService`, `ShoppingCartService`
+- Custom exceptions for better error handling
+- Port interfaces for external dependencies
+
+### Infrastructure Layer
+
+- Repository implementations (e.g., `InMemoryProductRepository`)
+- Promotion strategy implementations
+
+### Presentation Layer
+
+- Console-based user interface (`ConsoleApp`)
+
+## Solution Design
+
+The following diagrams represent the system architecture using the C4 Model approach:
+
+### Context Diagram (Level 1)
+
 ```mermaid
-classDiagram
-
-%% Core Business Entities
-
-  
-
-class Product {
-
-%% Attributes
-
--String name
-
--double price
-
--Category category
-
--boolean available
-
-%% Methods
-
-+getName() String
-
-+getPrice() double
-
-+getCategory() Category
-
-+isAvailable() boolean
-
-+setAvailable(boolean available) void
-
-%% Business Rules
-
-BR: Must have name, price and category
-
-BR: Can be marked available or unavailable
-
-}
-
-class Category {
-
-%% Attributes
-
--String name
-
-%% Methods
-
-+getName() String
-
-%% Business Rules
-
-BR: Each product has exactly one category
-
-}
-
-class Catalog {
-
-%% Attributes
-
--List~Product~ products
-
-%% Methods
-
-+addProduct(Product product) void
-
-+getAllProducts() List~Product~
-
-+getProductsSortedAlphabetically() List~Product~
-
-+getAvailableProductsByCategory(Category category) List~Product~
-
-%% Business Rules
-
-BR: Contains all store products
-
-BR: Products filtered by category show only available ones
-
-BR: Products can be sorted alphabetically
-
-BR: Products can be sorted by price (low to high)
-
-}
-
-class ShoppingCart {
-
-%% Attributes
-
--Map~Product, Integer~ products
-
--Promotion activePromotion
-
-%% Methods
-
-+addProduct(Product product) void
-
-+removeProduct(Product product) void
-
-+getCartContents() Map~Product, Integer~
-
-+calculateCartPrice() double
-
-+activatePromotion(Promotion promotion) void
-
-%% Business Rules
-
-BR: Initially empty
-
-BR: Can have multiple units of same product
-
-BR: Total price = sum of product prices with applied promotion
-
-BR: Only one active promotion at a time
-
-BR: New promotion overrides previous one
-
-}
-
-%% Interface for Promotion Strategy Pattern
-
-class Promotion {
-
-<<interface>>
-
-%% Methods
-
-+calculateDiscount(Map~Product, Integer~ products) double
-
-+getPromotionCode() String
-
-%% Business Rules
-
-BR: Only one promotion active at a time
-
-BR: Applied during price calculation
-
-}
-
-%% Concrete Promotion Implementation Classes
-
-class PercentagePromotion {
-
-%% Attributes
-
--String promotionCode
-
--double discountPercentage
-
-%% Methods
-
-+calculateDiscount(Map~Product, Integer~ products) double
-
-+getPromotionCode() String
-
-%% Business Rules
-
-BR: Applies 10% discount to entire cart
-
-}
-
-class CheapestProductPromotion {
-
-%% Attributes
-
--String promotionCode
-
--double specialPrice
-
--int productsRequired
-
-%% Methods
-
-+calculateDiscount(Map~Product, Integer~ products) double
-
-+getPromotionCode() String
-
-%% Business Rules
-
-BR: Every third product costs 1 PLN
-
-BR: Applied to cheapest products first
-
-}
-
-class SecondProductHalfPricePromotion {
-
-%% Attributes
-
--String promotionCode
-
-%% Methods
-
-+calculateDiscount(Map~Product, Integer~ products) double
-
-+getPromotionCode() String
-
-%% Business Rules
-
-BR: Second identical product costs 50% of original price
-
-BR: Applied for each product type separately
-
-}
-
-%% Relationships
-
-Product --> Category : has
-
-Catalog o-- "many" Product : contains
-
-ShoppingCart o-- "many" Product : contains
-
-ShoppingCart --> Promotion : uses
-
-Promotion <|.. PercentagePromotion : implements
-
-Promotion <|.. CheapestProductPromotion : implements
-
-Promotion <|.. SecondProductHalfPricePromotion : implements
+C4Context
+    title System Context Diagram for eCommerce System
+    
+    Person(customer, "Customer", "A user of the eCommerce system")
+    System(ecommerceSystem, "eCommerce System", "Allows customers to browse products, manage shopping cart and apply promotions")
+    
+    Rel(customer, ecommerceSystem, "Uses")
 ```
 
+### Container Diagram (Level 2)
+
+```mermaid
+C4Container
+    title Container Diagram for eCommerce System
+    
+    Person(customer, "Customer", "A user of the eCommerce system")
+    
+    System_Boundary(ecommerceSystem, "eCommerce System") {
+        Container(consoleApp, "Console Application", "Java", "Provides user interface via console commands")
+        Container(businessLogic, "Business Logic", "Java", "Implements core business rules and use cases")
+        ContainerDb(productRepository, "Product Repository", "In-Memory", "Stores product information")
+    }
+    
+    Rel(customer, consoleApp, "Interacts with")
+    Rel(consoleApp, businessLogic, "Uses")
+    Rel(businessLogic, productRepository, "Reads from and writes to")
+```
+
+### Component Diagram (Level 3)
+
+```mermaid
+C4Component
+    title Component Diagram for eCommerce System Business Logic
+    
+    Container_Boundary(businessLogic, "Business Logic") {
+        Component(catalogService, "Catalog Service", "Java", "Provides product catalog functionality")
+        Component(shoppingCartService, "Shopping Cart Service", "Java", "Manages shopping cart operations")
+        Component(promotionStrategies, "Promotion Strategies", "Java", "Implements various discount strategies")
+    }
+    
+    Container(productRepository, "Product Repository", "In-Memory", "Stores product information")
+    Container(consoleApp, "Console Application", "Java", "Provides UI via console")
+    
+    Rel(consoleApp, catalogService, "Uses")
+    Rel(consoleApp, shoppingCartService, "Uses")
+    Rel(shoppingCartService, promotionStrategies, "Applies")
+    Rel(catalogService, productRepository, "Reads from")
+```
+
+### Class Diagram (Level 4)
+
+```mermaid
+classDiagram
+    %% Domain Layer
+    class Product {
+        -String name
+        -double price
+        -boolean available
+        -Category category
+        +isAvailable()
+        +getPrice()
+        +getName()
+        +getCategory()
+    }
+    class Category {
+        -String name
+        +getName()
+    }
+
+    %% Application Layer
+    class CatalogService {
+        +getAllProducts()
+        +getProductsSortedAlphabetically()
+        +getAvailableProductsByCategory()
+        +findProductByName()
+    }
+    class ShoppingCartService {
+        +addProduct()
+        +removeProduct()
+        +calculateCartPrice()
+        +activatePromotion()
+    }
+    class PromotionStrategy {
+        <<interface>>
+        +calculateDiscount()
+        +getPromotionCode()
+    }
+
+    %% Infrastructure Layer
+    class InMemoryProductRepository {
+        +addProduct()
+        +getAllProducts()
+        +getProductsSortedAlphabetically()
+        +getAvailableProductsByCategory()
+    }
+    class PercentagePromotion {
+        +calculateDiscount()
+    }
+    class SecondProductHalfPricePromotion {
+        +calculateDiscount()
+    }
+    class CheapestProductPromotion {
+        +calculateDiscount()
+    }
+
+    %% Relationships
+    Product --> Category
+    CatalogService --> InMemoryProductRepository
+    ShoppingCartService --> PromotionStrategy
+    PercentagePromotion ..|> PromotionStrategy
+    SecondProductHalfPricePromotion ..|> PromotionStrategy
+    CheapestProductPromotion ..|> PromotionStrategy
+    InMemoryProductRepository --> Product
+```
+
+## Features
+
+### Product Management
+
+- Create and manage products with name, price, and category
+- Mark products as available/unavailable
+- Sort products alphabetically or by price
+- Filter products by category
+
+### Shopping Cart
+
+- Add and remove products from cart
+- Calculate cart total price
+- Show detailed cart contents
+
+### Promotion System
+
+- Percentage-based discounts
+- "Second item half price" promotions
+- "Cheapest product discount" promotions
+- Flexible promotion strategy pattern
+
+### Exception Handling
+
+- Custom exceptions for different error scenarios:
+  - `ProductNotFoundException`: When a product doesn't exist
+  - `ProductUnavailableException`: When trying to purchase unavailable products
+  - `EmptyCartException`: When operations are performed on empty carts
+  - `CategoryNotFoundException`: When a category doesn't exist
+  - `InvalidPromotionException`: When promotion parameters are incorrect
+
+## Prerequisites
+
+Before running the application, make sure you have the following installed:
+
+- Java JDK 8 or higher
+- Maven 3.6 or higher
+
+You can check your installations with the following commands:
+
+```bash
+java -version
+mvn -version
+```
+
+## Running the Application
+
+To run the application:
+
+```bash
+mvn clean package
+java -cp target/simple-eccomerce-1.0-SNAPSHOT.jar com.simple.ecommerce.App
+```
+
+The demonstration will show:
+
+1. Products sorted alphabetically
+2. Products filtered by category
+3. Shopping cart functionality
+4. Different promotion types applied to a cart
+5. Exception handling examples
+
+## Testing
+
+The project extensive unit tests for all components:
+
+```bash
+mvn test
+```
+
+Unit tests cover:
+
+- Domain entities
+- Repository implementations
+- Application services
+- Promotion strategies
+- Exception handling
+
+## Project Structure
+
+```text
+src/
+├── main/java/com/simple/ecommerce/
+│   ├── App.java                              # Main entry point
+│   ├── application/                          # Application layer
+│   │   ├── exception/                        # Custom exceptions
+│   │   ├── port/                            # Interface ports
+│   │   └── service/                         # Business services
+│   ├── domain/                              # Domain layer
+│   │   ├── entity/                          # Domain entities
+│   │   └── repository/                      # Repository interfaces
+│   ├── infrastructure/                       # Infrastructure layer
+│   │   ├── persistence/                     # Repository implementations
+│   │   └── promotion/                       # Promotion implementations
+│   └── presentation/                         # Presentation layer
+│       └── console/                         # Console UI
+└── test/                                     # Test cases
+```
+
+## Completed Tasks
+
+- ✅ Implemented Product class with attributes and behavior
+- ✅ Designed and implemented Product Catalog with filtering and sorting
+- ✅ Designed and implemented Shopping Cart with add/remove functionality
+- ✅ Added flexible Promotion system with multiple strategies
+- ✅ Implemented comprehensive unit tests
+- ✅ Followed Clean Architecture principles
+- ✅ Added custom exception handling
