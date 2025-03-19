@@ -83,7 +83,11 @@ public class CheapestProductPromotion implements PromotionStrategy {
             if ((i + 1) % productsRequired == 0) { // Every Nth product gets the discount
                 Product discountedProduct = allProducts.get(i);
                 // Discount is the difference between original price and special price
-                totalDiscount += discountedProduct.getPrice() - specialPrice;
+                double productDiscount = discountedProduct.getPrice() - specialPrice;
+                // Ensure discount is not negative (special price doesn't exceed product price)
+                if (productDiscount > 0) {
+                    totalDiscount += productDiscount;
+                }
             }
         }
         
