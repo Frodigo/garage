@@ -1,7 +1,8 @@
-package com.simple.ecommerce.promotion;
+package com.simple.ecommerce.application.port;
+
+import com.simple.ecommerce.domain.entity.Product;
 
 import java.util.Map;
-import com.simple.ecommerce.model.Product;
 
 /**
  * Interface for different types of promotions.
@@ -9,7 +10,7 @@ import com.simple.ecommerce.model.Product;
  * - Only one promotion active at a time
  * - Applied during price calculation
  */
-public interface Promotion {
+public interface PromotionStrategy {
     
     /**
      * Calculates the discount for the items in the shopping cart.

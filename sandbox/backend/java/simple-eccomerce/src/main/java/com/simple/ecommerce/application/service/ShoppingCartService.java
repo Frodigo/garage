@@ -1,13 +1,14 @@
-package com.simple.ecommerce.model;
+package com.simple.ecommerce.application.service;
+
+import com.simple.ecommerce.application.port.PromotionStrategy;
+import com.simple.ecommerce.domain.entity.Product;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.simple.ecommerce.promotion.Promotion;
-
 /**
- * Represents a shopping cart in the eCommerce system.
+ * Service for managing shopping cart operations.
  * Business Rules:
  * - Initially empty
  * - Can have multiple units of same product
@@ -15,14 +16,15 @@ import com.simple.ecommerce.promotion.Promotion;
  * - Only one active promotion at a time
  * - New promotion overrides previous one
  */
-public class ShoppingCart {
-    private Map<Product, Integer> products;
-    private Promotion activePromotion;
+public class ShoppingCartService {
+    
+    private final Map<Product, Integer> products;
+    private PromotionStrategy activePromotion;
 
     /**
-     * Creates an empty shopping cart.
+     * Creates an empty shopping cart service.
      */
-    public ShoppingCart() {
+    public ShoppingCartService() {
         this.products = new HashMap<>();
     }
 
@@ -31,6 +33,7 @@ public class ShoppingCart {
      * the quantity is increased by 1.
      *
      * @param product the product to add
+     * @throws IllegalArgumentException if product is null or unavailable
      */
     public void addProduct(Product product) {
         if (product == null) {
@@ -49,6 +52,7 @@ public class ShoppingCart {
      * only one unit is removed.
      *
      * @param product the product to remove
+     * @throws IllegalArgumentException if product is null
      */
     public void removeProduct(Product product) {
         if (product == null) {
@@ -100,7 +104,7 @@ public class ShoppingCart {
      *
      * @param promotion the promotion to activate
      */
-    public void activatePromotion(Promotion promotion) {
+    public void activatePromotion(PromotionStrategy promotion) {
         this.activePromotion = promotion;
     }
 } 

@@ -1,4 +1,4 @@
-package com.simple.ecommerce.model;
+package com.simple.ecommerce.infrastructure.persistence;
 
 import static org.junit.Assert.*;
 
@@ -7,9 +7,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CatalogTest {
+import com.simple.ecommerce.domain.entity.Category;
+import com.simple.ecommerce.domain.entity.Product;
+import com.simple.ecommerce.domain.repository.ProductRepository;
+
+public class InMemoryProductRepositoryTest {
     
-    private Catalog catalog;
+    private ProductRepository repository;
     private Category electronics;
     private Category books;
     private Product laptop;
@@ -19,7 +23,7 @@ public class CatalogTest {
     
     @Before
     public void setup() {
-        catalog = new Catalog();
+        repository = new InMemoryProductRepository();
         electronics = new Category("Electronics");
         books = new Category("Books");
         
@@ -28,16 +32,16 @@ public class CatalogTest {
         smartphone = new Product("Smartphone", 800.0, electronics);
         book = new Product("Java Programming", 45.0, books);
         
-        catalog.addProduct(laptop);
-        catalog.addProduct(tablet);
-        catalog.addProduct(smartphone);
-        catalog.addProduct(book);
+        repository.addProduct(laptop);
+        repository.addProduct(tablet);
+        repository.addProduct(smartphone);
+        repository.addProduct(book);
     }
     
     @Test
     public void testGetAllProducts() {
         // when
-        List<Product> allProducts = catalog.getAllProducts();
+        List<Product> allProducts = repository.getAllProducts();
         
         // then
         assertEquals(4, allProducts.size());
@@ -50,7 +54,7 @@ public class CatalogTest {
     @Test
     public void testGetProductsSortedAlphabetically() {
         // when
-        List<Product> sortedProducts = catalog.getProductsSortedAlphabetically();
+        List<Product> sortedProducts = repository.getProductsSortedAlphabetically();
         
         // then
         assertEquals(4, sortedProducts.size());
@@ -63,7 +67,7 @@ public class CatalogTest {
     @Test
     public void testGetAvailableProductsByCategory() {
         // when
-        List<Product> electronicsProducts = catalog.getAvailableProductsByCategory(electronics);
+        List<Product> electronicsProducts = repository.getAvailableProductsByCategory(electronics);
         
         // then
         assertEquals(3, electronicsProducts.size());
@@ -78,7 +82,7 @@ public class CatalogTest {
         smartphone.setAvailable(false);
         
         // when
-        List<Product> electronicsProducts = catalog.getAvailableProductsByCategory(electronics);
+        List<Product> electronicsProducts = repository.getAvailableProductsByCategory(electronics);
         
         // then
         assertEquals(2, electronicsProducts.size());
@@ -90,7 +94,7 @@ public class CatalogTest {
     @Test(expected = IllegalArgumentException.class)
     public void testAddNullProduct() {
         // when
-        catalog.addProduct(null);
+        repository.addProduct(null);
         
         // then
         // exception is expected
@@ -99,7 +103,7 @@ public class CatalogTest {
     @Test(expected = IllegalArgumentException.class)
     public void testGetAvailableProductsByNullCategory() {
         // when
-        catalog.getAvailableProductsByCategory(null);
+        repository.getAvailableProductsByCategory(null);
         
         // then
         // exception is expected

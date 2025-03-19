@@ -1,4 +1,4 @@
-package com.simple.ecommerce.model;
+package com.simple.ecommerce.domain.entity;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package com.simple.ecommerce.model;
+package com.simple.ecommerce.domain.entity;
 
 /**
  * Represents a product in the eCommerce system.

@@ -1,25 +1,26 @@
-package com.simple.ecommerce.promotion;
+package com.simple.ecommerce.infrastructure.promotion;
+
+import com.simple.ecommerce.application.port.PromotionStrategy;
+import com.simple.ecommerce.domain.entity.Product;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import com.simple.ecommerce.model.Product;
-
 /**
- * A promotion that applies a special price to the cheapest products in the cart.
+ * A promotion that applies a special price to every nth product in the cart.
  * Business Rules:
  * - Every third product costs 1 PLN
  * - Applied to cheapest products first
  */
-public class CheapestProductPromotion implements Promotion {
+public class CheapestProductPromotion implements PromotionStrategy {
     private static final int DEFAULT_PRODUCTS_REQUIRED = 3;
     private static final double DEFAULT_SPECIAL_PRICE = 1.0;
     
-    private String promotionCode;
-    private double specialPrice;
-    private int productsRequired;
+    private final String promotionCode;
+    private final double specialPrice;
+    private final int productsRequired;
 
     /**
      * Creates a promotion where every third product costs 1 PLN.

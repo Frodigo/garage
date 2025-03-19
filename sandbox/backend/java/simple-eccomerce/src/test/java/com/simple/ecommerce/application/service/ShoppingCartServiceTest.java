@@ -1,4 +1,4 @@
-package com.simple.ecommerce.model;
+package com.simple.ecommerce.application.service;
 
 import static org.junit.Assert.*;
 
@@ -7,12 +7,15 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.simple.ecommerce.promotion.PercentagePromotion;
-import com.simple.ecommerce.promotion.SecondProductHalfPricePromotion;
+import com.simple.ecommerce.application.port.PromotionStrategy;
+import com.simple.ecommerce.domain.entity.Category;
+import com.simple.ecommerce.domain.entity.Product;
+import com.simple.ecommerce.infrastructure.promotion.PercentagePromotion;
+import com.simple.ecommerce.infrastructure.promotion.SecondProductHalfPricePromotion;
 
-public class ShoppingCartTest {
+public class ShoppingCartServiceTest {
     
-    private ShoppingCart cart;
+    private ShoppingCartService cart;
     private Category electronics;
     private Product laptop;
     private Product tablet;
@@ -20,7 +23,7 @@ public class ShoppingCartTest {
     
     @Before
     public void setup() {
-        cart = new ShoppingCart();
+        cart = new ShoppingCartService();
         electronics = new Category("Electronics");
         
         laptop = new Product("Laptop", 1200.0, electronics);
@@ -141,7 +144,7 @@ public class ShoppingCartTest {
         // given
         cart.addProduct(laptop);
         cart.addProduct(tablet);
-        PercentagePromotion tenPercentOff = new PercentagePromotion("10PERCENTOFF");
+        PromotionStrategy tenPercentOff = new PercentagePromotion("10PERCENTOFF");
         
         // when
         cart.activatePromotion(tenPercentOff);
@@ -157,7 +160,7 @@ public class ShoppingCartTest {
         // given
         cart.addProduct(laptop);
         cart.addProduct(laptop); // Second laptop
-        SecondProductHalfPricePromotion secondHalfPrice = new SecondProductHalfPricePromotion("SECONDHALFPRICE");
+        PromotionStrategy secondHalfPrice = new SecondProductHalfPricePromotion("SECONDHALFPRICE");
         
         // when
         cart.activatePromotion(secondHalfPrice);
@@ -173,14 +176,14 @@ public class ShoppingCartTest {
         // given
         cart.addProduct(laptop);
         cart.addProduct(tablet);
-        PercentagePromotion tenPercentOff = new PercentagePromotion("10PERCENTOFF");
+        PromotionStrategy tenPercentOff = new PercentagePromotion("10PERCENTOFF");
         
         // when
         cart.activatePromotion(tenPercentOff);
         double discountedPrice1 = cart.calculateCartPrice();
         
         // New promotion overrides the previous one
-        SecondProductHalfPricePromotion secondHalfPrice = new SecondProductHalfPricePromotion("SECONDHALFPRICE");
+        PromotionStrategy secondHalfPrice = new SecondProductHalfPricePromotion("SECONDHALFPRICE");
         cart.activatePromotion(secondHalfPrice);
         double discountedPrice2 = cart.calculateCartPrice();
         

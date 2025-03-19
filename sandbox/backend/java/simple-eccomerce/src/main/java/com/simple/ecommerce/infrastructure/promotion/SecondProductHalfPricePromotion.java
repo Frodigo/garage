@@ -1,8 +1,9 @@
-package com.simple.ecommerce.promotion;
+package com.simple.ecommerce.infrastructure.promotion;
+
+import com.simple.ecommerce.application.port.PromotionStrategy;
+import com.simple.ecommerce.domain.entity.Product;
 
 import java.util.Map;
-
-import com.simple.ecommerce.model.Product;
 
 /**
  * A promotion where the second item of the same product costs half price.
@@ -10,10 +11,10 @@ import com.simple.ecommerce.model.Product;
  * - Second identical product costs 50% of original price
  * - Applied for each product type separately
  */
-public class SecondProductHalfPricePromotion implements Promotion {
+public class SecondProductHalfPricePromotion implements PromotionStrategy {
     private static final double DISCOUNT_PERCENTAGE = 50.0;
     
-    private String promotionCode;
+    private final String promotionCode;
 
     /**
      * Creates a new second-product-half-price promotion.

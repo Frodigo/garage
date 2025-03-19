@@ -1,19 +1,20 @@
-package com.simple.ecommerce.promotion;
+package com.simple.ecommerce.infrastructure.promotion;
+
+import com.simple.ecommerce.application.port.PromotionStrategy;
+import com.simple.ecommerce.domain.entity.Product;
 
 import java.util.Map;
-
-import com.simple.ecommerce.model.Product;
 
 /**
  * Applies a percentage discount to the entire cart.
  * Business Rules:
  * - Applies 10% discount to entire cart
  */
-public class PercentagePromotion implements Promotion {
+public class PercentagePromotion implements PromotionStrategy {
     private static final double DEFAULT_DISCOUNT_PERCENTAGE = 10.0;
     
-    private String promotionCode;
-    private double discountPercentage;
+    private final String promotionCode;
+    private final double discountPercentage;
 
     /**
      * Creates a new percentage promotion with the default 10% discount.
