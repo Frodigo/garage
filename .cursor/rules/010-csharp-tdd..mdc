@@ -1,0 +1,26 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+Description: C# TDD Patterns
+Globs: "**/*.cs"
+---
+
+# .NET TDD Patterns
+
+1. **Test Framework Conventions**
+   - Use Xunit with [Fact] and [Theory] attributes
+   - Test classes must end with "Tests"
+   - Follow Given_When_Then test naming
+
+2. **Implementation Patterns**
+   - Start with concrete implementations
+   - Allow temporary `if` statement chains
+   - Prevent premature abstraction
+
+3. **Refactoring Rules**
+   - Convert `if` chains to patterns only after 3+ cases
+   - Extract methods when duplicate logic appears 3 times
+   - Introduce interfaces only after 2 concrete implementations
