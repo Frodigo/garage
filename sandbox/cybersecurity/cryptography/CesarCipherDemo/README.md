@@ -124,6 +124,17 @@ The implementation:
 
 - `CesarCipherLib`: Contains the core implementation
 - `CesarCipherApp`: Interactive demo application
+- `CesarCipherTests`: Comprehensive test suite using xUnit
+
+## Testing
+
+The project follows Test-Driven Development (TDD) principles.
+
+To run the tests:
+
+```shell
+dotnet test
+```
 
 ## Building and Running
 
@@ -150,4 +161,9 @@ dotnet run --project CesarCipherApp
 ## Acknowledgments
 
 - This project was developed as a learning exercise for basic cryptography concepts
-- Implementation follows TDD (Test-Driven Development) principles
+- Implementation follows strict TDD (Test-Driven Development) principles:
+  - Starting with failing tests (Red phase)
+  - Implementing minimal code to make tests pass (Green phase)
+  - Refactoring the implementation to improve quality while keeping tests green
+  - Incrementally adding new test cases to drive implementation forward
+- The comprehensive test suite ensures correctness and robustness against edge cases
