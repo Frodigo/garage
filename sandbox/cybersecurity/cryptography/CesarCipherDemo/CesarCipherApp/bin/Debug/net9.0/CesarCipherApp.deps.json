@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "CesarCipherApp/1.0.0": {
+        "dependencies": {
+          "CesarCipherLib": "1.0.0"
+        },
+        "runtime": {
+          "CesarCipherApp.dll": {}
+        }
+      },
+      "CesarCipherLib/1.0.0": {
+        "runtime": {
+          "CesarCipherLib.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CesarCipherApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CesarCipherLib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
