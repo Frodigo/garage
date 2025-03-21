@@ -1,0 +1,26 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+Description: TDD Agent Automation
+Globs: "**/*.{cs,csproj}"
+---
+
+# Agent Behavior Rules
+
+1. **Test Execution Protocol**
+   - Auto-run tests on file save
+   - Suggest minimal fixes for failed tests
+   - Generate regression test proposals
+
+2. **Code Generation Controls**
+   - Implement only tested functionality
+   - Prohibit untested public methods
+   - Require null checking for parameters
+
+3. **Refactoring Assistance**
+   - Identify code smells using Roslyn analyzers
+   - Suggest pattern replacements (e.g., switch to record types)
+   - Enforce CA rules during refactoring
