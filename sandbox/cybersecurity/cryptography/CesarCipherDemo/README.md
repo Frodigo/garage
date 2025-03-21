@@ -162,8 +162,3 @@ dotnet run --project CesarCipherApp
 
 - This project was developed as a learning exercise for basic cryptography concepts
 - Implementation follows strict TDD (Test-Driven Development) principles:
-  - Starting with failing tests (Red phase)
-  - Implementing minimal code to make tests pass (Green phase)
-  - Refactoring the implementation to improve quality while keeping tests green
-  - Incrementally adding new test cases to drive implementation forward
-- The comprehensive test suite ensures correctness and robustness against edge cases
