@@ -1,6 +1,6 @@
 ﻿using HistoricalCiphersDemo.Ciphers;
 using HistoricalCiphersDemo.Ciphers.Caesar;
-
+using HistoricalCiphersDemo.Ciphers.Vigenère;
 namespace HistoricalCiphersDemo;
 
 public class Program
@@ -14,7 +14,7 @@ public class Program
         
         // Register ciphers
         _cipherFactory.RegisterCipher(new CaesarCipher());
-        
+        _cipherFactory.RegisterCipher(new VigenèreCipher());
         // Main menu
         RunMainMenu();
     }
