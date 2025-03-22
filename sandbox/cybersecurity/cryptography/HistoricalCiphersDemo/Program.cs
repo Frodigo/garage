@@ -1,6 +1,8 @@
 ﻿using HistoricalCiphersDemo.Ciphers;
 using HistoricalCiphersDemo.Ciphers.Caesar;
 using HistoricalCiphersDemo.Ciphers.Vigenère;
+using HistoricalCiphersDemo.Ciphers.Hill;
+
 namespace HistoricalCiphersDemo;
 
 public class Program
@@ -15,6 +17,7 @@ public class Program
         // Register ciphers
         _cipherFactory.RegisterCipher(new CaesarCipher());
         _cipherFactory.RegisterCipher(new VigenèreCipher());
+        _cipherFactory.RegisterCipher(new HillCipher());
         // Main menu
         RunMainMenu();
     }
@@ -180,7 +183,50 @@ public class Program
             return shift;
         }
         
-        // Default key input
+        if (cipher is HillCipher)
+        {
+            Console.WriteLine("Enter the matrix size (1, 2, or 3):");
+            if (!int.TryParse(Console.ReadLine(), out int size) || size < 1 || size > 3)
+            {
+                throw new ArgumentException("Matrix size must be 1, 2, or 3.");
+            }
+            
+            int[,] matrix = new int[size, size];
+            
+            Console.WriteLine($"Enter the {size}x{size} matrix values (one row per line, space-separated):");
+            Console.WriteLine("Example for 2x2 matrix:");
+            Console.WriteLine("3 2");
+            Console.WriteLine("5 7");
+            
+            for (int i = 0; i < size; i++)
+            {
+                Console.Write($"Row {i + 1}: ");
+                string? line = Console.ReadLine();
+                if (string.IsNullOrEmpty(line))
+                {
+                    throw new ArgumentException($"Row {i + 1} cannot be empty.");
+                }
+                
+                string[] values = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (values.Length != size)
+                {
+                    throw new ArgumentException($"Expected {size} values for row {i + 1}, got {values.Length}.");
+                }
+                
+                for (int j = 0; j < size; j++)
+                {
+                    if (!int.TryParse(values[j], out int value))
+                    {
+                        throw new ArgumentException($"Invalid number at position [{i},{j}]: {values[j]}");
+                    }
+                    matrix[i, j] = value;
+                }
+            }
+            
+            return matrix;
+        }
+        
+        // Default key input for other ciphers
         Console.WriteLine("Enter the key:");
         string? key = Console.ReadLine();
         
