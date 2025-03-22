@@ -1,15 +1,16 @@
 using Xunit;
-using CesarCipherLib;
+using HistoricalCiphersDemo.Ciphers.Caesar;
 
-namespace CesarCipherTests;
+namespace HistoricalCiphersDemo.Tests;
 
-public class CesarCipherTests
+[Collection("CipherTests")]
+public class CaesarCipherTests
 {
     [Fact]
     public void When_EncryptingLetterA_WithShiftOf1_ShouldReturnLetterB()
     {
         // Arrange
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
 
         // Act
         var result = cipher.Encrypt("A", 1);
@@ -22,7 +23,7 @@ public class CesarCipherTests
     public void When_EncryptingLetterB_WithShiftOf1_ShouldReturnLetterC()
     {
         // Arrange
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
 
         // Act
         var result = cipher.Encrypt("B", 1);
@@ -35,7 +36,7 @@ public class CesarCipherTests
     public void When_EncryptingLetterZ_WithShiftOf1_ShouldReturnLetterA()
     {
         // Arrange
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
 
         // Act
         var result = cipher.Encrypt("Z", 1);
@@ -48,7 +49,7 @@ public class CesarCipherTests
     public void When_EncryptingLetterA_WithShiftOf3_ShouldReturnLetterD()
     {
         // Arrange
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
 
         // Act
         var result = cipher.Encrypt("A", 3);
@@ -61,7 +62,7 @@ public class CesarCipherTests
     public void When_EncryptingLowercaseA_WithShiftOf1_ShouldReturnLowercaseB()
     {
         // Arrange
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
 
         // Act
         var result = cipher.Encrypt("a", 1);
@@ -74,7 +75,7 @@ public class CesarCipherTests
     public void When_EncryptingABC_WithShiftOf1_ShouldReturnBCD()
     {
         // Arrange
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
 
         // Act
         var result = cipher.Encrypt("ABC", 1);
@@ -86,7 +87,7 @@ public class CesarCipherTests
     [Fact]
     public void When_EncryptingLetterA_WithShiftOf27_ShouldReturnLetterB()
     {
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
         var result = cipher.Encrypt("A", 27);
         Assert.Equal("B", result);
     }
@@ -95,7 +96,7 @@ public class CesarCipherTests
     public void When_EncryptingNonAlphabeticChars_ShouldLeaveThemUnchanged()
     {
         // Arrange
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
 
         // Act
         var result = cipher.Encrypt("A1 B2!", 1);
@@ -108,7 +109,7 @@ public class CesarCipherTests
     public void When_DecryptingEncryptedText_ShouldReturnOriginalText()
     {
         // Arrange
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
         var plainText = "Hello, World!";
         var shift = 5;
         var encryptedText = cipher.Encrypt(plainText, shift);
@@ -123,7 +124,7 @@ public class CesarCipherTests
     [Fact]
     public void When_EncryptingLetterB_WithShiftOfMinus1_ShouldReturnLetterA()
     {
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
         var result = cipher.Encrypt("B", -1);
         Assert.Equal("A", result);
     }
@@ -131,7 +132,7 @@ public class CesarCipherTests
     [Fact]
     public void When_EncryptingLetterA_WithShiftOfMinus1_ShouldReturnLetterZ()
     {
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
         var result = cipher.Encrypt("A", -1);
         Assert.Equal("Z", result);
     }
@@ -139,7 +140,7 @@ public class CesarCipherTests
     [Fact]
     public void When_EncryptingEmptyString_ShouldReturnEmptyString()
     {
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
         var result = cipher.Encrypt("", 1);
         Assert.Equal("", result);
     }
@@ -147,7 +148,7 @@ public class CesarCipherTests
     [Fact]
     public void When_EncryptingLongText_ShouldEncryptCorrectly()
     {
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
         var longText = "I love coding in C#";
         var expected = "J mpwf dpejoh jo D#";
         var result = cipher.Encrypt(longText, 1);
@@ -157,7 +158,7 @@ public class CesarCipherTests
     [Fact]
     public void When_EncryptingWithShiftOf0_ShouldReturnOriginalText()
     {
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
         var text = "HELLO";
         var result = cipher.Encrypt(text, 0);
         Assert.Equal(text, result);
@@ -166,7 +167,7 @@ public class CesarCipherTests
     [Fact]
     public void When_EncryptingWithShiftOf26_ShouldReturnOriginalText()
     {
-        var cipher = new CesarCipher();
+        var cipher = new CaesarCipher();
         var text = "HELLO";
         var result = cipher.Encrypt(text, 26);
         Assert.Equal(text, result);
