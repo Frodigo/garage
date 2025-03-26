@@ -62,13 +62,11 @@ C4Container
     
     System_Boundary(ecommerceSystem, "eCommerce System") {
         Container(consoleApp, "Console Application", "Java", "Provides user interface via console commands")
-        Container(businessLogic, "Business Logic", "Java", "Implements core business rules and use cases")
-        ContainerDb(productRepository, "Product Repository", "In-Memory", "Stores product information")
+        ContainerDb(inMemoryDatabase, "In-Memory Database", "In-Memory", "Stores product information")
     }
     
     Rel(customer, consoleApp, "Interacts with")
-    Rel(consoleApp, businessLogic, "Uses")
-    Rel(businessLogic, productRepository, "Reads from and writes to")
+    Rel(inMemoryDatabase, "Reads from and writes to")
 ```
 
 ### Component Diagram (Level 3)
