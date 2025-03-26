@@ -1,0 +1,27 @@
+name: NewslettersSummaryConsole Tests
+
+on:
+  pull_request:
+    paths:
+      - 'tools/NewslettersSummaryConsole/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore tools/NewslettersSummaryConsole/NewslettersSummaryConsole.Tests/NewslettersSummaryConsole.Tests.csproj
+
+    - name: Build
+      run: dotnet build tools/NewslettersSummaryConsole/NewslettersSummaryConsole.Tests/NewslettersSummaryConsole.Tests.csproj --no-restore
+
+    - name: Test
+      run: dotnet test tools/NewslettersSummaryConsole/NewslettersSummaryConsole.Tests/NewslettersSummaryConsole.Tests.csproj --no-build --verbosity normal 
