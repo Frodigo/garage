@@ -233,7 +233,6 @@ Besides, we imported there some Bootstrap stuff:
 import { Navbar, Container, Nav } from "react-bootstrap";
 ```
 
-
 Summarizing, we added three links: **HomePage**: /, **Address book**: /address, and **Orders**: /orders.
 
 Changes after this: step: [Add navigation and links](https://github.com/Frodigo/react-router-tutorial/commit/0492a826f8047a48161ccb87e535b9edc280cea6)

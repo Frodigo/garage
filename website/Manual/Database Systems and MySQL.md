@@ -45,7 +45,7 @@
     - ACID compliance
     - Data integrity through constraints
 2. **NoSQL Models**
-    
+
     - Document databases
     - Key-value stores
     - Column-family databases
@@ -81,7 +81,7 @@
     - Storage engines
     - Memory management
     - Process management
-2. **Storage Engines**    
+2. **Storage Engines**
     - InnoDB (default, ACID-compliant)
     - MyISAM (faster reads, non-transactional)
     - Memory (in-memory tables)

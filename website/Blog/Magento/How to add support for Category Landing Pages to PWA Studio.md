@@ -398,7 +398,8 @@ export const useCategoryLandingPage = props => {
 
 The component returns three fields, and the most important for us is content, which contains the Category Landing page’s content!
 
---- 
+---
+
 ## Summary
 
 This time we added support for Category Landing Pages to PWA Studio Storefront. As you can see, the PWA Studio Extensibility framework is really powerful, and thanks to this we can easily extend [PWA Studio](https://marcin-kwiatkowski.com/blog/pwastudio/getting-started-with-magento-pwa-studio-targetables) with new features.

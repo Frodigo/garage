@@ -118,6 +118,7 @@ Take a look at an example response for the About us page:
 ```
 
 The following query that received the "about-us" URL returns type equals CMS_PAGE and information about the CMS page that we wanted to fetch
+
 #### Product
 
 Product pages present information about products. Take a look at the example "Joust Duffle Bag" product that has the "joust-duffle-bag.html" URL key:

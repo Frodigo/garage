@@ -124,7 +124,6 @@ In PWA Studio, React is used, and the best thing is that a Frontend developer do
 
 Also, there is another type of template that is used by Magento UI Components. These templates are written as HTML files, and within them, you can find static HTML code mixed with KnockoutJS bindings.
 
-
 Now, just as a comparison, take a look at an example piece of code for a PWA Studio view component:
 
 ---

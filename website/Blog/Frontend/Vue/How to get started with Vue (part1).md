@@ -31,7 +31,6 @@ Navigate to the directory where you want to create a new project and use the fol
 vue create another-cool-project
 ```
 
-
 I used the Default (Vue 3) (\[Vue 3\] babel, eslint) option, and my project was installed successfully.
 
 ```bash
@@ -164,7 +163,7 @@ Take a look:
 
 Let's add a new property to the player called: image:
 
-```
+```json
 image: './avatar.png'
 ```
 

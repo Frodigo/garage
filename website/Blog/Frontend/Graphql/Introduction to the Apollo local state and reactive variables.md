@@ -196,7 +196,6 @@ export default Missions;
 
 Now the test is passing
 
-
 Let's re-export component in src/components/Missions/index.js
 
 ```javascript
@@ -258,7 +257,6 @@ const mocks = [
 ```
 
 The test fails because we don't have the GET_MISSIONS query defined yet.
-
 
 Create the file queries/missions.gql.js with the following content:
 
@@ -450,7 +448,6 @@ return (
   </div>
 );
 ```
-
 
 ---
 
