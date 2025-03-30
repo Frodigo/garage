@@ -205,7 +205,7 @@ Sometimes it is necessary to compose from a global rule to a local one, which yo
 
 It’s recommended to use the camel case naming convention because using classes in JS, in this case, is easiest. When the name of the class looks. for example, like this: .my-sample-class, then you can apply this class to an element in the following way:
 
-```
+```jsx
 <ul className={classes['my-sample-class']}>
 ```
 

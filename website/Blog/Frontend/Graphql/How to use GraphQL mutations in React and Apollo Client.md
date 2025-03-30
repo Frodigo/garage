@@ -196,7 +196,7 @@ export default App;
 
 This part of the code:
 
-```
+```javascript
 const [mutateFunction, { data, loading, error }] = useMutation(CREATE_EMPTY_CART);
 ```
 
@@ -212,7 +212,7 @@ A function that must be called to execute mutation. This example is named as mut
 
 The code below is responsible for executing mutation:
 
-```
+```javascript
 <button type="button" onClick={() => mutateFunction()}>Create cart</button>
 ```
 
@@ -474,7 +474,7 @@ At the same time, Apollo writes data of that cart to the cache.
 
 Now, when the user clicks Add Product to cart button, Apollo runs the addProductToCart mutation, and the product will be added to the cart on the server side. Under the hood, Apollo updates the cart data in the cache.
 
-###### Updating cache manually
+##### Updating cache manually
 
 In some cases, Apollo is not able to update the cache automatically. Then you can define your own update function and write to the cache manually. You can pass an update function as a field of the settings object that useMutation hook receives:
 

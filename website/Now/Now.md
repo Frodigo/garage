@@ -1,4 +1,4 @@
-This is a <a class='underline' href='https://nownownow.com/about'>now</a> page, and if you have your own site, you <del>should</del> can make one, too.
+This is a [now](https://nownownow.com/about) page, and if you have your own site, you ~~should~~ can make one, too.
 
 Updated March 25, 2025 from Brzezina, Poland
 

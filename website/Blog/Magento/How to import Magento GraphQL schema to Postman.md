@@ -88,7 +88,7 @@ Fortunately, there is an easy way to disable introspection by configuration in M
 
 To do so, please add this entry to your app/etc/env.php file:
 
-```
+```javascript
 'graphql' => [
     'disable_introspection' => true
 ]

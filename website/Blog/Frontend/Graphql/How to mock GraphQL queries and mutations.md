@@ -338,7 +338,7 @@ The Next step is to define a custom read function to produce mock data for us.
 
 Before I do that, I install FakerJS. it's a library (fake data generator) that helps produce fake and random data.
 
-```
+```bash
 npm install @faker-js/faker --save-dev
 ```
 

@@ -327,7 +327,7 @@ Content is rendered using PlainHtmlRenderer. If something went wrong, an error m
 
 Second, create a file **src / @theme / category / components / CategoryLandingPage / index.js**:
 
-```
+```javascript
 export { default } from './CategoryLandingPage';
 ```
 

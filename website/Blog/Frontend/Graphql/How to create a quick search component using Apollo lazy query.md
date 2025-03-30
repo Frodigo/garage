@@ -188,7 +188,7 @@ I use a custom hook there: **useQuickSearchSuggestion**. That hook's responsibi
 
 To finish the QuickSearchSuggestion, I create a CSS module **QuickSearchSuggestions.module.cs**s with the following styles:
 
-```
+```css
 .suggestions {
     left: 0;
     position: absolute;

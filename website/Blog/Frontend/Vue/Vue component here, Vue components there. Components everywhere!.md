@@ -30,7 +30,7 @@ First, add a template section with HTML elements:
 
 ### Export Vue components
 
-To be honest, for a long time, I thought that I needed to add another section beneath the Templates section: <script></script> and add an export object, like this:
+To be honest, for a long time, I thought that I needed to add another section beneath the Templates section: `<script></script>` and add an export object, like this:
 
 ```javascript
 <script>export default {}</script>
@@ -282,7 +282,7 @@ After this step, the App renders two players.
 
 Our very first Vue component works, but there are some bugs. When I click on "add to transfer list," I see the error in the console:
 
-```
+```bash
 Uncaught TypeError: _ctx.toggleForSale is not a function
 ```
 

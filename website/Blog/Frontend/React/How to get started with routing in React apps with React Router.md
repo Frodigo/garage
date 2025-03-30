@@ -275,25 +275,25 @@ Nested routes allow you to build a complex system of routing. Each route defines
 
 Here is our main route:
 
-```
+```bash
 /
 ```
 
 Here is the route for the address book:
 
-```
+```bash
 /address
 ```
 
 And here is the route for address details
 
-```
+```bash
 /address/:addressId
 ```
 
 So the route is built by three routes: / + address/ + :/addressId
 
-Let's implement that scenario. Please, replace **<Route path="/" element={<App />} />** by:
+Let's implement that scenario. Please, replace `**<Route path="/" element={<App />} />**` by:
 
 ```javascript
 <Route path="/" element={<App />}>
@@ -460,7 +460,7 @@ We have already defined a route for Address Details that receives addressId para
 
 When you click on addresses, the URL is changing:
 
-```
+```bash
 http://localhost:3000/address/1
 http://localhost:3000/address/2
 ```

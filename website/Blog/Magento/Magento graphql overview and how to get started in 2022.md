@@ -182,8 +182,6 @@ The possible response can look like this:
 }
 ```
 
-![](/images/blog/6cc1889f-d304-4353-9e39-1152ec198808-1024x633.png)
-
 Assuming you have translated category names for the german store, you have just to set Store header equals 'german' to fetch categories for the german store. You would see categories for a german store below.
 
 ```json

@@ -216,7 +216,7 @@ import { MockedProvider } from '@apollo/client/testing';
 
 Define mocks:
 
-```
+```javascript
 const mocks = [
    {
        request: {
@@ -415,7 +415,7 @@ const { data, loading } = useQuery(GET_MISSIONS, {
 
 Add loading indicator:
 
-```
+```javascript
 if (loading) {
     return <p>Loading...</p>
 }
@@ -435,7 +435,7 @@ Besides, add a little bit of styling.
 
 Now, import CSS module in Missions.js file:
 
-```
+```javascript
 import classes from './Missions.module.css'
 ```
 
@@ -667,7 +667,7 @@ export const cartId = makeVar(localStorage.getItem(CART_ID_IDENTIFER));
 
 Second, use that variable in a component, context, or hook and make it reactive:
 
-```
+```javascript
 import { useReactiveVar } from '@apollo/client';
 
 export const CartProvider = ({ children }) => {
@@ -703,7 +703,7 @@ const [createEmptyCart] = useMutation(CREATE_EMPTY_CART, {
 
 I used the **update** callback there, and I updated the reactive variable:
 
-```
+```javascript
 cartId(createEmptyCart)
 ```
 

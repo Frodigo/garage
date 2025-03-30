@@ -34,7 +34,7 @@ Ok, this was only an introduction. Take a look at the differences between Magent
 
 The current Magento frontend is built based on themes. There are two primary themes (Blank and Luma) that you can inherit from. The Luma theme inherits from the Blank theme, and the Blank theme overrides files from core Magento modules.
 
-Theme code is placed in the Magento structure, and it is a part of a project. Moreover, it’s possible to create modules and manage frontend customization directly in module code.
+Theme code is placed in the Magento structure, and it is a part of a project. Moreover, it's possible to create modules and manage frontend customization directly in module code.
 
 **PWA Studio** uses an entirely different approach. Have you heard about headless? First of all, this means that the storefront is separated from the backend. This is the right approach because the frontend developer environment is faster and more straightforward. A Magento instance can be set up in a different place entirely. In this case, the frontend team and the backend team are independent, and developing software is more comfortable for both sides.
 
@@ -54,7 +54,7 @@ The PWA Studio storefront is quite different and requires frontend developers to
 
 ## Peregrine
 
-This library gives developers a set of functions responsible for providing data to visual components in their application. This is mostly achieved through hooks and talons. You may be wondering what ‘talons’ means. Talons are a specific type of hook, which are designed for particular components. For example, the useFooter talon is designed to be used with the footer component and provide it with copyright text.
+This library gives developers a set of functions responsible for providing data to visual components in their application. This is mostly achieved through hooks and talons. You may be wondering what 'talons' means. Talons are a specific type of hook, which are designed for particular components. For example, the useFooter talon is designed to be used with the footer component and provide it with copyright text.
 
 ```javascript
 import { useEffect } from "react";
@@ -88,17 +88,31 @@ his is a set of visual components that you can use when building a storefront. W
 
 ## Venia Storefront (Concept)
 
-This is a storefront built using Peregrine and Venia UI. This is a storefront demo that presents the capabilities of PWA Studio. It can be the starting point of your application, but it doesn’t have to be. Anyway it provides support for many Magento features and a few ways to extensibility.
+This is a storefront built using Peregrine and Venia UI. This is a storefront demo that presents the capabilities of PWA Studio. It can be the starting point of your application, but it doesn't have to be. Anyway it provides support for many Magento features and a few ways to extensibility.
 
 ---
 
 ## Developer skill set comparison
 
-I wanted to give this section the title: “Frontend Developer skill set comparison,” but sometimes, when I think about Magento Frontend Developers, I get confused, because they need to be familiar with a few non-frontend technologies like **PHP** and **XML.** I believe that for more experienced frontend developers, the right career path will be working towards becoming a Full Stack Magento Developer.
+I wanted to give this section the title: "Frontend Developer skill set comparison," but sometimes, when I think about Magento Frontend Developers, I get confused, because they need to be familiar with a few non-frontend technologies like **PHP** and **XML.** I believe that for more experienced frontend developers, the right career path will be working towards becoming a Full Stack Magento Developer.
 
 But not everyone wants to work this way, and it is not surprising that not every frontend developer will want to learn PHP. Here, PWA Studio has an advantage because it uses typical frontend tools and technologies, which are more friendly for frontend developers. Take a look at the table below where you can find a comparison of the technologies and tools used in a typical Magento frontend and in PWA Studio.
 
-<table><tbody><tr><td><strong>Magento Luma</strong></td><td><strong>PWA Studio</strong></td></tr><tr><td>PHP</td><td>React</td></tr><tr><td>Javascript ES5</td><td>JavaScript ES6</td></tr><tr><td>Rest API</td><td>GraphQl</td></tr><tr><td>jQuery</td><td></td></tr><tr><td>Knockout</td><td></td></tr><tr><td>Ground</td><td>Webpack</td></tr><tr><td>CSS &amp; Less</td><td>CSS &amp; CSS modules</td></tr><tr><td>XML</td><td>JSON</td></tr><tr><td>Magento Layouts</td><td></td></tr><tr><td>Magento templates</td><td></td></tr><tr><td>Magento UI Library</td><td>Venia UI</td></tr><tr><td>Magento UI Components</td><td>Peregrine</td></tr><tr><td>Composer</td><td>Yarn</td></tr></tbody></table>
+| Magento Luma | PWA Studio |
+|--------------|------------|
+| PHP | React |
+| Javascript ES5 | JavaScript ES6 |
+| Rest API | GraphQl |
+| jQuery | |
+| Knockout | |
+| Ground | Webpack |
+| CSS & Less | CSS & CSS modules |
+| XML | JSON |
+| Magento Layouts | |
+| Magento templates | |
+| Magento UI Library | Venia UI |
+| Magento UI Components | Peregrine |
+| Composer | Yarn |
 
 ---
 
@@ -116,9 +130,9 @@ CSS modules are an interesting approach. The key feature is that all styles are 
 
 ### Knockout, jQuery, Magento UI components vs. React
 
-In my opinion, the Magento frontend’s biggest problem is that there is a mix of technologies and this results in chaos. Famous UI Components – a result of the Magento Core Team’s imagination – are a combination of JavaScript, PHP, and XML, and digging deeper, it turns out that Knockout is mixed with jQuery. It turns out that Knockout is mixed with jQuery.
+In my opinion, the Magento frontend's biggest problem is that there is a mix of technologies and this results in chaos. Famous UI Components – a result of the Magento Core Team's imagination – are a combination of JavaScript, PHP, and XML, and digging deeper, it turns out that Knockout is mixed with jQuery. It turns out that Knockout is mixed with jQuery.
 
-In PWA Studio, React is used, and the best thing is that a Frontend developer doesn’t need to know PHP, XML, or any other non-frontend tools and technologies.
+In PWA Studio, React is used, and the best thing is that a Frontend developer doesn't need to know PHP, XML, or any other non-frontend tools and technologies.
 
 ### Magento templates vs. [JSX](https://marcin-kwiatkowski.com/blog/what-is-jsx-and-is-it-worth-making-friends-with-it)
 
