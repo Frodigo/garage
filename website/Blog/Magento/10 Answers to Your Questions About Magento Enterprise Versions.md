@@ -79,8 +79,7 @@ Developers can easily check if a Magento enterprise edition or Community edition
 
 ---
 
-## How much does Magneto cost?
-
+## How much does Magento cost?
 The cost of Magento is specific to the needs of a particular business and requires a bespoke quote. Total costs are calculated from your retail store average sales value, as well as annual online sales. It starts at around $22,000 a year and reaches $125,000. Licenses are yours.
 
 ---
