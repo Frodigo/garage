@@ -8,6 +8,7 @@ Categories below are related to my master's degree studies.
 
 - [[Manual/Machine learning|Machine learning]]
 - [[Cybersecurity]]
+- [[Cryptography]]
 - [[Internet of things]]
 - [[Math]]
 - [[Database Systems and MySQL]]
