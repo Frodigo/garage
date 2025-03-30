@@ -137,6 +137,5 @@ Magento Luma is a benchmark for headless, and I hope that headless approaches wi
 
 ## Conclusion
 
-Magento 2 provides pretty extensive options when it comes to creating products. His wi l help you switch things up and diversify the product range offered at your Magento 2 online store to meet the customers' expectations.
-
+Magento 2 provides pretty extensive options when it comes to creating products. This will help you switch things up and diversify the product range offered at your Magento 2 online store to meet the customers' expectations.
 Headless solutions are behind Magento Monolith in terms of support for product types, but it's only a matter of time when full support will be in place.
