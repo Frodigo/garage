@@ -55,7 +55,7 @@ import classes from "./sample-component.css";
 const SampleComponent = () => {
   return (
     <div className={classes.section}>
-      <h3 className={classes.heading}>This is the sample component tilte</h3>
+      <h3 className={classes.heading}>This is the sample component title</h3>
       <p>This is the sample component paragraph</p>
 
       <h4 className={classes.heading}>This is the sample list:</h4>
