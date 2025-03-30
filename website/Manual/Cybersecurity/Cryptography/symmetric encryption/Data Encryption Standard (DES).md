@@ -17,4 +17,4 @@ terms:
 
 ---
 
-[^1]: [[Cryptography and network security principles and practice (fifth edition) by William Stallings]] page XYZ
+[^1]: [[Cryptography and network security principles and practice (fifth edition) by William Stallings]]
