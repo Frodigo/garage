@@ -10,3 +10,4 @@ Categories below are related to my master's degree studies.
 - [[Cybersecurity]]
 - [[Internet of things]]
 - [[Math]]
+- [[Database Systems and MySQL]]
