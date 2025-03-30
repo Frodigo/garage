@@ -75,14 +75,17 @@ Tests are located in:
 
 1. **Ensure Docker and Docker Compose are installed**
 2. **Run the application with Docker Compose**
+
    ```sh
    docker-compose up --build
    ```
+
 3. **Access the API**
    - The application will be available at `http://localhost:5051` (Swagger Ui will be available at `http://localhost:5051/swagger`)
    - The database will be running in a separate container
 
 To stop the containers, run:
+
    ```sh
    docker-compose down
    ```
@@ -90,4 +93,3 @@ To stop the containers, run:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
