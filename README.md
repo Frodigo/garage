@@ -8,8 +8,7 @@ At the moment here is the huge chaos because I am in process of importing here c
 
 ### Website
 
-In the `website` directory you can find content of my website. You can also visit [https:/frodigo.com](https:/frodigo.com)
-
+In the `website` directory you can find content of my website. You can also visit [https://frodigo.com](https://frodigo.com)
 ### Sandbox
 
 I keep there all my experiments and projects I do for learning puproses.
