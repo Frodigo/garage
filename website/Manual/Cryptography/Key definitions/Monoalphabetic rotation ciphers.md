@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 A type of substitution cipher.
 
 It shifts a letter in a [[Plaintext]] by a fixed number of position in the alphabet to produce the [[Ciphertext]]

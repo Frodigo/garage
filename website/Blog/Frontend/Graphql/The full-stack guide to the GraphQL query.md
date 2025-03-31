@@ -1,3 +1,7 @@
+---
+date: 2022-09-08
+---
+
 *Last updated: 08/09/2022*
 
 GraphQL helps prevent the overloading of data. Unlike Restful API, GraphQL allows specifying fields that will be received from the server. That will result in faster communication and less traffic on the network, which will reduce response time considerably. There are two basic types of operations in GraphQL: **queries** and **mutations**.

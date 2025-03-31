@@ -1,3 +1,7 @@
+---
+date: 2022-09-23
+---
+
 *Published at 23/09/2022*
 
 ## How many versions are there in Magento?

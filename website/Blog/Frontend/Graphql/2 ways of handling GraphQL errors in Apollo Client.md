@@ -1,3 +1,7 @@
+---
+date: 2022-09-02
+---
+
 *Published at 2022-09-02*
 
 If you use Graphql Apollo Client with React, there are two ways (more precisely speaking) – two levels of handling errors:

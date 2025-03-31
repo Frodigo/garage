@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 
 A cryptographic method that uses multiple substitution alphabets to encrypt plaintext.
 

@@ -1,3 +1,7 @@
+---
+date: 2021-04-15
+---
+
 *date: 15/04/2021*
 
 A Category Landing Page is a special type of Category Page. In Magento, a Merchant can set unique content for a specific category. Take a look at this sample Magento Luma Category Landing Page.

@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 ### My email
 
 [marcin@frodigo.com](mailto:marcin@frodigo.com)

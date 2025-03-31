@@ -1,3 +1,7 @@
+---
+date: 2021-12-29
+---
+
 *Published at 29/12/2021*
 
 ## Magento 2 product types

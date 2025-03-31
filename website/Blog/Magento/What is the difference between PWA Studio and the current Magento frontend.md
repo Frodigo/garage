@@ -1,3 +1,7 @@
+---
+date: 2021-02-07
+---
+
 *date: 07/02/2021*
 
 This change will be a big challenge for frontend developers because working with **PWA Studio** is entirely different from working with the current Magento frontend. This change will be a big challenge for frontend developers because working with PWA Studio is entirely different from working with the current Magento frontend. The technology stack used is completely different. Therefore, different competencies and skills are required. In this article, I would like to show you the differences between the two and compare the current Magento frontend technology stack with that of PWA Studio.

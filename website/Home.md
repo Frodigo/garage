@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 Hello!
 
 My name is Marcin Kwiatkowski.

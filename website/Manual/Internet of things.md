@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 
 The Internet of Things (IoT) refers to the network of physical objects embedded with sensors, software, and connectivity, enabling them to connect and exchange data with other devices and systems over the Internet.
 

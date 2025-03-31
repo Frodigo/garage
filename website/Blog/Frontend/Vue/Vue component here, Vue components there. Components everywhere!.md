@@ -1,3 +1,7 @@
+---
+date: 2022-01-27
+---
+
 *Published at 27/01/2022*
 
 Previously I showed you [[How to get started with Vue (part1)]], and I have promised that there will be a second part, and here you go!

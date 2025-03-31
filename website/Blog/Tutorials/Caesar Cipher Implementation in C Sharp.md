@@ -1,3 +1,7 @@
+---
+date: 2025-03-26
+---
+
 *Published: 26/03/2025*
 
 In this tutorial I'll show you how to implement a Caesar cipher in C# using traditional TDD approach.

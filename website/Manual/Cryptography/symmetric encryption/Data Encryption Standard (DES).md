@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 Adopted in 1977 by the National Bureau of Standards,
 
 Data are encrypted in 64 bits blocks using 56 bit key.

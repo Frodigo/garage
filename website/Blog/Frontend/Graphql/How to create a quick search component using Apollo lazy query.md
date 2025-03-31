@@ -1,3 +1,7 @@
+---
+date: 2025-02-29
+---
+
 *Published at 29/09/2022*
 
 When React renders a component that calls the **useQuery** hook, the Apollo Client runs the query automatically, but sometimes you need to query for data on some event. A great case is a quick search component that allows users to search for products in an eCommerce store.

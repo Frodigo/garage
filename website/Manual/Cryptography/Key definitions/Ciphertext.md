@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 Can be named also cryptogram.
 
 Ciphertext is an encrypted version of plaintext.
