@@ -24,6 +24,5 @@ If you want to be updated with my new content you can subscribe to my newsletter
 
 ## RSS feed
 
-If you prefer subscribe to RSS feed, please use this link:
-
+If you prefer to subscribe to the RSS feed, please use the following link:
 [https://rss.frodigo.com/feed.xml](https://rss.frodigo.com/feed.xml)
