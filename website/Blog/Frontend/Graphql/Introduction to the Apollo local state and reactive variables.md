@@ -1,3 +1,7 @@
+---
+date: 2022-10-13
+---
+
 *Last updated: 13/10/2022*
 
 In one of my previous articles, I described the useReducer hook as an excellent way to manage the state of React apps, including apps connected with GraphQL APIs using the apollo client.

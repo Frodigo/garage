@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 - A piece of secret information used to control encryption and decryption operations
 - Acts as the mathematical input that drives the encryption algorithm
 - Usually a sequence of random or pseudo-random bits

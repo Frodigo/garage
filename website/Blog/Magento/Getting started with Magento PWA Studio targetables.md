@@ -1,3 +1,7 @@
+---
+date: 2021-10-04
+---
+
 *Published at: 04/10/2021*
 
 As a Magento Frontend developer (If you are not deal with Magento, you can skip this paragraph), you have a few mechanisms to customize the look and feel of your shops, like Layout modifications, customizing styles, or creating mixins). These methods (if you can use their power) allows you to do whatever you want with your shop.

@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 Cybersecurity encompasses the technologies, processes, and practices designed to protect systems, networks, devices, and data from cyber attacks, unauthorized access, and digital threats.
 
 ## Key Aspects of Cybersecurity

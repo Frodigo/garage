@@ -1,3 +1,7 @@
+---
+date: 2021-10-07
+---
+
 *Last updated at 07/10/2021*
 
 JSX is an XML/HTML-like syntax from React that extends **ECMAScript**. JSX allows you to write HTML code mixed with JavaScript. Take a look at the following example:

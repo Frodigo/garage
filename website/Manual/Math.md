@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 
 Mathematics is the study of numbers, quantities, structure, space, and change.
 

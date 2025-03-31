@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 This is a [now](https://nownownow.com/about) page, and if you have your own site, you ~~should~~ can make one, too.
 
 Updated March 25, 2025 from Brzezina, Poland

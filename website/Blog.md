@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 Welcome in my blog. Below I listed all my articles from newest to oldest. You can also explore the blog using sidebar navigation. Enjoy!
 
 ## Software Architecture

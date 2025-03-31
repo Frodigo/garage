@@ -1,3 +1,7 @@
+---
+date: 2021-11-02
+---
+
 *last updated at 02/11/2021*
 
 I want to invite you to the journey throughout react-redux. You will see:

@@ -1,3 +1,7 @@
+---
+date: 2021-03-25
+---
+
 *Published at 25/03/2021*
 
 This time I would like to show you how to extend **PWA Studio** with new features. After reading you will know the following:

@@ -1,3 +1,7 @@
+---
+date: 2022-04-14
+---
+
 *date: 14/04/2022*
 
 **GraphQL** has become one of the most popular APIs for building web applications. It gives many benefits for frontend development:

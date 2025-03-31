@@ -1,3 +1,7 @@
+---
+date: 2025-03-28
+---
+
 *Last updated: 22/03/2025*
 
 My first task on the [Cybersecurity](/cybersecurity) course at studies was about experimenting with historical cryptography algorithms.

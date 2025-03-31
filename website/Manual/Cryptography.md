@@ -1,3 +1,6 @@
+---
+date: 2025-03-28
+---
 
 Cryptography in cybersecurity takes care about converting information into a format that is unreadable. Thanks to it we can protect sensitive data from unauthorized access.
 

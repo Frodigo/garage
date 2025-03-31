@@ -1,3 +1,7 @@
+---
+date: 2022-09-16
+---
+
 *Last updated: 16/09/2022*
 
 Nowadays, distributed architectures of software have become more popular, and along with the trend, software teams use the API-first approach to building products.

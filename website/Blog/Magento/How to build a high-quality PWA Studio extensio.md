@@ -1,3 +1,7 @@
+---
+date: 2023-02-11
+---
+
 *Published at: 2023-02-11*
 
 First, we need to set up our local PWA Studio instance.
