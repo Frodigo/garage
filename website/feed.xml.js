@@ -15,7 +15,9 @@ const config = {
     ttl: 60
   },
   contentDir: path.join(__dirname),
-  outputPath: path.join(__dirname, 'public', 'feed.xml')
+  outputPath: path.join(__dirname, 'public', 'feed.xml'),
+  maxItems: 15, 
+  excludeDirs: ['node_modules', '.git', '.github', 'public', 'dist', '.next'] // Katalogi do pominięcia
 };
 
 // Create RSS feed
@@ -35,41 +37,62 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
-function generateRSSFeed() {
-  const markdownFiles = fs.readdirSync(config.contentDir)
-    .filter(file => file.endsWith('.md'));
+function findMarkdownFiles(dir, fileList = []) {
+  const files = fs.readdirSync(dir);
   
-  markdownFiles.forEach(file => {
-    const filePath = path.join(config.contentDir, file);
+  files.forEach(file => {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
+    
+    if (stat.isDirectory()) {
+      const dirName = path.basename(filePath);
+      if (config.excludeDirs.includes(dirName)) {
+        return;
+      }
+      findMarkdownFiles(filePath, fileList);
+    } else if (file.endsWith('.md')) {
+      fileList.push(filePath);
+    }
+  });
+  
+  return fileList;
+}
+
+function generateRSSFeed() {
+  const markdownFiles = findMarkdownFiles(config.contentDir);
+  
+  const feedItems = [];
+  
+  markdownFiles.forEach(filePath => {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     
     const { data, content } = matter(fileContent);
     
     if (!data.date) {
-      console.warn(`Skipping ${file}: missing required frontmatter (title or date)`);
+      console.warn(`Skipping ${filePath}: missing required frontmatter (date)`);
       return;
     }
     
-    // Preprocess content to convert wiki-style links directly to HTML
     const processedContent = content.replace(/\[\[(.*?)\]\]/g, (match, text) => {
-      // Handle links with pipe character (|)
       if (text.includes('|')) {
         const [link, displayText] = text.split('|');
         const slug = link.toLowerCase().replace(/\s+/g, '-');
         return `<a href="${config.site.site_url}/${slug}">${displayText}</a>`;
       }
-      // Handle regular wiki links
       const slug = text.toLowerCase().replace(/\s+/g, '-');
       return `<a href="${config.site.site_url}/${slug}">${text}</a>`;
     });
     
     const htmlContent = marked(processedContent);
     
-    const slug = data.slug || file.replace(/\.(md)$/, '');
+    const relativePath = path.relative(config.contentDir, filePath);
+    const fileSlug = relativePath.replace(/\.(md)$/, '').replace(/\\/g, '/');
+    
+    const slug = data.slug || fileSlug;
     const url = `${config.site.site_url}/${slug}`;
     
-    feed.item({
-      title: slug,
+    feedItems.push({
+      title: data.title || slug,
       description: data.description || htmlContent.substring(0, 280) + '...',
       url: url,
       guid: url,
@@ -86,8 +109,18 @@ function generateRSSFeed() {
     });
   });
   
+  feedItems.sort((a, b) => b.date - a.date);
+  
+  const limitedItems = feedItems.slice(0, config.maxItems);
+  
+  limitedItems.forEach(item => {
+    feed.item(item);
+  });
+  
   fs.writeFileSync(config.outputPath, feed.xml({ indent: true }));
   console.log(`RSS feed generated at ${config.outputPath}`);
+  console.log(`Added ${limitedItems.length} of ${feedItems.length} total posts to RSS feed`);
+  console.log(`Excluded directories: ${config.excludeDirs.join(', ')}`);
 }
 
 generateRSSFeed();
