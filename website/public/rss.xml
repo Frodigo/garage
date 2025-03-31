@@ -9,25 +9,25 @@
             <link>https://frodigo.com</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 31 Mar 2025 17:08:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 31 Mar 2025 20:31:08 GMT</lastBuildDate>
         <atom:link href="https://frodigo.com/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 31 Mar 2025 17:08:00 GMT</pubDate>
+        <pubDate>Mon, 31 Mar 2025 20:31:08 GMT</pubDate>
         <language><![CDATA[en]]></language>
         <ttl>60</ttl>
         <item>
             <title><![CDATA[About]]></title>
             <description><![CDATA[<h2>Who I am</h2>
 <h3>TLDR: Software Engineer</h3>
-<p>![[marcin_kwiatkowski2025.jpeg]]</p>
+<p>!<a href="https://frodigo.com/marcin_kwiatkowski2025.jpeg">marcin_kwiatkowski2025.jpeg</a></p>
 <p>Hi! I am Marcin Kwiatkowski!</p>
 <p>I am a <strong>software engineer</strong>.</p>
-<p>I <strong>solve problems</strong> with code. I write this code from Poland and I love writing code. ...]]></description>
+<p>I <strong>solve problems</strong> with cod...]]></description>
             <link>https://frodigo.com/About</link>
             <guid isPermaLink="false">https://frodigo.com/About</guid>
             <pubDate>Fri, 28 Mar 2025 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<h2>Who I am</h2>
 <h3>TLDR: Software Engineer</h3>
-<p>![[marcin_kwiatkowski2025.jpeg]]</p>
+<p>!<a href="https://frodigo.com/marcin_kwiatkowski2025.jpeg">marcin_kwiatkowski2025.jpeg</a></p>
 <p>Hi! I am Marcin Kwiatkowski!</p>
 <p>I am a <strong>software engineer</strong>.</p>
 <p>I <strong>solve problems</strong> with code. I write this code from Poland and I love writing code. Why? Because I feel that I can help to <strong>solve</strong> some big <strong>problems</strong> by just <strong>writing</strong> some <strong>code</strong>.</p>
@@ -135,7 +135,7 @@
 <li>Technical Content Creation</li>
 <li>Software engineering</li>
 </ul>
-<p>[[Contact|Hire me]]</p>
+<p><a href="https://frodigo.com/contact">Hire me</a></p>
 ]]></content:encoded>
         </item>
         <item>
@@ -143,62 +143,61 @@
             <description><![CDATA[<p>Welcome in my blog. Below I listed all my articles from newest to oldest. You can also explore the blog using sidebar navigation. Enjoy!</p>
 <h2>Software Architecture</h2>
 <ul>
-<li>[[Monolith vs Microservices - Pros and Cons and How to Approach Transformation]]</li>
-<li>[[Hexa...]]></description>
+<li><a href="https://frodigo.com/monolith-vs-microservices---pros-and-cons-and-how-to-approach-trans...]]></description>
             <link>https://frodigo.com/Blog</link>
             <guid isPermaLink="false">https://frodigo.com/Blog</guid>
             <pubDate>Fri, 28 Mar 2025 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<p>Welcome in my blog. Below I listed all my articles from newest to oldest. You can also explore the blog using sidebar navigation. Enjoy!</p>
 <h2>Software Architecture</h2>
 <ul>
-<li>[[Monolith vs Microservices - Pros and Cons and How to Approach Transformation]]</li>
-<li>[[Hexagonal architecture (ports and adapters) - pros and cons]]</li>
+<li><a href="https://frodigo.com/monolith-vs-microservices---pros-and-cons-and-how-to-approach-transformation">Monolith vs Microservices - Pros and Cons and How to Approach Transformation</a></li>
+<li><a href="https://frodigo.com/hexagonal-architecture-(ports-and-adapters)---pros-and-cons">Hexagonal architecture (ports and adapters) - pros and cons</a></li>
 </ul>
 <h2>Cybersecurity</h2>
 <ul>
-<li>[[Historical cryptography algorithms]]</li>
+<li><a href="https://frodigo.com/historical-cryptography-algorithms">Historical cryptography algorithms</a></li>
 </ul>
 <h2>Tutorials</h2>
 <ul>
-<li>[[Caesar Cipher Implementation in C Sharp]]</li>
+<li><a href="https://frodigo.com/caesar-cipher-implementation-in-c-sharp">Caesar Cipher Implementation in C Sharp</a></li>
 </ul>
 <h2>Frontend</h2>
 <ul>
-<li>[[Everything you need to know about CSS modules]]</li>
+<li><a href="https://frodigo.com/everything-you-need-to-know-about-css-modules">Everything you need to know about CSS modules</a></li>
 </ul>
 <h3>GraphQL</h3>
 <ul>
-<li>[[How to use GraphQL mutations in React and Apollo Client]]</li>
-<li>[[Introduction to the Apollo local state and reactive variables]]</li>
-<li>[[How to create a quick search component using Apollo lazy query]]</li>
-<li>[[How to mock GraphQL queries and mutations]]</li>
-<li>[[The full-stack guide to the GraphQL query]]</li>
-<li>[[2 ways of handling GraphQL errors in Apollo Client]]</li>
+<li><a href="https://frodigo.com/how-to-use-graphql-mutations-in-react-and-apollo-client">How to use GraphQL mutations in React and Apollo Client</a></li>
+<li><a href="https://frodigo.com/introduction-to-the-apollo-local-state-and-reactive-variables">Introduction to the Apollo local state and reactive variables</a></li>
+<li><a href="https://frodigo.com/how-to-create-a-quick-search-component-using-apollo-lazy-query">How to create a quick search component using Apollo lazy query</a></li>
+<li><a href="https://frodigo.com/how-to-mock-graphql-queries-and-mutations">How to mock GraphQL queries and mutations</a></li>
+<li><a href="https://frodigo.com/the-full-stack-guide-to-the-graphql-query">The full-stack guide to the GraphQL query</a></li>
+<li><a href="https://frodigo.com/2-ways-of-handling-graphql-errors-in-apollo-client">2 ways of handling GraphQL errors in Apollo Client</a></li>
 </ul>
 <h3>React</h3>
 <ul>
-<li>[[How to get started with routing in React apps with React Router]]</li>
-<li>[[React Context API - It&#39;s Not as Difficult as You Think]]</li>
-<li>[[What is react redux, and what development of redux apps looks in 2021]]</li>
-<li>[[What is JSX in React, and is it worth making friends with it]]</li>
+<li><a href="https://frodigo.com/how-to-get-started-with-routing-in-react-apps-with-react-router">How to get started with routing in React apps with React Router</a></li>
+<li><a href="https://frodigo.com/react-context-api---it's-not-as-difficult-as-you-think">React Context API - It&#39;s Not as Difficult as You Think</a></li>
+<li><a href="https://frodigo.com/what-is-react-redux,-and-what-development-of-redux-apps-looks-in-2021">What is react redux, and what development of redux apps looks in 2021</a></li>
+<li><a href="https://frodigo.com/what-is-jsx-in-react,-and-is-it-worth-making-friends-with-it">What is JSX in React, and is it worth making friends with it</a></li>
 </ul>
 <h3>Vue</h3>
 <ul>
-<li>[[Vue component here, Vue components there. Components everywhere!]]</li>
-<li>[[How to get started with Vue (part1)]]</li>
+<li><a href="https://frodigo.com/vue-component-here,-vue-components-there.-components-everywhere!">Vue component here, Vue components there. Components everywhere!</a></li>
+<li><a href="https://frodigo.com/how-to-get-started-with-vue-(part1)">How to get started with Vue (part1)</a></li>
 </ul>
 <h2>Magento</h2>
 <ul>
-<li>[[How to build a high-quality PWA Studio extensio]]</li>
-<li>[[10 Answers to Your Questions About Magento Enterprise Versions]]</li>
-<li>[[How to import Magento GraphQL schema to Postman]]]]</li>
-<li>[[Magento 2 product types]]</li>
-<li>[[Magento GraphQL - How to resolve URL]]</li>
-<li>[[Magento graphql overview and how to get started in 2022]]</li>
-<li>[[What is the difference between PWA Studio and the current Magento frontend]]</li>
-<li>[[Getting started with Magento PWA Studio targetables]]</li>
-<li>[[How to add support for Category Landing Pages to PWA Studio]]</li>
-<li>[[How to extend PWA Studio with new features]]</li>
+<li><a href="https://frodigo.com/how-to-build-a-high-quality-pwa-studio-extensio">How to build a high-quality PWA Studio extensio</a></li>
+<li><a href="https://frodigo.com/10-answers-to-your-questions-about-magento-enterprise-versions">10 Answers to Your Questions About Magento Enterprise Versions</a></li>
+<li><a href="https://frodigo.com/how-to-import-magento-graphql-schema-to-postman">How to import Magento GraphQL schema to Postman</a>]]</li>
+<li><a href="https://frodigo.com/magento-2-product-types">Magento 2 product types</a></li>
+<li><a href="https://frodigo.com/magento-graphql---how-to-resolve-url">Magento GraphQL - How to resolve URL</a></li>
+<li><a href="https://frodigo.com/magento-graphql-overview-and-how-to-get-started-in-2022">Magento graphql overview and how to get started in 2022</a></li>
+<li><a href="https://frodigo.com/what-is-the-difference-between-pwa-studio-and-the-current-magento-frontend">What is the difference between PWA Studio and the current Magento frontend</a></li>
+<li><a href="https://frodigo.com/getting-started-with-magento-pwa-studio-targetables">Getting started with Magento PWA Studio targetables</a></li>
+<li><a href="https://frodigo.com/how-to-add-support-for-category-landing-pages-to-pwa-studio">How to add support for Category Landing Pages to PWA Studio</a></li>
+<li><a href="https://frodigo.com/how-to-extend-pwa-studio-with-new-features">How to extend PWA Studio with new features</a></li>
 </ul>
 ]]></content:encoded>
         </item>
@@ -207,16 +206,14 @@
             <description><![CDATA[<p>Here I list books I read and used in my learning journey.</p>
 <h2>Cryptography</h2>
 <ul>
-<li>[[Cryptography and network security principles and practice (fifth edition) by William Stallings]]</li>
-</ul>
-...]]></description>
+<li><a href="https://frodigo.com/cryptography-and-network-security-principles-and-practice-(fifth-edition)-by-william-stallings">Cryptography and network security principles and practice (...]]></description>
             <link>https://frodigo.com/Books</link>
             <guid isPermaLink="false">https://frodigo.com/Books</guid>
             <pubDate>Fri, 28 Mar 2025 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<p>Here I list books I read and used in my learning journey.</p>
 <h2>Cryptography</h2>
 <ul>
-<li>[[Cryptography and network security principles and practice (fifth edition) by William Stallings]]</li>
+<li><a href="https://frodigo.com/cryptography-and-network-security-principles-and-practice-(fifth-edition)-by-william-stallings">Cryptography and network security principles and practice (fifth edition) by William Stallings</a></li>
 </ul>
 ]]></content:encoded>
         </item>
@@ -263,7 +260,7 @@
 <p>Recently, I joined Docplanner and I help to make healthcare more human.</p>
 <p>Besides engineering, I write articles on my blog and on Medium. Outside work I am a father, a husband and a runner.</p>
 <p>I’m glad you came to my website. I hope you find something for yourself here.</p>
-<p>[[About|More about me]]</p>
+<p><a href="https://frodigo.com/about">More about me</a></p>
 <hr>
 <h2>My recent work</h2>
 <h3>Open source projects</h3>
@@ -276,11 +273,11 @@
 <h2>Knowledge base</h2>
 <p>From many years I have been working blog. Actually I experimented with different type of content. What I discovered in this journey? Writing technical articles and tutorials is my favorite type of writing.</p>
 <p>Based on that, I write for people like me: engineers, programmers and learners.</p>
-<p>[[Blog|Read my blog]]</p>
+<p><a href="https://frodigo.com/blog">Read my blog</a></p>
 <p>But sometimes I want to write stories, or content that is doesn&#39;t strictly related with engineering. This type of writing you can find on my Medium blog.</p>
 <p><a href="https://medium.com/@frodigo">Read my Medium</a></p>
 <p>Besides articles, I am a notetaker. All notes related to enginering I publish here and I name this type of content as &quot;Manuals&quot;.</p>
-<p>[[Manual|Read manuals]]</p>
+<p><a href="https://frodigo.com/manual">Read manuals</a></p>
 <hr>
 <h2>What do people say about me?</h2>
 <p>Marcin is a significant part of the success of the Magento/Adobe community and our work with PWA Studio and Venia. Marcin delivered our essential desktop experience for PWA in early 2021, which addressed a top customer need. He is a regular contributor in our community and continues to create content and examples for others to get started, which is highly appreciated. Beyond the work itself, Marcin is always open to feedback and serves as a model for open source contribution. We&#39;re grateful for his help and support!</p>
@@ -313,12 +310,12 @@
 <p>Categories below are related to my master&#39;s degree studies.</p>
 <h2>Categories</h2>
 <ul>
-<li>[[Manual/Machine learning|Machine learning]]</li>
-<li>[[Cybersecurity]]</li>
-<li>[[Cryptography]]</li>
-<li>[[Internet of things]]</li>
-<li>[[Math]]</li>
-<li>[[Database Systems and MySQL]]</li>
+<li><a href="https://frodigo.com/manual/machine-learning">Machine learning</a></li>
+<li><a href="https://frodigo.com/cybersecurity">Cybersecurity</a></li>
+<li><a href="https://frodigo.com/cryptography">Cryptography</a></li>
+<li><a href="https://frodigo.com/internet-of-things">Internet of things</a></li>
+<li><a href="https://frodigo.com/math">Math</a></li>
+<li><a href="https://frodigo.com/database-systems-and-mysql">Database Systems and MySQL</a></li>
 </ul>
 ]]></content:encoded>
         </item>
@@ -363,7 +360,7 @@
 <h2>History</h2>
 <p>Below you can find my historical now pages. Date along the title means a day when a page was moved to the history.</p>
 <ul>
-<li>[[25-03-2025]]</li>
+<li><a href="https://frodigo.com/25-03-2025">25-03-2025</a></li>
 </ul>
 ]]></content:encoded>
         </item>

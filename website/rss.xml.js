@@ -15,7 +15,7 @@ const config = {
     ttl: 60
   },
   contentDir: path.join(__dirname),
-  outputPath: path.join(__dirname, 'rss.xml')
+  outputPath: path.join(__dirname, 'public', 'rss.xml')
 };
 
 // Create RSS feed
@@ -50,7 +50,20 @@ function generateRSSFeed() {
       return;
     }
     
-    const htmlContent = marked(content);
+    // Preprocess content to convert wiki-style links directly to HTML
+    const processedContent = content.replace(/\[\[(.*?)\]\]/g, (match, text) => {
+      // Handle links with pipe character (|)
+      if (text.includes('|')) {
+        const [link, displayText] = text.split('|');
+        const slug = link.toLowerCase().replace(/\s+/g, '-');
+        return `<a href="${config.site.site_url}/${slug}">${displayText}</a>`;
+      }
+      // Handle regular wiki links
+      const slug = text.toLowerCase().replace(/\s+/g, '-');
+      return `<a href="${config.site.site_url}/${slug}">${text}</a>`;
+    });
+    
+    const htmlContent = marked(processedContent);
     
     const slug = data.slug || file.replace(/\.(md)$/, '');
     const url = `${config.site.site_url}/${slug}`;
