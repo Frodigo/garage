@@ -20,12 +20,15 @@ jobs:
         with:
           node-version: 'latest'
           cache: 'npm'
+          cache-dependency-path: website/package.json
 
       - name: Install dependencies
+        working-directory: ./website
         run: npm install
 
       - name: Generate RSS feed
-        run: node website/rss.xml.js
+        working-directory: ./website
+        run: node rss.xml.js
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
