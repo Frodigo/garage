@@ -9,13 +9,13 @@ const config = {
     title: "Marcin Kwiatkowski's Blog",
     description: "Blog about software engineering.",
     site_url: 'https://frodigo.com',
-    feed_url: 'https://frodigo.com/rss.xml',
+    feed_url: 'https://frodigo.com/feed.xml',
     image_url: 'https://frodigo.com/favicon-32.png',
     language: 'en',
     ttl: 60
   },
   contentDir: path.join(__dirname),
-  outputPath: path.join(__dirname, 'public', 'rss.xml')
+  outputPath: path.join(__dirname, 'public', 'feed.xml')
 };
 
 // Create RSS feed
