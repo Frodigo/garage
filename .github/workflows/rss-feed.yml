@@ -28,7 +28,7 @@ jobs:
 
       - name: Generate RSS feed
         working-directory: ./website
-        run: node rss.xml.js
+        run: node feed.xml.js
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
