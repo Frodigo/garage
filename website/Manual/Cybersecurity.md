@@ -282,4 +282,4 @@ Cybersecurity encompasses the technologies, processes, and practices designed to
    - Industry-specific regulations
    - Privacy requirements
 
-#Cybersecurity #Networking #CloudComputing #NIST #ISO27001 #OWASP #MITRE_ATTACK #SIEM #TerminologyDefinitions #ConceptExplanation #DeepDive #Intermediate #DevSecOps #APISecurty #DataPipeline #Manual 
+#Cybersecurity #Networking #CloudComputing #NIST #ISO27001 #OWASP #MITRE_ATTACK #SIEM #TerminologyDefinitions #ConceptExplanation #DeepDive #Intermediate #DevSecOps #APISecurty #DataPipeline #Manual

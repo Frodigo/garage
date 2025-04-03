@@ -216,4 +216,4 @@ Machine learning is a field of artificial intelligence that enables systems to l
    - Quantum machine learning
    - Neuromorphic computing
 
-#MachineLearning #ArtificialIntelligence #DataScience #ConceptExplanation #TerminologyDefinitions #Beginner #AIEthics #Manual 
+#MachineLearning #ArtificialIntelligence #DataScience #ConceptExplanation #TerminologyDefinitions #Beginner #AIEthics #Manual

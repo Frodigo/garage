@@ -392,4 +392,4 @@ It provides the language and tools necessary for formulating and solving problem
    - Technical communication
    - Publishing standards
 
-#Mathematics #DataScience #ComputationalMathematics #ProgrammingFundamentals #R #LaTeX #TerminologyDefinitions #ConceptExplanation #DeepDive #Advanced #DataAnalysis #CryptographyFundamentals #Manual 
+#Mathematics #DataScience #ComputationalMathematics #ProgrammingFundamentals #R #LaTeX #TerminologyDefinitions #ConceptExplanation #DeepDive #Advanced #DataAnalysis #CryptographyFundamentals #Manual

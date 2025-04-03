@@ -231,5 +231,4 @@ All of these goods make PWA Studio a great starting point for any new headless p
 
 - [https://magento.github.io/pwa-studio/venia-ui/reference/targets/#routes--tapableasyncserieswaterfall](https://magento.github.io/pwa-studio/venia-ui/reference/targets/#routes--tapableasyncserieswaterfall)
 
-
 #WebDevelopment #FrontendDevelopment #JavaScript #JSX #React #PWAStudio #Magento #Webpack #ConceptExplanation #Tutorial #BestPractices #Intermediate #Extensibility #CustomizationTechniques

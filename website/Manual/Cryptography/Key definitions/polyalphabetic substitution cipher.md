@@ -6,4 +6,3 @@ In a polyalphabetic substitution cipher, substitution depends on the position of
 This makes polyalphabetic substitution ciphers more secure.
 
 #Cybersecurity #TerminologyDefinitions #ConceptExplanation #Beginner
-

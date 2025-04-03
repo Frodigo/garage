@@ -420,5 +420,4 @@
     - ProxySQL query caching
     - External cache systems
 
-#Database #ProgrammingFundamentals  #SQL #MySQL #DeepDive #ConceptExplanation #BestPractices #Intermediate #PerformanceOptimization #Scalability #DataPipeline #Security #Manual 
-
+#Database #ProgrammingFundamentals  #SQL #MySQL #DeepDive #ConceptExplanation #BestPractices #Intermediate #PerformanceOptimization #Scalability #DataPipeline #Security #Manual
