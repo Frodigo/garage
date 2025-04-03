@@ -1,8 +1,3 @@
----
-date: 2025-03-28
----
-
-
 ## Who I am
 
 ### TLDR: Software Engineer
@@ -66,10 +61,6 @@ mindmap
 ```
 
 ## My Philosophy
-
-### I ~~am~~ want to be a ~~slow~~free person
-
-#### I don't want to be a racer in a rat race
 
 I enjoy new technologies and I am open to learn new things. The learner skill is my first one from the Gallup Clifton Strengths Assessment.
 

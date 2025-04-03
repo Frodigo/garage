@@ -332,7 +332,7 @@ The business logic is not mixed with implementation details or technological pro
 
 ## Hexagonal architecture - benefits
 
-![business rules are not mixed with implementation details](Blog/Software%20architecture/images/image-8.png)
+![business rules are not mixed with implementation details](Garage/Software%20architecture/images/image-8.png)
 
 - Easy scalability
 
@@ -407,3 +407,5 @@ You can also combine the principles of hexagonal architecture with DDD modeling 
 [Learning Domain-Driven Design: Aligning Software Architecture and Business Strategy - Vlad Khononov](https://www.goodreads.com/book/show/57573212-learning-domain-driven-design)
 
 #ProgrammingFundamentals #SoftwareArchitecture #TypeScript #JavaScript #ConceptExplanation #ArchitectureReview #DeepDive #Intermediate #Microservices #Scalability
+
+Category: [[Software architecture]]
