@@ -31,9 +31,9 @@ This consents is my roadmap for writing content. My approach for writing looks l
 
 1. I want to learn something like [[machine learing]]
 2. I start from high-level to see what I need to learn. I divide a topic into parts:
- 1. Key aspects
- 2. Definitions
- 3. Specific parts of topics like Machine Learning Algorithms, Machine learning pipeline etc.
+    1. Key aspects
+    2. Definitions
+    3. Specific parts of topics like Machine Learning Algorithms, Machine learning pipeline etc.
 3. I go step-by step to each item in the roadmap
 4. I go deeper and deeper
 5. In the end I should have a deep knowledge of topic
