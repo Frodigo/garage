@@ -1,7 +1,7 @@
 ---
 date: 2021-03-25
+title: How to extend PWA Studio with new features
 ---
-
 *Published at 25/03/2021*
 
 This time I would like to show you how to extend **PWA Studio** with new features. After reading you will know the following:
@@ -230,3 +230,5 @@ All of these goods make PWA Studio a great starting point for any new headless p
 - [https://github.com/webpack/tapable](https://github.com/webpack/tapable)
 
 - [https://magento.github.io/pwa-studio/venia-ui/reference/targets/#routes--tapableasyncserieswaterfall](https://magento.github.io/pwa-studio/venia-ui/reference/targets/#routes--tapableasyncserieswaterfall)
+
+#WebDevelopment #FrontendDevelopment #JavaScript #JSX #React #PWAStudio #Magento #Webpack #ConceptExplanation #Tutorial #BestPractices #Intermediate #Extensibility #CustomizationTechniques

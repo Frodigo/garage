@@ -1,8 +1,8 @@
 ---
 date: 2021-02-07
+title: What is the difference between PWA Studio and the current Magento frontend
 ---
-
-*date: 07/02/2021*
+*Last updated 07/02/2021*
 
 This change will be a big challenge for frontend developers because working with **PWA Studio** is entirely different from working with the current Magento frontend. This change will be a big challenge for frontend developers because working with PWA Studio is entirely different from working with the current Magento frontend. The technology stack used is completely different. Therefore, different competencies and skills are required. In this article, I would like to show you the differences between the two and compare the current Magento frontend technology stack with that of PWA Studio.
 
@@ -167,3 +167,5 @@ PWA Studio is different from the current Magento frontend in every area. The mos
 - [https://stackshare.io/stackups/grunt-vs-gulp-vs-webpack](https://stackshare.io/stackups/grunt-vs-gulp-vs-webpack)
 
 - [https://github.com/css-modules/css-modules](https://github.com/css-modules/css-modules)
+
+#WebDevelopment #FrontendDevelopment #Ecommerce #JavaScript #PHP #CSS #React #GraphQL #Apollo #KnockoutJS #jQuery #Webpack #Grunt #Magento #PWAStudio #Comparison #ConceptExplanation #BestPractices #Intermediate #Headless #ProgressiveWebApps

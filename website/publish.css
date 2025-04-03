@@ -1395,3 +1395,7 @@ what causes this? - .CodeMirror.cm-spell-error setting red a squiggly line as ba
 .site-body-left-column-site-name, .site-header-text {
   display: none;
 }
+
+.theme-dark .mermaid > svg {
+  max-width: 100%;
+}

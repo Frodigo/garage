@@ -1,7 +1,7 @@
 ---
 date: 2022-09-08
+title: The full-stack guide to the GraphQL query
 ---
-
 *Last updated: 08/09/2022*
 
 GraphQL helps prevent the overloading of data. Unlike Restful API, GraphQL allows specifying fields that will be received from the server. That will result in faster communication and less traffic on the network, which will reduce response time considerably. There are two basic types of operations in GraphQL: **queries** and **mutations**.
@@ -414,3 +414,5 @@ I hope you enjoyed our quick tour through GraphQL queries. Let me summarize:
 - Of course, you can even use PHP to write an apollo server, but who wants to write code in PHP?
 
 That essential information should help you to understand the basics of graphQL queries.
+
+#WebDevelopment #BackendDevelopment #API #JavaScript #NodeJS #GraphQL #Apollo #REST #ExpressJS #ConceptExplanation #Tutorial #DeepDive #Intermediate

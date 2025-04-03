@@ -1,7 +1,7 @@
 ---
 date: 2021-11-02
+title: What is react redux, and what development of redux apps looks in 2021
 ---
-
 *last updated at 02/11/2021*
 
 I want to invite you to the journey throughout react-redux. You will see:
@@ -459,3 +459,5 @@ When you think about migrating from redux, you need to have good reasons. Migrat
 If, after a few years, it turned out that the choice of redux was not the best, it only emphasizes the importance of design and choosing the exemplary architecture for a specific project.
 
 So, if you have reasons and money, please migrate from redux, but migrate if you want to migrate. Please give it up.
+
+#WebDevelopment #Frontend #React #StateManagement #JavaScript #Redux #ReduxThunk #ReduxSaga #ReduxObservable #ConceptExplanation #DeepDive #BestPractices #Intermediate #Performance #Architecture

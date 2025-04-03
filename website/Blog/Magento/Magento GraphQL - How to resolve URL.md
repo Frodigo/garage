@@ -1,9 +1,8 @@
 ---
 date: 2025-02-2022
+title: Magento GraphQL - How to resolve URL
 ---
-
-
-*date: 12/02/2022*
+*Last updated at 12/02/2022*
 
 Recently  I described the basics of Magento GraphQL. This time I want to show you a practical example of how to scaffold a headless app connected with Magento GraphQL and fetch appropriate data from Magento based on a given URL. This article is about:
 
@@ -338,3 +337,5 @@ There is the route query that resolves the URL and returns one of three page typ
 You can create static routes for other pages like checkout or my account add implementation.
 
 Thanks to state-of-the-art features like React Server Components, you can do all of that on the server-side, so the performance of a page will be outstanding.
+
+#WebDevelopment #BackendDevelopment #FrontendDevelopment #JavaScript #TypeScript #GraphQL #React #NextJS #Magento #ConceptExplanation #Tutorial #DeepDive #Intermediate #API #Routing #Headless #SEO

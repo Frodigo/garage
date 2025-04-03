@@ -1,7 +1,3 @@
----
-date: 2025-03-28
----
-
 Cryptography in cybersecurity takes care about converting information into a format that is unreadable. Thanks to it we can protect sensitive data from unauthorized access.
 
 ## Key aspects of cryptography in cybersecurity
@@ -25,7 +21,7 @@ Cryptography in cybersecurity takes care about converting information into a for
 4. [[Entropy]]
 5. [[Monoalphabetic rotation ciphers]]
 6. [[Plaintext]]
-7. [[polyalphabetic substitution cipher]]
+7. [[Polyalphabetic substitution cipher]]
 8. Secrettext
 9. Hash function
 10. Digital signature
@@ -93,3 +89,5 @@ Cryptography in cybersecurity takes care about converting information into a for
     - FIPS 140-2/140-3
     - Common Criteria
     - GDPR cryptography requirements
+
+#Cybersecurity #TerminologyDefinitions #ConceptExplanation #Intermediate #DataSecurity #NetworkSecurity #Manual

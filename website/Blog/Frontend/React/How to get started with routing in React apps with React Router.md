@@ -1,7 +1,7 @@
 ---
 date: 2021-12-23
+title: How to get started with routing in React apps with React Router
 ---
-
 *Published at 2021-12-23*
 
 ## What is React Router?
@@ -645,3 +645,5 @@ React Router provides other essential components are Routes, Route, Link, and Na
 Besides, there are a few hooks like useParams, useSearchParams, and useNavigate.
 
 So react-router package provides just components and just hooks, and those all together allow you to create complex routing systems easily.
+
+#WebDevelopment #FrontendDevelopment #JavaScript #HTML #React #ReactRouter #Bootstrap #GitHub #Tutorial #DeepDive #ProjectSetup #Intermediate #APISecurity #Performance

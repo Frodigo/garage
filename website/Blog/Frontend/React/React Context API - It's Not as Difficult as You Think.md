@@ -1,7 +1,7 @@
 ---
 date: 2022-02-03
+title: "React Context API: It's Not as Difficult as You Think"
 ---
-
 *Last update at 03/02/2022*
 
 ## A Guide to React Context and useContext() hook
@@ -243,3 +243,5 @@ Complete set up of context API includes:
 3. Inject context provider to the component tree
 
 4. Consume Context in the following components by using the useContext hook
+
+#WebDevelopment #FrontendDevelopment #ProgrammingFundamentals #JavaScript #React #Hooks #ConceptExplanation #Tutorial #BestPractices #Intermediate #StateManagement
