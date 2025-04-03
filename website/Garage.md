@@ -1,12 +1,14 @@
 Welcome in my garage. Here I store all my knowledge, notes, content, ideas etc.
 
-## What uou can find here
+## What you can find here
 
 - technical articles
 - definitions
 - concepts explantations
 - tutorials
 - and other thing that I can write
+
+---
 
 ## Content structure
 
@@ -40,9 +42,11 @@ This contents is my roadmap for writing content. My approach for writing looks l
 
 Actually, you may ask why I write this content?
 
+---
+
 ## Why I write?
 
-I am a notetaker. If I want to larn something I must write it down, rephrasing it. Actually I do not write this content because I think someone will read it. But when I publish it, you can read it and maybe it will help you somehow.
+I am a notetaker. If I want to learn something I must write it down, rephrasing it. Actually I do not write this content because I think someone will read it. But when I publish it, you can read it and maybe it will help you somehow.
 
 Anyway, you can learn with me and this is the best thing of writing any content that is most ambitious that movies with cats on TikTok.
 
@@ -80,7 +84,7 @@ All code examples, tools, experiments etc. are there.
 
 is open source and will be **open source forever.**
 
-### You may ask: why I named code repository "garage"?
+*You may ask: why I named code repository "garage"?*
 
 I like cars, especially classic ones. I wish I have a garage with some nice classic car like old Ford Mustang or BMW. But for now I have only a computer which allow me to do some things. I think that I do these things in the garage. My engineering garage.
 
