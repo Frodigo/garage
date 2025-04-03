@@ -27,9 +27,9 @@ The best way to read content here is to use a navigation and explore content gro
 
 Please note that these pages typically are categories. For example, where you go to [[Internet of things]] you can see that there is a contents.
 
-This consents is my roadmap for writing content. My approach for writing looks like this:
+This contents is my roadmap for writing content. My approach for writing looks like this:
 
-1. I want to learn something like [[machine learing]]
+1. I want to learn something like [[machine learning]]
 2. I start from high-level to see what I need to learn. I divide a topic into parts:
     1. Key aspects
     2. Definitions
@@ -46,13 +46,13 @@ I am a notetaker. If I want to larn something I must write it down, rephrasing i
 
 Anyway, you can learn with me and this is the best thing of writing any content that is most ambitious that movies with cats on TikTok.
 
-If you a learner, technical and like to get to know why something works this way or that way, maybe you will find something usefull here.
+If you a learner, technical and like to get to know why something works this way or that way, maybe you will find something useful here.
 
 ---
 
 ## Featured content
 
-I cannot recommend anything so far, because almost all here is in progress. Any content that I could recommend is about [[Magento]] and [[Frontend]], but I wrote these articles wto or three years later and theyt are outdated.
+I cannot recommend anything so far, because almost all here is in progress. Any content that I could recommend is about [[Magento]] and [[Frontend]], but I wrote these articles two or three years later and they are outdated.
 
 The most funny part is that I wrote about Magento PWA Studio and this framework is not existing anymore.
 
