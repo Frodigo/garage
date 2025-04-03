@@ -1,8 +1,4 @@
----
-date: 2025-03-28
----
-
-### My email
+## My email
 
 [marcin@frodigo.com](mailto:marcin@frodigo.com)
 
@@ -25,4 +21,4 @@ If you want to be updated with my new content you can subscribe to my newsletter
 ## RSS feed
 
 If you prefer to subscribe to the RSS feed, please use the following link:
-[https://rss.frodigo.com/feed.xml](https://rss.frodigo.com/feed.xml)
+[https://rss.frodigo.com](https://rss.frodigo.com)
