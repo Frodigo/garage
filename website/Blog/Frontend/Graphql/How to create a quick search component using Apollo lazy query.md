@@ -1,7 +1,7 @@
 ---
 date: 2025-02-29
+title: How to create a quick search component using Apollo lazy query
 ---
-
 *Published at 29/09/2022*
 
 When React renders a component that calls the **useQuery** hook, the Apollo Client runs the query automatically, but sometimes you need to query for data on some event. A great case is a quick search component that allows users to search for products in an eCommerce store.
@@ -316,3 +316,5 @@ Apollo client provides a cache mechanism called InMemoryCache. Thanks to that, t
 ### Handling [GraphQL](/how-to-use-graphql-mutations-in-react-and-apollo-client) errors
 
 Lazy query error handling is pretty the same as when you use the **useQuery** hook. Please follow [[2 ways of handling GraphQL errors in Apollo Client|this article]] if you want to get more about GraphQL errors.
+
+#WebDevelopment #FrontendDevelopment #JavaScript #React #GraphQL #ApolloClient #ReactBootstrap #Tutorial #ConceptExplanation #BestPractices #Intermediate #API

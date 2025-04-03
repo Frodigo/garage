@@ -1,8 +1,8 @@
 ---
 date: 2022-06-01
+title: How to import Magento GraphQL schema to Postman
 ---
-
-*date: 01/06/2022*
+*Last updated at 01/06/2022*
 
 GraphQL is a query language that allows you to get what you want from the backend, so basically, you need to describe the fields you wish to, write a query, and you are good to go. I have been working a lot with Magento GraphQL API, and I have used the Chrome extension to send requests. The number of queries I have saved has been increasing daily, and I have started looking for something that allows me to organize all my queries and mutations.
 
@@ -103,3 +103,5 @@ To do so, please add this entry to your app/etc/env.php file:
 ## Summary
 
 In this short article, I showed you how to export Magento GraphQL schema and import it to Postman. On the other hand, remember that it is recommended to disable API introspection in Magento for any store on production.
+
+#WebDevelopment #BackendDevelopment #JavaScript #PHP #GraphQL #REST #Magento #Apollo #Postman #Tutorial #QuickTip #BestPractices #Intermediate #APISecurity

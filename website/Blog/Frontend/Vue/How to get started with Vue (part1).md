@@ -1,7 +1,7 @@
 ---
 date: 2022-01-14
+title: How to get started with Vue (part1)
 ---
-
 *Published at 14/01/2022*
 
 Unknown word: Vue - this is the sentence that one of my tools that check grammar stands out to me. It's funny because, probably for most front-end developers, Vue is a known word. After all, we all love JavaScript frameworks.
@@ -424,3 +424,5 @@ Today, I showed you some basics about creating web apps using Vue, but only a mi
 - communication with APIs
 - testing
 - and so on
+
+#WebDevelopment #FrontendDevelopment #JavaScript #VueJS #Angular #React #VueCLI #Tutorial #ConceptExplanation #QuickTip #Beginner

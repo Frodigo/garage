@@ -1,7 +1,7 @@
 ---
 date: 2023-02-11
+title: How to build a high-quality PWA Studio extensio
 ---
-
 *Published at: 2023-02-11*
 
 First, we need to set up our local PWA Studio instance.
@@ -496,3 +496,5 @@ You can find the source code of the extension which we just made on my [Github.]
 ## Summary
 
 As you can see, thanks to **PWA Studio Extension Generator**, you can start developing your extension quickly, and you don’t have to worry about configuring things from scratch. You can grab base files and configs and change whatever you want. Happy Hacking!
+
+#WebDevelopment #FrontendDevelopment #ProgrammingFundamentals #JavaScript #CSS #Bash #React #PWAStudio #Jest #Yarn #GraphQL #Tutorial #ProjectSetup #BestPractices #Intermediate #Testing

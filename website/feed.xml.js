@@ -17,7 +17,7 @@ const config = {
   contentDir: path.join(__dirname),
   outputPath: path.join(__dirname, 'public', 'feed.xml'),
   maxItems: 15, 
-  excludeDirs: ['node_modules', '.git', '.github', 'public', 'dist', '.next'] // Katalogi do pominięcia
+  excludeDirs: ['node_modules', '.git', '.github', 'public', 'dist', '.next']
 };
 
 // Create RSS feed

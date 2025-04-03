@@ -1,8 +1,8 @@
 ---
 date: 2025-03-26
+title: Caesar Cipher Implementation in C Sharp
 ---
-
-*Published: 26/03/2025*
+*Published at: 26/03/2025*
 
 In this tutorial I'll show you how to implement a Caesar cipher in C# using traditional TDD approach.
 You can learn two things. How:
@@ -364,3 +364,6 @@ By following this TDD approach, we've created a Caesar Cipher implementation tha
 - [Full implementation](https://github.com/Frodigo/garage/blob/main/sandbox/cybersecurity/cryptography/HistoricalCiphersDemo/Ciphers/Caesar/CaesarCipher.cs)
 - [Tests](https://github.com/Frodigo/garage/blob/main/sandbox/cybersecurity/cryptography/HistoricalCiphersDemo/Tests/CaesarCipherTests.cs)
 - [Other historical ciphers implementations](https://github.com/Frodigo/garage/tree/main/sandbox/cybersecurity/cryptography/HistoricalCiphersDemo)
+
+#ProgrammingFundamentals #Cybersecurity #CSharp  #CSharp #xUnit #DotNet #Tutorial #ConceptExplanation #Intermediate #AutomatedTesting
+

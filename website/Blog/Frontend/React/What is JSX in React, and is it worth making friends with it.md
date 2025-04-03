@@ -1,7 +1,7 @@
 ---
 date: 2021-10-07
+title: What is JSX in React, and is it worth making friends with it
 ---
-
 *Last updated at 07/10/2021*
 
 JSX is an XML/HTML-like syntax from React that extends **ECMAScript**. JSX allows you to write HTML code mixed with JavaScript. Take a look at the following example:
@@ -276,3 +276,5 @@ When you work on the React application, you can use JSX to put markup into javas
 Each JSX tag is transformed to **React createElement** javascript function. Moreover, If you don't want to use JSX for any reason, you can write react code without JSX.
 
 In my opinion, JSX has many advantages, and definitely, it's a friend of any React developer. I love it the most in JSX because it looks like JavaScript with more power (It's fair to say that JSX is built on top of JavaScript). I like that approach more than something you can find in **Vue.js** or **Angular**, where you need to learn specific framework functions and syntax.
+
+#WebDevelopment #FrontendDevelopment #JavaScript #React #JSX #ConceptExplanation #Tutorial #BestPractices #Intermediate

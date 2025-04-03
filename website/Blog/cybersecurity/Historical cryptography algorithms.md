@@ -1,5 +1,6 @@
 ---
 date: 2025-03-28
+title: Historical cryptography algorithms
 ---
 
 *Last updated: 22/03/2025*
@@ -406,3 +407,5 @@ During my studying I visited many places in the internet and also used Claude an
 - [XOR in Encryption](https://bluegoatcyber.com/blog/how-is-xor-used-in-encryption/)
 
 Thanks for reading!
+
+#Cybersecurity #ProgrammingFundamentals #CSharp #Shell/Bash #Git #Cryptool #Tutorial #DeepDive #ProjectSetup #Intermediate #HistoricalCryptography

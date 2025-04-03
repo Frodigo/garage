@@ -1,7 +1,7 @@
 ---
 date: 2021-10-04
+title: Getting started with Magento PWA Studio targetables
 ---
-
 *Published at: 04/10/2021*
 
 As a Magento Frontend developer (If you are not deal with Magento, you can skip this paragraph), you have a few mechanisms to customize the look and feel of your shops, like Layout modifications, customizing styles, or creating mixins). These methods (if you can use their power) allows you to do whatever you want with your shop.
@@ -545,3 +545,5 @@ Check out this article if you want to read more about targetables and other PWA 
 I pushed the source code of this tutorial to my GitHub. You can find it here: [https://github.com/Frodigo/tutorial-pwa-studio-short-description](https://github.com/Frodigo/tutorial-pwa-studio-short-description)
 
 There you can find all source files and scaffolded Magento PWA studio project. Just clone the code, install dependencies by running the yarn install command in the project directory and run the storefront-project by yarn run watch command.
+
+#WebDevelopment #FrontendDevelopment #JavaScript #GraphQL #React #MagentoPWA #Apollo #Tutorial #DeepDive #ConceptExplanation #Intermediate #Testing #ComponentInjection #ExtensibilityFramework

@@ -1,9 +1,7 @@
 ---
 date: 2022-09-02
+title: 2 ways of handling GraphQL errors in Apollo Client
 ---
-
-*Published at 2022-09-02*
-
 If you use Graphql Apollo Client with React, there are two ways (more precisely speaking) – two levels of handling errors:
 
 - operation level
@@ -200,3 +198,5 @@ Moreover, there are two levels where you can handle those errors:
 2. component (query/mutation) level
 
 Thanks to application-level error handling, you can use JavaScript error tracking tools on production and log errors to the console in local environments. Besides, you can use this mechanism to handle and display errors in your application.
+
+#WebDevelopment #FrontendDevelopment #BackendDevelopment #JavaScript #React #GraphQL #ApolloClient #ConceptExplanation #Tutorial #BestPractices #Intermediate #ErrorHandling #APIIntegration

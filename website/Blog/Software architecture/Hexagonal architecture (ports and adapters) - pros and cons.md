@@ -1,7 +1,7 @@
 ---
 date: 2022-04-20
+title: Hexagonal architecture (ports and adapters) - pros and cons
 ---
-
 *Last updated: 20/04/2022*
 
 Hexagonal architecture, also known as octagonal architecture or ports and adapters architecture, is an approach to software design in which business logic is isolated from the technical layer.
@@ -405,3 +405,5 @@ You can also combine the principles of hexagonal architecture with DDD modeling 
 [Eric Evans' Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.goodreads.com/book/show/179133.Domain_Driven_Design)
 
 [Learning Domain-Driven Design: Aligning Software Architecture and Business Strategy - Vlad Khononov](https://www.goodreads.com/book/show/57573212-learning-domain-driven-design)
+
+#ProgrammingFundamentals #SoftwareArchitecture #TypeScript #JavaScript #ConceptExplanation #ArchitectureReview #DeepDive #Intermediate #Microservices #Scalability

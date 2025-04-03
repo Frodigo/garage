@@ -1,7 +1,7 @@
 ---
 date: 2022-10-13
+title: Introduction to the Apollo local state and reactive variables
 ---
-
 *Last updated: 13/10/2022*
 
 In one of my previous articles, I described the useReducer hook as an excellent way to manage the state of React apps, including apps connected with GraphQL APIs using the apollo client.
@@ -730,3 +730,5 @@ useEffect(() => {
 ## Summary
 
 Today I showed you two techniques for managing local data in Apollo. Local-only fields and reactive variables. Those mechanisms provide a lot of flexibility, and they should be considered when architecting state management in your React application. In addition, I recommend reading about [[How to mock GraphQL queries and mutations|[mocking GraphQL queries and mutation.]]
+
+#WebDevelopment #FrontendDevelopment #ProgrammingFundamentals #JavaScript #React #Apollo #GraphQL #REST #Tutorial #DeepDive #ConceptExplanation #Intermediate #StateManagement #DataPipeline #APIIntegration

@@ -1,8 +1,8 @@
 ---
 date: 2022-04-14
+title: Magento graphql overview and how to get started in 2022
 ---
-
-*date: 14/04/2022*
+*Last updated at 14/04/2022*
 
 **GraphQL** has become one of the most popular APIs for building web applications. It gives many benefits for frontend development:
 
@@ -440,3 +440,5 @@ Magento 2 has excellent support in GraphQL API for its features and advantages c
 ### GraphQL and headless
 
 Nowadays, the most popular headless storefronts and boilerplates like Vue Storefront and PWA Studio use GraphQL API to communicate with Magento. Besides, Extensions providers for Magento 2 have started adding support for GraphQL in their extensions. That all can mean that headless storefronts, composable commerce, and all pretty new things will constantly be developing near future!
+
+#WebDevelopment #BackendDevelopment #FrontendDevelopment #eCommerce #JavaScript #GraphQL #Magento #REST #Apollo #ConceptExplanation #Comparison #BestPractices #TechnicalOverview #Intermediate #API #PerformanceOptimization #Scalability

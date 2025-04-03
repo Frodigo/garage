@@ -1,7 +1,7 @@
 ---
 date: 2022-09-16
+title: How to mock GraphQL queries and mutations
 ---
-
 *Last updated: 16/09/2022*
 
 Nowadays, distributed architectures of software have become more popular, and along with the trend, software teams use the API-first approach to building products.
@@ -815,3 +815,5 @@ When you want to mock some fields or operations on the client side using Apollo 
 3. Use @client directive in queries/mutations
 
 I hope you liked this article. Thanks for reading!
+
+#WebDevelopment #FrontendDevelopment #BackendDevelopment #ProgrammingFundamentals #JavaScript #GraphQL #React #Apollo #REST #Tutorial #DeepDive #BestPractices #ProjectSetup #Intermediate #APISecurity

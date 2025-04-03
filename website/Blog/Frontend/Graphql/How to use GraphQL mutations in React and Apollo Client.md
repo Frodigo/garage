@@ -1,8 +1,7 @@
 ---
 date: 2022-10-27
+title: How to use GraphQL mutations in React and Apollo Client
 ---
-
-
 *Last updated: 27/10/2022*
 
 In one of my previous articles, I described [[The full-stack guide to the GraphQL query|[GraphQL queries]]. Today I would like to show you how to work with GraphQL mutations.
@@ -592,3 +591,5 @@ The optimisticResponse object takes an object with the same structure as the exp
 ## Conclusion
 
 Mutations next to queries are the core of Apollo Client's API. Sending a request and receiving a response is not all that Apollo Client offers. Thanks to the fact that Apollo has its state, developers can reliably program communication with the API and provide users with a very good UX. One of the most interesting features is optimistic responses, thanks to which the UI will seem fast even when the server is slow.
+
+#WebDevelopment #FrontendDevelopment #BackendDevelopment #JavaScript #React #GraphQL #ApolloClient #REST #ConceptExplanation #Tutorial #DeepDive #Intermediate #DataPipeline #PerformanceOptimization

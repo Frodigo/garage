@@ -1,8 +1,7 @@
 ---
 date: 2024-12-17
+title: Monolith vs Microservices - Pros and Cons and How to Approach Transformation
 ---
-
-
 *Last updated: 17/12/2024*
 
 ## The Good Old Monolith
@@ -205,3 +204,5 @@ The choice between monolith and microservices, as well as the transformation met
 Remember that neither monoliths nor microservices are inherently bad - everything depends on context. Sometimes the best solution might be a hybrid of both approaches, where part of the system remains a monolith while critical components operate as microservices.
 
 ---
+
+#SoftwareArchitecture #BackendDevelopment #SystemDesign #ConceptExplanation #ArchitectureReview #CaseStudy #Intermediate #Microservices #DataConsistency #SystemIntegration #ArchitecturalTransformation #HybridArchitecture

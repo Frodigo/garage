@@ -1,6 +1,3 @@
----
-date: 2025-03-28
----
 
 A type of substitution cipher.
 
@@ -43,3 +40,5 @@ flowchart LR
     class shifted ciphertext
 
 ```
+
+#Cybersecurity #ProgrammingFundamentals  #TerminologyDefinitions  #ConceptExplanation  #Beginner

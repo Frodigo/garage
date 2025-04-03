@@ -1,8 +1,8 @@
 ---
 date: 2021-04-15
+title: How to add support for Category Landing Pages to PWA Studio
 ---
-
-*date: 15/04/2021*
+*Published at 15/04/2021*
 
 A Category Landing Page is a special type of Category Page. In Magento, a Merchant can set unique content for a specific category. Take a look at this sample Magento Luma Category Landing Page.
 
@@ -413,3 +413,5 @@ This time we added support for Category Landing Pages to PWA Studio Storefront. 
 ## Source code
 
 The source code for this tutorial is available on my [Github.](https://github.com/Frodigo/pwa-studio-category-landing-pages)
+
+#WebDevelopment #FrontendDevelopment #BackendDevelopment #JavaScript #CSS #GraphQL #React #PWAStudio #Magento #Apollo #Tutorial #DeepDive #ProjectSetup #Intermediate #API #ComponentArchitecture

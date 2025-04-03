@@ -1,7 +1,7 @@
 ---
 date: 2021-12-29
+title: Magento 2 product types
 ---
-
 *Published at 29/12/2021*
 
 ## Magento 2 product types
@@ -143,3 +143,5 @@ Magento Luma is a benchmark for headless, and I hope that headless approaches wi
 
 Magento 2 provides pretty extensive options when it comes to creating products. This will help you switch things up and diversify the product range offered at your Magento 2 online store to meet the customers' expectations.
 Headless solutions are behind Magento Monolith in terms of support for product types, but it's only a matter of time when full support will be in place.
+
+#WebDevelopment #E-commerce #BackendDevelopment #FrontendDevelopment #PHP #Magento2 #PWAStudio #VueStorefront #Headless #ConceptExplanation #TerminologyDefinitions #Comparison #Intermediate #DigitalTransformation

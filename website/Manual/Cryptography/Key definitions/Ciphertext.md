@@ -1,7 +1,3 @@
----
-date: 2025-03-28
----
-
 Can be named also cryptogram.
 
 Ciphertext is an encrypted version of plaintext.
@@ -15,3 +11,5 @@ Example: "5d41402abc4b2a76b9719d911017c592"
 - The output result after encryption has been applied to the plaintext
 - What an attacker would see if they intercepted the encrypted communication
 - Appears as seemingly random data if the encryption is strong
+
+#Cybersecurity #TerminologyDefinitions #ConceptExplanation #Beginner

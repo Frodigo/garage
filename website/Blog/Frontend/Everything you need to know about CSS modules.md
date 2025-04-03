@@ -1,7 +1,7 @@
 ---
 date: 2021-02-15
+title: Everything you need to know about CSS modules
 ---
-
 *Date: 15/02/2021*
 
 ## CSS is easy, right?
@@ -264,3 +264,5 @@ You can find examples of the code for this article on my Github.[Here is the rep
 [https://x-team.com/blog/css-modules-a-new-way-to-css/](https://x-team.com/blog/css-modules-a-new-way-to-css/)
 
 [https://glenmaddern.com/articles/css-modules](https://glenmaddern.com/articles/css-modules)
+
+#WebDevelopment #FrontendDevelopment #JavaScript #CSS #React #Webpack #PWAStudio #JSX #ConceptExplanation #Tutorial #BestPractices #Intermediate #ModularDesign
