@@ -10,9 +10,8 @@ on:
       - 'website/**/*.json'
 
 jobs:
-  build-test-and-deploy:
+  generate-and-unit-test:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,9 +31,42 @@ jobs:
         working-directory: ./website
         run: node feed.xml.js
 
-      - name: Run unit tests
+      - name: Run unit tests and generate links file
         working-directory: ./website
         run: npm run test:unit
+
+      - name: Upload RSS feed and links file
+        uses: actions/upload-artifact@v4
+        with:
+          name: feed-and-links
+          path: |
+            website/public/
+            website/links-to-test.json
+          retention-days: 1
+
+  e2e-test-and-deploy:
+    needs: generate-and-unit-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+          cache: 'npm'
+          cache-dependency-path: website/package.json
+
+      - name: Install dependencies
+        working-directory: ./website
+        run: npm install
+
+      - name: Download RSS feed and links file
+        uses: actions/download-artifact@v4
+        with:
+          name: feed-and-links
+          path: website
 
       - name: Install Playwright browsers
         working-directory: ./website
