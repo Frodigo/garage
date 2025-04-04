@@ -255,7 +255,7 @@ Uh, a lot of theory and it's not easy, is it? Let's try to see how it work in pr
 
 ## Tasks & Experiments
 
-### 1. Compare plaintext [entropy](/cybersecurity/entropy) values ​​for Polish, English and one other selected language
+### 1. Compare plaintext [[Entropy]] values ​​for Polish, English and one other selected language
 
 I used these texts:
 
