@@ -1,0 +1,6 @@
+- obsidian rss doesn't work properly - it's simple, it has only title and links
+- but i neede titles, dates and content
+- needed to create own script to generate rsss
+- because obsidian doesn't support whaat i needed
+- needed to creste a cloudflare page and upload there a fed.xml
+- needed to configure domains

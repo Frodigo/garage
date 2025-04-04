@@ -1,6 +1,6 @@
 ## Who I am
 
-### TLDR: Software Engineer
+**TLDR: Software Engineer**
 
 ![[marcin_kwiatkowski2025.jpeg]]
 
@@ -80,11 +80,13 @@ Think slower, be free, avoid autopilot. This is my philosophy I am trying to fol
 
 ---
 
-## How I started
+## My story
+
+### How I started
 
 My first job was about going to shop to buy a beer for my boss.
 
-### The roofer
+#### The roofer
 
 I started as a manual worker. In the beginning I was responsible for cleaning the building. Another thing was buying beer for a stuff and move heavy things from one place to another.
 
@@ -92,7 +94,7 @@ After one year I was able to move to the next step and I was able to lay roof ti
 
 After a few years I started to be an independent roofer. In addition to roof tiles, I also knew how to install gutters, install roof windows, and do sheet metal work. I became a specialist and even got an assistant.
 
-### The drift
+#### The drift
 
 I liked that job because I was able to create something (roofs) and I felt that this is important job. I worked for people who wanted to have a roof over their heads.
 
@@ -102,11 +104,11 @@ I started studying computer science and after 3 years I was able to get a job as
 
 ---
 
-## Me After 10 years
+### Me After 10 years
 
 What a surprise, after years of learning how to code, I ended up leading a team of developers where I needed such different skills that I have had.
 
-### The full-stack developer
+#### The full-stack developer
 
 In May 2013 I started to work as a front-end developer at Chop-Chop.org. My job was to convert PSD files to working websites.
 
@@ -114,7 +116,7 @@ After ~ 1 year I joined to a team of Magento developers and started to work on M
 
 My next step was to join a Divante - Polish software house where I was able to work with Magento 2.x and create some shops for big Polish companies.
 
-### The tech leader
+#### The tech leader
 
 After 2.5 years I became the technical leader of the Magento frontend team.
 
@@ -122,7 +124,7 @@ In 2020, I joined to a Gorilla Group where I was able to work with international
 
 In 2021, I was invited to join to the Vuestorefront as a tech leader. I was responsible for leading the team and project.
 
-### The software engineer
+#### The software engineer
 
 After three years of being a tech leader I felt like I don't do what I really want to do. Guess what? I missed coding. I missed writing code. I missed creating something from scratch.
 
@@ -132,11 +134,11 @@ I like the Docplanner culture and the mission which is about making healthcare m
 
 ---
 
-## Me now and future me
+### Me now and future me
 
 I want to focus on the engineering and turn into the AI engineer.
 
-### The AI engineer
+#### The AI engineer
 
 Recently I experimented with AI and I want to go deeper into this area. Maybe transition from the fullstack developer to the AI engineer is a next turn on my road.
 
@@ -144,13 +146,13 @@ Also I back to school! I started my master's degree in artificial intelligence a
 
 Next two years I will be learning a lot of new things which I will share here.
 
-### The educator
+#### The educator
 
 After few years of drifting I want to go back to the roots and help others to learn.
 
 Because I like learning and I like writing I want to try to connect these two activities into one and share my knowledge with others.
 
-### The Writer
+#### The Writer
 
 Writing a book is a big challenge, isn't it? The value of books in the AI area decreases every day.
 
@@ -160,13 +162,20 @@ But I hope books will survive and will be valuable for a long time.
 
 ## My Services
 
-- Technical Mentoring
-- Architecture Consulting
-- Career Development Planning
-- Technical Content Creation
 - Software engineering
+- Software architecture consulting
+- Technical content creation
+- Technical mentoring
+- Career development planning
 
 [[Contact|Hire me]]
+
+---
+
+## My certification
+
+- [Professional Cloud Architect Certification](https://www.credly.com/badges/28268693-91e6-4d53-9104-987a2a22420e/public_url)
+- [Cloud Digital Leader Certification](https://www.credly.com/badges/a67a33bf-1b59-4f4d-9330-6f4719df18a2/public_url)
 
 ---
 

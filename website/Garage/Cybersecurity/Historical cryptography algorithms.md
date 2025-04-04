@@ -57,12 +57,12 @@ Ok, so at this moment I can experiment with Cryptool and learn about crypto a bi
 
 In the scope of task I had: *Cesar*, *Vigenere*, *Hill* and *XOR*. Let's take a closer look at them
 
-### Caesar's [Cipher](/cybersecurity/cipher)
+### Caesar's [[Cipher]]
 
-It's one of the oldest and simplest [encryption](/cybersecurity/encryption) algorithm invented (or at least associated with) Julius Caesar.
+It's one of the oldest and simplest [[Encryption]] algorithm invented (or at least associated with) Julius Caesar.
 
 Cesar used in in around 58 BC. How it worked? It scrambled a message by shifting its letters.
-Technically speaking is a [monoalphabetic rotation cipher](/cybersecurity/monoalphabetic-rotation-ciphers). it shifts letters by 3, but there is also a variant called `ROT-13` that shifts letters by 13.
+Technically speaking is a [[Monoalphabetic rotation ciphers]] it shifts letters by 3, but there is also a variant called `ROT-13` that shifts letters by 13.
 
 I implemented the Caesar cipher in C# for learning purposes.
 
@@ -71,8 +71,6 @@ Here you can find:
 - [repository](https://github.com/Frodigo/garage/tree/main/sandbox/cybersecurity/cryptography/HistoricalCiphersDemo)
 - [Caesar cipher code](https://github.com/Frodigo/garage/blob/main/sandbox/cybersecurity/cryptography/HistoricalCiphersDemo/Ciphers/Caesar/CaesarCipher.cs)
 - [tests that perfectly shows how it works](https://github.com/Frodigo/garage/blob/main/sandbox/cybersecurity/cryptography/HistoricalCiphersDemo/Tests/CaesarCipherTests.cs)
-
-::right
 
 Before you go to the next cipher, check how the caesar works on diagrams below:
 
@@ -101,23 +99,22 @@ flowchart TD
 
 ### Vigenère cipher
 
-It's a [polyalphabetic substitution cipher](/cybersecurity/polyalphabetic-substitution-cipher) which uses a keyword to encrypt and decrypt messages.
+It's a [[polyalphabetic substitution cipher]] which uses a keyword to encrypt and decrypt messages.
 
-**How it works?**:
+**How it works?**
 
-- Each letter of the key specifies a different shift
-- Same plaintext letter can encrypt to different [ciphertext](/cybersecurity/ciphertext) letters
-
-1. Algorithm takes two inputs: message(plaintext) and key(password).
-2. Algorithm prepare key by repeating it to the message length.
-3. Then it intitialize empty result string.
-4. Next it iterates on each character in plaintext:
-   1. if a char is a letter, gets corresponding char of key
-   2. checks is plaintext cha uppercase and calculate Vigenère shift:
+1. Each letter of the key specifies a different shift
+2. Same plaintext letter can encrypt to different [[Ciphertext]] letters
+3. Algorithm takes two inputs: message(plaintext) and key(password).
+4. Algorithm prepare key by repeating it to the message length.
+5. Then it intitialize empty result string.
+6. Next it iterates on each character in plaintext:
+7. 1. if a char is a letter, gets corresponding char of key
+8. 2. checks is plaintext cha uppercase and calculate Vigenère shift:
       1. for uppercase letter: `(P + K) % 26 +65`
       2. otherwise: `(P + K) % 26 + 97`
-   3. if char is not a letter, it's added to the results unchanged
-5. When iteration is done, returns ciphertext.
+9. 3. if char is not a letter, it's added to the results unchanged
+10. When iteration is done, returns ciphertext.
 
 You can find my implementation of this cipher here:
 
@@ -223,8 +220,6 @@ For encryption we used this key (matrix):
 
 To decrypt the message, we need to find the inverse of this matrix.
 
-::right
-
 You can find a basic Hill Cipher implementation here:
 
 - [code](https://github.com/Frodigo/garage/blob/main/sandbox/cybersecurity/cryptography/HistoricalCiphersDemo/Ciphers/Hill/HillCipher.cs)
@@ -306,7 +301,7 @@ Because entropy is a a measure of unpredictability and polish had has the best s
 
 Based on that, polish is a good language for cryptography use cases.
 
-### 2. Compare the entropy values ​​of [plaintext](/cybersecurity/plaintext) and [cryptogram](/cybersecurity/cryptogram) depending on the algorithm (Caesar, Vigenere, Hill)
+### 2. Compare the entropy values ​​of [[Plaintext]] and cryptogram depending on the algorithm (Caesar, Vigenere, Hill)
 
 I used my polish plaintext and encrypted it using these trhee algorithms.
 
@@ -318,8 +313,6 @@ I used my polish plaintext and encrypted it using these trhee algorithms.
 | Caesar    | 4.26    | 90.6%                  | 23                          |
 | Vigenere  | 4.62    | 98.3%                  | 26                          |
 | Hill      | 4.61    | 98%                    | 26                          |
-
-::right
 
 Caesar cipher does not increase entropy because it's just shifting letters, but Vigenere and Hill increased it a lot.
 

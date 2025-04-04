@@ -4,4 +4,4 @@ It can be text, file, message and any other type of data that human can understa
 
 Plaintext is an input to an [[Encryption]] algorithm.
 
-#Cybersecurity #TerminologyDefinitions #Beginner
+# Cybersecurity #TerminologyDefinitions #Beginner

@@ -4,7 +4,8 @@
   "description": "frodigo.com website",
   "main": "rss.xml.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:unit": "jest",
+    "test:e2e": "playwright test e2e/"
   },
   "author": "Marcin Kwiatkowski",
   "license": "CC-BY-NC-4.0",
@@ -12,5 +13,11 @@
     "gray-matter": "^4.0.3",
     "marked": "^15.0.7",
     "rss": "^1.2.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.14.0",
+    "jest": "^29.7.0",
+    "jsdom": "^22.1.0"
   }
 }

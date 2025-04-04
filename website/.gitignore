@@ -2,3 +2,14 @@
 priv/
 .trash/
 node_modules/
+public/ 
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+screenshots/
+
+# RSS Feed
+links-to-test.json
