@@ -10,4 +10,4 @@
 - Added new pages to garage like [[Software architecture]], [[Test-Driven Development with AI]], [[Object-oriented programming]], [[Ethical Hacking]] and [[Internet of things]]
 - added garage page and garage manifesto
 - started using Claude Code for experiments
-- realized that we are far away from the moment when AI will replace programmers
+- I realized that we are far away from the moment when AI will replace programmers

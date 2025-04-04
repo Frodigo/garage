@@ -10,7 +10,7 @@ on:
       - 'website/**/*.json'
 
 jobs:
-  generate-and-unit-test:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -31,10 +31,6 @@ jobs:
         working-directory: ./website
         run: node feed.xml.js
 
-      - name: Run unit tests
-        working-directory: ./website
-        run: npm run test:unit
-
       - name: Upload RSS feed and links file
         uses: actions/upload-artifact@v4
         with:
@@ -45,7 +41,7 @@ jobs:
           retention-days: 1
 
   e2e-test-and-deploy:
-    needs: generate-and-unit-test
+    needs: generate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

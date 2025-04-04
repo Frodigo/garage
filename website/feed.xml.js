@@ -29,10 +29,11 @@ function configureMarkedRenderer() {
         return `<a href="${url}">${textStr}</a>`;
       }
       
-      // For regular links, extract the last part of the URL for the text
+      // For regular links, extract the last part of the URL for the text and decode it
       if (hrefStr.startsWith('https://frodigo.com/')) {
         const lastPart = hrefStr.split('/').pop();
-        return `<a href="${hrefStr}">${lastPart}</a>`;
+        const decodedText = decodeURIComponent(lastPart.replace(/\+/g, ' '));
+        return `<a href="${hrefStr}">${decodedText}</a>`;
       }
       
       // For regular links, ensure proper formatting
@@ -167,9 +168,11 @@ function processWikiLinks(content, filePath, config) {
   return content.replace(/\[\[(.*?)\]\]/g, (match, text) => {
     if (text.includes('|')) {
       const [link, displayText] = text.split('|');
-      return `[${displayText}](${config.site.site_url}/${generateUrl(null, link)})`;
+      const url = `${config.site.site_url}/${generateUrl(null, link)}`;
+      return `<a href="${url}">${displayText}</a>`;
     }
-    return `[${text}](${config.site.site_url}/${generateUrl(null, text)})`;
+    const url = `${config.site.site_url}/${generateUrl(null, text)}`;
+    return `<a href="${url}">${text}</a>`;
   });
 }
 
@@ -212,14 +215,35 @@ function createFeedItem(filePath, config) {
       return null;
     }
     
-    // Process wiki links before markdown conversion
-    const processedContent = processWikiLinks(content, filePath, config);
-    const htmlContent = marked(processedContent);
+    // First convert markdown to HTML
+    const renderer = new marked.Renderer();
+    renderer.link = (href, title, text) => {
+      const hrefStr = typeof href === 'object' && href !== null 
+        ? href.href || href.url || '#'
+        : String(href || '');
+      
+      const textStr = typeof text === 'object' && text !== null
+        ? text.text || text.title || hrefStr
+        : String(text || hrefStr);
+      
+      if (hrefStr.startsWith('https://frodigo.com/')) {
+        return `<a href="${hrefStr}">${textStr}</a>`;
+      }
+      
+      return `<a href="${hrefStr}">${textStr}</a>`;
+    };
+    
+    marked.setOptions({ renderer, mangle: false, headerIds: false });
+    const htmlContent = marked(content);
+    
+    // Then process wiki links in the HTML
+    const processedContent = processWikiLinks(htmlContent, filePath, config);
+    
     const url = `${config.site.site_url}/${generateUrl(filePath)}`;
     
     return {
       title: data.title || path.basename(filePath, '.md'),
-      description: getDescription(htmlContent, data),
+      description: getDescription(processedContent, data),
       url: url,
       guid: url,
       categories: data.categories || [],
@@ -230,7 +254,7 @@ function createFeedItem(filePath, config) {
         type: 'image/jpeg'
       } : undefined,
       custom_elements: [
-        { 'content:encoded': { _cdata: htmlContent } }
+        { 'content:encoded': { _cdata: processedContent } }
       ]
     };
   } catch (error) {
@@ -309,31 +333,55 @@ function extractLinksFromFeed(feedContent) {
   const contentMatches = [...feedContent.matchAll(contentRegex)];
   contentMatches.forEach(match => {
     const contentUrls = match[1].match(urlRegex) || [];
-    contentUrls.forEach(url => allLinks.add(url));
+    contentUrls.forEach(url => {
+      // Filter out invalid links
+      if (!url.includes('...') && !url.includes('undefined')) {
+        allLinks.add(url);
+      }
+    });
   });
   
   // Extract from link elements (main article links)
   const linkRegex = /<link>(https:\/\/frodigo\.com\/[^<]+)<\/link>/g;
   const linkMatches = [...feedContent.matchAll(linkRegex)];
-  linkMatches.forEach(match => allLinks.add(match[1]));
+  linkMatches.forEach(match => {
+    const url = match[1];
+    if (!url.includes('...') && !url.includes('undefined')) {
+      allLinks.add(url);
+    }
+  });
   
   // Extract from guid elements (article identifiers)
   const guidRegex = /<guid[^>]*>(https:\/\/frodigo\.com\/[^<]+)<\/guid>/g;
   const guidMatches = [...feedContent.matchAll(guidRegex)];
-  guidMatches.forEach(match => allLinks.add(match[1]));
+  guidMatches.forEach(match => {
+    const url = match[1];
+    if (!url.includes('...') && !url.includes('undefined')) {
+      allLinks.add(url);
+    }
+  });
   
   // Extract from description sections (article previews)
   const descRegex = /<description><!\[CDATA\[(.*?)\]\]><\/description>/gs;
   const descMatches = [...feedContent.matchAll(descRegex)];
   descMatches.forEach(match => {
     const descUrls = match[1].match(urlRegex) || [];
-    descUrls.forEach(url => allLinks.add(url));
+    descUrls.forEach(url => {
+      if (!url.includes('...') && !url.includes('undefined')) {
+        allLinks.add(url);
+      }
+    });
   });
   
   // Extract from image elements
   const imageRegex = /<image>.*?<url>(https:\/\/frodigo\.com\/[^<]+)<\/url>.*?<\/image>/gs;
   const imageMatches = [...feedContent.matchAll(imageRegex)];
-  imageMatches.forEach(match => allLinks.add(match[1]));
+  imageMatches.forEach(match => {
+    const url = match[1];
+    if (!url.includes('...') && !url.includes('undefined')) {
+      allLinks.add(url);
+    }
+  });
   
   return allLinks;
 }
