@@ -12,7 +12,7 @@
 ### React
 
 - [[How to get started with routing in React apps with React Router]]
-- [[React Context API - It's Not as Difficult as You Think]]
+- [[React Context API - It Is Not as Difficult as You Think]]
 - [[What is react redux, and what development of redux apps looks in 2021]]
 - [[What is JSX in React, and is it worth making friends with it]]
 

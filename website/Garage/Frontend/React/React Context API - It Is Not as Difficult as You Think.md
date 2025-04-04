@@ -1,6 +1,6 @@
 ---
 date: 2022-02-03
-title: "React Context API: It's Not as Difficult as You Think"
+title: "React Context API: It is Not as Difficult as You Think"
 ---
 *Last update at 03/02/2022*
 

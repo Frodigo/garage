@@ -22,3 +22,19 @@ If you want to be updated with my new content you can subscribe to my newsletter
 
 If you prefer to subscribe to the RSS feed, please use the following link:
 [https://rss.frodigo.com](https://rss.frodigo.com)
+
+## RSS feed
+
+If you prefer to subscribe to the RSS feed, please use the following link:
+
+### All items
+
+This feed contains all items published from the beginning of the garage's existence:
+
+[https://rss.frodigo.com/feed.xml](https://rss.frodigo.com/feed.xml)
+
+### Recent 10 items
+
+This feed contains recent 10 items:
+
+[https://rss.frodigo.com/feed.recent.xml](https://rss.frodigo.com/feed.recent.xml)

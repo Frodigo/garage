@@ -1,4 +1,4 @@
-name: Generate RSS Feed and Deploy
+name: Generate and Test RSS Feed
 
 on:
   push:
@@ -6,9 +6,11 @@ on:
       - main
     paths:
       - 'website/**/*.md'
+      - 'website/**/*.js'
+      - 'website/**/*.json'
 
 jobs:
-  build-and-deploy:
+  build-test-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -30,7 +32,30 @@ jobs:
         working-directory: ./website
         run: node feed.xml.js
 
+      - name: Run unit tests
+        working-directory: ./website
+        run: npm run test:unit
+
+      - name: Install Playwright browsers
+        working-directory: ./website
+        run: npx playwright install --with-deps
+
+      - name: Run e2e tests
+        working-directory: ./website
+        run: npm run test:e2e
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            website/playwright-report/
+            website/test-results/
+          retention-days: 30
+
       - name: Deploy to Cloudflare Pages
+        if: success()
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

@@ -4,7 +4,7 @@ title: How to use GraphQL mutations in React and Apollo Client
 ---
 *Last updated: 27/10/2022*
 
-In one of my previous articles, I described [[The full-stack guide to the GraphQL query|[GraphQL queries]]. Today I would like to show you how to work with GraphQL mutations.
+In one of my previous articles, I described [[The full-stack guide to the GraphQL query|GraphQL queries]]. Today I would like to show you how to work with GraphQL mutations.
 
 ## What is a mutation in GraphQL?
 

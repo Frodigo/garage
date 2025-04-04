@@ -17,6 +17,7 @@ terms:
 - **Key Parity Bits** - In the original 64-bit DES key, every eighth bit is a parity bit used to verify key correctness.
 
 ---
+
 #Cybersecurity #TerminologyDefinitions #ConceptExplanation #Beginner
 
 [^1]: [[Cryptography and network security principles and practice (fifth edition) by William Stallings]]

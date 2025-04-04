@@ -729,6 +729,6 @@ useEffect(() => {
 
 ## Summary
 
-Today I showed you two techniques for managing local data in Apollo. Local-only fields and reactive variables. Those mechanisms provide a lot of flexibility, and they should be considered when architecting state management in your React application. In addition, I recommend reading about [[How to mock GraphQL queries and mutations|[mocking GraphQL queries and mutation.]]
+Today I showed you two techniques for managing local data in Apollo. Local-only fields and reactive variables. Those mechanisms provide a lot of flexibility, and they should be considered when architecting state management in your React application. In addition, I recommend reading about [[How to mock GraphQL queries and mutations]]
 
 #WebDevelopment #FrontendDevelopment #ProgrammingFundamentals #JavaScript #React #Apollo #GraphQL #REST #Tutorial #DeepDive #ConceptExplanation #Intermediate #StateManagement #DataPipeline #APIIntegration
