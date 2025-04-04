@@ -31,8 +31,14 @@ function configureMarkedRenderer() {
         return `<a href="${hrefStr}">${displayText}</a>`;
       }
       
-      const displayText = text || hrefStr;
-      return `<a href="${hrefStr}">${displayText}</a>`;
+      // For regular links, extract the last part of the URL for the text
+      if (hrefStr.startsWith('https://frodigo.com/')) {
+        const lastPart = hrefStr.split('/').pop();
+        return `<a href="${hrefStr}">${lastPart}</a>`;
+      }
+      
+      // For regular links, ensure proper formatting
+      return `<a href="${hrefStr}">${textStr}</a>`;
     };
 
     marked.setOptions({ 
@@ -163,9 +169,9 @@ function processWikiLinks(content, filePath, config) {
   return content.replace(/\[\[(.*?)\]\]/g, (match, text) => {
     if (text.includes('|')) {
       const [link, displayText] = text.split('|');
-      return `[${displayText}](${config.site.site_url}/${generateUrl(filePath, link)})`;
+      return `[${displayText}](${config.site.site_url}/${generateUrl(null, link)})`;
     }
-    return `[${text}](${config.site.site_url}/${generateUrl(filePath, text)})`;
+    return `[${text}](${config.site.site_url}/${generateUrl(null, text)})`;
   });
 }
 
