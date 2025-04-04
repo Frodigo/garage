@@ -1,4 +1,4 @@
-*Published at 03.04.2025*
+*Published at 04.04.2025*
 
 - Started master's degree in "Artificial Intelligence and Machine Learning" after 10 years of engineering studies
 - Added [[Privacy policy]] page that shows I do not use cookies and do not collect any data about my readers
@@ -10,3 +10,4 @@
 - Added new pages to garage like [[Software architecture]], [[Test-Driven Development with AI]], [[Object-oriented programming]], [[Ethical Hacking]] and [[Internet of things]]
 - added garage page and garage manifesto
 - started using Claude Code for experiments
+- realized that we are far away from the moment when AI will replace programmers

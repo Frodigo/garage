@@ -17,18 +17,16 @@ function configureMarkedRenderer() {
         ? href.href || href.url || '#'
         : String(href || '');
       
-      // For wiki links, use the last part of the path as text
+      // Extract text content if it's an object
+      const textStr = typeof text === 'object' && text !== null
+        ? text.text || text.title || hrefStr
+        : String(text || hrefStr);
+      
+      // Handle wiki links
       if (hrefStr.startsWith('[[')) {
         const linkText = hrefStr.slice(2, -2);
         const url = generateUrl(null, linkText);
-        return `<a href="${url}">${linkText}</a>`;
-      }
-      
-      if (hrefStr.startsWith('https://frodigo.com/')) {
-        const pathParts = hrefStr.split('/');
-        const lastPart = pathParts[pathParts.length - 1];
-        const displayText = lastPart.replace(/\+/g, ' ');
-        return `<a href="${hrefStr}">${displayText}</a>`;
+        return `<a href="${url}">${textStr}</a>`;
       }
       
       // For regular links, extract the last part of the URL for the text
