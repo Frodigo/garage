@@ -27,11 +27,11 @@ jobs:
         working-directory: ./website
         run: npm install
 
-      - name: Generate RSS feed
+      - name: Generate RSS feed and links file
         working-directory: ./website
         run: node feed.xml.js
 
-      - name: Run unit tests and generate links file
+      - name: Run unit tests
         working-directory: ./website
         run: npm run test:unit
 

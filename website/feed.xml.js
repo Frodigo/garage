@@ -289,6 +289,71 @@ function generateRSSFeed(config) {
   console.log(`✓ Feed saved to ${path.basename(config.outputPath)}\n`);
 }
 
+/**
+ * Extract links from RSS feed XML content
+ * @param {string} feedContent - RSS feed XML content
+ * @returns {Set<string>} Set of unique links
+ */
+function extractLinksFromFeed(feedContent) {
+  const allLinks = new Set();
+  const urlRegex = /https:\/\/frodigo\.com\/[^"\s<>]+/g;
+  
+  // Extract from content:encoded sections (full article content)
+  const contentRegex = /<content:encoded><!\[CDATA\[(.*?)\]\]><\/content:encoded>/gs;
+  const contentMatches = [...feedContent.matchAll(contentRegex)];
+  contentMatches.forEach(match => {
+    const contentUrls = match[1].match(urlRegex) || [];
+    contentUrls.forEach(url => allLinks.add(url));
+  });
+  
+  // Extract from link elements (main article links)
+  const linkRegex = /<link>(https:\/\/frodigo\.com\/[^<]+)<\/link>/g;
+  const linkMatches = [...feedContent.matchAll(linkRegex)];
+  linkMatches.forEach(match => allLinks.add(match[1]));
+  
+  // Extract from guid elements (article identifiers)
+  const guidRegex = /<guid[^>]*>(https:\/\/frodigo\.com\/[^<]+)<\/guid>/g;
+  const guidMatches = [...feedContent.matchAll(guidRegex)];
+  guidMatches.forEach(match => allLinks.add(match[1]));
+  
+  // Extract from description sections (article previews)
+  const descRegex = /<description><!\[CDATA\[(.*?)\]\]><\/description>/gs;
+  const descMatches = [...feedContent.matchAll(descRegex)];
+  descMatches.forEach(match => {
+    const descUrls = match[1].match(urlRegex) || [];
+    descUrls.forEach(url => allLinks.add(url));
+  });
+  
+  // Extract from image elements
+  const imageRegex = /<image>.*?<url>(https:\/\/frodigo\.com\/[^<]+)<\/url>.*?<\/image>/gs;
+  const imageMatches = [...feedContent.matchAll(imageRegex)];
+  imageMatches.forEach(match => allLinks.add(match[1]));
+  
+  return allLinks;
+}
+
+/**
+ * Save extracted links to a JSON file
+ * @param {Set<string>} links - Set of links to save
+ * @param {string} outputPath - Path where to save the file
+ */
+function saveLinksToFile(links, outputPath) {
+  const linksArray = [...links];
+  console.log('Saving links to file:', outputPath);
+  console.log('Current directory:', process.cwd());
+  console.log('Number of links to save:', linksArray.length);
+  
+  // Ensure the directory exists
+  const dir = path.dirname(outputPath);
+  if (!fs.existsSync(dir)) {
+    console.log('Creating directory:', dir);
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  
+  fs.writeFileSync(outputPath, JSON.stringify(linksArray, null, 2));
+  console.log(`✓ Saved ${linksArray.length} links to ${path.basename(outputPath)}`);
+}
+
 // Main execution - only run if this is the main module (not in tests)
 if (require.main === module) {
   console.log('🔄 Generating RSS feeds...');
@@ -297,6 +362,22 @@ if (require.main === module) {
   Object.values(feedConfigs).forEach(config => {
     generateRSSFeed(config);
   });
+
+  // Extract links from the main feed and save them
+  const mainFeedPath = path.join(__dirname, 'public', 'feed.xml');
+  console.log('Reading feed from:', mainFeedPath);
+  
+  if (!fs.existsSync(mainFeedPath)) {
+    console.error('Error: Feed file not found at', mainFeedPath);
+    process.exit(1);
+  }
+  
+  const mainFeedContent = fs.readFileSync(mainFeedPath, 'utf8');
+  const links = extractLinksFromFeed(mainFeedContent);
+  
+  const linksFilePath = path.join(__dirname, 'links-to-test.json');
+  console.log('Saving links to:', linksFilePath);
+  saveLinksToFile(links, linksFilePath);
 
   console.log('✨ All feeds generated successfully!');
 }
@@ -308,5 +389,6 @@ module.exports = {
   processWikiLinks,
   getDescription,
   createFeedItem,
-  generateRSSFeed
+  generateRSSFeed,
+  extractLinksFromFeed
 };
