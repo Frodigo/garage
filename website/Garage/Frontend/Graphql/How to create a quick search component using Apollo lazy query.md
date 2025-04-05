@@ -1,5 +1,5 @@
 ---
-date: 2025-02-29
+date: 2022-09-29
 title: How to create a quick search component using Apollo lazy query
 ---
 *Published at 29/09/2022*
@@ -313,7 +313,7 @@ The useLazyQery hook is perfect when you, for example, need to fetch data for th
 
 Apollo client provides a cache mechanism called InMemoryCache. Thanks to that, the apollo cache query results in memory. Of course, Apollo react hooks supports that cache. You can set the default fetch policy globally and locally on each query.
 
-### Handling [GraphQL](/how-to-use-graphql-mutations-in-react-and-apollo-client) errors
+### Handling GraphQL errors
 
 Lazy query error handling is pretty the same as when you use the **useQuery** hook. Please follow [[2 ways of handling GraphQL errors in Apollo Client|this article]] if you want to get more about GraphQL errors.
 
