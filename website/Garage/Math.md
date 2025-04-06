@@ -1,5 +1,4 @@
-Learning roadmap for anyone who want to learn Math.
-
+Learning roadmap for anyone who wants to learn Math.
 ## Key Aspects of Mathematics
 
 1. Logical reasoning and proof
