@@ -1,0 +1,2 @@
+- removed the "Home" page, and configured the "Garage" page as a homepage
+- updated category page in the garage

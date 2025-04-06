@@ -2,7 +2,7 @@
 
 **TLDR: Software Engineer**
 
-![[marcin_kwiatkowski2025.jpeg]]
+![[marcin_kwiatkowski2025.jpg]]
 
 Hi! I am Marcin Kwiatkowski!
 

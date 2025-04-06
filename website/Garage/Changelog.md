@@ -1,1 +1,2 @@
-- [[Garage changelog 01]]
+- [[Garage changelog 2025.1]]
+- [[Garage changelog 2025.2]]

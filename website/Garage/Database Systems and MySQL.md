@@ -1,3 +1,5 @@
+Learning roadmap for anyone who wants to learn about databases.
+
 ## Key Aspects of Database Systems
 
 1. Data storage and organization
