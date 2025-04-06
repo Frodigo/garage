@@ -23,17 +23,11 @@ Recently I started learning Python and I really like the "Zen of Python". Inspir
 
 ### The Zen of the Garage
 
-- Independence over corporate backing
-- Creation over consumption
-- Process over perfection
-- The journey matters more than the destination
-- A garage is both a physical space and a state of mind
-- Connected garages form stronger communities
-- Classic inspiration fuels modern creation
-- Freedom to tinker is freedom to think
-- What begins in garages can change the world
-- When in doubt, build it yourself
-- Open source software over subscription-based products
+1. Independence over dependency
+2. Creation over consumption
+3. Progress over perfection
+4. Open-source over closed-source
+5. Honesty over marketing BS
 
 ---
 
