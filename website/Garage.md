@@ -44,6 +44,8 @@ Recently I started learning Python and I really like the "Zen of Python". Inspir
 - [[Now]] - describes what I am currently focusing on and what I am doing
 - [[Contact]] - contact information
 - [[Books]] - there's not much there at the moment, but I'll be posting book reviews there
+- [[Projects]] - shows my recent and current projects
+- [[Testimonials]] - here you can check what others say about me
 - [[Privacy policy]] - a page that clearly says that I don't use cookies and I don't collect any your data. You are safe in my garage
 
 The best way to read content here is to use a navigation and explore content grouped by folders.
