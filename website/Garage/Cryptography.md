@@ -1,5 +1,4 @@
-Learning roadmap for anyone who want to learn cryptography
-
+Learning roadmap for anyone who wants to learn cryptography
 Cryptography in cybersecurity takes care about converting information into a format that is unreadable. Thanks to it we can protect sensitive data from unauthorized access.
 
 ## Key aspects of cryptography in cybersecurity
