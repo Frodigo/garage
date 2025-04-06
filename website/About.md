@@ -176,10 +176,3 @@ But I hope books will survive and will be valuable for a long time.
 
 - [Professional Cloud Architect Certification](https://www.credly.com/badges/28268693-91e6-4d53-9104-987a2a22420e/public_url)
 - [Cloud Digital Leader Certification](https://www.credly.com/badges/a67a33bf-1b59-4f4d-9330-6f4719df18a2/public_url)
-
----
-
-## My certification
-
-- [Professional Cloud Architect Certification](https://www.credly.com/badges/28268693-91e6-4d53-9104-987a2a22420e/public_url)
-- [Cloud Digital Leader Certification](https://www.credly.com/badges/a67a33bf-1b59-4f4d-9330-6f4719df18a2/public_url)
