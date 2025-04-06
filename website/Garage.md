@@ -1,4 +1,4 @@
-Hello, my name is Marcin Kwiatkowski.Welcome in my garage!
+Hello, my name is Marcin Kwiatkowski. Welcome in my garage!
 ![[marcin_kwiatkowski2025.jpg]]
 If you want to read more about me, checkout the [[About]]
 page.
