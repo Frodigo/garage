@@ -1,3 +1,5 @@
+Learning roadmap for anyone who want to learn cybersecurity.
+
 Cybersecurity encompasses the technologies, processes, and practices designed to protect systems, networks, devices, and data from cyber attacks, unauthorized access, and digital threats.
 
 ## Key Aspects of Cybersecurity

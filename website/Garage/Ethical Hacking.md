@@ -1,3 +1,5 @@
+Learning roadmap for anyone who want to learn ethical hacking.
+
 ## Key Definitions
 
 1. **Vulnerability**: A weakness in a system that can be exploited to perform unauthorized actions

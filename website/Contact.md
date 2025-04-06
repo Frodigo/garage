@@ -18,10 +18,7 @@ If you want to be updated with my new content you can subscribe to my newsletter
 
 [Subscribe to the newsletter](https://marcinkwiatkowski.kit.com)
 
-## RSS feed
-
-If you prefer to subscribe to the RSS feed, please use the following link:
-[https://rss.frodigo.com](https://rss.frodigo.com)
+---
 
 ## RSS feed
 
@@ -33,8 +30,8 @@ This feed contains all items published from the beginning of the garage's existe
 
 [https://rss.frodigo.com/feed.xml](https://rss.frodigo.com/feed.xml)
 
-### Recent 10 items
+### Recent 15 items
 
-This feed contains recent 10 items:
+This feed contains recent 15 items:
 
 [https://rss.frodigo.com/feed.recent.xml](https://rss.frodigo.com/feed.recent.xml)

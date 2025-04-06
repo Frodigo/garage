@@ -1,3 +1,5 @@
+Learning roadmap for anyone who want to learn internet of things.
+
 The Internet of Things (IoT) refers to the network of physical objects embedded with sensors, software, and connectivity, enabling them to connect and exchange data with other devices and systems over the Internet.
 
 IoT technology transforms traditional objects into smart, interconnected devices that can sense, analyze, and act upon their environment.
