@@ -109,8 +109,6 @@ There are four options to be up-to-date with my content:
 2. Subscribe to the newsletter: [https://marcinkwiatkowski.kit.com](https://marcinkwiatkowski.kit.com)
 3. Follow me and my open source repository on Github [https://github.com/Frodigo/garage](https://github.com/Frodigo/garage)
 
-Let me explain what is the garage repository.
-
 ---
 
 ## Medium blog
