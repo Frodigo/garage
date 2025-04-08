@@ -50,7 +50,7 @@ The best way to read content here is to use a navigation and explore content gro
 The most important folder is a Garage folder where I keep all the knowledge. I am interested in these things (and wanna write about them).
 
 I divided the content into a learning roadmap that helps me organize my learning paths and projects into simple to-do lists.
-Here are my learnings roadmap:
+Here are my learning roadmaps:
 
 - [[Garage/Machine learning|Machine learning]]
 - [[Cybersecurity]]
