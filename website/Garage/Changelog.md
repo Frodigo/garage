@@ -1,2 +1,38 @@
-- [[Garage changelog 2025.1]]
-- [[Garage changelog 2025.2]]
+This page is something like journal. I just write down here my progress.
+
+Items here are sorted from the newest to the oldest ones.
+
+- *08-04-2025:*
+  - updated roadmap in garage
+    - I wanted the roadmap to be more achievable. I removed most of them and left only the most important ones
+    - I also rewrote the learning roadmap to focus more on practical action and learning by doing than dry theory
+  - restructured changelog to have everything on the one page sorted chronologically from newest to oldest
+  - configured discussions in the garage repository on Github
+  - renamed NewsletterSummarizer project to NitroDigest
+  - rewritten NewsletterSummarizer from C# to Python
+  - decided to use Python as a main language in the garage: [[ADR001 - Programming language for the Garage project]]
+- *07-03-2025:*
+  - updated category page in the garage
+  - removed the "Home" page, and configured the "Garage" page as a homepage
+
+## Milestone 2025.1
+
+- *Closed milestone 2025.1 at 04.04.2025*
+ 	- Corresponding Github release: [https://github.com/Frodigo/garage/releases/tag/2025.1](https://github.com/Frodigo/garage/releases/tag/2025.1)
+- I realized that we are far away from the moment when AI will replace programmers
+- Started using Claude Code for experiments
+- Added garage page and garage manifesto
+- Added new pages to garage
+- Started using NetNewsWire as a RSS reader
+- Added website content to the garage open-source repository
+- Implemented custom RSS page to have more sophisticated RSS support
+- [[I migrated website from Astro.build to Obsidian publish]]
+- Wrote post on Medium about my onboarding to Docplanner Tech and coding after being a tech leader 4 years: [https://medium.com/docplanner-tech/onboarding-to-coding-9ff20c65c303](https://medium.com/docplanner-tech/onboarding-to-coding-9ff20c65c303)
+- Added [[Privacy policy]] page that shows I do not use cookies and do not collect any data about my readers
+- Started master's degree in "Artificial Intelligence and Machine Learning" after 10 years of engineering studies
+- ...
+- ...
+- ... here is a gap in the history
+- ...
+- ...
+- I scaffolded my garage project

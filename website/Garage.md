@@ -45,36 +45,20 @@ Recently I started learning Python and I really like the "Zen of Python". Inspir
 
 The best way to read content here is to use a navigation and explore content grouped by folders.
 
+## Learning roadmap
+
 The most important folder is a Garage folder where I keep all the knowledge. I am interested in these things (and wanna write about them).
 
-Actually, this is my learning roadmap:
+I divided content into learning roadmap which help me to organize my learning paths and projects as simple to do lists.
 
+Here are my learnings roadmap:
+
+- [[Garage/Machine learning|Machine learning]]
 - [[Cybersecurity]]
-- [[Cryptography]]
-- [[Math]]
-- [[Software architecture]]
 - [[Database Systems and MySQL]]
 - [[Internet of things]]
-- [[Garage/Machine learning|Machine learning]]
-- [[Ethical Hacking]]
-- [[Object-oriented programming]]
-- [[Test-Driven Development with AI]]
 - [[Programming for Kids]]
-- [[Magento]] (archive, from previous blog)
-- [[Frontend development]] (archive, from previous blog)
-
-Please note that these pages typically are categories. For example, where you go to [[Internet of things]] you can see that there is a contents.
-
-This contents is my roadmap for writing content. My approach for writing looks like this:
-
-1. I want to learn something like [[machine learning]]
-2. I start from high-level to see what I need to learn. I divide a topic into parts:
-    1. Key aspects
-    2. Definitions
-    3. Specific parts of topics like Machine Learning Algorithms, Machine learning pipeline etc.
-3. I go step-by step to each item in the roadmap
-4. I go deeper and deeper
-5. In the end I should have a deep knowledge of topic
+- [[Product Development]]
 
 Actually, you may ask why I write this content?
 
@@ -87,16 +71,6 @@ I am a notetaker. If I want to learn something I must write it down, rephrasing 
 Anyway, you can learn with me and this is the best thing of writing any content that is most ambitious that movies with cats on TikTok.
 
 If you a learner, technical and like to get to know why something works this way or that way, maybe you will find something useful here.
-
----
-
-## Featured content
-
-I cannot recommend anything so far, because almost all here is in progress. Any content that I could recommend is about [[Magento]] and [[Frontend development]], but I wrote these articles two or three years later and they are outdated.
-
-The most funny part is that I wrote about Magento PWA Studio and this framework is not existing anymore.
-
-In following months I will write about [[Garage/Machine learning|Machine learning]], [[Cybersecurity]], [[Cryptography]] and [[Internet of things]] and I wish that then I will have a solid knowledge base here.
 
 ---
 
