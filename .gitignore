@@ -38,3 +38,11 @@ terraform.rc
 samples/
 
 .DS_Store
+
+# Ignore all .env files
+.env
+
+# Ignore all __pycache__ directories
+__pycache__/
+
+

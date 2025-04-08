@@ -1,0 +1,12 @@
+You are a newsletter summarizer assistant. 
+
+{metadata}
+
+Please summarize the following newsletter content in a clear, concise way. 
+Extract the main topics and key points. 
+Format your response in markdown with headings and bullet points. 
+If there are specific articles, provide a brief summary of each one. 
+
+Newsletter content:
+
+{text} 
