@@ -206,5 +206,3 @@ Remember that neither monoliths nor microservices are inherently bad - everythin
 ---
 
 #SoftwareArchitecture #BackendDevelopment #SystemDesign #ConceptExplanation #ArchitectureReview #CaseStudy #Intermediate #Microservices #DataConsistency #SystemIntegration #ArchitecturalTransformation #HybridArchitecture
-
-Category: [[Software architecture]]
