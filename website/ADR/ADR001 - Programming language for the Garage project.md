@@ -68,7 +68,7 @@ accepting that I'll **need to invest time in learning a new language** despite h
    - Better positioned for machine learning projects
    - Simpler syntax may lead to more maintainable code
    - Strong community support for both ML and DevOps
-   - Python is the most popular programing in the world, so I can reach more people with my articles and projects than with C#
+   - Python is the most popular programming in the world, so I can reach more people with my articles and projects than with C#
 
 4. **Negative consequences:**
    - Not leveraging deeper JavaScript knowledge
