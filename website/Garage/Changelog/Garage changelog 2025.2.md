@@ -2,5 +2,5 @@
 - updated category page in the garage
 - decided to use Python as a main language in the garage: [[ADR001 - Programming language for the Garage project]]
 - rewritten NewsletterSummarizer from C# to Python
-- renamed NewsletterSummarizer project to NitroDIgest
+- renamed NewsletterSummarizer project to NitroDigest
 - configured discussions in the garage repository on Github
