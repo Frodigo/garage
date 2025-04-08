@@ -332,7 +332,7 @@ The business logic is not mixed with implementation details or technological pro
 
 ## Hexagonal architecture - benefits
 
-![business rules are not mixed with implementation details](Garage/Software%20architecture/images/image-8.png)
+![business rules are not mixed with implementation details](image-8.png)
 
 - Easy scalability
 

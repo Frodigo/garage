@@ -1,286 +1,143 @@
-Learning roadmap for anyone who wants to learn cybersecurity.
-Cybersecurity encompasses the technologies, processes, and practices designed to protect systems, networks, devices, and data from cyber attacks, unauthorized access, and digital threats.
+This is a hands-on learning roadmap for Cybersecurity.
 
-## Key Aspects of Cybersecurity
+### Level 0: Foundations of IT security
 
-1. Information security
-2. Network security
-3. Application security
-4. Operational security
-5. Identity and access management
-6. Incident response
-7. Disaster recovery
-8. Security awareness and training
+**Goal:** Understand the fundamentals of information security and the modern threat landscape.
 
----
+### Topics
 
-## Key Definitions
+- What is cybersecurity?
+- Security goals: confidentiality, integrity, availability (CIA)
+- Introduction to digital threats and risks
 
-1. **Threat**: Potential for a malicious actor or event to exploit vulnerabilities
-2. **Vulnerability**: Weakness in a system that can be exploited by threats
-3. **Risk**: Potential for loss, damage, or destruction as a result of a threat exploiting a vulnerability
-4. **Attack Vector**: Path or means by which an attacker can gain access to a system
-5. **Exploit**: Software or technique that takes advantage of a vulnerability
-6. **Malware**: Malicious software designed to damage, disrupt, or gain unauthorized access
-7. **Social Engineering**: Psychological manipulation to trick users into making security mistakes
-8. **Encryption**: Process of encoding information to prevent unauthorized access
-9. **Authentication**: Verification of identity before granting access
-10. **Authorization**: Determination of permissions after authentication
-11. **Defense in Depth**: Layered security approach to protect information
-12. **Security Control**: Safeguard to avoid, detect, counteract, or minimize security risks
-13. **Perimeter Security**: Protection at the boundary of a network
-14. **Zero Trust**: Security model that assumes no implicit trust within or outside a network
-15. **Data Breach**: Incident where sensitive information is exposed to unauthorized parties
-16. **Security Posture**: Overall security status of an organization's systems and networks
+### Mini-projects
+
+- Simulate a phishing attack scenario (via mock emails)
+- Create a visual map of the CIA triad applied to a company
+- Make a “top 10 cybersecurity terms” flashcard deck
 
 ---
 
-## Types of Cybersecurity Threats
+### Level 1: Threats and protection techniques
 
-1. **Malware**
-   - Viruses
-   - Worms
-   - Trojans
-   - Ransomware
-   - Spyware
-   - Adware
-   - Rootkits
-   - Fileless malware
+**Goal:** Learn to recognize cyber threats and explore basic protection strategies.
 
-2. **Social Engineering**
-   - Phishing
-   - Spear phishing
-   - Whaling
-   - Vishing
-   - Baiting
-   - Pretexting
-   - Quid pro quo
+### Topics
 
-3. **Web-based Attacks**
-   - SQL injection
-   - Cross-site scripting (XSS)
-   - Cross-site request forgery (CSRF)
-   - Path traversal
-   - Server-side request forgery (SSRF)
-   - Insecure deserialization
+- Types of threats (malware, phishing, ransomware)
+- Social engineering
+- Antivirus and firewall basics
 
-4. **Network Attacks**
-   - Man-in-the-middle (MitM)
-   - Denial of Service (DoS)
-   - Distributed Denial of Service (DDoS)
-   - DNS poisoning
-   - ARP spoofing
-   - TCP/IP hijacking
-   - Smurf attack
+### Mini-projects
 
-5. **Advanced Persistent Threats (APTs)**
-   - State-sponsored attacks
-   - Industrial espionage
-   - Cyber warfare
-   - Zero-day exploits
+- Simulate threat detection with ClamAV or Windows Defender
+- Create a “security awareness” presentation for non-tech users
+- Design a personal cybersecurity checklist
 
 ---
 
-## Cybersecurity Frameworks and Standards
+### Level 2: Local systems security
 
-1. **Risk Management Frameworks**
-   - NIST Cybersecurity Framework (CSF)
-   - ISO/IEC 27001
-   - COBIT (Control Objectives for Information Technologies)
-   - FAIR (Factor Analysis of Information Risk)
+**Goal:** Understand how to secure personal or organizational local systems.
 
-2. **Compliance Standards**
-   - GDPR (General Data Protection Regulation)
-   - HIPAA (Health Insurance Portability and Accountability Act)
-   - PCI DSS (Payment Card Industry Data Security Standard)
-   - SOX (Sarbanes-Oxley Act)
+### Topics
 
-3. **Security Control Frameworks**
-   - CIS Controls
-   - OWASP Top 10
-   - SANS Top 25
-   - MITRE ATT&CK
+- OS and software vulnerabilities
+- System hardening practices (Windows/Linux)
+- Access control and authentication
 
-4. **Maturity Models**
-   - CMMC (Cybersecurity Maturity Model Certification)
-   - BSIMM (Building Security In Maturity Model)
-   - OpenSAMM (Software Assurance Maturity Model)
+### Mini-projects
+
+- Harden a virtual Linux machine (disable services, enable UFW, set SSH config)
+- Create a user role and permission matrix
+- Write a script to monitor file changes in a folder
 
 ---
 
-## Security Technologies and Tools
+### Level 3: Securing data transmission
 
-1. **Network Security**
-   - Firewalls
-   - Intrusion Detection Systems (IDS)
-   - Intrusion Prevention Systems (IPS)
-   - VPNs (Virtual Private Networks)
-   - NAC (Network Access Control)
-   - Proxies
+**Goal:** Protect information in transit using encryption and secure protocols.
 
-2. **Endpoint Security**
-   - Antivirus/Antimalware
-   - EDR (Endpoint Detection and Response)
-   - Disk encryption
-   - Application whitelisting
-   - DLP (Data Loss Prevention)
+### Topics
 
-3. **Identity and Access Management**
-   - MFA (Multi-Factor Authentication)
-   - SSO (Single Sign-On)
-   - PAM (Privileged Access Management)
-   - Identity governance
+- Symmetric vs asymmetric encryption
+- HTTPS, TLS/SSL, VPNs
+- Email security (S/MIME, PGP)
 
-4. **Security Monitoring**
-   - SIEM (Security Information and Event Management)
-   - SOC (Security Operations Center)
-   - Log management
-   - Threat intelligence platforms
-   - Vulnerability scanners
-   - Security analytics
+### Mini-projects
 
-5. **Cryptographic Tools**
-   - PKI (Public Key Infrastructure)
-   - Digital certificates
-   - Cryptographic protocols (TLS/SSL)
-   - Hardware security modules (HSMs)
+- Use `openssl` to encrypt and decrypt a file
+- Set up a simple HTTPS server using a self-signed cert
+- Send a signed/encrypted email via Thunderbird + GPG
 
 ---
 
-## Cybersecurity Processes
+### Level 4: Threat environment & risk identification
 
-1. **Security Governance**
-   - Policy development
-   - Risk assessment
-   - Compliance management
-   - Security metrics
-   - Security program management
+**Goal:** Analyze the environment in which cyber threats operate and how to identify them.
 
-2. **Secure Development Lifecycle**
-   - Threat modeling
-   - Secure coding
-   - Security testing
-   - Code review
-   - Continuous integration/continuous deployment (CI/CD) security
+### Topics
 
-3. **Vulnerability Management**
-   - Asset discovery
-   - Vulnerability scanning
-   - Prioritization
-   - Remediation
-   - Patch management
+- Cyber threat landscape (APT, zero-day, DDoS, IoT threats)
+- Risk management frameworks (ISO/IEC 27005 basics)
+- Threat modeling (STRIDE)
 
-4. **Incident Response**
-   - Preparation
-   - Detection
-   - Analysis
-   - Containment
-   - Eradication
-   - Recovery
-   - Lessons learned
+### Mini-projects
 
-5. **Business Continuity and Disaster Recovery**
-   - Risk assessment
-   - Business impact analysis
-   - Recovery planning
-   - Testing and exercises
+- Map STRIDE threats for a web app
+- Create a threat matrix and risk chart
+- Simulate a DDoS detection with network tools (e.g., Wireshark)
 
 ---
 
-## Emerging Cybersecurity Areas
+### Level 5: Secure programming & algorithmic defense
 
-1. **Cloud Security**
-   - Shared responsibility model
-   - Cloud access security brokers (CASBs)
-   - Cloud workload protection
-   - Cloud security posture management (CSPM)
+**Goal:** Understand how insecure code leads to vulnerabilities and learn how to prevent them.
 
-2. **IoT Security**
-   - Device security
-   - Communication security
-   - Gateway security
-   - Data privacy
+### Topics
 
-3. **Mobile Security**
-   - Mobile device management (MDM)
-   - Mobile application management (MAM)
-   - App sandboxing
-   - Containerization
+- Secure coding practices (input validation, SQL injection)
+- OWASP Top 10 vulnerabilities
+- Static analysis tools
 
-4. **DevSecOps**
-   - Security automation
-   - Infrastructure as code (IaC) security
-   - Container security
-   - CI/CD pipeline security
+### Mini-projects
 
-5. **AI and Machine Learning in Security**
-   - Anomaly detection
-   - User behavior analytics
-   - Predictive security analytics
-   - Adversarial machine learning
+- Vulnerable web app analysis (e.g., DVWA or Juice Shop)
+- Fix a set of insecure code examples
+- Write a Python login script with secure password hashing
 
 ---
 
-## Cybersecurity Careers and Roles
+### Level 6: Cybersecurity system design
 
-1. **Operational Roles**
-   - Security Analyst
-   - SOC Analyst
-   - Incident Responder
-   - Vulnerability Analyst
-   - Penetration Tester
+**Goal:** Design an organizational cybersecurity system or security policy.
 
-2. **Technical Specialties**
-   - Security Engineer
-   - Application Security Specialist
-   - Cloud Security Architect
-   - Cryptographer
-   - Forensic Analyst
+### Topics
 
-3. **Management Roles**
-   - CISO (Chief Information Security Officer)
-   - Security Manager
-   - Risk Manager
-   - Compliance Officer
-   - Security Awareness Trainer
+- Layers of defense
+- Policy creation (access, backup, incident response)
+- Security operations center (SOC) basics
 
-4. **Industry Certifications**
-   - CompTIA Security+
-   - Certified Information Systems Security Professional (CISSP)
-   - Certified Ethical Hacker (CEH)
-   - Offensive Security Certified Professional (OSCP)
-   - Certified Information Security Manager (CISM)
+### Mini-projects
+
+- Draft a simple company-wide security policy
+- Create a layered defense diagram for a small office
+- Document an incident response plan template
 
 ---
 
-## Cybersecurity Challenges
+### Level 7: Integrated Security Systems & Tools
 
-1. **Organizational Challenges**
-   - Security budget constraints
-   - Skills shortage
-   - Security awareness
-   - Risk communication
-   - Balancing security and usability
+**Goal:** Learn how different security tools work together in real infrastructure.
 
-2. **Technical Challenges**
-   - Growing attack surface
-   - Technology complexity
-   - Legacy systems
-   - Supply chain security
-   - Shadow IT
+### Topics
 
-3. **Evolving Threat Landscape**
-   - Advanced persistent threats
-   - Ransomware-as-a-service
-   - Nation-state actors
-   - Cyber terrorism
-   - Critical infrastructure attacks
+- IDS/IPS (e.g. Snort, Suricata)
+- Firewalls (pfSense, iptables)
+- Log management (SIEM overview)
 
-4. **Regulatory Landscape**
-   - Increasing compliance requirements
-   - Cross-border data regulations
-   - Breach notification laws
-   - Industry-specific regulations
-   - Privacy requirements
+### Mini-projects
 
-#Cybersecurity #Networking #CloudComputing #NIST #ISO27001 #OWASP #MITRE_ATTACK #SIEM #TerminologyDefinitions #ConceptExplanation #DeepDive #Intermediate #DevSecOps #APISecurty #DataPipeline #Manual
+- Simulate intrusion detection with Snort
+- Build a log monitoring dashboard (e.g., ELK stack basics)
+- Combine UFW, fail2ban, and logs into a simple security setup

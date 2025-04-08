@@ -1,282 +1,161 @@
-Learning roadmap for anyone who want to teach kids how to program.
 
-This page shows educational approaches, tools, environments, and curricula designed to introduce computer programming concepts to children in age-appropriate, engaging ways.
+## Level 0: Understand the big picture
 
-## Key Aspects of Programming for Kids
+**Goal:** Learn what makes teaching programming to kids unique.
 
-1. Age-appropriate concept introduction
-2. Visual and interactive learning environments
-3. Project-based and creative coding experiences
-4. Scaffolded skill development
-5. Connection to interests and real-world applications
-6. Development of computational thinking
-7. Support for multiple learning styles
-8. Progressive advancement from visual to text-based coding
-9. Collaborative and social learning opportunities
-10. Integration with other subject areas
+### Topics
 
----
+- Why teach programming to kids?
+- What is computational thinking?
+- Age-appropriate cognitive development
+- Key learning styles and inclusive teaching
 
-## Key Definitions
+### Mini-projects
 
-1. **Computational Thinking**: The thought process of formulating problems and solutions in ways that computers can execute
-2. **Block-Based Programming**: Coding using visual blocks that snap together, eliminating syntax errors
-3. **Sequence**: The order in which instructions are executed in a program
-4. **Algorithm**: A step-by-step procedure for solving a problem or accomplishing a task
-5. **Loop**: A programming structure that repeats a sequence of instructions
-6. **Conditional Statement**: A programming feature that performs different actions depending on whether a condition is true or false
-7. **Variable**: A storage location paired with an associated name that contains a value
-8. **Function/Procedure**: A reusable section of code that performs a specific task
-9. **Event**: An action that triggers a response in a program, such as a button click
-10. **Debugging**: The process of finding and fixing errors in programs
-11. **Sprite**: A two-dimensional image or animation integrated into a larger scene, often used in coding for kids
-12. **Decomposition**: Breaking down complex problems into smaller, more manageable parts
-13. **Pattern Recognition**: Identifying similarities or patterns among small, decomposed problems
-14. **Abstraction**: Focusing on important information while ignoring irrelevant details
-15. **Iteration**: Repeating a process with the aim of approaching a desired result
-16. **Digital Literacy**: The ability to use information and communication technologies to find, evaluate, create, and communicate information
+- Create a visual map of age-appropriate skills
+- Summarize key differences between teaching adults vs. children
+- Observe a kids coding class on YouTube and take notes
 
 ---
 
-## Age-Appropriate Learning Progression
+## Level 1: Explore block-based programming
 
-1. **Early Childhood (Ages 4-7)**
-    - Unplugged activities without computers
-    - Sequential thinking games
-    - Visual programming with minimal reading
-    - Physical programming toys
-    - Storytelling through simple code sequences
-2. **Middle Childhood (Ages 8-10)**
-    - Block-based visual programming
-    - Game creation and animation
-    - Introduction to loops and simple conditionals
-    - Robotics with visual programming
-    - Simple debugging challenges
-3. **Pre-Teen (Ages 11-12)**
-    - Advanced block programming with variables
-    - Introduction to events and messaging
-    - Simple text-based coding with scaffolding
-    - Interactive storytelling projects
-    - Data collection and visualization
-4. **Early Teens (Ages 13-15)**
-    - Transition to text-based languages
-    - Web development fundamentals
-    - App development with supportive frameworks
-    - More complex algorithms and data structures
-    - Game design with physics and interaction
-5. **Older Teens (Ages 16-18)**
-    - Full text-based programming languages
-    - Specialized interests (AI, data science, etc.)
-    - Independent project development
-    - Collaborative coding practices
-    - Introduction to software engineering principles
+**Goal:** Learn the most popular platforms used by kids (e.g., Scratch, Blockly, Code.org).
+
+### Topics
+
+- Block-based programming concepts (sequence, loop, condition)
+- Teaching with Scratch or Code.org
+- Events, variables, simple functions
+
+### Mini-projects
+
+- Make a Scratch project that teaches loops
+- Create a "Choose your adventure" story with blocks
+- Record yourself explaining a project as you would to a 7-year-old
 
 ---
 
-## Programming Platforms and Tools
+## Level 2: Teach with physical and visual tools
 
-1. **Visual Block-Based Environments**
-    - Scratch: Creative projects with sprites and blocks
-    - Blockly: Modular block programming system
-    - Snap!: Extended capabilities for more advanced concepts
-    - Code.org: Structured courses with game-like progression
-    - MakeCode: Block-based coding for microcontrollers
-2. **Educational Robotics**
-    - LEGO SPIKE/MINDSTORMS: Programmable brick systems
-    - Dash and Dot: Character robots for younger children
-    - micro:bit: Pocket-sized programmable computer
-    - Ozobot: Line-following robots with color coding
-    - Sphero: Programmable spherical robots
-3. **Game-Based Learning Platforms**
-    - CodeCombat: Learning coding through RPG gameplay
-    - Tynker: Game-like coding challenges and creation
-    - CodeMonkey: Puzzle-solving with real code
-    - RoboCode: Programming virtual robots to battle
-    - CodeWars: Competitive coding challenges
-4. **Introductory Text-Based Environments**
-    - Python with Turtle graphics: Visual output with text code
-    - Trinket.io: Browser-based coding with visual feedback
-    - Replit: Collaborative coding environment
-    - p5.js: Creative coding with JavaScript
-    - PyGame Zero: Simplified game development
-5. **App Development Tools**
-    - App Inventor: Block-based mobile app creation
-    - Thunkable: Visual app development platform
-    - Swift Playgrounds: Learning Swift through interactive puzzles
-    - TouchDevelop: Creating apps through touch interface
-    - Glitch: Web app development with instant hosting
+**Goal:** Learn how to introduce robotics and physical computing in kid-friendly ways.
+
+### Topics
+
+- Educational robots (micro:bit, LEGO SPIKE, Dash & Dot)
+- Intro to sensors, LEDs, motors, and button events
+- Use of unplugged (offline) coding activities
+
+### Mini-projects
+
+- Design a beginner lesson plan using micro:bit MakeCode
+- Build a simple line-following robot with kids
+- Create a board game version of conditionals or loops
 
 ---
 
-## Teaching Methodologies and Approaches
+## Level 3: Design your first lessons
 
-1. **Project-Based Learning**
-    - Student-driven exploration
-    - Real-world problem-solving
-    - Extended development timelines
-    - Iterative improvement process
-    - Showcase and presentation opportunities
-2. **Scaffolded Instruction**
-    - Concept introduction with examples
-    - Guided practice with support
-    - Challenge-based skill application
-    - Gradual removal of instructional supports
-    - Independent problem-solving
-3. **Collaborative Coding**
-    - Pair programming
-    - Group projects
-    - Code reviews and sharing
-    - Online collaboration platforms
-    - Hackathons and coding jams
-4. **Game Design and Creation**
-    - Learning coding through game mechanics
-    - Incremental feature development
-    - Player testing and feedback
-    - Game modification and remixing
-    - Computational thinking through play
-5. **Creative Computing**
-    - Art and animation projects
-    - Music and sound programming
-    - Interactive storytelling
-    - Digital making and crafting
-    - Personal expression through code
+**Goal:** Create lessons or workshops for different age groups.
+
+### Topics
+
+- Scaffolded instruction & inquiry-based learning
+- Project-based and creative computing
+- Setting clear learning objectives and outcomes
+
+### Mini-projects
+
+- Write a one-hour lesson for ages 7–9 and another for ages 10–12
+- Use Bloom’s taxonomy to define your outcomes
+- Collect feedback on your lesson from friends, teachers, or kids
 
 ---
 
-## Computational Thinking Development
+## Level 4: Introduce text-based programming
 
-1. **Decomposition Skills**
-    - Breaking problems into steps
-    - Task analysis activities
-    - System component identification
-    - Modular project planning
-    - Complex challenge simplification
-2. **Pattern Recognition**
-    - Identifying repeated elements
-    - Finding similarities across problems
-    - Code reuse opportunities
-    - Efficiency through pattern application
-    - Algorithm similarity awareness
-3. **Abstraction Abilities**
-    - Detail filtering and prioritization
-    - Model creation
-    - Function and procedure development
-    - Interface design
-    - Complex system simplification
-4. **Algorithmic Thinking**
-    - Step ordering and sequencing
-    - Solution planning before coding
-    - Efficiency optimization
-    - Logic flow development
-    - Systematic problem approaches
-5. **Debugging and Testing**
-    - Error identification strategies
-    - Hypothesis formation and testing
-    - Incremental solution testing
-    - Logical troubleshooting
-    - Solution verification methods
+**Goal:** Learn how to help kids transition from blocks to Python or JavaScript.
+
+### Topics
+
+- Bridging Scratch to Python (e.g., using Trinket or Turtle)
+- Teaching variables, input/output, basic loops with text
+- Turtle graphics, PyGame Zero, p5.js for creative expression
+
+### Mini-projects
+
+- Build a simple Turtle drawing program
+- Create a Python "Guess the number" game
+- Write your first collaborative coding project on Replit
 
 ---
 
-## Diversity and Inclusion Approaches
+## Level 5: Emphasize thinking, not just syntax
 
-1. **Gender-Inclusive Strategies**
-    - Diverse role models and examples
-    - Creativity-focused projects
-    - Collaborative learning environments
-    - Real-world impact emphasis
-    - Stereotype threat reduction
-2. **Culturally Responsive Teaching**
-    - Diverse cultural contexts in problems
-    - Multilingual resources
-    - Community-relevant projects
-    - Cultural expression through code
-    - Global collaboration opportunities
-3. **Accessibility Considerations**
-    - Screen reader compatibility
-    - Alternative input methods
-    - Visual customization options
-    - Cognitive load management
-    - Adaptable pacing options
-4. **Socioeconomic Access**
-    - Low-tech and unplugged alternatives
-    - Mobile-friendly resources
-    - Offline functionality
-    - Free and open resources
-    - Community access programs
-5. **Neurodiversity Support**
-    - Clear, consistent instructions
-    - Visual learning supports
-    - Sensory considerations
-    - Flexible demonstration options
-    - Strength-based approaches
+**Goal:** Teach kids how to think like programmers.
+
+### Topics
+
+- Debugging and resilience
+- Decomposition, pattern recognition, abstraction, algorithmic thinking
+- Code review and collaborative learning
+
+### Mini-projects
+
+- Facilitate a pair-programming challenge
+- Run a “find the bug” game session
+- Design a classroom poster of computational thinking strategies
 
 ---
 
-## Curriculum Integration
+## Level 6: Connect code to the real world
 
-1. **Mathematics Connection**
-    - Coordinates and geometry in graphics
-    - Variable use and algebraic thinking
-    - Logic and boolean operations
-    - Data analysis and visualization
-    - Applied problem-solving
-2. **Science Integration**
-    - Simulation programming
-    - Data collection and analysis
-    - Scientific modeling
-    - Physics engines in games
-    - Experiment automation
-3. **Language Arts Integration**
-    - Interactive storytelling
-    - Character development through code
-    - Sequential narrative development
-    - Technical documentation writing
-    - Procedural poetry and text generation
-4. **Arts and Creativity**
-    - Generative art programming
-    - Music composition with code
-    - Animation and visual effects
-    - Interactive art installations
-    - Digital design principles
-5. **Social Studies Connections**
-    - Data visualization of social trends
-    - Historical simulation programming
-    - Geographic information system projects
-    - Digital citizenship
-    - Social impact applications
+**Goal:** Use coding to integrate creativity, storytelling, and other school subjects.
+
+### Topics
+
+- Creative computing (music, animation, storytelling)
+- Math + science + language arts integration
+- Personalization and interest-based projects
+
+### Mini-projects
+
+- Create a Scratch game that teaches fractions
+- Build a science quiz with Python
+- Run a project showcase day
 
 ---
 
-## Future Trends in Kids' Programming Education
+## Level 7: Inclusive, accessible, and global teaching
 
-1. **Artificial Intelligence Education**
-    - AI concept introduction
-    - Machine learning for kids
-    - Ethical AI development
-    - AI-augmented creative coding
-    - Voice and natural language interfaces
-2. **Extended Reality Applications**
-    - AR/VR coding environments
-    - Immersive learning experiences
-    - 3D programming interfaces
-    - Spatial computing concepts
-    - Mixed reality project development
-3. **Physical Computing Evolution**
-    - Wearable technology programming
-    - Internet of Things for education
-    - Environmental sensing projects
-    - Smart home applications
-    - Biotech interfaces
-4. **Data Science for Young Learners**
-    - Age-appropriate data literacy
-    - Visual data programming
-    - Ethical data collection and use
-    - Personal data projects
-    - Data storytelling techniques
-5. **Personalized Learning Systems**
-    - AI-driven coding tutors
-    - Adaptive learning paths
-    - Interest-based curriculum generation
-    - Real-time feedback systems
-    - Individualized challenge calibration
+**Goal:** Reach and support all kinds of learners.
+
+### Topics
+
+- Culturally responsive teaching
+- Neurodiversity and sensory considerations
+- Socioeconomic and tech access issues
+
+### Mini-projects
+
+- Adapt one of your lessons for offline use
+- Design activities that don’t require reading
+- Create multilingual coding instructions
+
+---
+
+## Level 8: Mentor and empower young coders
+
+**Goal:** Help kids grow into confident, independent makers.
+
+### Topics
+
+- Supporting independent projects
+- Hosting code clubs, jams, and hackathons
+- Encouraging community sharing and open source
+
+### Mini-projects
+
+- Guide a student in publishing their Scratch or Replit project
+- Organize a mini coding jam for friends or a class
+- Mentor a group in a global challenge (e.g., Hour of Code or CodeWeek)
