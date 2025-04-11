@@ -1,7 +1,8 @@
 import os
 import requests
 import json
-from .prompt import Prompt
+from prompt import Prompt
+
 
 class BaseSummarizer:
     """Base class for all summarizers"""
