@@ -5,6 +5,7 @@ from email.message import Message
 import os
 from html_extractor import extract_text_from_html
 from typing import Optional, Union, List, Dict, Any, Tuple, Sequence
+from dotenv import load_dotenv
 
 
 class EmailProcessor:
@@ -156,6 +157,7 @@ class EmailProcessor:
 # Example usage
 def test_email_processor():
     # Get credentials from environment variables
+    load_dotenv()
     email_address = os.environ.get('EMAIL_ADDRESS')
     password = os.environ.get('EMAIL_PASSWORD')
     imap_server = os.environ.get('IMAP_SERVER', 'imap.gmail.com')
