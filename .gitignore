@@ -42,7 +42,7 @@ samples/
 # Ignore all .env files
 .env
 
-# Ignore all __pycache__ directories
+# Ignore python-specific directories
 __pycache__/
-
-
+venv/
+.venv/
