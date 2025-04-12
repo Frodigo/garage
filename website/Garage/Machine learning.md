@@ -3,19 +3,23 @@ This is a learning roadmap for anyone who want to be a ML Engineer. I created it
 
 ---
 
-## Level 0: Python & math essentials
+## Level 0: Python & math essentials *<-- I am here*
 
 **Goal:** Learn just enough Python and math to understand and write ML code.
 
 ### Topics
 
 - Python basics (variables, functions, loops, classes)
+	- Read Python Tutorial: [https://docs.python.org/3/tutorial/index.html](https://docs.python.org/3/tutorial/index.html)
+	- Read the "A Byte of Python" free online book: [https://python.swaroopch.com](https://python.swaroopch.com)
+	- Read "Obey the Testing Goat!" free online book: [https://www.obeythetestinggoat.com/pages/book.html#toc](https://www.obeythetestinggoat.com/pages/book.html#toc)
 - NumPy, pandas for data handling
 - Matplotlib & Seaborn for visualization
 - Basic linear algebra, probability, statistics
 
 ### Mini-projects
 
+- Jupyter Notebook that shows Python basics
 - Text Analyzer — show list comprehensions, lambda functions, text operations
 - Task Manager CLI app — mix object-oriented and procedural styles
 - Backup Automation Script — work with files and directories
