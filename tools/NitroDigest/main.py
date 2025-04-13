@@ -1,5 +1,5 @@
 import os
-import argparse
+from argparse import ArgumentParser
 from dotenv import load_dotenv
 
 from email_processor import EmailProcessor
@@ -11,31 +11,26 @@ def main():
     # Load environment variables from .env file if it exists
     load_dotenv()
     
-    # Parse command line arguments
-    parser = argparse.ArgumentParser(description="NitroDigest - Email newsletter summarizer")
+    # Define possible program parameters
+    parser = ArgumentParser(description="NitroDigest - Email newsletter summarizer")
     parser.add_argument("--limit", type=int, default=5, help="Maximum number of emails to process")
     parser.add_argument("--output-dir", default="summaries", help="Directory to save summaries")
     parser.add_argument("--summarizer", choices=["claude", "chatgpt", "ollama"], default="claude", 
                         help="Summarizer to use")
     parser.add_argument("--mark-as-read", action="store_true", help="Mark processed emails as read")
-    parser.add_argument("--email", help="Email address (overrides environment variable)")
-    parser.add_argument("--password", help="Email password (overrides environment variable)")
-    parser.add_argument("--server", help="IMAP server (overrides environment variable)")
+    parser.add_argument("--email", default=os.environ.get("EMAIL_ADDRESS"), help="Email address (overrides environment variable)")
+    parser.add_argument("--password", default=os.environ.get("EMAIL_PASSWORD"), help="Email password (overrides environment variable)")
+    parser.add_argument("--server", default=os.environ.get("IMAP_SERVER", "imap.gmail.com"), help="IMAP server (overrides environment variable)")
     parser.add_argument("--folder", default="INBOX", help="Email folder to process")
     
     args = parser.parse_args()
-    
-    # Get email credentials
-    email_address = args.email or os.environ.get("EMAIL_ADDRESS")
-    password = args.password or os.environ.get("EMAIL_PASSWORD")
-    imap_server = args.server or os.environ.get("IMAP_SERVER", "imap.gmail.com")
-    
-    if not email_address or not password:
+
+    if not args.email or not args.password:
         print("Email credentials not found. Please provide them as arguments or environment variables.")
         return
     
     # Initialize components
-    email_processor = EmailProcessor(email_address, password, imap_server)
+    email_processor = EmailProcessor(args.email, args.password, args.server)
     
     # Choose summarizer based on arguments
     if args.summarizer == "claude":
