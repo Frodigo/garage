@@ -5,12 +5,12 @@ Updated March 25, 2025 from Brzezina, Poland
 ---
 
 ## Teaching My Son to Program
-  
-I wanted to teach my son how to write code. What I did so far was not interesting to him too much. Actually it was boring. But I don't give up (yet).  
+
+I wanted to teach my son how to write code. What I did so far was not interesting to him too much. Actually it was boring. But I don't give up (yet).
 
 ---
 
-## Decluttering  
+## Decluttering
 
 At the end of last year I did an experiment with decluttering and I was happy with the results. I want to go a little further with this and do a total decluttering of both my digital and physical space, which involves getting rid of unnecessary things like subscriptions (detooling) on ​​the one hand and things I don't use on the other.
 
@@ -30,7 +30,7 @@ So far I pushed my experiments on my local computer, or on private GitHub reposi
 
 But I realized that I can connect my love to open source projects and experiments by creating one public project where I keep all my code and notes.
 
-This is how the [garage](https://github.com/Frodigo/garage) project is started.  
+This is how the [garage](https://github.com/Frodigo/garage) project is started.
 
 ---
 

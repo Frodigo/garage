@@ -17,7 +17,7 @@ import java.util.Map;
 public class CheapestProductPromotion implements PromotionStrategy {
     private static final int DEFAULT_PRODUCTS_REQUIRED = 3;
     private static final double DEFAULT_SPECIAL_PRICE = 1.0;
-    
+
     private final String promotionCode;
     private final double specialPrice;
     private final int productsRequired;
@@ -48,7 +48,7 @@ public class CheapestProductPromotion implements PromotionStrategy {
         if (productsRequired < 2) {
             throw new IllegalArgumentException("Products required must be at least 2");
         }
-        
+
         this.promotionCode = promotionCode;
         this.specialPrice = specialPrice;
         this.productsRequired = productsRequired;
@@ -59,7 +59,7 @@ public class CheapestProductPromotion implements PromotionStrategy {
         if (products.isEmpty()) {
             return 0;
         }
-        
+
         // Expand the cart into a list of individual products
         List<Product> allProducts = new ArrayList<>();
         products.forEach((product, quantity) -> {
@@ -67,17 +67,17 @@ public class CheapestProductPromotion implements PromotionStrategy {
                 allProducts.add(product);
             }
         });
-        
+
         // If we don't have enough products, no discount applies
         if (allProducts.size() < productsRequired) {
             return 0;
         }
-        
+
         // Sort products by price (cheapest first)
         allProducts.sort(Comparator.comparing(Product::getPrice));
-        
+
         double totalDiscount = 0;
-        
+
         // Apply the discount to every Nth product (where N = productsRequired)
         for (int i = 0; i < allProducts.size(); i++) {
             if ((i + 1) % productsRequired == 0) { // Every Nth product gets the discount
@@ -90,7 +90,7 @@ public class CheapestProductPromotion implements PromotionStrategy {
                 }
             }
         }
-        
+
         return totalDiscount;
     }
 
@@ -98,4 +98,4 @@ public class CheapestProductPromotion implements PromotionStrategy {
     public String getPromotionCode() {
         return promotionCode;
     }
-} 
+}

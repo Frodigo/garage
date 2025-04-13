@@ -19,7 +19,7 @@ import java.util.Map;
  * - New promotion overrides previous one
  */
 public class ShoppingCartService {
-    
+
     private final Map<Product, Integer> products;
     private PromotionStrategy activePromotion;
 
@@ -42,11 +42,11 @@ public class ShoppingCartService {
         if (product == null) {
             throw new IllegalArgumentException("Product cannot be null");
         }
-        
+
         if (!product.isAvailable()) {
             throw new ProductUnavailableException(product);
         }
-        
+
         products.put(product, products.getOrDefault(product, 0) + 1);
     }
 
@@ -61,11 +61,11 @@ public class ShoppingCartService {
         if (product == null) {
             throw new IllegalArgumentException("Product cannot be null");
         }
-        
+
         if (!products.containsKey(product)) {
             return; // Product not in cart, nothing to remove
         }
-        
+
         int quantity = products.get(product);
         if (quantity > 1) {
             products.put(product, quantity - 1);
@@ -94,16 +94,16 @@ public class ShoppingCartService {
         if (products.isEmpty()) {
             throw new EmptyCartException("Cannot calculate price for an empty cart");
         }
-        
+
         double totalPrice = products.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
-        
+
         if (activePromotion != null) {
             double discount = activePromotion.calculateDiscount(products);
             return Math.max(0, totalPrice - discount);
         }
-        
+
         return totalPrice;
     }
 
@@ -115,7 +115,7 @@ public class ShoppingCartService {
     public void activatePromotion(PromotionStrategy promotion) {
         this.activePromotion = promotion;
     }
-    
+
     /**
      * Checks if the cart is empty.
      *
@@ -124,11 +124,11 @@ public class ShoppingCartService {
     public boolean isEmpty() {
         return products.isEmpty();
     }
-    
+
     /**
      * Clears all products from the cart.
      */
     public void clear() {
         products.clear();
     }
-} 
+}

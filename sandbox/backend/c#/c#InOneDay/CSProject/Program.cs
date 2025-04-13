@@ -21,8 +21,8 @@
                     Console.WriteLine(e.Message + " Please try again.");
                 }
             }
-            
-            while (month == 0) 
+
+            while (month == 0)
             {
                 Console.Write("\nPlease enter the month: ");
 
@@ -45,7 +45,7 @@
 
             for (int i = 0; i < myStaff.Count; i++)
             {
-                try 
+                try
                 {
                     Console.WriteLine("\nPlease enter the hours worked for {0}", myStaff[i].NameOfStaff);
                     myStaff[i].HoursWorked = Convert.ToInt32(Console.ReadLine());

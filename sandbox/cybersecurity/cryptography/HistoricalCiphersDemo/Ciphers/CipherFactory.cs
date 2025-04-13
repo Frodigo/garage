@@ -6,7 +6,7 @@ namespace HistoricalCiphersDemo.Ciphers;
 public class CipherFactory
 {
     private readonly Dictionary<string, ICipher> _ciphers = new Dictionary<string, ICipher>(StringComparer.OrdinalIgnoreCase);
-    
+
     /// <summary>
     /// Registers a cipher implementation
     /// </summary>
@@ -15,10 +15,10 @@ public class CipherFactory
     {
         if (cipher == null)
             throw new ArgumentNullException(nameof(cipher));
-            
+
         _ciphers[cipher.Name] = cipher;
     }
-    
+
     /// <summary>
     /// Gets a cipher implementation by name
     /// </summary>
@@ -28,13 +28,13 @@ public class CipherFactory
     {
         if (string.IsNullOrEmpty(name))
             throw new ArgumentException("Cipher name cannot be null or empty", nameof(name));
-            
+
         if (!_ciphers.TryGetValue(name, out var cipher))
             throw new ArgumentException($"No cipher registered with name '{name}'", nameof(name));
-            
+
         return cipher;
     }
-    
+
     /// <summary>
     /// Gets all registered ciphers
     /// </summary>
@@ -43,4 +43,4 @@ public class CipherFactory
     {
         return _ciphers.Values;
     }
-} 
+}

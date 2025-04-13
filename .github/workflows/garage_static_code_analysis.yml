@@ -1,0 +1,20 @@
+name: Garage Static Code Analysis
+on:
+  pull_request:
+
+jobs:
+    lint:
+      name: Run pre-commit hooks  # (In case smart developer used --no-verify flag on local)
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+
+        - name: Setup Python 3.9
+          uses: actions/setup-python@v5.2.0
+          with:
+            python-version: 3.9
+
+        - name: Run pre-commit hoooks
+          uses: pre-commit/action@v3.0.1

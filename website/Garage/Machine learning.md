@@ -10,9 +10,9 @@ This is a learning roadmap for anyone who want to be a ML Engineer. I created it
 ### Topics
 
 - Python basics (variables, functions, loops, classes)
-	- Read Python Tutorial: [https://docs.python.org/3/tutorial/index.html](https://docs.python.org/3/tutorial/index.html)
-	- Read the "A Byte of Python" free online book: [https://python.swaroopch.com](https://python.swaroopch.com)
-	- Read "Obey the Testing Goat!" free online book: [https://www.obeythetestinggoat.com/pages/book.html#toc](https://www.obeythetestinggoat.com/pages/book.html#toc)
+  - Read Python Tutorial: [https://docs.python.org/3/tutorial/index.html](https://docs.python.org/3/tutorial/index.html)
+  - Read the "A Byte of Python" free online book: [https://python.swaroopch.com](https://python.swaroopch.com)
+  - Read "Obey the Testing Goat!" free online book: [https://www.obeythetestinggoat.com/pages/book.html#toc](https://www.obeythetestinggoat.com/pages/book.html#toc)
 - NumPy
 - pandas
 - Matplotlib & Seaborn for visualization

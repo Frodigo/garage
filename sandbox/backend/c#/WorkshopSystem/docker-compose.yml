@@ -18,7 +18,7 @@ services:
       - ConnectionStrings__DefaultConnection=Server=db;Database=WorkshopSystem;User=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
     volumes:
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
-      - ~/.aspnet/https:/root/.aspnet/https:ro 
+      - ~/.aspnet/https:/root/.aspnet/https:ro
     depends_on:
       - db
     networks:

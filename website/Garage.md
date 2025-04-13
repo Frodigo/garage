@@ -78,8 +78,8 @@ If you a learner, technical and like to get to know why something works this way
 There are four options to be up-to-date with my content:
 
 1. Subscribe to the RSS feed:
-    - All items: [https://rss.frodigo.com/feed.xml](https://rss.frodigo.com/feed.xml)
-    - Recent 10 items: [https://rss.frodigo.com/feed.recent.xml](https://rss.frodigo.com/feed.recent.xml)
+   - All items: [https://rss.frodigo.com/feed.xml](https://rss.frodigo.com/feed.xml)
+   - Recent 10 items: [https://rss.frodigo.com/feed.recent.xml](https://rss.frodigo.com/feed.recent.xml)
 2. Subscribe to the newsletter: [https://marcinkwiatkowski.kit.com](https://marcinkwiatkowski.kit.com)
 3. Follow me and my open source repository on Github [https://github.com/Frodigo/garage](https://github.com/Frodigo/garage)
 

@@ -25,39 +25,39 @@ public class ConsoleApp {
     public static void main(String[] args) {
         System.out.println("Welcome to Simple eCommerce System");
         System.out.println("==================================\n");
-        
+
         // Initialize repositories and services
         ProductRepository productRepository = new InMemoryProductRepository();
         CatalogService catalogService = new CatalogService(productRepository);
         ShoppingCartService cartService = new ShoppingCartService();
-        
+
         // Initialize catalog with sample data
         initializeCatalog(catalogService);
-        
+
         // Display all products alphabetically
         System.out.println("All products (sorted alphabetically):");
         List<Product> sortedProducts = catalogService.getProductsSortedAlphabetically();
-        sortedProducts.forEach(product -> 
+        sortedProducts.forEach(product ->
             System.out.println(" - " + product.getName() + " ($" + product.getPrice() + ")"));
-        
+
         // Display products by category
         Category electronics = new Category("Electronics");
         System.out.println("\nElectronics products (sorted by price):");
         List<Product> electronicProducts = catalogService.getAvailableProductsByCategory(electronics);
-        electronicProducts.forEach(product -> 
+        electronicProducts.forEach(product ->
             System.out.println(" - " + product.getName() + " ($" + product.getPrice() + ")"));
-        
+
         // Demonstrate shopping cart
         demonstrateShoppingCart(sortedProducts, cartService);
-        
+
         // Demonstrate promotions
         demonstratePromotions(cartService);
-        
+
         // Demonstrate exception handling
         System.out.println("\n=== Exception Handling Demonstration ===");
         demonstrateExceptionHandling(catalogService, cartService);
     }
-    
+
     /**
      * Initializes the catalog with sample products.
      *
@@ -68,31 +68,31 @@ public class ConsoleApp {
         Category electronics = new Category("Electronics");
         Category books = new Category("Books");
         Category clothing = new Category("Clothing");
-        
+
         // Electronics
         catalogService.addProduct(new Product("Laptop", 1200.0, electronics));
         catalogService.addProduct(new Product("Smartphone", 800.0, electronics));
         catalogService.addProduct(new Product("Headphones", 150.0, electronics));
         catalogService.addProduct(new Product("Tablet", 500.0, electronics));
         catalogService.addProduct(new Product("Smart Watch", 250.0, electronics));
-        
+
         // Books
         catalogService.addProduct(new Product("Java Programming", 45.0, books));
         catalogService.addProduct(new Product("Clean Code", 35.0, books));
         catalogService.addProduct(new Product("Design Patterns", 40.0, books));
         catalogService.addProduct(new Product("Algorithms", 50.0, books));
-        
+
         // Clothing
         catalogService.addProduct(new Product("T-Shirt", 25.0, clothing));
         catalogService.addProduct(new Product("Jeans", 60.0, clothing));
         catalogService.addProduct(new Product("Hoodie", 45.0, clothing));
-        
+
         // Mark one product as unavailable
         Product unavailableProduct = new Product("Out of Stock Item", 99.0, electronics);
         unavailableProduct.setAvailable(false);
         catalogService.addProduct(unavailableProduct);
     }
-    
+
     /**
      * Demonstrates adding products to the shopping cart.
      *
@@ -104,24 +104,24 @@ public class ConsoleApp {
         Product laptop = findProductByName(products, "Laptop");
         Product smartphone = findProductByName(products, "Smartphone");
         Product headphones = findProductByName(products, "Headphones");
-        
+
         // Add products to cart
         cartService.addProduct(laptop);
         cartService.addProduct(smartphone);
         cartService.addProduct(headphones);
         cartService.addProduct(headphones); // Adding a second pair of headphones
-        
+
         // Display cart contents
         System.out.println("\nShopping Cart Contents:");
         Map<Product, Integer> cartContents = cartService.getCartContents();
-        cartContents.forEach((product, quantity) -> 
-            System.out.println(" - " + product.getName() + " x" + quantity + 
+        cartContents.forEach((product, quantity) ->
+            System.out.println(" - " + product.getName() + " x" + quantity +
                               " ($" + product.getPrice() + " each)"));
-        
+
         // Calculate and display total price without promotions
         System.out.println("\nTotal Price: $" + String.format("%.2f", cartService.calculateCartPrice()));
     }
-    
+
     /**
      * Demonstrates applying different promotions to the shopping cart.
      *
@@ -133,20 +133,20 @@ public class ConsoleApp {
         cartService.activatePromotion(tenPercentOff);
         System.out.println("\nWith 10% off promotion:");
         System.out.println("Total Price: $" + String.format("%.2f", cartService.calculateCartPrice()));
-        
+
         // Every 3rd item costs 1 PLN promotion
         CheapestProductPromotion everyThirdCheapPromotion = new CheapestProductPromotion("EVERY3RD1PLN");
         cartService.activatePromotion(everyThirdCheapPromotion);
         System.out.println("\nWith every 3rd item for 1 PLN promotion:");
         System.out.println("Total Price: $" + String.format("%.2f", cartService.calculateCartPrice()));
-        
+
         // Second item half price promotion
         SecondProductHalfPricePromotion secondHalfPricePromotion = new SecondProductHalfPricePromotion("SECONDHALFPRICE");
         cartService.activatePromotion(secondHalfPricePromotion);
         System.out.println("\nWith second item half price promotion:");
         System.out.println("Total Price: $" + String.format("%.2f", cartService.calculateCartPrice()));
     }
-    
+
     /**
      * Demonstrates exception handling for various scenarios.
      *
@@ -163,7 +163,7 @@ public class ConsoleApp {
         } catch (ProductNotFoundException e) {
             System.out.println("  Error: " + e.getMessage());
         }
-        
+
         // 2. ProductUnavailableException
         System.out.println("\n2. ProductUnavailableException handling:");
         try {
@@ -175,7 +175,7 @@ public class ConsoleApp {
             System.out.println("  Error: " + e.getMessage());
             System.out.println("  Unavailable product: " + e.getProduct().getName());
         }
-        
+
         // 3. CategoryNotFoundException
         System.out.println("\n3. CategoryNotFoundException handling:");
         try {
@@ -185,7 +185,7 @@ public class ConsoleApp {
         } catch (CategoryNotFoundException e) {
             System.out.println("  Error: " + e.getMessage());
         }
-        
+
         // 4. InvalidPromotionException
         System.out.println("\n4. InvalidPromotionException handling:");
         try {
@@ -195,7 +195,7 @@ public class ConsoleApp {
         } catch (InvalidPromotionException e) {
             System.out.println("  Error: " + e.getMessage());
         }
-        
+
         // 5. EmptyCartException
         System.out.println("\n5. EmptyCartException handling:");
         try {
@@ -207,11 +207,11 @@ public class ConsoleApp {
         } catch (EmptyCartException e) {
             System.out.println("  Error: " + e.getMessage());
         }
-        
+
         // 6. Demonstrate proper exception recovery
         System.out.println("\n6. Exception recovery demonstration:");
         ShoppingCartService recoveryCart = new ShoppingCartService();
-        
+
         // Try to calculate price with empty cart
         try {
             System.out.println("  Trying to calculate price with empty cart...");
@@ -219,11 +219,11 @@ public class ConsoleApp {
         } catch (EmptyCartException e) {
             System.out.println("  Error: " + e.getMessage());
             System.out.println("  Recovering by adding a product to cart...");
-            
+
             // Add a product and try again
             Product laptop = findProductByName(catalogService.getAllProducts(), "Laptop");
             recoveryCart.addProduct(laptop);
-            
+
             try {
                 double price = recoveryCart.calculateCartPrice();
                 System.out.println("  Recovery successful! Cart price: $" + String.format("%.2f", price));
@@ -231,10 +231,10 @@ public class ConsoleApp {
                 System.out.println("  Recovery failed: " + recoveryException.getMessage());
             }
         }
-        
+
         System.out.println("\nException handling demonstration completed.");
     }
-    
+
     /**
      * Helper method to find a product by name from a list of products.
      *
@@ -248,4 +248,4 @@ public class ConsoleApp {
                 .findFirst()
                 .orElse(null);
     }
-} 
+}

@@ -1,3 +1,4 @@
+from html_extractor import extract_text_from_html
 import unittest
 import sys
 import os
@@ -5,11 +6,9 @@ import os
 # Add parent directory to path so we can import modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from html_extractor import extract_text_from_html
-
 
 class TestHtmlExtractor(unittest.TestCase):
-    
+
     def test_basic_html_extraction(self):
         html = """
         <!DOCTYPE html>
@@ -23,11 +22,11 @@ class TestHtmlExtractor(unittest.TestCase):
         </body>
         </html>
         """
-        
+
         result = extract_text_from_html(html)
         self.assertIn("Newsletter Title", result)
         self.assertIn("This is a paragraph", result)
-    
+
     def test_script_style_removal(self):
         html = """
         <!DOCTYPE html>
@@ -42,13 +41,13 @@ class TestHtmlExtractor(unittest.TestCase):
         </body>
         </html>
         """
-        
+
         result = extract_text_from_html(html)
         self.assertIn("Title", result)
         self.assertIn("Content", result)
         self.assertNotIn("alert", result)
         self.assertNotIn("color: red", result)
-    
+
     def test_empty_input(self):
         self.assertEqual("", extract_text_from_html(""))
         self.assertEqual("", extract_text_from_html(None))

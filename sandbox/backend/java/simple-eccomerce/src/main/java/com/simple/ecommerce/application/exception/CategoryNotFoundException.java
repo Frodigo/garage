@@ -4,19 +4,19 @@ package com.simple.ecommerce.application.exception;
  * Exception thrown when a category cannot be found.
  */
 public class CategoryNotFoundException extends RuntimeException {
-    
+
     public CategoryNotFoundException(String message) {
         super(message);
     }
-    
+
     public CategoryNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
-    
+
     public CategoryNotFoundException(Long categoryId) {
         super("Category with ID " + categoryId + " not found");
     }
-    
+
     /**
      * Creates a new exception for a category not found by name.
      *
@@ -31,4 +31,4 @@ public class CategoryNotFoundException extends RuntimeException {
         }
         return new CategoryNotFoundException(message);
     }
-} 
+}

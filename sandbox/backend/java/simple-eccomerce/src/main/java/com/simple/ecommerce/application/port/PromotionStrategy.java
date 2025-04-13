@@ -12,7 +12,7 @@ import java.util.Map;
  * - Applied during price calculation
  */
 public interface PromotionStrategy {
-    
+
     /**
      * Calculates the discount for the items in the shopping cart.
      *
@@ -21,11 +21,11 @@ public interface PromotionStrategy {
      * @throws EmptyCartException if the cart is empty
      */
     double calculateDiscount(Map<Product, Integer> products);
-    
+
     /**
      * Returns the promotion code.
      *
      * @return the promotion code
      */
     String getPromotionCode();
-} 
+}

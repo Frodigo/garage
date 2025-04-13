@@ -39,7 +39,7 @@ public class VigenèreCipherTests
         // Assert
         Assert.Equal(expected, actual);
     }
-    
+
     [Fact]
     public void When_EncryptingWord_WithMultiCharKey_ShouldEncryptCorrectly()
     {
@@ -56,7 +56,7 @@ public class VigenèreCipherTests
         // Assert
         Assert.Equal(expected, actual);
     }
-    
+
     [Fact]
     public void When_EncryptingMixedCaseWithSpecialChars_ShouldPreserveCaseAndSpecialChars()
     {

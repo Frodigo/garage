@@ -7,7 +7,7 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 	}
 
-	Button? lastClicked; 
+	Button? lastClicked;
 	bool findingMatch = false;
 	int matchesFound;
 	int tenthsOfSecondsElapsed = 0;
@@ -18,11 +18,11 @@ public partial class MainPage : ContentPage
 		PlayAgainButton.IsVisible = false;
 
 		List<string> animalEmoji = [
-			"🐶", "🐶", 
+			"🐶", "🐶",
 			"🐱", "🐱",
-			"🐭", "🐭",  
+			"🐭", "🐭",
 			"🐹", "🐹",
-			"🐰", "🐰", 
+			"🐰", "🐰",
 			"🦊", "🦊",
 			"🐻", "🐻",
 		    "🐼", "🐼",
@@ -80,7 +80,7 @@ public partial class MainPage : ContentPage
 
 		tenthsOfSecondsElapsed++;
 
-		TimeElapsed.Text= "Time elapsed: " + (tenthsOfSecondsElapsed / 10).ToString("0.0s"); 
+		TimeElapsed.Text= "Time elapsed: " + (tenthsOfSecondsElapsed / 10).ToString("0.0s");
 
 		if (PlayAgainButton.IsVisible)
 		{
@@ -91,4 +91,3 @@ public partial class MainPage : ContentPage
 		return true;
 	}
 }
-

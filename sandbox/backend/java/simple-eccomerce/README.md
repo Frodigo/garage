@@ -45,10 +45,10 @@ The following diagrams represent the system architecture using the C4 Model appr
 ```mermaid
 C4Context
     title System Context Diagram for eCommerce System
-    
+
     Person(customer, "Customer", "A user of the eCommerce system")
     System(ecommerceSystem, "eCommerce System", "Allows customers to browse products, manage shopping cart and apply promotions")
-    
+
     Rel(customer, ecommerceSystem, "Uses")
 ```
 
@@ -57,14 +57,14 @@ C4Context
 ```mermaid
 C4Container
     title Container Diagram for eCommerce System
-    
+
     Person(customer, "Customer", "A user of the eCommerce system")
-    
+
     System_Boundary(ecommerceSystem, "eCommerce System") {
         Container(consoleApp, "Console Application", "Java", "Provides user interface via console commands")
         ContainerDb(inMemoryDatabase, "In-Memory Database", "In-Memory", "Stores product information")
     }
-    
+
     Rel(customer, consoleApp, "Interacts with")
     Rel(inMemoryDatabase, "Reads from and writes to")
 ```
@@ -74,16 +74,16 @@ C4Container
 ```mermaid
 C4Component
     title Component Diagram for eCommerce System Business Logic
-    
+
     Container_Boundary(businessLogic, "Business Logic") {
         Component(catalogService, "Catalog Service", "Java", "Provides product catalog functionality")
         Component(shoppingCartService, "Shopping Cart Service", "Java", "Manages shopping cart operations")
         Component(promotionStrategies, "Promotion Strategies", "Java", "Implements various discount strategies")
     }
-    
+
     Container(productRepository, "Product Repository", "In-Memory", "Stores product information")
     Container(consoleApp, "Console Application", "Java", "Provides UI via console")
-    
+
     Rel(consoleApp, catalogService, "Uses")
     Rel(consoleApp, shoppingCartService, "Uses")
     Rel(shoppingCartService, promotionStrategies, "Applies")

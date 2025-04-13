@@ -2,7 +2,7 @@
 priv/
 .trash/
 node_modules/
-public/ 
+public/
 
 # Playwright
 /test-results/

@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
  * In-memory implementation of the ProductRepository interface.
  */
 public class InMemoryProductRepository implements ProductRepository {
-    
+
     private final List<Product> products;
-    
+
     /**
      * Creates an empty in-memory product repository.
      */
@@ -49,11 +49,11 @@ public class InMemoryProductRepository implements ProductRepository {
         if (category == null) {
             throw new CategoryNotFoundException("Category cannot be null");
         }
-        
+
         return products.stream()
                 .filter(Product::isAvailable)
                 .filter(p -> p.getCategory().equals(category))
                 .sorted(Comparator.comparing(Product::getPrice))
                 .collect(Collectors.toList());
     }
-} 
+}

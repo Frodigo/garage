@@ -10,7 +10,7 @@ import java.util.List;
  * Repository interface for product operations.
  */
 public interface ProductRepository {
-    
+
     /**
      * Adds a product to the repository.
      *
@@ -18,21 +18,21 @@ public interface ProductRepository {
      * @throws IllegalArgumentException if product is null
      */
     void addProduct(Product product);
-    
+
     /**
      * Returns all products in the repository.
      *
      * @return a list of all products
      */
     List<Product> getAllProducts();
-    
+
     /**
      * Returns all products sorted alphabetically by name.
      *
      * @return a list of products sorted alphabetically
      */
     List<Product> getProductsSortedAlphabetically();
-    
+
     /**
      * Returns available products of the specified category sorted by price (low to high).
      *
@@ -41,4 +41,4 @@ public interface ProductRepository {
      * @throws CategoryNotFoundException if category is null
      */
     List<Product> getAvailableProductsByCategory(Category category);
-} 
+}

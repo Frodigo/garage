@@ -36,7 +36,7 @@ I was a contributor to Magento and PWA Studio, also I have worked as the leader 
 [Checkout out Alokai Storefront for Magento 2](https://alokai.com/pwa-for-magento)
 
 ### Alokai Console
-  
+
 As a technical leader and software architect, I was responsible for the development of the VSF Console product.
 
 [Checkout out Alokai Console](https://alokai.com/product/console)
