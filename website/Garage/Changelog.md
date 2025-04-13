@@ -13,7 +13,7 @@ Items here are sorted from the newest to the oldest ones.
 	- went through Python Tutorial
 		- This is amazing resource to get started with Python: [https://docs.python.org/3/tutorial/index.html](https://docs.python.org/3/tutorial/index.html)
 	- started using Socratic Programming Tutor AI agent
-		- https://github.com/Frodigo/garage/pull/61 
+		- [https://github.com/Frodigo/garage/pull/61](https://github.com/Frodigo/garage/pull/61)
 - *08-04-2025:*
   - updated roadmap in garage
     - I wanted the roadmap to be more achievable. I removed most of them and left only the most important ones
