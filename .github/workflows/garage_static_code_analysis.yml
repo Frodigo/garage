@@ -1,9 +1,6 @@
 name: Garage Static Code Analysis
 on:
-  push:
-    branches:
-      - main
-      - chore/precommit
+  pull_request:
 
 jobs:
     lint:

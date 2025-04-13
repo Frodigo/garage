@@ -54,7 +54,7 @@ I welcome and appreciate contributions from the community! Here's how you can he
 
 ### Precommit setup
 
-This project uses pre-commit hooks> follow instructions below to enable precommit hook
+This project uses pre-commit hooks. Follow instructions below to enable precommit hook
 for this repository on your local machine
 
 #### Installation
