@@ -4,6 +4,10 @@ services:
     image: ollama/ollama:latest
     volumes:
       - ollama:/root/.ollama
+      - ./Modelfile:/Modelfile
+      - ./run_ollama.sh:/run_ollama.sh
+    entrypoint: ["/bin/bash"]
+    command: ["/run_ollama.sh"]
     ports:
       - "11434:11434"
     healthcheck:

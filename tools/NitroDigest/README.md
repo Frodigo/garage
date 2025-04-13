@@ -89,7 +89,7 @@ If you're using Gmail, you'll need to:
 
 ## Ollama docker setup
 
-Follow this guide if you want to run Ollama on your local machine. 
+Follow this guide if you want to run Ollama on your local machine.
 
 ### Prerequisites
 
@@ -100,12 +100,15 @@ Follow this guide if you want to run Ollama on your local machine.
 
 ### Run Ollama on docker using predefined docker compose
 
-In this directory you can find a `docker-compose.ollama.yml` file which contains setup 
+In the `ollama` directory you can find a `docker-compose.ollama.yml` file which contains setup
 for `Olama` and `Open WebUI`.
 
 1. To start Ollama run:
 
-`docker-compose -f docker-compose.ollama.yml up`
+```bash
+cd ollama
+docker-compose -f docker-compose.ollama.yml up`
+```
 
 Note that first build could take some time (~10-20min - depending on the internet connection)
 
@@ -121,16 +124,23 @@ OLLAMA_MODEL=llama2
 # Summarizer selection (claude, chatgpt, ollama)
 ACTIVE_SUMMARIZER=ollama
 ```
+
 If so, you are ready to use NitroDigest with local Ollama
 
 ### Installing new models
 
-If you want to install new models you have two options.
+If you want to install new models you have three options.
 
-1. Using the command line 
-2. Using the Web UI
+1. Update the Modelfile
+2. Using the command line
+3. Using the Web UI
 
-#### Using the command line 
+#### Updating the Modelfile
+
+1. Modify ollama/Modelfile and change model there.
+2. Rebuild the container`
+
+#### Using the command line
 
 1. Access the Ollama container:
 
@@ -143,6 +153,7 @@ docker exec -it ollama /bin/bash
 ```bash
 ollama pull llama2
 ```
+
 Replace "llama2" with any model you want to use (e.g., deepseek-r1, llava-phi3)
 
 3. Run the model:
@@ -157,37 +168,6 @@ ollama run llama2
 2. Create an account if prompted.
 3. Go to the Models section and select "Pull a model from Ollama.com"
 4. Choose from available models like llama2, deepseek-coder, etc.
-
-
-```bash
-# Install NVIDIA Container Toolkit
-sudo apt-get update
-sudo apt-get install -y nvidia-container-toolkit
-
-# Configure Docker to use NVIDIA runtime
-sudo nvidia-ctk runtime configure --runtime=docker
-sudo systemctl restart docker
-```
-
-For GPU-enabled setups, use a Docker Compose file with additional GPU configuration:
-
-```
-services:
-  ollama:
-    # GPU configuration
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
-```
-
-#### Windows
-
-- Ensure Docker Desktop is installed with WSL 2 integration enabled for better performance.
-- For GPU support, make sure you have the correct NVIDIA drivers installed
 
 ## Usage
 
