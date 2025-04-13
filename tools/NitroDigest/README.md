@@ -82,10 +82,10 @@ OLLAMA_URL=http://localhost:11434
 
 If you're using Gmail, you'll need to:
 
-1. Enable IMAP in your Gmail settings
-2. Create an app password if you have 2-factor authentication enabled
-   - Go to your Google Account → Security → App passwords
-   - Select "Mail" and your device, then generate and use the 16-character password
+1. Enable IMAP in your Gmail settings. For personal accounts it is enabled already, and this option is not visible in settings.
+2. Create an app password if you have 2-factor authentication enabled, or if your regular password is not working, and you get authentication errors when attempting to use NitroDigest.
+    - Go to [app passwords settings](https://myaccount.google.com/apppasswords).
+    - Add new "app" with whatever name you want, then generate the 16-character password. This password can now be used instead of your regular password.
 
 ## Usage
 
