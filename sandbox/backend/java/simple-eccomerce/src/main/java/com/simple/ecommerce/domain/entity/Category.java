@@ -8,7 +8,7 @@ public class Category {
 
     /**
      * Creates a new category with the specified name.
-     * 
+     *
      * @param name the category name
      */
     public Category(String name) {
@@ -17,7 +17,7 @@ public class Category {
 
     /**
      * Returns the category name.
-     * 
+     *
      * @return the category name
      */
     public String getName() {
@@ -41,4 +41,4 @@ public class Category {
     public int hashCode() {
         return name.hashCode();
     }
-} 
+}

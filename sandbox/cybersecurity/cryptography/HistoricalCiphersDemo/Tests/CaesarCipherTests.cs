@@ -172,4 +172,4 @@ public class CaesarCipherTests
         var result = cipher.Encrypt(text, 26);
         Assert.Equal(text, result);
     }
-} 
+}

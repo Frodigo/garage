@@ -3,17 +3,17 @@ This page is something like journal. I just write down here my progress.
 Items here are sorted from the newest to the oldest ones.
 
 - *13-04-2025:*
-	- published article [[What well-known life laws I confirmed when I did a kitchen renovation]]
-	- found interesting resource about prompt engineering: [https://www.kaggle.com/whitepaper-prompt-engineering](https://www.kaggle.com/whitepaper-prompt-engineering)
-	- added Ollama docker setup in the NitroDigest project: [https://github.com/Frodigo/garage/pull/67](https://github.com/Frodigo/garage/pull/67)
+  - published article [[What well-known life laws I confirmed when I did a kitchen renovation]]
+  - found interesting resource about prompt engineering: [https://www.kaggle.com/whitepaper-prompt-engineering](https://www.kaggle.com/whitepaper-prompt-engineering)
+  - added Ollama docker setup in the NitroDigest project: [https://github.com/Frodigo/garage/pull/67](https://github.com/Frodigo/garage/pull/67)
 - *12-04-2025:*
-	- first contributor created PR in the Garage. Thanks @nestak!
-	- started testing Typesy - to write faster on keyboard
-	- started using Socrating Writing AI Agent
-	- went through Python Tutorial
-		- This is amazing resource to get started with Python: [https://docs.python.org/3/tutorial/index.html](https://docs.python.org/3/tutorial/index.html)
-	- started using Socratic Programming Tutor AI agent
-		- [https://github.com/Frodigo/garage/pull/61](https://github.com/Frodigo/garage/pull/61)
+  - first contributor created PR in the Garage. Thanks @nestak!
+  - started testing Typesy - to write faster on keyboard
+  - started using Socrating Writing AI Agent
+  - went through Python Tutorial
+    - This is amazing resource to get started with Python: [https://docs.python.org/3/tutorial/index.html](https://docs.python.org/3/tutorial/index.html)
+  - started using Socratic Programming Tutor AI agent
+    - [https://github.com/Frodigo/garage/pull/61](https://github.com/Frodigo/garage/pull/61)
 - *08-04-2025:*
   - updated roadmap in garage
     - I wanted the roadmap to be more achievable. I removed most of them and left only the most important ones
@@ -30,7 +30,7 @@ Items here are sorted from the newest to the oldest ones.
 ## Milestone 2025.1
 
 - *Closed milestone 2025.1 at 04.04.2025*
- 	- Corresponding Github release: [https://github.com/Frodigo/garage/releases/tag/2025.1](https://github.com/Frodigo/garage/releases/tag/2025.1)
+  - Corresponding Github release: [https://github.com/Frodigo/garage/releases/tag/2025.1](https://github.com/Frodigo/garage/releases/tag/2025.1)
 - I realized that we are far away from the moment when AI will replace programmers
 - Started using Claude Code for experiments
 - Added garage page and garage manifesto

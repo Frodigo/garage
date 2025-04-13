@@ -85,7 +85,7 @@ graph TB
     B --> B1[Advantages]
     B --> B2[Challenges]
     B --> B3[Final: Pure Microservices]
-    
+
     B1 --> B1A[Latest Tech/Clean Arch/No Debt]
     B2 --> B2A[High Risk/Long Time/Dual Cost]
 ```
@@ -117,7 +117,7 @@ graph TD
     C --> C1[Advantages]
     C --> C2[Challenges]
     C --> C3[Final: Enhanced Monolith]
-    
+
     C1 --> C1A[Lower Cost/Continuity/Knowledge]
     C2 --> C2A[Limited Tech/Scale Issues/Legacy]
 ```
@@ -148,7 +148,7 @@ graph TD
     D --> D1[Advantages]
     D --> D2[Challenges]
     D --> D3[Final: Hybrid System]
-    
+
     D1 --> D1A[Controlled Risk/Learning/Flexibility]
     D2 --> D2A[Complex/Slower/Dual Maintenance]
 ```

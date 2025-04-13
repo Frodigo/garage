@@ -13,9 +13,9 @@ import java.util.Optional;
  * Service for catalog-related operations.
  */
 public class CatalogService {
-    
+
     private final ProductRepository productRepository;
-    
+
     /**
      * Creates a catalog service with the specified repository.
      *
@@ -28,7 +28,7 @@ public class CatalogService {
         }
         this.productRepository = productRepository;
     }
-    
+
     /**
      * Adds a product to the catalog.
      *
@@ -38,7 +38,7 @@ public class CatalogService {
     public void addProduct(Product product) {
         productRepository.addProduct(product);
     }
-    
+
     /**
      * Returns all products in the catalog.
      *
@@ -47,7 +47,7 @@ public class CatalogService {
     public List<Product> getAllProducts() {
         return productRepository.getAllProducts();
     }
-    
+
     /**
      * Returns all products sorted alphabetically by name.
      *
@@ -56,7 +56,7 @@ public class CatalogService {
     public List<Product> getProductsSortedAlphabetically() {
         return productRepository.getProductsSortedAlphabetically();
     }
-    
+
     /**
      * Returns available products of the specified category sorted by price (low to high).
      *
@@ -70,7 +70,7 @@ public class CatalogService {
         }
         return productRepository.getAvailableProductsByCategory(category);
     }
-    
+
     /**
      * Finds a product by its name.
      *
@@ -82,12 +82,12 @@ public class CatalogService {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Product name cannot be null or empty");
         }
-        
+
         Optional<Product> product = getAllProducts().stream()
                 .filter(p -> p.getName().equals(name))
                 .findFirst();
-                
-        return product.orElseThrow(() -> 
+
+        return product.orElseThrow(() ->
             new ProductNotFoundException(name, "Please check the product name and try again."));
     }
-} 
+}

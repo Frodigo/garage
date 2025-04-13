@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class PercentagePromotion implements PromotionStrategy {
     private static final double DEFAULT_DISCOUNT_PERCENTAGE = 10.0;
-    
+
     private final String promotionCode;
     private final double discountPercentage;
 
@@ -40,10 +40,10 @@ public class PercentagePromotion implements PromotionStrategy {
             throw new InvalidPromotionException("Promotion code cannot be empty");
         }
         if (discountPercentage < 0 || discountPercentage > 100) {
-            throw new InvalidPromotionException(promotionCode, 
+            throw new InvalidPromotionException(promotionCode,
                 "Discount percentage must be between 0 and 100, got: " + discountPercentage);
         }
-        
+
         this.promotionCode = promotionCode;
         this.discountPercentage = discountPercentage;
     }
@@ -53,11 +53,11 @@ public class PercentagePromotion implements PromotionStrategy {
         if (products == null || products.isEmpty()) {
             throw new EmptyCartException("Cannot calculate discount on an empty cart");
         }
-        
+
         double totalPrice = products.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
-        
+
         return totalPrice * (discountPercentage / 100.0);
     }
 
@@ -65,4 +65,4 @@ public class PercentagePromotion implements PromotionStrategy {
     public String getPromotionCode() {
         return promotionCode;
     }
-} 
+}

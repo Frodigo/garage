@@ -8,4 +8,4 @@ function sumInArray(array) {
   return array[0] + sumInArray(array.slice(1));
 }
 
-console.log(sumInArray([2,4,6])); 
+console.log(sumInArray([2,4,6]));

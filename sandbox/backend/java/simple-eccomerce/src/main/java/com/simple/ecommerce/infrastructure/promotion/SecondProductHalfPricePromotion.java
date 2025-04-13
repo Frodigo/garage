@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class SecondProductHalfPricePromotion implements PromotionStrategy {
     private static final double DISCOUNT_PERCENTAGE = 50.0;
-    
+
     private final String promotionCode;
 
     /**
@@ -25,7 +25,7 @@ public class SecondProductHalfPricePromotion implements PromotionStrategy {
         if (promotionCode == null || promotionCode.trim().isEmpty()) {
             throw new IllegalArgumentException("Promotion code cannot be empty");
         }
-        
+
         this.promotionCode = promotionCode;
     }
 
@@ -34,21 +34,21 @@ public class SecondProductHalfPricePromotion implements PromotionStrategy {
         if (products.isEmpty()) {
             return 0;
         }
-        
+
         double totalDiscount = 0;
-        
+
         // For each product type, calculate how many pairs we have
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
-            
+
             // Calculate number of complete pairs (2 identical products)
             int pairs = quantity / 2;
-            
+
             // For each pair, the discount is half the product price
             totalDiscount += pairs * (product.getPrice() * DISCOUNT_PERCENTAGE / 100.0);
         }
-        
+
         return totalDiscount;
     }
 
@@ -56,4 +56,4 @@ public class SecondProductHalfPricePromotion implements PromotionStrategy {
     public String getPromotionCode() {
         return promotionCode;
     }
-} 
+}

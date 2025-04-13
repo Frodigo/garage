@@ -15,7 +15,7 @@ function findSmallest(arr) {
 
 function selectionSort(arr) {
     let newArr = [];
-    
+
     // While there are elements in the array arr
     while (arr.length > 0) {
       // Find the index of the smallest element
@@ -23,7 +23,7 @@ function selectionSort(arr) {
       // Remove the smallest element and add it to newArr
       newArr.push(arr.splice(smallest, 1)[0]);
     }
-  
+
     return newArr;
   }
 

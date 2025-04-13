@@ -105,7 +105,7 @@ Well designed application that consumes GraphQL API fetches only that data that 
 
 ## How to connect with Magento2 GraphQL API
 
-To connect with Magento 2 GraphQL API, you must send a request to the GraphQL endpoint. Typically is **https://<magento_base_url>/graphql.**
+To connect with Magento 2 GraphQL API, you must send a request to the GraphQL endpoint. Typically is **<magento_base_url>/graphql.**
 
 You can use some of the GraphQL playgrounds or browsers extensions to test GraphQL API and send some queries and mutations. I use [Altair GraphQL Client Google](https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja?hl=en) chrome extension
 

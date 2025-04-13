@@ -78,7 +78,7 @@ dotnet new xunit -o CesarCipherTests
 dotnet add CesarCipherTests/CesarCipherTests.csproj reference CesarCipherLib/CesarCipherLib.csproj
 ```
 
-2. Write the first failing test:
+1. Write the first failing test:
 
 ```csharp
 using Xunit;
@@ -115,7 +115,7 @@ Now, implement just enough code to make the test pass:
 dotnet new classlib -o CesarCipherLib
 ```
 
-2. Implement the minimal `CesarCipher` class:
+1. Implement the minimal `CesarCipher` class:
 
 ```csharp
 namespace CesarCipherLib;
@@ -126,10 +126,10 @@ public class CesarCipher
     {
         if (string.IsNullOrEmpty(text))
             return string.Empty;
-            
+
         if (text == "A" && shift == 1)
             return "B";
-            
+
         return text;
     }
 }
@@ -155,16 +155,16 @@ public void When_EncryptingLetterB_WithShiftOf1_ShouldReturnLetterC()
 }
 ```
 
-2. Refine the implementation to handle this case:
+1. Refine the implementation to handle this case:
 
 ```csharp
 public string Encrypt(string text, int shift)
 {
     if (string.IsNullOrEmpty(text))
         return string.Empty;
-        
+
     var result = new System.Text.StringBuilder();
-    
+
     foreach (char c in text)
     {
         if (char.IsUpper(c))
@@ -177,14 +177,14 @@ public string Encrypt(string text, int shift)
             result.Append(c);
         }
     }
-    
+
     return result.ToString();
 }
 ```
 
 Note that this implementation only shifts uppercase letters and leaves all other characters (lowercase letters, numbers, symbols, etc.) unchanged.
 
-3. Add a test for alphabet wraparound:
+1. Add a test for alphabet wraparound:
 
 ```csharp
 [Fact]
@@ -196,7 +196,7 @@ public void When_EncryptingLetterZ_WithShiftOf1_ShouldReturnLetterA()
 }
 ```
 
-4. Continue with tests for lowercase letters:
+1. Continue with tests for lowercase letters:
 
 ```csharp
 [Fact]
@@ -208,7 +208,7 @@ public void When_EncryptingLowercaseA_WithShiftOf1_ShouldReturnLowercaseB()
 }
 ```
 
-5. Expand the implementation to handle both cases:
+1. Expand the implementation to handle both cases:
 
 ```csharp
 public string Encrypt(string text, int shift)
@@ -217,17 +217,17 @@ public string Encrypt(string text, int shift)
         return string.Empty;
 
     var result = new System.Text.StringBuilder();
-    
+
     foreach (char inputChar in text)
     {
         if (char.IsLetter(inputChar))
         {
             bool isLower = char.IsLower(inputChar);
             char baseChar = isLower ? 'a' : 'A';
-            
+
             int normalizedChar = (inputChar - baseChar + shift) % 26;
             if (normalizedChar < 0) normalizedChar += 26;
-            
+
             result.Append((char)(baseChar + normalizedChar));
         }
         else
@@ -235,7 +235,7 @@ public string Encrypt(string text, int shift)
             result.Append(inputChar);
         }
     }
-    
+
     return result.ToString();
 }
 ```
@@ -252,14 +252,14 @@ public void When_DecryptingEncryptedText_ShouldReturnOriginalText()
     var plainText = "Hello, World!";
     var shift = 5;
     var encryptedText = cipher.Encrypt(plainText, shift);
-    
+
     var decryptedText = cipher.Decrypt(encryptedText, shift);
-    
+
     Assert.Equal(plainText, decryptedText);
 }
 ```
 
-2. Implement the `Decrypt` method:
+1. Implement the `Decrypt` method:
 
 ```csharp
 public string Decrypt(string text, int shift)
@@ -300,7 +300,7 @@ public void When_EncryptingWithShiftOf0_ShouldReturnOriginalText()
 }
 ```
 
-2. Make sure your implementation handles all these cases correctly.
+1. Make sure your implementation handles all these cases correctly.
 
 ### Step 6: Refactor and finalize
 
@@ -318,14 +318,14 @@ public class Program
     public static void Main(string[] args)
     {
         Console.WriteLine("=== Caesar Cipher Demo ===");
-        
+
         var cipher = new CesarCipher();
-        
+
         // Example usage
         string message = "HELLO WORLD";
         int shift = 3;
         string encrypted = cipher.Encrypt(message, shift);
-        
+
         Console.WriteLine($"Original: {message}");
         Console.WriteLine($"Encrypted: {encrypted}");
         Console.WriteLine($"Decrypted: {cipher.Decrypt(encrypted, shift)}");
@@ -341,7 +341,7 @@ public class Program
 dotnet test CesarCipherTests
 ```
 
-2. Run the sample application to demonstrate the cipher in action:
+1. Run the sample application to demonstrate the cipher in action:
 
 ```bash
 dotnet run

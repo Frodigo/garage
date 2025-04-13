@@ -10,42 +10,42 @@ const RSS = require('rss');
 function configureMarkedRenderer() {
   try {
     const renderer = new marked.Renderer();
-    
+
     renderer.link = (href, title, text) => {
       // Extract URL from href if it's an object
-      const hrefStr = typeof href === 'object' && href !== null 
+      const hrefStr = typeof href === 'object' && href !== null
         ? href.href || href.url || '#'
         : String(href || '');
-      
+
       // Extract text content if it's an object
       const textStr = typeof text === 'object' && text !== null
         ? text.text || text.title || hrefStr
         : String(text || hrefStr);
-      
+
       // Handle wiki links
       if (hrefStr.startsWith('[[')) {
         const linkText = hrefStr.slice(2, -2);
         const url = generateUrl(null, linkText);
         return `<a href="${url}">${textStr}</a>`;
       }
-      
+
       // For regular links, extract the last part of the URL for the text and decode it
       if (hrefStr.startsWith('https://frodigo.com/')) {
         const lastPart = hrefStr.split('/').pop();
         const decodedText = decodeURIComponent(lastPart.replace(/\+/g, ' '));
         return `<a href="${hrefStr}">${decodedText}</a>`;
       }
-      
+
       // For regular links, ensure proper formatting
       return `<a href="${hrefStr}">${textStr}</a>`;
     };
 
-    marked.setOptions({ 
+    marked.setOptions({
       renderer,
       mangle: false,
       headerIds: false
     });
-    
+
     return renderer;
   } catch (error) {
     // Handle error gracefully
@@ -103,11 +103,11 @@ if (process.env.NODE_ENV !== 'test') {
 function findMarkdownFiles(dir, fileList = [], excludeDirs) {
   try {
     const files = fs.readdirSync(dir);
-    
+
     files.forEach(file => {
       const filePath = path.join(dir, file);
       const stat = fs.statSync(filePath);
-      
+
       if (stat.isDirectory()) {
         const dirName = path.basename(filePath);
         if (excludeDirs.includes(dirName)) {
@@ -118,7 +118,7 @@ function findMarkdownFiles(dir, fileList = [], excludeDirs) {
         fileList.push(filePath);
       }
     });
-    
+
     return fileList;
   } catch (error) {
     console.error(`Error finding markdown files in ${dir}:`, error);
@@ -144,7 +144,7 @@ function generateUrl(filePath, linkText = null) {
     if (fileName.toLowerCase() === 'software architecture') {
       return 'Garage/Software+architecture';
     }
-  
+
     // For regular files
     const relativePath = path.relative(baseConfig.contentDir, filePath);
     return relativePath
@@ -152,7 +152,7 @@ function generateUrl(filePath, linkText = null) {
       .replace(/\\/g, '/')
       .replace(/\s+/g, '+');
   }
-  
+
   // Fallback for wiki links without special handling
   return linkText ? linkText.replace(/\s+/g, '+') : '';
 }
@@ -185,16 +185,16 @@ function processWikiLinks(content, filePath, config) {
 function getDescription(html, data) {
   // Use frontmatter description if available
   if (data.description) return data.description;
-  
+
   // Remove all links but keep their text content
   const textWithoutLinks = html.replace(/<a[^>]*>(.*?)<\/a>/g, '$1');
-  
+
   // Try to get first paragraph
   const firstParagraph = textWithoutLinks.match(/<p>(.*?)<\/p>/);
   if (firstParagraph) {
     return firstParagraph[1];
   }
-  
+
   // If no paragraph found, take first 280 characters
   return textWithoutLinks.substring(0, 280) + '...';
 }
@@ -209,38 +209,38 @@ function createFeedItem(filePath, config) {
   try {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContent);
-    
+
     // Skip files without dates
     if (!data.date) {
       return null;
     }
-    
+
     // First convert markdown to HTML
     const renderer = new marked.Renderer();
     renderer.link = (href, title, text) => {
-      const hrefStr = typeof href === 'object' && href !== null 
+      const hrefStr = typeof href === 'object' && href !== null
         ? href.href || href.url || '#'
         : String(href || '');
-      
+
       const textStr = typeof text === 'object' && text !== null
         ? text.text || text.title || hrefStr
         : String(text || hrefStr);
-      
+
       if (hrefStr.startsWith('https://frodigo.com/')) {
         return `<a href="${hrefStr}">${textStr}</a>`;
       }
-      
+
       return `<a href="${hrefStr}">${textStr}</a>`;
     };
-    
+
     marked.setOptions({ renderer, mangle: false, headerIds: false });
     const htmlContent = marked(content);
-    
+
     // Then process wiki links in the HTML
     const processedContent = processWikiLinks(htmlContent, filePath, config);
-    
+
     const url = `${config.site.site_url}/${generateUrl(filePath)}`;
-    
+
     return {
       title: data.title || path.basename(filePath, '.md'),
       description: getDescription(processedContent, data),
@@ -269,7 +269,7 @@ function createFeedItem(filePath, config) {
  */
 function generateRSSFeed(config) {
   console.log(`\nGenerating ${path.basename(config.outputPath)}...`);
-  
+
   // Create RSS feed
   const feed = new RSS({
     title: config.title,
@@ -287,12 +287,12 @@ function generateRSSFeed(config) {
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
-  
+
   // Find markdown files and create feed items
   const markdownFiles = findMarkdownFiles(config.contentDir, [], config.excludeDirs);
   const feedItems = [];
   let skippedCount = 0;
-  
+
   markdownFiles.forEach(filePath => {
     const feedItem = createFeedItem(filePath, config);
     if (feedItem) {
@@ -301,17 +301,17 @@ function generateRSSFeed(config) {
       skippedCount++;
     }
   });
-  
+
   // Sort by date (newest first)
   feedItems.sort((a, b) => b.date - a.date);
-  
+
   // Add items to feed (limiting if necessary)
   const itemsToAdd = config.maxItems ? feedItems.slice(0, config.maxItems) : feedItems;
   itemsToAdd.forEach(item => feed.item(item));
-  
+
   // Write feed to file
   fs.writeFileSync(config.outputPath, feed.xml({ indent: true }));
-  
+
   // Log results
   console.log(`✓ Found ${feedItems.length} posts with dates`);
   console.log(`✓ Added ${itemsToAdd.length} ${config.maxItems ? 'most recent ' : ''}posts to the feed`);
@@ -327,7 +327,7 @@ function generateRSSFeed(config) {
 function extractLinksFromFeed(feedContent) {
   const allLinks = new Set();
   const urlRegex = /https:\/\/frodigo\.com\/[^"\s<>]+/g;
-  
+
   // Extract from content:encoded sections (full article content)
   const contentRegex = /<content:encoded><!\[CDATA\[(.*?)\]\]><\/content:encoded>/gs;
   const contentMatches = [...feedContent.matchAll(contentRegex)];
@@ -340,7 +340,7 @@ function extractLinksFromFeed(feedContent) {
       }
     });
   });
-  
+
   // Extract from link elements (main article links)
   const linkRegex = /<link>(https:\/\/frodigo\.com\/[^<]+)<\/link>/g;
   const linkMatches = [...feedContent.matchAll(linkRegex)];
@@ -350,7 +350,7 @@ function extractLinksFromFeed(feedContent) {
       allLinks.add(url);
     }
   });
-  
+
   // Extract from guid elements (article identifiers)
   const guidRegex = /<guid[^>]*>(https:\/\/frodigo\.com\/[^<]+)<\/guid>/g;
   const guidMatches = [...feedContent.matchAll(guidRegex)];
@@ -360,7 +360,7 @@ function extractLinksFromFeed(feedContent) {
       allLinks.add(url);
     }
   });
-  
+
   // Extract from description sections (article previews)
   const descRegex = /<description><!\[CDATA\[(.*?)\]\]><\/description>/gs;
   const descMatches = [...feedContent.matchAll(descRegex)];
@@ -372,7 +372,7 @@ function extractLinksFromFeed(feedContent) {
       }
     });
   });
-  
+
   // Extract from image elements
   const imageRegex = /<image>.*?<url>(https:\/\/frodigo\.com\/[^<]+)<\/url>.*?<\/image>/gs;
   const imageMatches = [...feedContent.matchAll(imageRegex)];
@@ -382,7 +382,7 @@ function extractLinksFromFeed(feedContent) {
       allLinks.add(url);
     }
   });
-  
+
   return allLinks;
 }
 
@@ -396,14 +396,14 @@ function saveLinksToFile(links, outputPath) {
   console.log('Saving links to file:', outputPath);
   console.log('Current directory:', process.cwd());
   console.log('Number of links to save:', linksArray.length);
-  
+
   // Ensure the directory exists
   const dir = path.dirname(outputPath);
   if (!fs.existsSync(dir)) {
     console.log('Creating directory:', dir);
     fs.mkdirSync(dir, { recursive: true });
   }
-  
+
   fs.writeFileSync(outputPath, JSON.stringify(linksArray, null, 2));
   console.log(`✓ Saved ${linksArray.length} links to ${path.basename(outputPath)}`);
 }
@@ -420,15 +420,15 @@ if (require.main === module) {
   // Extract links from the main feed and save them
   const mainFeedPath = path.join(__dirname, 'public', 'feed.xml');
   console.log('Reading feed from:', mainFeedPath);
-  
+
   if (!fs.existsSync(mainFeedPath)) {
     console.error('Error: Feed file not found at', mainFeedPath);
     process.exit(1);
   }
-  
+
   const mainFeedContent = fs.readFileSync(mainFeedPath, 'utf8');
   const links = extractLinksFromFeed(mainFeedContent);
-  
+
   const linksFilePath = path.join(__dirname, 'links-to-test.json');
   console.log('Saving links to:', linksFilePath);
   saveLinksToFile(links, linksFilePath);

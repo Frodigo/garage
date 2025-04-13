@@ -11,13 +11,13 @@ public class CaesarCipher : ICipher
     /// Gets the name of the cipher
     /// </summary>
     public string Name => "Caesar Cipher";
-    
+
     /// <summary>
     /// Gets a description of how the cipher works
     /// </summary>
     public string Description => "The Caesar cipher is one of the earliest and simplest encryption techniques. " +
                                  "It works by shifting each letter in the plaintext by a fixed number of positions in the alphabet.";
-    
+
     /// <summary>
     /// Encrypts the given text using the Caesar cipher
     /// </summary>
@@ -28,7 +28,7 @@ public class CaesarCipher : ICipher
     {
         if (string.IsNullOrEmpty(text))
             return string.Empty;
-            
+
         if (key is not int shift)
         {
             try
@@ -42,7 +42,7 @@ public class CaesarCipher : ICipher
         }
 
         var result = new StringBuilder();
-        
+
         foreach (char inputChar in text)
         {
             // Check if character is a letter
@@ -50,12 +50,12 @@ public class CaesarCipher : ICipher
             {
                 bool isLower = char.IsLower(inputChar);
                 char baseChar = isLower ? 'a' : 'A';
-                
+
                 // Normalize to 0-25 range, apply shift, handle wrap-around
                 int normalizedChar = (inputChar - baseChar + shift) % 26;
                 // Handle negative modulo results
                 if (normalizedChar < 0) normalizedChar += 26;
-                
+
                 // Convert back to ASCII and preserve case
                 result.Append((char)(baseChar + normalizedChar));
             }
@@ -65,10 +65,10 @@ public class CaesarCipher : ICipher
                 result.Append(inputChar);
             }
         }
-        
+
         return result.ToString();
     }
-    
+
     /// <summary>
     /// Decrypts the given text using the Caesar cipher
     /// </summary>
@@ -88,8 +88,8 @@ public class CaesarCipher : ICipher
                 throw new ArgumentException("Key must be convertible to an integer for Caesar cipher", nameof(key));
             }
         }
-        
+
         // Decryption is just encryption with the negative shift
         return Encrypt(text, -shift);
     }
-} 
+}

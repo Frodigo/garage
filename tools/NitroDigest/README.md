@@ -84,8 +84,8 @@ If you're using Gmail, you'll need to:
 
 1. Enable IMAP in your Gmail settings. For personal accounts it is enabled already, and this option is not visible in settings.
 2. Create an app password if you have 2-factor authentication enabled, or if your regular password is not working, and you get authentication errors when attempting to use NitroDigest.
-    - Go to [app passwords settings](https://myaccount.google.com/apppasswords).
-    - Add new "app" with whatever name you want, then generate the 16-character password. This password can now be used instead of your regular password.
+   - Go to [app passwords settings](https://myaccount.google.com/apppasswords).
+   - Add new "app" with whatever name you want, then generate the 16-character password. This password can now be used instead of your regular password.
 
 ## Ollama docker setup
 
@@ -112,7 +112,7 @@ docker-compose -f docker-compose.ollama.yml up
 
 Note that first build could take some time (~10-20min - depending on the internet connection)
 
-2. Access the Ollama API directly at [http://localhost:11434](http://localhost:11434) or the web interface at [http://localhost:3000](http://localhost:11434)
+1. Access the Ollama API directly at [http://localhost:11434](http://localhost:11434) or the web interface at [http://localhost:3000](http://localhost:11434)
 
 Note: make sure that you have correct configuration in the `.env` file like this:
 
@@ -148,7 +148,7 @@ If you want to install new models you have three options.
 docker exec -it ollama /bin/bash
 ```
 
-2. Pull a model:
+1. Pull a model:
 
 ```bash
 ollama pull llama2
@@ -156,7 +156,7 @@ ollama pull llama2
 
 Replace "llama2" with any model you want to use (e.g., deepseek-r1, llava-phi3)
 
-3. Run the model:
+1. Run the model:
 
 ```bash
 ollama run llama2
