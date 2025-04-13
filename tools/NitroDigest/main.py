@@ -39,7 +39,7 @@ def main():
     
     # Choose summarizer based on arguments
     if args.summarizer == "claude":
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        api_key = os.environ.get("CLAUDE_API_KEY")
         if not api_key:
             print("Claude API key not found in environment variables")
             return
