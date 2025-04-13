@@ -15,7 +15,7 @@ def main():
     parser = argparse.ArgumentParser(description="NitroDigest - Email newsletter summarizer")
     parser.add_argument("--limit", type=int, default=5, help="Maximum number of emails to process")
     parser.add_argument("--output-dir", default="summaries", help="Directory to save summaries")
-    parser.add_argument("--summarizer", choices=["claude", "chatgpt", "ollama"], default="claude", 
+    parser.add_argument("--summarizer", choices=["claude", "chatgpt", "ollama"], default="ollama", 
                         help="Summarizer to use")
     parser.add_argument("--mark-as-read", action="store_true", help="Mark processed emails as read")
     parser.add_argument("--email", help="Email address (overrides environment variable)")
