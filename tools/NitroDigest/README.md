@@ -107,7 +107,7 @@ for `Olama` and `Open WebUI`.
 
 ```bash
 cd ollama
-docker-compose -f docker-compose.ollama.yml up`
+docker-compose -f docker-compose.ollama.yml up
 ```
 
 Note that first build could take some time (~10-20min - depending on the internet connection)
