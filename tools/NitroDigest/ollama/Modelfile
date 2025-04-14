@@ -1,3 +1,4 @@
 FROM llama2:latest
 
 PARAMETER temperature 0.5
+PARAMETER num_ctx 4096
