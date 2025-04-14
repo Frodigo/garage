@@ -1,0 +1,8 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/tools/NitroDigest"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "nitrodigest"
