@@ -50,7 +50,8 @@ class ClaudeSummarizer(BaseSummarizer):
             response = requests.post(
                 "https://api.anthropic.com/v1/messages",
                 headers=headers,
-                data=json.dumps(data)
+                data=json.dumps(data),
+                timeout=5
             )
 
             if response.status_code != 200:
@@ -101,7 +102,8 @@ class ChatGPTSummarizer(BaseSummarizer):
             response = requests.post(
                 "https://api.openai.com/v1/chat/completions",
                 headers=headers,
-                data=json.dumps(data)
+                data=json.dumps(data),
+                timeout=5
             )
 
             if response.status_code != 200:
@@ -145,7 +147,8 @@ class OllamaSummarizer(BaseSummarizer):
             response = requests.post(
                 f"{self.base_url}/api/generate",
                 headers=headers,
-                data=json.dumps(data)
+                data=json.dumps(data),
+                timeout=3
             )
 
             if response.status_code != 200:
