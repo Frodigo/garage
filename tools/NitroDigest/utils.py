@@ -15,16 +15,15 @@ class RetryStatusCode(Enum):
 
 def retry(func):
     """
-    Retries a function 2 times with 10-second delays on HTTP status codes
-    408, 409, 429, 500, 502, 503, 504 or request exceptions.
+    Retries a function up to 2 times (for a total of 3 attempts, including the initial attempt)
+    with 10-second delays on HTTP status codes 408, 409, 429, 500, 502, 503, 504 or request exceptions.
     """
     def wrapper(*args, **kwargs):
-        retries = 2
+        max_retries = 2
         delay_seconds = 10
         retry_status_codes = {code.value for code in RetryStatusCode}
 
-        for attempt in range(retries + 1):
-            try:
+        for attempt in range(max_retries + 1):
                 response = func(*args, **kwargs)
 
                 if response.status_code not in retry_status_codes:
