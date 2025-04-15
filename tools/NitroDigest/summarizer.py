@@ -2,6 +2,7 @@ import os
 import requests
 import json
 from prompt import Prompt
+from utils import retry
 
 
 class BaseSummarizer:
@@ -47,12 +48,7 @@ class ClaudeSummarizer(BaseSummarizer):
                 ]
             }
 
-            response = requests.post(
-                "https://api.anthropic.com/v1/messages",
-                headers=headers,
-                data=json.dumps(data),
-                timeout=5
-            )
+            response = self.call_anthropic_api(headers, data)
 
             if response.status_code != 200:
                 print(f"Error from Claude API: {response.status_code}")
@@ -65,6 +61,15 @@ class ClaudeSummarizer(BaseSummarizer):
         except Exception as e:
             print(f"Error summarizing with Claude: {e}")
             return ""
+
+    @retry
+    def call_anthropic_api(self, headers, data):
+        return requests.post(
+            "https://api.anthropic.com/v1/messages",
+            headers=headers,
+            data=json.dumps(data),
+            timeout=30
+        )
 
 
 class ChatGPTSummarizer(BaseSummarizer):
@@ -99,12 +104,7 @@ class ChatGPTSummarizer(BaseSummarizer):
                 "max_tokens": 1000
             }
 
-            response = requests.post(
-                "https://api.openai.com/v1/chat/completions",
-                headers=headers,
-                data=json.dumps(data),
-                timeout=5
-            )
+            response = self.call_openai_api(headers, data)
 
             if response.status_code != 200:
                 print(f"Error from OpenAI API: {response.status_code}")
@@ -117,6 +117,15 @@ class ChatGPTSummarizer(BaseSummarizer):
         except Exception as e:
             print(f"Error summarizing with ChatGPT: {e}")
             return ""
+
+    @retry
+    def call_openai_api(self, headers, data):
+        return requests.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers=headers,
+            data=json.dumps(data),
+            timeout=30
+        )
 
 
 class OllamaSummarizer(BaseSummarizer):
@@ -144,12 +153,7 @@ class OllamaSummarizer(BaseSummarizer):
                 "stream": False
             }
 
-            response = requests.post(
-                f"{self.base_url}/api/generate",
-                headers=headers,
-                data=json.dumps(data),
-                timeout=3
-            )
+            response = self.call_ollama_api(headers, data)
 
             if response.status_code != 200:
                 print(f"Error from Ollama API: {response.status_code}")
@@ -163,8 +167,18 @@ class OllamaSummarizer(BaseSummarizer):
             print(f"Error summarizing with Ollama: {e}")
             return ""
 
+    @retry
+    def call_ollama_api(self, headers, data):
+        return requests.post(
+            f"{self.base_url}/api/generate",
+            headers=headers,
+            data=json.dumps(data),
+            timeout=300
+        )
 
 # Example usage
+
+
 def test_summarizer():
     # Test text
     text = """

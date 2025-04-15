@@ -62,7 +62,7 @@ class SummaryWriter:
                 date_match = re.search(
                     r'\d{1,2}\s+\w+\s+\d{4}', metadata['date'])
                 if date_match:
-                    date_str = date_match.group(0).replace(' ', '-')
+                    date_str = date_match.group(0).replace(' ', '-').lower()
             except:
                 pass
 
