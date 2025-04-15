@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 from dotenv import load_dotenv
 
 from email_processor import EmailProcessor
-from summarizer import ClaudeSummarizer, ChatGPTSummarizer, OllamaSummarizer
+from summarizer import ClaudeSummarizer, ChatGPTSummarizer, OllamaSummarizer, ConfigurationError
 from summary_writer import SummaryWriter
 
 
@@ -30,6 +30,8 @@ def main():
                         "imap.gmail.com"), help="IMAP server (overrides environment variable)")
     parser.add_argument("--folder", default="INBOX",
                         help="Email folder to process")
+    parser.add_argument("--model", default="",
+                        help="Specific model to use (provider-dependent)")
 
     args = parser.parse_args()
 
@@ -41,22 +43,27 @@ def main():
     email_processor = EmailProcessor(args.email, args.password, args.server)
 
     # Choose summarizer based on arguments
-    if args.summarizer == "claude":
-        api_key = os.environ.get("CLAUDE_API_KEY")
-        if not api_key:
-            print("Claude API key not found in environment variables")
-            return
-        summarizer = ClaudeSummarizer(api_key)
-    elif args.summarizer == "chatgpt":
-        api_key = os.environ.get("OPENAI_API_KEY")
-        if not api_key:
-            print("OpenAI API key not found in environment variables")
-            return
-        summarizer = ChatGPTSummarizer(api_key)
-    elif args.summarizer == "ollama":
-        model = os.environ.get("OLLAMA_MODEL", "mistral")
-        base_url = os.environ.get("OLLAMA_URL", "http://localhost:11434")
-        summarizer = OllamaSummarizer(model, base_url)
+    try:
+        if args.summarizer == "claude":
+            api_key = os.environ.get("CLAUDE_API_KEY")
+            model = args.model or os.environ.get(
+                "CLAUDE_MODEL", "claude-3-haiku-20240307")
+            summarizer = ClaudeSummarizer(api_key=api_key, model=model)
+        elif args.summarizer == "chatgpt":
+            api_key = os.environ.get("OPENAI_API_KEY")
+            model = args.model or os.environ.get(
+                "OPENAI_MODEL", "gpt-3.5-turbo")
+            summarizer = ChatGPTSummarizer(api_key=api_key, model=model)
+        elif args.summarizer == "ollama":
+            model = args.model or os.environ.get("OLLAMA_MODEL", "mistral")
+            base_url = os.environ.get("OLLAMA_URL", "http://localhost:11434")
+            summarizer = OllamaSummarizer(model=model, base_url=base_url)
+    except ConfigurationError as e:
+        print(f"Configuration error: {e}")
+        return
+    except Exception as e:
+        print(f"Unexpected error initializing summarizer: {e}")
+        return
 
     summary_writer = SummaryWriter(output_dir=args.output_dir)
 
@@ -78,17 +85,20 @@ def main():
 
         # Summarize
         print("Generating summary...")
-        summary = summarizer.summarize(email_data['body'], email_data)
+        result = summarizer.summarize(email_data['body'], email_data)
 
-        if not summary:
-            print("Failed to generate summary. Skipping...")
+        if not result.is_success():
+            print(f"Failed to generate summary: {result.error}")
             continue
 
-        # Write summary to file
+        summary = result.summary
+
         filepath = summary_writer.write_summary(summary, email_data)
 
         if filepath:
             print(f"Summary saved to: {filepath}")
+            print(
+                f"Used model: {result.model_used} ({result.tokens_used} tokens)")
         else:
             print("Failed to save summary.")
 
