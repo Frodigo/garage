@@ -3,6 +3,25 @@ This page is something like journal. I just write down here my progress.
 Items here are sorted from the newest to the oldest ones.
 
 - *13-04-2025:*
+ 	- I came up with idea about creating a github bot that will  assign issues to contributors when they want to work on something
+ 	- configured CodeQL scans and dependabot in the repo
+ 	- increased context length in nitrodigest Ollama model <https://github.com/Frodigo/garage/pull/96>
+  		- but
+   			- more context, more RAM needed
+   			- quality of responses can decrease
+   			- chunked prompts can be an option
+    				- <https://github.com/Frodigo/garage/issues/97>
+- *13-04-2025:*
+ 	- Created issues to refactor Java/c# projects in garage to Python
+  		- <https://github.com/Frodigo/garage/issues/81>
+  		- <https://github.com/Frodigo/garage/issues/82>
+  		- <https://github.com/Frodigo/garage/issues/83>
+ 	- I came up with an idea about creating worflows that checks if text or code was created by AI
+  		- <https://github.com/Frodigo/garage/issues/77>
+  		- <https://github.com/Frodigo/garage/issues/78>
+ 	- added precommit hooks to the garage repo, cleaned codebase
+  		- <https://github.com/Frodigo/garage/pull/79>
+  		- <https://github.com/Frodigo/garage/pull/80>
   - published article [[What well-known life laws I confirmed when I did a kitchen renovation]]
   - found interesting resource about prompt engineering: [https://www.kaggle.com/whitepaper-prompt-engineering](https://www.kaggle.com/whitepaper-prompt-engineering)
   - added Ollama docker setup in the NitroDigest project: [https://github.com/Frodigo/garage/pull/67](https://github.com/Frodigo/garage/pull/67)

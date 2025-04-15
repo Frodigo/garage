@@ -29,6 +29,12 @@
         },
         "md022": {
             "enabled": false
+        },
+        "md025": {
+            "enabled": false
+        },
+        "md005": {
+            "enabled": false
         }
     }
 }
