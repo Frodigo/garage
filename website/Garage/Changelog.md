@@ -2,30 +2,72 @@ This page is something like journal. I just write down here my progress.
 
 Items here are sorted from the newest to the oldest ones.
 
-- *13-04-2025:*
- 	- I came up with idea about creating a github bot that will  assign issues to contributors when they want to work on something
- 	- configured CodeQL scans and dependabot in the repo
- 	- increased context length in nitrodigest Ollama model <https://github.com/Frodigo/garage/pull/96>
-  		- but
-   			- more context, more RAM needed
-   			- quality of responses can decrease
-   			- chunked prompts can be an option
-    				- <https://github.com/Frodigo/garage/issues/97>
-- *13-04-2025:*
- 	- Created issues to refactor Java/c# projects in garage to Python
-  		- <https://github.com/Frodigo/garage/issues/81>
-  		- <https://github.com/Frodigo/garage/issues/82>
-  		- <https://github.com/Frodigo/garage/issues/83>
- 	- I came up with an idea about creating worflows that checks if text or code was created by AI
-  		- <https://github.com/Frodigo/garage/issues/77>
-  		- <https://github.com/Frodigo/garage/issues/78>
- 	- added precommit hooks to the garage repo, cleaned codebase
-  		- <https://github.com/Frodigo/garage/pull/79>
-  		- <https://github.com/Frodigo/garage/pull/80>
+- _16-04-2025:_
+  - Implemented Configuration management in JSON for NitroDigest [https://github.com/Frodigo/garage/pull/99]
+- _15-04-2025:_
+  - Implemented retries in NitroDigest: [https://github.com/Frodigo/garage/pull/99]
+  - Refreshed knowledge aboud retries and did analysis needed in [https://github.com/Frodigo/garage/issues/69]
+    - research retry patterns and libraries
+      - why retry is needed
+        - momentary network glitch
+        - temporary service unavailability
+        - resource exhaustion
+      - common retry patterns:
+        - Fixed backoff
+          - fixed time like every 5s do retry
+        - Exponential backoff
+          - progressively longer waiting periods between retry attempts
+        - Random backoff (Jitter)
+          - helping to prevent the "thundering herd" problem where multiple failed requests all retry simultaneously
+        - Circuit breaker pattern combination
+          - circuit breaker prevents continuous retry attempts when a threshold of failures is reached,
+          - avoiding unnecessary load on already struggling services
+      - best practices
+        - set reasonable retry limits
+        - Implement appropriate Backoff Strategies
+          - Use fixed backoff for user-facing operations requiring quick responses
+          - Implement exponential backoff for background processes or when downstream services need recovery time
+          - Add randomness (jitter) to prevent thundering herd problems in high-volume systems
+      - libs that can I use
+        - [https://github.com/jd/tenacity]
+    - SDKs for LLMs
+      - Ollama (no retries OOTB)
+        - [https://github.com/ollama/ollama-python]
+      - Claude (retry by default when use sdk)
+        - [https://github.com/anthropics/anthropic-sdk-python]
+          - has retries [https://github.com/anthropics/anthropic-sdk-python?tab=readme-ov-file#retries]
+          - timeouts: [https://github.com/anthropics/anthropic-sdk-python?tab=readme-ov-file#timeouts]
+      - Open AI (retry by default when use sdk)
+        - [https://github.com/openai/openai-python]
+          - retires by default [https://github.com/openai/openai-python?tab=readme-ov-file#retries]
+    - potential error types in Ollama, Claude and Open AI docs
+      - Ollama
+        - timeout 30s
+        - custom timeouts
+          - `from llama_index.llms.ollama import Ollama llm = Ollama(request_timeout=60.0) # 60 seconds`
+        - > 500
+      - Claude
+        - 408 Request Timeout
+        - 409 Conflict
+        - 429 Rate Limit,
+        - and >=500
+      - Open AI
+        - 408 Request Timeout
+        - 409 Conflict
+        - 429 Rate Limit
+        - and >=500
+- _14-04-2025:_
+  - I came up with idea about creating a github bot that will assign issues to contributors when they want to work on something
+  - configured CodeQL scans and dependabot in the repo
+  - increased context length in nitrodigest Ollama model <https://github.com/Frodigo/garage/pull/96> - but - more context, more RAM needed - quality of responses can decrease - chunked prompts can be an option - <https://github.com/Frodigo/garage/issues/97>
+- _13-04-2025:_
+  - Created issues to refactor Java/c# projects in garage to Python - <https://github.com/Frodigo/garage/issues/81> - <https://github.com/Frodigo/garage/issues/82> - <https://github.com/Frodigo/garage/issues/83>
+  - I came up with an idea about creating worflows that checks if text or code was created by AI - <https://github.com/Frodigo/garage/issues/77> - <https://github.com/Frodigo/garage/issues/78>
+  - added precommit hooks to the garage repo, cleaned codebase - <https://github.com/Frodigo/garage/pull/79> - <https://github.com/Frodigo/garage/pull/80>
   - published article [[What well-known life laws I confirmed when I did a kitchen renovation]]
   - found interesting resource about prompt engineering: [https://www.kaggle.com/whitepaper-prompt-engineering](https://www.kaggle.com/whitepaper-prompt-engineering)
   - added Ollama docker setup in the NitroDigest project: [https://github.com/Frodigo/garage/pull/67](https://github.com/Frodigo/garage/pull/67)
-- *12-04-2025:*
+- _12-04-2025:_
   - first contributor created PR in the Garage. Thanks @nestak!
   - started testing Typesy - to write faster on keyboard
   - started using Socrating Writing AI Agent
@@ -33,7 +75,7 @@ Items here are sorted from the newest to the oldest ones.
     - This is amazing resource to get started with Python: [https://docs.python.org/3/tutorial/index.html](https://docs.python.org/3/tutorial/index.html)
   - started using Socratic Programming Tutor AI agent
     - [https://github.com/Frodigo/garage/pull/61](https://github.com/Frodigo/garage/pull/61)
-- *08-04-2025:*
+- _08-04-2025:_
   - updated roadmap in garage
     - I wanted the roadmap to be more achievable. I removed most of them and left only the most important ones
     - I also rewrote the learning roadmap to focus more on practical action and learning by doing than dry theory
@@ -42,13 +84,13 @@ Items here are sorted from the newest to the oldest ones.
   - renamed NewsletterSummarizer project to NitroDigest
   - rewritten NewsletterSummarizer from C# to Python
   - decided to use Python as a main language in the garage: [[ADR001 - Programming language for the Garage project]]
-- *07-03-2025:*
+- _07-03-2025:_
   - updated category page in the garage
   - removed the "Home" page, and configured the "Garage" page as a homepage
 
 ## Milestone 2025.1
 
-- *Closed milestone 2025.1 at 04.04.2025*
+- _Closed milestone 2025.1 at 04.04.2025_
   - Corresponding Github release: [https://github.com/Frodigo/garage/releases/tag/2025.1](https://github.com/Frodigo/garage/releases/tag/2025.1)
 - I realized that we are far away from the moment when AI will replace programmers
 - Started using Claude Code for experiments
