@@ -1,63 +1,137 @@
-import os
 from argparse import ArgumentParser
-from dotenv import load_dotenv
+import os
 
 from email_processor import EmailProcessor
-from summarizer import ClaudeSummarizer, ChatGPTSummarizer, OllamaSummarizer, ConfigurationError
+from summarizer import (
+    ClaudeSummarizer,
+    ChatGPTSummarizer,
+    OllamaSummarizer,
+    ConfigurationError
+)
 from summary_writer import SummaryWriter
+from config import Config, SummarizerType
 
 
 def main():
-    # Load environment variables from .env file if it exists
-    load_dotenv()
-
     # Define possible program parameters
     parser = ArgumentParser(
-        description="NitroDigest - Email newsletter summarizer")
-    parser.add_argument("--limit", type=int, default=5,
-                        help="Maximum number of emails to process")
-    parser.add_argument("--output-dir", default="summaries",
-                        help="Directory to save summaries")
-    parser.add_argument("--summarizer", choices=["claude", "chatgpt", "ollama"], default="ollama",
-                        help="Summarizer to use")
-    parser.add_argument("--mark-as-read", action="store_true",
-                        help="Mark processed emails as read")
-    parser.add_argument("--email", default=os.environ.get("EMAIL_ADDRESS"),
-                        help="Email address (overrides environment variable)")
-    parser.add_argument("--password", default=os.environ.get("EMAIL_PASSWORD"),
-                        help="Email password (overrides environment variable)")
-    parser.add_argument("--server", default=os.environ.get("IMAP_SERVER",
-                        "imap.gmail.com"), help="IMAP server (overrides environment variable)")
-    parser.add_argument("--folder", default="INBOX",
-                        help="Email folder to process")
-    parser.add_argument("--model", default="",
-                        help="Specific model to use (provider-dependent)")
+        description="NitroDigest - Email newsletter summarizer"
+    )
+    parser.add_argument(
+        "--config",
+        type=str,
+        default="config.json",
+        help="Path to JSON configuration file (default: config.json)"
+    )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        help="Maximum number of emails to process"
+    )
+    parser.add_argument(
+        "--output-dir",
+        help="Directory to save summaries"
+    )
+    parser.add_argument(
+        "--mark-as-read",
+        action="store_true",
+        help="Mark processed emails as read"
+    )
+    parser.add_argument(
+        "--email",
+        help="Email address (overrides config)"
+    )
+    parser.add_argument(
+        "--password",
+        help="Email password (overrides config)"
+    )
+    parser.add_argument(
+        "--server",
+        help="IMAP server (overrides config)"
+    )
+    parser.add_argument(
+        "--folder",
+        help="Email folder to process"
+    )
+    parser.add_argument(
+        "--timeout",
+        type=int,
+        help="Timeout in seconds for API requests"
+    )
 
     args = parser.parse_args()
 
-    if not args.email or not args.password:
-        print("Email credentials not found. Please provide them as arguments or environment variables.")
+    # Load configuration
+    try:
+        if not os.path.exists(args.config):
+            print(f"Error: Configuration file '{args.config}' not found")
+            return
+
+        config = Config.from_json(args.config)
+
+        # Override config with command line arguments if provided
+        if args.limit:
+            config.limit = args.limit
+        if args.output_dir:
+            config.summaries_path = args.output_dir
+        if args.mark_as_read:
+            config.mark_as_read = True
+        if args.email:
+            config.email.address = args.email
+        if args.password:
+            config.email.password = args.password
+        if args.server:
+            config.email.server = args.server
+        if args.folder:
+            config.email.folder = args.folder
+        if args.timeout:
+            config.summarizer.timeout = args.timeout
+
+        # Validate configuration
+        config.validate()
+
+    except Exception as e:
+        print(f"Configuration error: {e}")
         return
 
     # Initialize components
-    email_processor = EmailProcessor(args.email, args.password, args.server)
+    email_processor = EmailProcessor(
+        config.email.address,
+        config.email.password,
+        config.email.server,
+        config.email.port
+    )
 
-    # Choose summarizer based on arguments
+    # Choose summarizer based on configuration
     try:
-        if args.summarizer == "claude":
-            api_key = os.environ.get("CLAUDE_API_KEY")
-            model = args.model or os.environ.get(
-                "CLAUDE_MODEL", "claude-3-haiku-20240307")
-            summarizer = ClaudeSummarizer(api_key=api_key, model=model)
-        elif args.summarizer == "chatgpt":
-            api_key = os.environ.get("OPENAI_API_KEY")
-            model = args.model or os.environ.get(
-                "OPENAI_MODEL", "gpt-3.5-turbo")
-            summarizer = ChatGPTSummarizer(api_key=api_key, model=model)
-        elif args.summarizer == "ollama":
-            model = args.model or os.environ.get("OLLAMA_MODEL", "mistral")
-            base_url = os.environ.get("OLLAMA_URL", "http://localhost:11434")
-            summarizer = OllamaSummarizer(model=model, base_url=base_url)
+        if config.summarizer.type == SummarizerType.CLAUDE:
+            if not config.summarizer.api_key:
+                raise ConfigurationError("Claude API key is required")
+            if not config.summarizer.model:
+                raise ConfigurationError("Model is required for Claude")
+            summarizer = ClaudeSummarizer(
+                api_key=config.summarizer.api_key,
+                model=config.summarizer.model,
+                timeout=config.summarizer.timeout
+            )
+        elif config.summarizer.type == SummarizerType.CHATGPT:
+            if not config.summarizer.api_key:
+                raise ConfigurationError("ChatGPT API key is required")
+            if not config.summarizer.model:
+                raise ConfigurationError("Model is required for ChatGPT")
+            summarizer = ChatGPTSummarizer(
+                api_key=config.summarizer.api_key,
+                model=config.summarizer.model,
+                timeout=config.summarizer.timeout
+            )
+        elif config.summarizer.type == SummarizerType.OLLAMA:
+            if not config.summarizer.model:
+                raise ConfigurationError("Model is required for Ollama")
+            summarizer = OllamaSummarizer(
+                model=config.summarizer.model,
+                base_url=config.summarizer.base_url,
+                timeout=config.summarizer.timeout
+            )
     except ConfigurationError as e:
         print(f"Configuration error: {e}")
         return
@@ -65,12 +139,15 @@ def main():
         print(f"Unexpected error initializing summarizer: {e}")
         return
 
-    summary_writer = SummaryWriter(output_dir=args.output_dir)
+    summary_writer = SummaryWriter(output_dir=config.summaries_path)
 
     # Process emails
-    print(f"Fetching up to {args.limit} unread emails from {args.folder}...")
+    print(
+        f"Fetching up to {config.limit} unread emails from "
+        f"{config.email.folder}..."
+    )
     emails = email_processor.get_unread_emails(
-        folder=args.folder, limit=args.limit)
+        folder=config.email.folder, limit=config.limit)
 
     if not emails:
         print("No unread emails found.")
@@ -98,12 +175,14 @@ def main():
         if filepath:
             print(f"Summary saved to: {filepath}")
             print(
-                f"Used model: {result.model_used} ({result.tokens_used} tokens)")
+                f"Used model: {result.model_used} "
+                f"({result.tokens_used} tokens)"
+            )
         else:
             print("Failed to save summary.")
 
         # Mark as read if requested
-        if args.mark_as_read:
+        if config.mark_as_read:
             email_processor.mark_as_read(email_data['id'])
             print("Email marked as read")
 
