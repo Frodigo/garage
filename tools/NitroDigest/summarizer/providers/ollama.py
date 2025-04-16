@@ -21,10 +21,16 @@ from summarizer.utils.retry import retry
 class OllamaSummarizer(BaseSummarizer):
     """Summarizer that uses a local Ollama instance"""
 
-    def __init__(self, model: str = "mistral", base_url: str = "http://localhost:11434"):
+    def __init__(
+        self,
+        model: str = "mistral",
+        base_url: str = "http://localhost:11434",
+        timeout: int = 300
+    ):
         super().__init__()
         self.model = model
-        self.base_url = base_url
+        self.base_url = base_url.rstrip('/')
+        self.timeout = timeout
 
         # Verify Ollama is available
         self._verify_ollama_availability()
@@ -40,35 +46,32 @@ class OllamaSummarizer(BaseSummarizer):
             response = requests.get(f"{self.base_url}/api/tags", timeout=5)
             if response.status_code != 200:
                 raise ConfigurationError(
-                    f"Ollama server returned status code {response.status_code}. Make sure Ollama is running.")
+                    f"Ollama server returned status code "
+                    f"{response.status_code}. "
+                    "Make sure Ollama is running."
+                )
         except requests.RequestException as e:
             raise ConfigurationError(
-                f"Failed to connect to Ollama server at {self.base_url}: {str(e)}")
+                f"Failed to connect to Ollama server at "
+                f"{self.base_url}: {str(e)}"
+            )
 
-    def summarize(self, text: str, metadata: Optional[Dict[str, Any]] = None) -> SummaryResult:
-        """
-        Summarize text using Ollama API.
-
-        Args:
-            text: The text to summarize
-            metadata: Optional metadata about the text
-
-        Returns:
-            A SummaryResult object containing the result of the summarization
-        """
+    def summarize(
+        self,
+        content: str,
+        metadata: Optional[Dict[str, Any]] = None
+    ) -> SummaryResult:
         try:
-            self._validate_input(text)
+            self._validate_input(content)
 
-            headers = {"Content-Type": "application/json"}
-            prompt = self.prompt.format(text, metadata)
+            headers = self._prepare_headers()
+            prompt = self.prompt.format(content, metadata)
             data = self._prepare_request_data(prompt)
 
             self.logger.info(
                 f"Sending request to Ollama API using model {self.model}")
             response = self.call_ollama_api(headers, data)
-
             self._check_response_status(response)
-
             response_data = response.json()
             summary = response_data["response"]
 
@@ -145,13 +148,17 @@ class OllamaSummarizer(BaseSummarizer):
             error_data = response.json()
             if isinstance(error_data, dict) and "error" in error_data:
                 error_text = error_data.get("error", error_text)
-        except:
+        except json.JSONDecodeError:
             pass
 
         raise APIResponseError(response.status_code, error_text)
 
     @retry
-    def call_ollama_api(self, headers: Dict[str, str], data: Dict[str, Any]) -> requests.Response:
+    def call_ollama_api(
+        self,
+        headers: Dict[str, str],
+        data: Dict[str, Any]
+    ) -> requests.Response:
         """
         Call Ollama API with retry capability.
 
@@ -177,4 +184,12 @@ class OllamaSummarizer(BaseSummarizer):
                 "Request to Ollama API timed out after 300 seconds")
         except requests.ConnectionError:
             raise APIConnectionError(
-                f"Failed to connect to Ollama API at {self.base_url}. Check if Ollama is running.")
+                f"Failed to connect to Ollama API at {self.base_url}. "
+                "Check if Ollama is running."
+            )
+
+    def _prepare_headers(self) -> Dict[str, str]:
+        """Prepare request headers."""
+        return {
+            "Content-Type": "application/json"
+        }

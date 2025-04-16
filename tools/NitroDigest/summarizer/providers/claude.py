@@ -2,7 +2,6 @@
 Claude API implementation of the summarizer.
 """
 
-import os
 import json
 import requests
 from typing import Dict, Any, Optional
@@ -10,13 +9,10 @@ from typing import Dict, Any, Optional
 from summarizer.base import BaseSummarizer
 from summarizer.models import SummaryResult, ModelStatus
 from summarizer.exceptions import (
-    ConfigurationError,
     APIConnectionError,
     APIResponseError,
     APIAuthenticationError,
-    APIRateLimitError,
-    ContentProcessingError,
-    SummarizerError
+    APIRateLimitError
 )
 from summarizer.utils.retry import retry
 
@@ -24,31 +20,25 @@ from summarizer.utils.retry import retry
 class ClaudeSummarizer(BaseSummarizer):
     """Summarizer that uses Anthropic's Claude API"""
 
-    def __init__(self, api_key: Optional[str] = None, model: str = "claude-3-haiku-20240307"):
+    def __init__(
+        self,
+        api_key: str,
+        model: str = "claude-3-haiku-20240307",
+        timeout: int = 300
+    ):
         super().__init__()
-        self.api_key = api_key or os.environ.get("CLAUDE_API_KEY")
+        self.api_key = api_key
         self.model = model
+        self.timeout = timeout
 
-        if not self.api_key:
-            raise ConfigurationError(
-                "Claude API key is required. Set CLAUDE_API_KEY environment variable or pass api_key parameter.")
-
-    def summarize(self, text: str, metadata: Optional[Dict[str, Any]] = None) -> SummaryResult:
-        """
-        Summarize text using Claude API.
-
-        Args:
-            text: The text to summarize
-            metadata: Optional metadata about the text
-
-        Returns:
-            A SummaryResult object containing the result of the summarization
-        """
+    def summarize(
+        self,
+        content: str,
+        metadata: Optional[Dict[str, Any]] = None
+    ) -> SummaryResult:
         try:
-            self._validate_input(text)
-
             headers = self._prepare_headers()
-            prompt = self.prompt.format(text, metadata)
+            prompt = self.prompt.format(content, metadata)
             data = self._prepare_request_data(prompt)
 
             self.logger.info(
@@ -56,47 +46,29 @@ class ClaudeSummarizer(BaseSummarizer):
             response = self.call_anthropic_api(headers, data)
 
             self._check_response_status(response)
-
             response_data = response.json()
+
             summary = response_data["content"][0]["text"]
 
             tokens_used = 0
             if "usage" in response_data:
-                tokens_used = response_data["usage"].get(
-                    "output_tokens", 0) + response_data["usage"].get("input_tokens", 0)
+                tokens_used = (
+                    response_data["usage"].get("output_tokens", 0) +
+                    response_data["usage"].get("input_tokens", 0)
+                )
 
             return SummaryResult(
                 status=ModelStatus.SUCCESS,
                 summary=summary,
                 model_used=self.model,
-                tokens_used=tokens_used,
-                metadata={"api_response": response_data}
+                tokens_used=tokens_used
             )
 
-        except SummarizerError as e:
-            self.logger.error(f"Summarizer error: {str(e)}", exc_info=True)
-            return SummaryResult(
-                status=ModelStatus.ERROR,
-                error=e
-            )
-        except ValueError as e:
-            self.logger.error(f"Validation error: {str(e)}", exc_info=True)
-            return SummaryResult(
-                status=ModelStatus.ERROR,
-                error=ContentProcessingError(str(e))
-            )
-        except requests.RequestException as e:
-            self.logger.error(f"Request error: {str(e)}", exc_info=True)
-            return SummaryResult(
-                status=ModelStatus.ERROR,
-                error=APIConnectionError(
-                    f"Failed to connect to Claude API: {str(e)}")
-            )
         except Exception as e:
-            self.logger.error(f"Unexpected error: {str(e)}", exc_info=True)
             return SummaryResult(
                 status=ModelStatus.ERROR,
-                error=SummarizerError(f"Unexpected error: {str(e)}")
+                error=APIConnectionError(str(e)),
+                model_used=self.model
             )
 
     def _prepare_headers(self) -> Dict[str, str]:
@@ -107,7 +79,7 @@ class ClaudeSummarizer(BaseSummarizer):
             A dictionary of headers for the API request
         """
         return {
-            "x-api-key": self.api_key or "",
+            "x-api-key": self.api_key,
             "Content-Type": "application/json",
             "anthropic-version": "2023-06-01"
         }
@@ -151,20 +123,28 @@ class ClaudeSummarizer(BaseSummarizer):
             error_data = response.json()
             if isinstance(error_data, dict) and "error" in error_data:
                 error_text = error_data["error"].get("message", error_text)
-        except:
+        except json.JSONDecodeError:
             pass
 
         if response.status_code == 401:
             raise APIAuthenticationError(
-                response.status_code, "Authentication failed. Check your API key.")
+                response.status_code,
+                "Authentication failed. Check your API key."
+            )
         elif response.status_code == 429:
             raise APIRateLimitError(
-                response.status_code, "Rate limit exceeded. Try again later.")
+                response.status_code,
+                "Rate limit exceeded. Try again later."
+            )
         else:
             raise APIResponseError(response.status_code, error_text)
 
     @retry
-    def call_anthropic_api(self, headers: Dict[str, str], data: Dict[str, Any]) -> requests.Response:
+    def call_anthropic_api(
+        self,
+        headers: Dict[str, str],
+        data: Dict[str, Any]
+    ) -> requests.Response:
         """
         Call Anthropic API with retry capability.
 
@@ -182,12 +162,15 @@ class ClaudeSummarizer(BaseSummarizer):
             return requests.post(
                 "https://api.anthropic.com/v1/messages",
                 headers=headers,
-                data=json.dumps(data),
-                timeout=30
+                json=data,
+                timeout=self.timeout
             )
         except requests.Timeout:
             raise APIConnectionError(
-                "Request to Claude API timed out after 30 seconds")
+                f"Request to Claude API timed out after {self.timeout} seconds"
+            )
         except requests.ConnectionError:
             raise APIConnectionError(
-                "Failed to connect to Claude API. Check your internet connection.")
+                "Failed to connect to Claude API. Check your internet "
+                "connection."
+            )

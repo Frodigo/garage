@@ -28,7 +28,7 @@ cd tools/NitroDigest
 
 ### Create a virtual environment
 
-### Using venv
+#### Using venv
 
 ```bash
 # Create virtual environment
@@ -41,7 +41,7 @@ source venv/bin/activate
 venv\Scripts\activate
 ```
 
-### Using conda
+#### Using conda
 
 ```bash
 # Create conda environment
@@ -59,24 +59,54 @@ pip install -r requirements.txt
 
 ## Configuration
 
-### Environment Variables
+Rename `config.json.sample` file to `config.json` and fill it with your own values.
 
-Create a `.env` file in the project directory with the following variables:
+Config structure:
 
-```bash
-# Email credentials (required)
-EMAIL_ADDRESS=your-email@gmail.com
-EMAIL_PASSWORD=your-password-or-app-password
-IMAP_SERVER=imap.gmail.com
-
-# AI API keys (at least one is required)
-ANTHROPIC_API_KEY=your-claude-api-key
-OPENAI_API_KEY=your-openai-api-key
-
-# Ollama configuration (if you prefer to use ollama)
-OLLAMA_MODEL=mistral
-OLLAMA_URL=http://localhost:11434
+```json
+{
+  "email": {
+    "address": "your-email@gmail.com",
+    "password": "your-password-or-app-password",
+    "server": "imap.gmail.com",
+    "port": 993,
+    "folder": "INBOX"
+  },
+  "summarizer": {
+    "type": "ollama",
+    "model": "nitroModel",
+    "base_url": "http://localhost:11434",
+    "timeout": 300
+  },
+  "summaries_path": "summaries",
+  "limit": 5,
+  "mark_as_read": true
+}
 ```
+
+### Configuration Options
+
+#### Email Settings
+
+- `email.address`: Your email address
+- `email.password`: Your email password or app password
+- `email.server`: IMAP server (default: "imap.gmail.com")
+- `email.port`: IMAP port (default: 993)
+- `email.folder`: Email folder to process (default: "INBOX")
+
+#### Summarizer Settings
+
+- `summarizer.type`: One of "claude", "chatgpt", or "ollama"
+- `summarizer.model`: Model name to use (for Ollama)
+- `summarizer.base_url`: Base URL for Ollama (default: [http://localhost:11434])
+- `summarizer.api_key`: API key for Claude or ChatGPT (required for those services)
+- `summarizer.timeout`: time in seconds that summarizer waits for response from LLM
+
+#### General Settings
+
+- `summaries_path`: Directory to save summaries (default: "summaries")
+- `limit`: Maximum number of emails to process (default: 5)
+- `mark_as_read`: Whether to mark processed emails as read (default: true)
 
 ### Gmail Configuration
 
@@ -114,18 +144,7 @@ Note that first build could take some time (~10-20min - depending on the interne
 
 1. Access the Ollama API directly at [http://localhost:11434](http://localhost:11434) or the web interface at [http://localhost:3000](http://localhost:11434)
 
-Note: make sure that you have correct configuration in the `.env` file like this:
-
-```bash
-# Ollama configuration
-OLLAMA_API_URL=http://localhost:11434
-OLLAMA_MODEL=llama2
-
-# Summarizer selection (claude, chatgpt, ollama)
-ACTIVE_SUMMARIZER=ollama
-```
-
-If so, you are ready to use NitroDigest with local Ollama
+Note: make sure that you have correct configuration in your `config.json` or `.env` file.
 
 ### Installing new models
 
@@ -173,92 +192,55 @@ ollama run llama2
 
 ### Basic Usage
 
+Run NitroDigest with the default configuration file (`config.json`):
+
 ```bash
-# Process 5 unread emails using Claude (default)
 python main.py
 ```
 
-### Command Line Options
+### Using a Custom Configuration File
+
+If you want to use a different configuration file:
 
 ```bash
-# Process 10 unread emails
-python main.py --limit 10
-
-# Use ChatGPT instead of Claude
-python main.py --summarizer chatgpt
-
-# Process emails from a specific folder
-python main.py --folder "Newsletters"
-
-# Save summaries to a custom directory
-python main.py --output-dir "my_summaries"
-
-# Use local Ollama model
-python main.py --summarizer ollama
-
-# Mark processed emails as read
-python main.py --mark-as-read
-
-# See all available options
-python main.py --help
+python main.py --config custom_config.json
 ```
 
-### Output
+### Command Line Arguments
 
-The program will create markdown files in the specified output directory (default: `summaries/`). Each summary file includes:
+You can override any configuration setting using command line arguments:
 
-- YAML frontmatter with metadata
-- Markdown-formatted summary of the newsletter content
-- Files are named using the date and subject of the email
+```bash
+python main.py \
+    --limit 10 \
+    --output-dir custom_summaries \
+    --summarizer ollama \
+    --model mistral \
+    --mark-as-read \
+    --email custom@example.com \
+    --password custom-password \
+    --server imap.example.com \
+    --folder CUSTOM_FOLDER
+```
+
+Available arguments:
+
+- `--config`: Path to configuration file (default: config.json)
+- `--limit`: Maximum number of emails to process
+- `--output-dir`: Directory to save summaries
+- `--mark-as-read`: Mark processed emails as read
+- `--email`: Email address (overrides config)
+- `--password`: Email password (overrides config)
+- `--server`: IMAP server (overrides config)
+- `--folder`: Email folder to process
+- `--timeout`: time in seconds that summarizer waits for response from LLM
 
 ## Testing
 
-### Running Tests
-
-Run all tests:
+Run tests using pytest:
 
 ```bash
-# Install test dependencies
-pip install -r requirements.txt
-
-# Run all tests
-python -m pytest
-```
-
-Run tests with coverage:
-
-```bash
-python -m pytest --cov=.
-```
-
-### Test Organization
-
-- Tests are located in the `__tests__` directory
-- Each module has a corresponding test file with the naming convention `test_*.py`
-- Test discovery is configured in `pytest.ini`
-
-### Running Specific Tests
-
-```bash
-# Run a specific test file
-python -m pytest __tests__/test_html_extractor.py
-
-# Run a specific test class
-python -m pytest __tests__/test_summarizer.py::TestClaudeSummarizer
-
-# Run a specific test method
-python -m pytest __tests__/test_summarizer.py::TestClaudeSummarizer::test_summarize_success
-```
-
-### Example Usage
-
-You can also run the example code in each module directly:
-
-```bash
-python html_extractor.py
-python email_processor.py
-python summarizer.py
-python summary_writer.py
+pytest
 ```
 
 ## Contributing
@@ -290,8 +272,4 @@ Don't worry if you're not sure about something - we're here to help! Just open a
 
 ## License
 
-This project is open source under the MIT License.
-
-## Acknowledgements
-
-This project was inspired by NewslettersSummaryConsole.
+This project is licensed under the MIT License - see the LICENSE file for details.
