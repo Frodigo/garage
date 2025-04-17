@@ -6,11 +6,14 @@ A Python tool for automatically summarizing email newsletters using AI.
 
 - Connect to IMAP email servers to retrieve unread newsletters
 - Extract text content from HTML emails
+- Two-step summarization process:
+  1. Initial summary with key points and links
+  2. Refined summary with single-sentence bullets and links
 - Summarize content using various AI models:
   - Claude (Anthropic)
   - ChatGPT (OpenAI)
   - Ollama (local models)
-- Save summaries as Markdown files with YAML frontmatter
+- Save all summaries in a single combined Markdown file with YAML frontmatter
 - Command-line interface with various options
 
 ## Requirements
@@ -273,3 +276,34 @@ Don't worry if you're not sure about something - we're here to help! Just open a
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Output Format
+
+Summaries are saved in a single `combined_summaries.md` file in your specified output directory. Each summary includes:
+
+- YAML frontmatter with metadata (title, source, date, etc.)
+- The refined summary with single-sentence bullets and links
+- Separators between different summaries
+
+Example output structure:
+
+```markdown
+# Combined Newsletter Summaries
+
+---
+
+title: Tech Weekly Newsletter
+source: tech@example.com
+date: 2024-03-20
+email_id: 12345
+summary_date: 2024-03-20 14:30:00
+
+---
+
+- OpenAI released GPT-5 with improved reasoning [link]
+- Apple announced M3 Pro chips with better performance [link]
+
+---
+
+// ... next summary ...
+```
