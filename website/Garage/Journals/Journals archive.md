@@ -1,5 +1,3 @@
-This page is something like journal. I just write down here my progress.
-
 Items here are sorted from the newest to the oldest ones.
 
 - _17-04-2025:_

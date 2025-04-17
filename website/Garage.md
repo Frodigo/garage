@@ -25,7 +25,7 @@ Recently I started learning Python and I really like the "Zen of Python". Inspir
 
 1. Independence over dependency
 2. Creation over consumption
-3. Progress over perfection
+3. [[Progress over perfection]]
 4. Open-source over closed-source
 5. Honesty over marketing BS
 
@@ -36,6 +36,7 @@ Recently I started learning Python and I really like the "Zen of Python". Inspir
 - Garage (this page)
 - [[About]] - in case if you want to read more about me
 - [[Now]] - describes what I am currently focusing on and what I am doing
+- [[Changelog]] - a record of my progress and writing
 - [[Contact]] - contact information
 - [[Books]] - there's not much there at the moment, but I'll be posting book reviews there
 - [[Projects]] - shows my recent and current projects
@@ -44,22 +45,6 @@ Recently I started learning Python and I really like the "Zen of Python". Inspir
 - [[Privacy policy]] - a page that clearly says that I don't use cookies and I don't collect any your data. You are safe in my garage
 
 The best way to read content here is to use a navigation and explore content grouped by folders.
-
-## Learning roadmap
-
-The most important folder is a Garage folder where I keep all the knowledge. I am interested in these things (and wanna write about them).
-
-I divided the content into a learning roadmap that helps me organize my learning paths and projects into simple to-do lists.
-Here are my learning roadmaps:
-
-- [[Garage/Machine learning|Machine learning]]
-- [[Cybersecurity]]
-- [[Database Systems and MySQL]]
-- [[Internet of things]]
-- [[Programming for Kids]]
-- [[Product Development]]
-
-Actually, you may ask why I write this content?
 
 ---
 
@@ -92,9 +77,3 @@ Besides this website I have also a blog on Medium. You can find it here:
 [https://medium.com/@frodigo](https://medium.com/@frodigo)
 
 My idea is to keep technical content on this website. On Medium I write less-technical content, stories, news etc.
-
----
-
-## Changelog
-
-[[Changelog]] is a place where I writer about changes, new content, new tools, experiments, books recommendations etc.
