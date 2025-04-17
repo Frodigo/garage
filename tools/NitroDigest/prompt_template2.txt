@@ -1,0 +1,3 @@
+Rewrite the following TL;DR so each bullet is a single sentence with a link, and remove any disclaimers or extra text:
+
+{text}

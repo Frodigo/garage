@@ -17,36 +17,51 @@ class SummaryWriter:
             os.makedirs(self.output_dir)
 
     def write_summary(self, summary, metadata):
-        """Write a summary to a markdown file with YAML frontmatter"""
+        """Write a summary to the combined markdown file
+        with YAML frontmatter"""
         if not summary or not metadata:
             return None
 
         try:
-            # Generate filename from subject or date
-            filename = self._generate_filename(metadata)
-            filepath = os.path.join(self.output_dir, filename)
+            # Get current date for filename
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            combined_file = os.path.join(
+                self.output_dir, f"combined_summaries_{current_date}.md")
+
+            # Initialize file if it doesn't exist
+            if not os.path.exists(combined_file):
+                with open(combined_file, 'w', encoding='utf-8') as f:
+                    f.write(
+                        "# Combined Newsletter Summaries - "
+                        f"{current_date}\n\n")
 
             # Prepare YAML frontmatter
             frontmatter = {
                 'title': metadata.get('subject', 'Untitled Newsletter'),
                 'source': metadata.get('from', 'Unknown'),
-                'date': metadata.get('date', datetime.now().strftime("%Y-%m-%d")),
+                'date': metadata.get(
+                    'date', datetime.now().strftime("%Y-%m-%d")),
                 'email_id': metadata.get('id', ''),
                 'summary_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
 
-            # Write to file with YAML frontmatter
-            with open(filepath, 'w', encoding='utf-8') as f:
+            # Append to combined file
+            with open(combined_file, 'a', encoding='utf-8') as f:
                 f.write('---\n')
-                yaml.dump(frontmatter, f, default_flow_style=False,
-                          allow_unicode=True)
+                yaml.dump(
+                    frontmatter,
+                    f,
+                    default_flow_style=False,
+                    allow_unicode=True
+                )
                 f.write('---\n\n')
                 f.write(summary)
+                f.write('\n\n---\n\n')
 
-            print(f"Summary written to {filepath}")
-            return filepath
+            print(f"Summary added to {combined_file}")
+            return combined_file
 
-        except Exception as e:
+        except (IOError, yaml.YAMLError) as e:
             print(f"Error writing summary file: {e}")
             return None
 
@@ -58,12 +73,12 @@ class SummaryWriter:
         # Try to parse date from metadata
         if 'date' in metadata:
             try:
-                # This is a simple approach - more sophisticated date parsing might be needed
+                # Simple date parsing approach
                 date_match = re.search(
                     r'\d{1,2}\s+\w+\s+\d{4}', metadata['date'])
                 if date_match:
                     date_str = date_match.group(0).replace(' ', '-').lower()
-            except:
+            except re.error:
                 pass
 
         if not date_str:
@@ -87,8 +102,10 @@ def test_summary_writer():
 - The new model processes images, audio, and text with higher accuracy
 
 ## Industry News
-- Apple announced M3 Pro chips with 40% better performance and lower power consumption
-- Google Cloud introduced new serverless database options for enterprise customers
+- Apple announced M3 Pro chips with 40% better performance and lower power
+consumption
+- Google Cloud introduced new serverless database options for enterprise
+customers
 
 ## Upcoming Events
 - Annual Developer Conference on May 15-17 in San Francisco

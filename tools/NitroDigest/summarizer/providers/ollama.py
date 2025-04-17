@@ -64,16 +64,30 @@ class OllamaSummarizer(BaseSummarizer):
         try:
             self._validate_input(content)
 
+            # First summarization
             headers = self._prepare_headers()
             prompt = self.prompt.format(content, metadata)
             data = self._prepare_request_data(prompt)
 
             self.logger.info(
-                f"Sending request to Ollama API using model {self.model}")
+                f"Sending first request to Ollama API "
+                f"using model {self.model}")
             response = self.call_ollama_api(headers, data)
             self._check_response_status(response)
             response_data = response.json()
-            summary = response_data["response"]
+            first_summary = response_data["response"]
+
+            # Second summarization
+            second_prompt = self.prompt.format_second(first_summary)
+            data = self._prepare_request_data(second_prompt)
+
+            self.logger.info(
+                f"Sending second request to Ollama API "
+                f"using model {self.model}")
+            response = self.call_ollama_api(headers, data)
+            self._check_response_status(response)
+            response_data = response.json()
+            final_summary = response_data["response"]
 
             tokens_used = 0
             if "eval_count" in response_data:
@@ -81,7 +95,7 @@ class OllamaSummarizer(BaseSummarizer):
 
             return SummaryResult(
                 status=ModelStatus.SUCCESS,
-                summary=summary,
+                summary=final_summary,
                 model_used=self.model,
                 tokens_used=tokens_used,
                 metadata={"api_response": response_data}

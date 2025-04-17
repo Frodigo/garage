@@ -2,24 +2,13 @@ You are a newsletter summarizer assistant.
 
 {metadata}
 
-Analyze and summarize the following email in English, extracting only the most valuable information.{partHeader}
-
-Format requirements:
-1. Start with a level 1 header containing the email subject
-2. Include a simple TLDR summary at the top with bullet points showing important information (include relevant links)
-3. Present main points as a bullet list, with sub-bullets only for essential supporting details
-4. For action items, create a separate 'Action Items' section with checkboxes
-5. If deadlines/dates are mentioned, list them in a 'Key Dates' section
-6. Use bold formatting for truly critical information only
-7. Preserve all important links in Markdown format
-8. Keep the summary extremely concise, focusing only on valuable content
-
-Important filtering instructions:
-- Aggressively filter out all promotional and marketing content that doesn't provide substantial information
-- Ignore boilerplate text, footers, disclaimers, and unsubscribe information
-- Omit generic greetings and sign-offs
-- Focus exclusively on actionable and informative content
-- If the email is primarily marketing with little substance, simply note this fact
+Summarize the following newsletter into a TL;DR list.
+Each bullet should be a single sentence summarizing a key point.
+For each point, find and include the most relevant URL from the original text.
+Do not create placeholder links or use "https://link".
+Only use actual URLs that exist in the original text.
+Do not use disclaimers or enumeration.
+Limit the summary to 300 characters.
 
 Newsletter content:
 
