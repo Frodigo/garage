@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const matter = require('gray-matter');
-const { marked } = require('marked');
-const RSS = require('rss');
+const fs = require("fs");
+const path = require("path");
+const matter = require("gray-matter");
+const { marked } = require("marked");
+const RSS = require("rss");
 
 /**
  * Configure marked renderer with custom link handling
@@ -13,26 +13,28 @@ function configureMarkedRenderer() {
 
     renderer.link = (href, title, text) => {
       // Extract URL from href if it's an object
-      const hrefStr = typeof href === 'object' && href !== null
-        ? href.href || href.url || '#'
-        : String(href || '');
+      const hrefStr =
+        typeof href === "object" && href !== null
+          ? href.href || href.url || "#"
+          : String(href || "");
 
       // Extract text content if it's an object
-      const textStr = typeof text === 'object' && text !== null
-        ? text.text || text.title || hrefStr
-        : String(text || hrefStr);
+      const textStr =
+        typeof text === "object" && text !== null
+          ? text.text || text.title || hrefStr
+          : String(text || hrefStr);
 
       // Handle wiki links
-      if (hrefStr.startsWith('[[')) {
+      if (hrefStr.startsWith("[[")) {
         const linkText = hrefStr.slice(2, -2);
         const url = generateUrl(null, linkText);
         return `<a href="${url}">${textStr}</a>`;
       }
 
       // For regular links, extract the last part of the URL for the text and decode it
-      if (hrefStr.startsWith('https://frodigo.com/')) {
-        const lastPart = hrefStr.split('/').pop();
-        const decodedText = decodeURIComponent(lastPart.replace(/\+/g, ' '));
+      if (hrefStr.startsWith("https://frodigo.com/")) {
+        const lastPart = hrefStr.split("/").pop();
+        const decodedText = decodeURIComponent(lastPart.replace(/\+/g, " "));
         return `<a href="${hrefStr}">${decodedText}</a>`;
       }
 
@@ -43,13 +45,13 @@ function configureMarkedRenderer() {
     marked.setOptions({
       renderer,
       mangle: false,
-      headerIds: false
+      headerIds: false,
     });
 
     return renderer;
   } catch (error) {
     // Handle error gracefully
-    console.warn('Error configuring marked renderer:', error.message);
+    console.warn("Error configuring marked renderer:", error.message);
     return null;
   }
 }
@@ -58,38 +60,47 @@ function configureMarkedRenderer() {
 const baseConfig = {
   site: {
     title: "The garage",
-    description: "Garage for engineers. Place where you can find notes, tutorials, experiments, concepts explanation and more.",
-    site_url: 'https://frodigo.com',
-    image_url: 'https://frodigo.com/favicon-32.png',
-    language: 'en',
-    ttl: 60
+    description:
+      "Garage for engineers. Place where you can find notes, tutorials, experiments, concepts explanation and more.",
+    site_url: "https://frodigo.com",
+    image_url: "https://frodigo.com/favicon-32.png",
+    language: "en",
+    ttl: 60,
   },
   contentDir: path.join(__dirname),
-  excludeDirs: ['node_modules', '.git', '.github', 'public', 'dist', '.next', 'priv'],
+  excludeDirs: [
+    "node_modules",
+    ".git",
+    ".github",
+    "public",
+    "dist",
+    ".next",
+    "priv",
+  ],
   categories: {
-    'Software architecture': 'Garage/Software+architecture'
-  }
+    "Software architecture": "Garage/Software+architecture",
+  },
 };
 
 // Feed-specific configurations
 const feedConfigs = {
   all: {
     ...baseConfig,
-    outputPath: path.join(__dirname, 'public', 'feed.xml'),
-    feed_url: 'https://rss.frodigo.com/feed.xml',
-    title: "The garage - All posts"
+    outputPath: path.join(__dirname, "public", "feed.xml"),
+    feed_url: "https://rss.frodigo.com/feed.xml",
+    title: "The garage - All posts",
   },
   recent: {
     ...baseConfig,
-    outputPath: path.join(__dirname, 'public', 'feed.recent.xml'),
-    feed_url: 'https://rss.frodigo.com/feed.recent.xml',
+    outputPath: path.join(__dirname, "public", "feed.recent.xml"),
+    feed_url: "https://rss.frodigo.com/feed.recent.xml",
     maxItems: 10,
-    title: "The garage - Recent posts"
-  }
+    title: "The garage - Recent posts",
+  },
 };
 
 // Initialize marked renderer (not in test environment)
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== "test") {
   configureMarkedRenderer();
 }
 
@@ -104,7 +115,7 @@ function findMarkdownFiles(dir, fileList = [], excludeDirs) {
   try {
     const files = fs.readdirSync(dir);
 
-    files.forEach(file => {
+    files.forEach((file) => {
       const filePath = path.join(dir, file);
       const stat = fs.statSync(filePath);
 
@@ -114,7 +125,7 @@ function findMarkdownFiles(dir, fileList = [], excludeDirs) {
           return;
         }
         findMarkdownFiles(filePath, fileList, excludeDirs);
-      } else if (file.endsWith('.md')) {
+      } else if (file.endsWith(".md")) {
         fileList.push(filePath);
       }
     });
@@ -140,21 +151,21 @@ function generateUrl(filePath, linkText = null) {
 
   // Handle category files
   if (filePath) {
-    const fileName = path.basename(filePath, '.md');
-    if (fileName.toLowerCase() === 'software architecture') {
-      return 'Garage/Software+architecture';
+    const fileName = path.basename(filePath, ".md");
+    if (fileName.toLowerCase() === "software architecture") {
+      return "Garage/Software+architecture";
     }
 
     // For regular files
     const relativePath = path.relative(baseConfig.contentDir, filePath);
     return relativePath
-      .replace(/\.(md)$/, '')
-      .replace(/\\/g, '/')
-      .replace(/\s+/g, '+');
+      .replace(/\.(md)$/, "")
+      .replace(/\\/g, "/")
+      .replace(/\s+/g, "+");
   }
 
   // Fallback for wiki links without special handling
-  return linkText ? linkText.replace(/\s+/g, '+') : '';
+  return linkText ? linkText.replace(/\s+/g, "+") : "";
 }
 
 /**
@@ -166,8 +177,8 @@ function generateUrl(filePath, linkText = null) {
  */
 function processWikiLinks(content, filePath, config) {
   return content.replace(/\[\[(.*?)\]\]/g, (match, text) => {
-    if (text.includes('|')) {
-      const [link, displayText] = text.split('|');
+    if (text.includes("|")) {
+      const [link, displayText] = text.split("|");
       const url = `${config.site.site_url}/${generateUrl(null, link)}`;
       return `<a href="${url}">${displayText}</a>`;
     }
@@ -187,7 +198,7 @@ function getDescription(html, data) {
   if (data.description) return data.description;
 
   // Remove all links but keep their text content
-  const textWithoutLinks = html.replace(/<a[^>]*>(.*?)<\/a>/g, '$1');
+  const textWithoutLinks = html.replace(/<a[^>]*>(.*?)<\/a>/g, "$1");
 
   // Try to get first paragraph
   const firstParagraph = textWithoutLinks.match(/<p>(.*?)<\/p>/);
@@ -196,7 +207,7 @@ function getDescription(html, data) {
   }
 
   // If no paragraph found, take first 280 characters
-  return textWithoutLinks.substring(0, 280) + '...';
+  return textWithoutLinks.substring(0, 280) + "...";
 }
 
 /**
@@ -207,7 +218,7 @@ function getDescription(html, data) {
  */
 function createFeedItem(filePath, config) {
   try {
-    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const fileContent = fs.readFileSync(filePath, "utf8");
     const { data, content } = matter(fileContent);
 
     // Skip files without dates
@@ -218,15 +229,17 @@ function createFeedItem(filePath, config) {
     // First convert markdown to HTML
     const renderer = new marked.Renderer();
     renderer.link = (href, title, text) => {
-      const hrefStr = typeof href === 'object' && href !== null
-        ? href.href || href.url || '#'
-        : String(href || '');
+      const hrefStr =
+        typeof href === "object" && href !== null
+          ? href.href || href.url || "#"
+          : String(href || "");
 
-      const textStr = typeof text === 'object' && text !== null
-        ? text.text || text.title || hrefStr
-        : String(text || hrefStr);
+      const textStr =
+        typeof text === "object" && text !== null
+          ? text.text || text.title || hrefStr
+          : String(text || hrefStr);
 
-      if (hrefStr.startsWith('https://frodigo.com/')) {
+      if (hrefStr.startsWith("https://frodigo.com/")) {
         return `<a href="${hrefStr}">${textStr}</a>`;
       }
 
@@ -242,20 +255,22 @@ function createFeedItem(filePath, config) {
     const url = `${config.site.site_url}/${generateUrl(filePath)}`;
 
     return {
-      title: data.title || path.basename(filePath, '.md'),
+      title: data.title || path.basename(filePath, ".md"),
       description: getDescription(processedContent, data),
       url: url,
       guid: url,
       categories: data.categories || [],
       author: config.site.author,
       date: new Date(data.date),
-      enclosure: data.image ? {
-        url: data.image.startsWith('http') ? data.image : `${config.site.site_url}/${data.image}`,
-        type: 'image/jpeg'
-      } : undefined,
-      custom_elements: [
-        { 'content:encoded': { _cdata: processedContent } }
-      ]
+      enclosure: data.image
+        ? {
+            url: data.image.startsWith("http")
+              ? data.image
+              : `${config.site.site_url}/${data.image}`,
+            type: "image/jpeg",
+          }
+        : undefined,
+      custom_elements: [{ "content:encoded": { _cdata: processedContent } }],
     };
   } catch (error) {
     console.error(`Error processing file ${filePath}:`, error);
@@ -279,7 +294,7 @@ function generateRSSFeed(config) {
     image_url: config.site.image_url,
     language: config.site.language,
     ttl: config.site.ttl,
-    pubDate: new Date()
+    pubDate: new Date(),
   });
 
   // Create output directory if it doesn't exist
@@ -289,11 +304,15 @@ function generateRSSFeed(config) {
   }
 
   // Find markdown files and create feed items
-  const markdownFiles = findMarkdownFiles(config.contentDir, [], config.excludeDirs);
+  const markdownFiles = findMarkdownFiles(
+    config.contentDir,
+    [],
+    config.excludeDirs
+  );
   const feedItems = [];
   let skippedCount = 0;
 
-  markdownFiles.forEach(filePath => {
+  markdownFiles.forEach((filePath) => {
     const feedItem = createFeedItem(filePath, config);
     if (feedItem) {
       feedItems.push(feedItem);
@@ -306,15 +325,21 @@ function generateRSSFeed(config) {
   feedItems.sort((a, b) => b.date - a.date);
 
   // Add items to feed (limiting if necessary)
-  const itemsToAdd = config.maxItems ? feedItems.slice(0, config.maxItems) : feedItems;
-  itemsToAdd.forEach(item => feed.item(item));
+  const itemsToAdd = config.maxItems
+    ? feedItems.slice(0, config.maxItems)
+    : feedItems;
+  itemsToAdd.forEach((item) => feed.item(item));
 
   // Write feed to file
   fs.writeFileSync(config.outputPath, feed.xml({ indent: true }));
 
   // Log results
   console.log(`✓ Found ${feedItems.length} posts with dates`);
-  console.log(`✓ Added ${itemsToAdd.length} ${config.maxItems ? 'most recent ' : ''}posts to the feed`);
+  console.log(
+    `✓ Added ${itemsToAdd.length} ${
+      config.maxItems ? "most recent " : ""
+    }posts to the feed`
+  );
   console.log(`✓ Skipped ${skippedCount} posts without dates`);
   console.log(`✓ Feed saved to ${path.basename(config.outputPath)}\n`);
 }
@@ -328,14 +353,27 @@ function extractLinksFromFeed(feedContent) {
   const allLinks = new Set();
   const urlRegex = /https:\/\/frodigo\.com\/[^"\s<>]+/g;
 
+  // First, remove code blocks to avoid processing links within them
+  const contentWithoutCodeBlocks = feedContent.replace(
+    /<pre><code>[\s\S]*?<\/code><\/pre>/g,
+    ""
+  );
+
   // Extract from content:encoded sections (full article content)
-  const contentRegex = /<content:encoded><!\[CDATA\[(.*?)\]\]><\/content:encoded>/gs;
-  const contentMatches = [...feedContent.matchAll(contentRegex)];
-  contentMatches.forEach(match => {
+  const contentRegex =
+    /<content:encoded><!\[CDATA\[(.*?)\]\]><\/content:encoded>/gs;
+  const contentMatches = [...contentWithoutCodeBlocks.matchAll(contentRegex)];
+  contentMatches.forEach((match) => {
     const contentUrls = match[1].match(urlRegex) || [];
-    contentUrls.forEach(url => {
-      // Filter out invalid links
-      if (!url.includes('...') && !url.includes('undefined')) {
+    contentUrls.forEach((url) => {
+      // Filter out invalid links and links that look like code snippets
+      if (
+        !url.includes("...") &&
+        !url.includes("undefined") &&
+        !url.includes("link") &&
+        !url.includes("Wiki") &&
+        !url.includes("&quot;")
+      ) {
         allLinks.add(url);
       }
     });
@@ -343,42 +381,67 @@ function extractLinksFromFeed(feedContent) {
 
   // Extract from link elements (main article links)
   const linkRegex = /<link>(https:\/\/frodigo\.com\/[^<]+)<\/link>/g;
-  const linkMatches = [...feedContent.matchAll(linkRegex)];
-  linkMatches.forEach(match => {
+  const linkMatches = [...contentWithoutCodeBlocks.matchAll(linkRegex)];
+  linkMatches.forEach((match) => {
     const url = match[1];
-    if (!url.includes('...') && !url.includes('undefined')) {
+    if (
+      !url.includes("...") &&
+      !url.includes("undefined") &&
+      !url.includes("link") &&
+      !url.includes("Wiki") &&
+      !url.includes("&quot;")
+    ) {
       allLinks.add(url);
     }
   });
 
   // Extract from guid elements (article identifiers)
   const guidRegex = /<guid[^>]*>(https:\/\/frodigo\.com\/[^<]+)<\/guid>/g;
-  const guidMatches = [...feedContent.matchAll(guidRegex)];
-  guidMatches.forEach(match => {
+  const guidMatches = [...contentWithoutCodeBlocks.matchAll(guidRegex)];
+  guidMatches.forEach((match) => {
     const url = match[1];
-    if (!url.includes('...') && !url.includes('undefined')) {
+    if (
+      !url.includes("...") &&
+      !url.includes("undefined") &&
+      !url.includes("link") &&
+      !url.includes("Wiki") &&
+      !url.includes("&quot;")
+    ) {
       allLinks.add(url);
     }
   });
 
   // Extract from description sections (article previews)
   const descRegex = /<description><!\[CDATA\[(.*?)\]\]><\/description>/gs;
-  const descMatches = [...feedContent.matchAll(descRegex)];
-  descMatches.forEach(match => {
+  const descMatches = [...contentWithoutCodeBlocks.matchAll(descRegex)];
+  descMatches.forEach((match) => {
     const descUrls = match[1].match(urlRegex) || [];
-    descUrls.forEach(url => {
-      if (!url.includes('...') && !url.includes('undefined')) {
+    descUrls.forEach((url) => {
+      if (
+        !url.includes("...") &&
+        !url.includes("undefined") &&
+        !url.includes("link") &&
+        !url.includes("Wiki") &&
+        !url.includes("&quot;")
+      ) {
         allLinks.add(url);
       }
     });
   });
 
   // Extract from image elements
-  const imageRegex = /<image>.*?<url>(https:\/\/frodigo\.com\/[^<]+)<\/url>.*?<\/image>/gs;
-  const imageMatches = [...feedContent.matchAll(imageRegex)];
-  imageMatches.forEach(match => {
+  const imageRegex =
+    /<image>.*?<url>(https:\/\/frodigo\.com\/[^<]+)<\/url>.*?<\/image>/gs;
+  const imageMatches = [...contentWithoutCodeBlocks.matchAll(imageRegex)];
+  imageMatches.forEach((match) => {
     const url = match[1];
-    if (!url.includes('...') && !url.includes('undefined')) {
+    if (
+      !url.includes("...") &&
+      !url.includes("undefined") &&
+      !url.includes("link") &&
+      !url.includes("Wiki") &&
+      !url.includes("&quot;")
+    ) {
       allLinks.add(url);
     }
   });
@@ -393,47 +456,49 @@ function extractLinksFromFeed(feedContent) {
  */
 function saveLinksToFile(links, outputPath) {
   const linksArray = [...links];
-  console.log('Saving links to file:', outputPath);
-  console.log('Current directory:', process.cwd());
-  console.log('Number of links to save:', linksArray.length);
+  console.log("Saving links to file:", outputPath);
+  console.log("Current directory:", process.cwd());
+  console.log("Number of links to save:", linksArray.length);
 
   // Ensure the directory exists
   const dir = path.dirname(outputPath);
   if (!fs.existsSync(dir)) {
-    console.log('Creating directory:', dir);
+    console.log("Creating directory:", dir);
     fs.mkdirSync(dir, { recursive: true });
   }
 
   fs.writeFileSync(outputPath, JSON.stringify(linksArray, null, 2));
-  console.log(`✓ Saved ${linksArray.length} links to ${path.basename(outputPath)}`);
+  console.log(
+    `✓ Saved ${linksArray.length} links to ${path.basename(outputPath)}`
+  );
 }
 
 // Main execution - only run if this is the main module (not in tests)
 if (require.main === module) {
-  console.log('🔄 Generating RSS feeds...');
+  console.log("🔄 Generating RSS feeds...");
 
   // Generate all configured feeds
-  Object.values(feedConfigs).forEach(config => {
+  Object.values(feedConfigs).forEach((config) => {
     generateRSSFeed(config);
   });
 
   // Extract links from the main feed and save them
-  const mainFeedPath = path.join(__dirname, 'public', 'feed.xml');
-  console.log('Reading feed from:', mainFeedPath);
+  const mainFeedPath = path.join(__dirname, "public", "feed.xml");
+  console.log("Reading feed from:", mainFeedPath);
 
   if (!fs.existsSync(mainFeedPath)) {
-    console.error('Error: Feed file not found at', mainFeedPath);
+    console.error("Error: Feed file not found at", mainFeedPath);
     process.exit(1);
   }
 
-  const mainFeedContent = fs.readFileSync(mainFeedPath, 'utf8');
+  const mainFeedContent = fs.readFileSync(mainFeedPath, "utf8");
   const links = extractLinksFromFeed(mainFeedContent);
 
-  const linksFilePath = path.join(__dirname, 'links-to-test.json');
-  console.log('Saving links to:', linksFilePath);
+  const linksFilePath = path.join(__dirname, "links-to-test.json");
+  console.log("Saving links to:", linksFilePath);
   saveLinksToFile(links, linksFilePath);
 
-  console.log('✨ All feeds generated successfully!');
+  console.log("✨ All feeds generated successfully!");
 }
 
 // Export for testing
@@ -444,5 +509,5 @@ module.exports = {
   getDescription,
   createFeedItem,
   generateRSSFeed,
-  extractLinksFromFeed
+  extractLinksFromFeed,
 };
