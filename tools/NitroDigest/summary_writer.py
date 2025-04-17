@@ -2,6 +2,7 @@ import os
 import yaml
 from datetime import datetime
 import re
+from summarizer.utils.logging import get_logger
 
 
 class SummaryWriter:
@@ -11,6 +12,7 @@ class SummaryWriter:
         """Initialize the summary writer"""
         self.output_dir = output_dir or os.environ.get(
             "SUMMARIES_PATH", "summaries")
+        self.logger = get_logger(__name__)
 
         # Create output directory if it doesn't exist
         if not os.path.exists(self.output_dir):
@@ -58,11 +60,11 @@ class SummaryWriter:
                 f.write(summary)
                 f.write('\n\n---\n\n')
 
-            print(f"Summary added to {combined_file}")
+            self.logger.info(f"Summary added to {combined_file}")
             return combined_file
 
         except (IOError, yaml.YAMLError) as e:
-            print(f"Error writing summary file: {e}")
+            self.logger.error(f"Error writing summary file: {e}")
             return None
 
     def _generate_filename(self, metadata):
