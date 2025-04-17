@@ -158,6 +158,8 @@ function processWikiLinks(html, filePath, config) {
 }
 ```
 
+(funny thing: when I added this snippet to codebase, I needed immediately fix the generator because it generated links from the code snippet...)
+
 These two functions are responsible for handling and parsing links.
 
 `processWikiLinks()` runs over the freshly rendered HTML and turns any remaining `[[Wiki Link|Label]]` syntax into fully qualified site URL.
