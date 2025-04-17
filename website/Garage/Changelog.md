@@ -2,6 +2,8 @@ This page is something like journal. I just write down here my progress.
 
 Items here are sorted from the newest to the oldest ones.
 
+- _17-04-2025:_
+	- Wrote new blog article: [[Why I built my own RSS feed generator for the Obsidian Publish website]]
 - _16-04-2025:_
   - Implemented Configuration management in JSON for NitroDigest [https://github.com/Frodigo/garage/pull/99]
 - _15-04-2025:_
@@ -99,6 +101,8 @@ Items here are sorted from the newest to the oldest ones.
 - Started using NetNewsWire as a RSS reader
 - Added website content to the garage open-source repository
 - Implemented custom RSS page to have more sophisticated RSS support
+	- Read more:
+		- [[Why I built my own RSS feed generator for the Obsidian Publish website]]
 - [[I migrated website from Astro.build to Obsidian publish]]
 - Wrote post on Medium about my onboarding to Docplanner Tech and coding after being a tech leader 4 years: [https://medium.com/docplanner-tech/onboarding-to-coding-9ff20c65c303](https://medium.com/docplanner-tech/onboarding-to-coding-9ff20c65c303)
 - Added [[Privacy policy]] page that shows I do not use cookies and do not collect any data about my readers

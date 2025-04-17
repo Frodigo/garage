@@ -20,9 +20,11 @@ class Prompt:
         # Format metadata
         metadata_str = ""
         if metadata:
-            metadata_str = f"This email is from: {metadata.get('from', 'Unknown')}\n"
-            metadata_str += f"Subject: {metadata.get('subject', 'Unknown')}\n"
-            metadata_str += f"Date: {metadata.get('date', 'Unknown')}\n"
+            metadata_str = (
+                f"This email is from: {metadata.get('from', 'Unknown')}\n"
+                f"Subject: {metadata.get('subject', 'Unknown')}\n"
+                f"Date: {metadata.get('date', 'Unknown')}\n"
+            )
 
         # Replace placeholders
         prompt = prompt.replace('{metadata}', metadata_str)
