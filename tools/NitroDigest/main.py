@@ -209,6 +209,12 @@ def main():
     email_processor.disconnect()
     print("\nAll emails processed.")
 
+    # Clean up temporary prompt file if it was created
+    if (args.prompt and config.summarizer.prompt_file and
+            os.path.exists(config.summarizer.prompt_file)):
+        os.remove(config.summarizer.prompt_file)
+        print("Cleaned up temporary prompt file.")
+
 
 if __name__ == "__main__":
     main()
