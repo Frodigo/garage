@@ -8,7 +8,7 @@ A Python tool for automatically summarizing email newsletters using AI.
 - Extract text content from HTML emails
 - Two-step summarization process:
   1. Initial summary with key points and links
-  2. Refined summary with single-sentence bullets and links
+  2. Refined summary with single-sentence bullets and links (Note: in the current implementation this step is disabled)
 - Summarize content using various AI models:
   - Claude (Anthropic)
   - ChatGPT (OpenAI)
