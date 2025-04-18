@@ -28,7 +28,9 @@ class SummaryWriter:
             # Get current date for filename
             current_date = datetime.now().strftime("%Y-%m-%d")
             combined_file = os.path.join(
-                self.output_dir, f"combined_summaries_{current_date}.md")
+                self.output_dir,
+                f"combined_summaries_{current_date}_{os.urandom(4).hex()}.md"
+            )
 
             # Initialize file if it doesn't exist
             if not os.path.exists(combined_file):

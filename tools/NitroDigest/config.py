@@ -1,4 +1,5 @@
 import json
+import os
 from typing import Optional, Dict, Any
 from dataclasses import dataclass
 from enum import Enum
@@ -32,6 +33,7 @@ class SummarizerConfig:
     base_url: str = "http://localhost:11434"
     api_key: Optional[str] = None
     timeout: int = 300
+    prompt_file: Optional[str] = None
 
     def validate(self) -> None:
         if self.type == SummarizerType.OLLAMA and not self.model:
@@ -41,6 +43,10 @@ class SummarizerConfig:
             raise ValueError("API key is required for Claude and ChatGPT")
         if self.timeout <= 0:
             raise ValueError("Timeout must be a positive number")
+        if (self.prompt_file and
+                not os.path.exists(self.prompt_file)):
+            raise ValueError(
+                f"Prompt file not found: {self.prompt_file}")
 
 
 @dataclass
@@ -73,6 +79,10 @@ class Config:
         if (self.summarizer.type == SummarizerType.OLLAMA and
                 not self.summarizer.model):
             raise ValueError("Model is required for Ollama")
+        if (self.summarizer.prompt_file and
+                not os.path.exists(self.summarizer.prompt_file)):
+            raise ValueError(
+                f"Prompt file not found: {self.summarizer.prompt_file}")
 
         self.email.validate()
         self.summarizer.validate()
@@ -104,7 +114,8 @@ class Config:
             model=model,
             base_url=summarizer_data.get('base_url', 'http://localhost:11434'),
             api_key=summarizer_data.get('api_key'),
-            timeout=summarizer_data.get('timeout', 300)
+            timeout=summarizer_data.get('timeout', 300),
+            prompt_file=summarizer_data.get('prompt_file')
         )
 
         return cls(
@@ -145,6 +156,8 @@ class Config:
 
         if self.summarizer.api_key:
             data['summarizer']['api_key'] = self.summarizer.api_key
+        if self.summarizer.prompt_file:
+            data['summarizer']['prompt_file'] = self.summarizer.prompt_file
 
         return data
 

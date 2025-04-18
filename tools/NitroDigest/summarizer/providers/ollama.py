@@ -25,12 +25,16 @@ class OllamaSummarizer(BaseSummarizer):
         self,
         model: str = "mistral",
         base_url: str = "http://localhost:11434",
-        timeout: int = 300
+        timeout: int = 300,
+        prompt_file: Optional[str] = None
     ):
         super().__init__()
         self.model = model
         self.base_url = base_url.rstrip('/')
         self.timeout = timeout
+
+        if prompt_file:
+            self.prompt.set_template_path(prompt_file)
 
         # Verify Ollama is available
         self._verify_ollama_availability()
@@ -77,17 +81,19 @@ class OllamaSummarizer(BaseSummarizer):
             response_data = response.json()
             first_summary = response_data["response"]
 
-            # Second summarization
-            second_prompt = self.prompt.format_second(first_summary)
-            data = self._prepare_request_data(second_prompt)
+            # commented out for now to simplify
+            # the process for debugging purposes
+            # # Second summarization
+            # second_prompt = self.prompt.format_second(first_summary)
+            # data = self._prepare_request_data(second_prompt)
 
-            self.logger.info(
-                f"Sending second request to Ollama API "
-                f"using model {self.model}")
-            response = self.call_ollama_api(headers, data)
-            self._check_response_status(response)
-            response_data = response.json()
-            final_summary = response_data["response"]
+            # self.logger.info(
+            #     f"Sending second request to Ollama API "
+            #     f"using model {self.model}")
+            # response = self.call_ollama_api(headers, data)
+            # self._check_response_status(response)
+            # response_data = response.json()
+            # final_summary = response_data["response"]
 
             tokens_used = 0
             if "eval_count" in response_data:
@@ -95,7 +101,7 @@ class OllamaSummarizer(BaseSummarizer):
 
             return SummaryResult(
                 status=ModelStatus.SUCCESS,
-                summary=final_summary,
+                summary=first_summary,
                 model_used=self.model,
                 tokens_used=tokens_used,
                 metadata={"api_response": response_data}

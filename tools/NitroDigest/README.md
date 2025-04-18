@@ -8,7 +8,7 @@ A Python tool for automatically summarizing email newsletters using AI.
 - Extract text content from HTML emails
 - Two-step summarization process:
   1. Initial summary with key points and links
-  2. Refined summary with single-sentence bullets and links
+  2. Refined summary with single-sentence bullets and links (Note: in the current implementation this step is disabled)
 - Summarize content using various AI models:
   - Claude (Anthropic)
   - ChatGPT (OpenAI)
@@ -236,7 +236,40 @@ Available arguments:
 - `--password`: Email password (overrides config)
 - `--server`: IMAP server (overrides config)
 - `--folder`: Email folder to process
-- `--timeout`: time in seconds that summarizer waits for response from LLM
+- `--timeout`: Time in seconds that summarizer waits for response from LLM
+- `--prompt-file`: Path to custom prompt template file (overrides config)
+- `--prompt`: Direct prompt content (overrides both config and prompt-file)
+
+### Prompt Configuration
+
+You can specify the prompt template in three ways:
+
+1. In the config.json file:
+
+```json
+{
+  "summarizer": {
+    "prompt_file": "prompt_template.txt"
+  }
+}
+```
+
+2. Using the `--prompt-file` argument:
+
+```bash
+python main.py --prompt-file custom_prompt.txt
+```
+
+3. Passing the prompt content directly:
+
+```bash
+python main.py --prompt "$(cat my_awesome_prompt.txt)"
+```
+
+The prompt template should contain placeholders:
+
+- `{metadata}`: For email metadata (from, subject, date)
+- `{text}`: For the email content to be summarized
 
 ## Testing
 
