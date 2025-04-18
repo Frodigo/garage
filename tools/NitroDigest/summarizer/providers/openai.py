@@ -24,12 +24,15 @@ class ChatGPTSummarizer(BaseSummarizer):
         self,
         api_key: str,
         model: str = "gpt-3.5-turbo",
-        timeout: int = 300
+        timeout: int = 300,
+        prompt_file: Optional[str] = None
     ):
         super().__init__()
         self.api_key = api_key
         self.model = model
         self.timeout = timeout
+        if prompt_file:
+            self.prompt.set_template_path(prompt_file)
 
     def summarize(
         self,

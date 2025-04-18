@@ -15,6 +15,12 @@ class Prompt:
         self.template_path = template_path
         self.second_template_path = second_template_path
 
+    def set_template_path(self, path: str) -> None:
+        """Set a custom template path"""
+        if not os.path.exists(path):
+            raise ValueError(f"Template file not found: {path}")
+        self.template_path = path
+
     def format(self, text, metadata=None):
         """Format the first prompt with given text and metadata"""
         # Read the template file

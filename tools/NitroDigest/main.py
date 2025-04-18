@@ -1,5 +1,6 @@
 from argparse import ArgumentParser
 import os
+import tempfile
 
 from email_processor import EmailProcessor
 from summarizer import (
@@ -58,6 +59,14 @@ def main():
         type=int,
         help="Timeout in seconds for API requests"
     )
+    parser.add_argument(
+        "--prompt-file",
+        help="Path to custom prompt template file (overrides config)"
+    )
+    parser.add_argument(
+        "--prompt",
+        help="Direct prompt content (overrides both config and prompt-file)"
+    )
 
     args = parser.parse_args()
 
@@ -86,6 +95,13 @@ def main():
             config.email.folder = args.folder
         if args.timeout:
             config.summarizer.timeout = args.timeout
+        if args.prompt_file:
+            config.summarizer.prompt_file = args.prompt_file
+        if args.prompt:
+            # Create a temporary file with the prompt content
+            with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
+                f.write(args.prompt)
+                config.summarizer.prompt_file = f.name
 
         # Validate configuration
         config.validate()
@@ -112,7 +128,8 @@ def main():
             summarizer = ClaudeSummarizer(
                 api_key=config.summarizer.api_key,
                 model=config.summarizer.model,
-                timeout=config.summarizer.timeout
+                timeout=config.summarizer.timeout,
+                prompt_file=config.summarizer.prompt_file
             )
         elif config.summarizer.type == SummarizerType.CHATGPT:
             if not config.summarizer.api_key:
@@ -122,7 +139,8 @@ def main():
             summarizer = ChatGPTSummarizer(
                 api_key=config.summarizer.api_key,
                 model=config.summarizer.model,
-                timeout=config.summarizer.timeout
+                timeout=config.summarizer.timeout,
+                prompt_file=config.summarizer.prompt_file
             )
         elif config.summarizer.type == SummarizerType.OLLAMA:
             if not config.summarizer.model:
@@ -130,7 +148,8 @@ def main():
             summarizer = OllamaSummarizer(
                 model=config.summarizer.model,
                 base_url=config.summarizer.base_url,
-                timeout=config.summarizer.timeout
+                timeout=config.summarizer.timeout,
+                prompt_file=config.summarizer.prompt_file
             )
     except ConfigurationError as e:
         print(f"Configuration error: {e}")

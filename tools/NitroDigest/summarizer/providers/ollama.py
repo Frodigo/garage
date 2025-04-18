@@ -25,12 +25,16 @@ class OllamaSummarizer(BaseSummarizer):
         self,
         model: str = "mistral",
         base_url: str = "http://localhost:11434",
-        timeout: int = 300
+        timeout: int = 300,
+        prompt_file: Optional[str] = None
     ):
         super().__init__()
         self.model = model
         self.base_url = base_url.rstrip('/')
         self.timeout = timeout
+
+        if prompt_file:
+            self.prompt.set_template_path(prompt_file)
 
         # Verify Ollama is available
         self._verify_ollama_availability()
