@@ -54,6 +54,18 @@ I will remove all Polish content and code responsible for rendering it from my b
 
 ---
 
+## NitroDigest project
+
+I create a tool for developers that summaries emails. It works on local machine and uses Ollama under the hood, so it's completely free and emails are processed on localhost.
+
+The prototype can already pull unread mail via IMAP, feed it to a local Llama model, and spit out a tidy Markdown summary.
+
+I am close to have working prototype. Project is open source (it's here: [https://github.com/Frodigo/garage/tree/main/tools/NitroDigest](https://github.com/Frodigo/garage/tree/main/tools/NitroDigest))
+
+I look for contributors. Maybe you?
+
+---
+
 ## History
 
 Below you can find my historical now pages. Date along the title means a day when a page was moved to the history.
