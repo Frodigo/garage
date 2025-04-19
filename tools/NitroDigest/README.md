@@ -1,20 +1,61 @@
 # NitroDigest
 
-A Python tool for automatically summarizing email newsletters using AI.
+TL;DR your inbox, privately.
+
+**NitroDigest – the privacy‑first, local‑LLM email‑summariser for developers.**
 
 ## Features
 
-- Connect to IMAP email servers to retrieve unread newsletters
+- Pulls unread newsletters via IMAP
+- Runs 100 % on‑device with Ollama – your mail never leaves localhost
+- But if you prefer Cloud hosted LLMs, you can also use Open AI, or Antrophic (API key is needed then)
 - Extract text content from HTML emails
-- Two-step summarization process:
-  1. Initial summary with key points and links
-  2. Refined summary with single-sentence bullets and links (Note: in the current implementation this step is disabled)
-- Summarize content using various AI models:
-  - Claude (Anthropic)
-  - ChatGPT (OpenAI)
-  - Ollama (local models)
 - Save all summaries in a single combined Markdown file with YAML frontmatter
 - Command-line interface with various options
+- Completely free (open source, MIT license)
+
+This project is in alpha phase.
+
+I have been working on a [prototype](https://github.com/Frodigo/garage/milestone/1), and I am looking for contributors to help with:
+
+- prompt improvements
+- cross‑provider testing (Gmail / self‑hosted) + different LLMs testing (Ollama, CLaude, Open AI)
+- refactoring
+- documenting
+- help with TUI, or simple web app
+
+## How to contribute
+
+- 🐛 **Report Bugs**: Found a bug? Create an issue!
+- 💡 **Suggest Features**: Have an idea for a new feature? Start discussion!
+- 💻 **Write Code**: Want to add/fix/change something? Create a PR!
+
+In any case, feel free to start/join a discussion. I am interested in what you think about this tool.
+
+### Getting Started
+
+1. Check out [open issues](https://github.com/Frodigo/garage/issues?q=is%3Aissue%20state%3Aopen%20label%3ANitroDigest) to see what needs help
+2. Join [discussions](https://github.com/Frodigo/garage/discussions) to share ideas (or create a new)
+3. Fork the repo and create a new branch for your changes
+4. Submit a pull request - we'll help you through the process!
+
+### Development Guidelines
+
+- Follow [PEP 8](https://peps.python.org/pep-0008/) style guidelines
+- Keep dependencies minimal and document why new ones are added
+
+## Ideas for next steps
+
+- Add Terminal UI and/or simple web app
+- More summary personalization options
+- Explore ML models for summarization
+- API & Authorization
+- Add other data sources: Github (Issues/PRs), Jira, Slack, Discord
+- Extract valuable code snippets, new terms and trends from data sources
+
+---
+
+Want to use this tool. Follow instructions below:
 
 ## Requirements
 
@@ -279,64 +320,6 @@ Run tests using pytest:
 pytest
 ```
 
-## Contributing
-
-Whether you're a seasoned developer or just getting started, there are many ways to get involved:
-
-### Ways to Contribute
-
-- 🐛 **Report Bugs**: Found a bug? Let me know by creating an issue!
-- 💡 **Suggest Features**: Have an idea for a new feature? I'd love to hear it!
-- 📝 **Improve Documentation**: Help make docs clearer and more helpful
-- 💻 **Write Code**: Pick up an issue or suggest your own improvements
-
-### Getting Started
-
-1. Check out our [open issues](https://github.com/Frodigo/garage/issues?q=is%3Aissue%20state%3Aopen%20label%3ANitroDigest) to see what needs help
-2. Join our [discussions](https://github.com/Frodigo/garage/discussions) to share ideas
-3. Fork the repo and create a new branch for your changes
-4. Submit a pull request - we'll help you through the process!
-
-### Development Guidelines
-
-- Follow [PEP 8](https://peps.python.org/pep-0008/) style guidelines
-- Write tests for new functionality
-- Update documentation as needed
-- Keep dependencies minimal and document why new ones are added
-
-Don't worry if you're not sure about something - we're here to help! Just open an issue or start a discussion, and we'll guide you through the process.
-
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Output Format
-
-Summaries are saved in a single `combined_summaries.md` file in your specified output directory. Each summary includes:
-
-- YAML frontmatter with metadata (title, source, date, etc.)
-- The refined summary with single-sentence bullets and links
-- Separators between different summaries
-
-Example output structure:
-
-```markdown
-# Combined Newsletter Summaries
-
----
-
-title: Tech Weekly Newsletter
-source: tech@example.com
-date: 2024-03-20
-email_id: 12345
-summary_date: 2024-03-20 14:30:00
-
----
-
-- OpenAI released GPT-5 with improved reasoning [link]
-- Apple announced M3 Pro chips with better performance [link]
-
----
-
-// ... next summary ...
-```

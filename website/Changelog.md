@@ -8,7 +8,7 @@ _Items here are sorted from the newest to the oldest ones._
 
 ## Journals
 
-- 1. [[Garage/Journals/2025-04-18|2025-04-18]]
+- [[1. 2025-04-18|1. 2025-04-18]]
 - 0. [[Journals archive]]
 
 ### Stories
