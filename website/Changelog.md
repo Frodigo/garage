@@ -8,6 +8,8 @@ _Items here are sorted from the newest to the oldest ones._
 
 ## Journals
 
+- [[4. 2025-04-22 - continue]]
+- 3. [2025-04-20-21] break
 - [[2. 2025-04-19]]
 - [[1. 2025-04-18|1. 2025-04-18]]
 - 0. [[Journals archive]]
