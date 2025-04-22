@@ -11,7 +11,7 @@ All code examples, tools, experiments etc. are there.
 
 is open source and will be **open source forever.**
 
-*You may ask: why I named code repository "garage"?*
+_You may ask: why I named code repository "garage"?_
 
 I like cars, especially classic ones. I wish I have a garage with some nice classic car like old Ford Mustang or BMW. But for now I have only a computer which allow me to do some things. I think that I do these things in the garage. My engineering garage.
 
