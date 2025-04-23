@@ -1,0 +1,3 @@
+- tool that creates diagrams based on text and insert these diagrams into text
+- Obsidian RSS Feed generator - plugin to obsidian that allows to create a custom RSS feed based on notes
+- tool that create personalized learning roadmap like these roadmap I created for myself manually ex. [[Garage/Machine learning|Machine learning]]
