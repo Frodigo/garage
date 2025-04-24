@@ -4,9 +4,6 @@ import sys
 import os
 from unittest.mock import MagicMock, patch
 
-# Add parent directory to path so we can import modules
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 
 class TestEmailProcessor(unittest.TestCase):
 

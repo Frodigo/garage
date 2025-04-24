@@ -21,6 +21,16 @@ class Prompt:
             raise ValueError(f"Template file not found: {path}")
         self.template_path = path
 
+    def get_template(self):
+        """
+        Get the raw template content without formatting.
+
+        Returns:
+            str: The raw template content with placeholders
+        """
+        with open(self.template_path, 'r') as f:
+            return f.read()
+
     def format(self, text, metadata=None):
         """Format the first prompt with given text and metadata"""
         # Read the template file

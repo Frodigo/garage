@@ -16,6 +16,8 @@ from summarizer.exceptions import (
     SummarizerError
 )
 from summarizer.utils.retry import retry
+from summarizer.utils.token_budget_segmenter import TokenBudgetSegmenter
+from summarizer.utils.simple_tokenizer import SimpleTokenizer
 
 
 class OllamaSummarizer(BaseSummarizer):
@@ -26,12 +28,16 @@ class OllamaSummarizer(BaseSummarizer):
         model: str = "mistral",
         base_url: str = "http://localhost:11434",
         timeout: int = 300,
-        prompt_file: Optional[str] = None
+        prompt_file: Optional[str] = None,
+        max_tokens: int = 1000
     ):
         super().__init__()
         self.model = model
         self.base_url = base_url.rstrip('/')
         self.timeout = timeout
+        self.max_tokens = max_tokens
+
+        self.tokenizer = SimpleTokenizer(model_name=model)
 
         if prompt_file:
             self.prompt.set_template_path(prompt_file)
@@ -67,44 +73,87 @@ class OllamaSummarizer(BaseSummarizer):
     ) -> SummaryResult:
         try:
             self._validate_input(content)
-
-            # First summarization
             headers = self._prepare_headers()
-            prompt = self.prompt.format(content, metadata)
-            data = self._prepare_request_data(prompt)
 
-            self.logger.info(
-                f"Sending first request to Ollama API "
-                f"using model {self.model}")
-            response = self.call_ollama_api(headers, data)
-            self._check_response_status(response)
-            response_data = response.json()
-            first_summary = response_data["response"]
+            prompt_template = self.prompt.get_template()
 
-            # commented out for now to simplify
-            # the process for debugging purposes
-            # # Second summarization
-            # second_prompt = self.prompt.format_second(first_summary)
-            # data = self._prepare_request_data(second_prompt)
+            segmenter = TokenBudgetSegmenter(
+                prompt=prompt_template,
+                tokenizer=self.tokenizer.calculate_tokens,
+                budget=self.max_tokens,
+                language="english"
+            )
 
-            # self.logger.info(
-            #     f"Sending second request to Ollama API "
-            #     f"using model {self.model}")
-            # response = self.call_ollama_api(headers, data)
-            # self._check_response_status(response)
-            # response_data = response.json()
-            # final_summary = response_data["response"]
+            # Check if content needs to be chunked
+            chunks = segmenter.create_chunks_with_sentences(content)
 
-            tokens_used = 0
-            if "eval_count" in response_data:
+            if len(chunks) == 1:
+                # Content fits within token budget
+                prompt = self.prompt.format(content, metadata)
+                data = self._prepare_request_data(prompt)
+
+                self.logger.info(
+                    f"Sending request to Ollama API "
+                    f"using model {self.model}")
+
+                # self.logger.info(f"Prompt: {prompt}")
+
+                response = self.call_ollama_api(headers, data)
+                self._check_response_status(response)
+                response_data = response.json()
+                summary = response_data["response"]
                 tokens_used = response_data.get("eval_count", 0)
+            else:
+                # Content needs chunking
+                self.logger.info(
+                    f"Content exceeds token budget. "
+                    f"Splitting into {len(chunks)} chunks.")
+
+                intermediate_summaries = []
+                total_tokens_used = 0
+
+                # Process each chunk separately
+                for i, chunk_with_prompt in enumerate(chunks):
+                    self.logger.info(f"Processing chunk {i+1}/{len(chunks)}")
+                    # self.logger.info(f"Chunk: {chunk_with_prompt}")
+
+                    data = self._prepare_request_data(chunk_with_prompt)
+                    response = self.call_ollama_api(headers, data)
+                    self._check_response_status(response)
+                    response_data = response.json()
+
+                    intermediate_summaries.append(response_data["response"])
+                    total_tokens_used += response_data.get("eval_count", 0)
+
+                # Combine intermediate summaries if necessary
+                if len(intermediate_summaries) > 1:
+                    combined_summaries = " ".join(intermediate_summaries)
+
+                    # Check if combined summaries need
+                    # another round of summarization
+                    combined_tokens = self.tokenizer.calculate_tokens(
+                        combined_summaries)
+
+                    # Leave room for prompt
+                    if combined_tokens > (self.max_tokens - 200):
+                        # Recursively summarize the intermediate summaries
+                        self.logger.info(
+                            "Combined intermediate summaries are too long. "
+                            "Summarizing again.")
+                        return self.summarize(combined_summaries, metadata)
+                    else:
+                        summary = combined_summaries
+                else:
+                    summary = intermediate_summaries[0]
+
+                tokens_used = total_tokens_used
 
             return SummaryResult(
                 status=ModelStatus.SUCCESS,
-                summary=first_summary,
+                summary=summary,
                 model_used=self.model,
                 tokens_used=tokens_used,
-                metadata={"api_response": response_data}
+                metadata={"api_response": {"chunks_processed": len(chunks)}}
             )
 
         except SummarizerError as e:
