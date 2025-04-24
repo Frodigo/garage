@@ -1,4 +1,8 @@
 import nltk
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
 
 """
  Split text to chunks based on token budget
@@ -33,8 +37,6 @@ class TokenBudgetSegmenter:
                 "Please provide a shorter prompt."
             )
 
-        nltk.download('punkt')
-
     def _split_text_to_sentences(self, text: str):
         """
         Split text into sentences.
@@ -46,7 +48,7 @@ class TokenBudgetSegmenter:
             list: A list of sentences.
         """
         return nltk.sent_tokenize(text, language=self.language)
-    
+
     def create_chunks(self, text: str):
         """
         Create chunks of text based on the token budget.
@@ -66,23 +68,22 @@ class TokenBudgetSegmenter:
 
         for sentence in sentences:
             sentence_tokens = len(self.tokenizer(sentence))
-            
+
             if current_chunk_tokens + sentence_tokens > available_budget:
-    
+
                 if len(current_chunk):
                     chunks.append(" ".join(current_chunk))
-                
+
                 current_chunk = [sentence]
                 current_chunk_tokens = sentence_tokens
             else:
                 current_chunk.append(sentence)
                 current_chunk_tokens += sentence_tokens
-        
+
         if len(current_chunk):
             chunks.append(" ".join(current_chunk))
-        
+
         # Combine each chunk with the prompt
         chunks_with_prompt = [self.prompt + chunk for chunk in chunks]
 
         return chunks_with_prompt
-    
