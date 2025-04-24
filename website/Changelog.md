@@ -8,6 +8,7 @@ _Items here are sorted from the newest to the oldest ones._
 
 ## Journals
 
+- [[7. 2025-04-24 - the very first implementation of text chunks merged]]
 - [[6. 2025-04-23 - split text into chunks]]
 - [[5. 2025-04-22 - continue]]
 - 3 & 4. [2025-04-20-21] break
