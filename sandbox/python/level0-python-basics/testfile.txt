@@ -1,2 +1,2 @@
 Hello, Sebix!
-{"name": "Sebix", "age": 25, "cars": ["BMW", "Porshe"]}{"name": "Sebix", "age": 25, "cars": ["BMW", "Porshe"]}
+[{"name": "Sebix", "age": 25, "cars": ["BMW", "Porshe"]}, {"name": "Sebix", "age": 25, "cars": ["BMW", "Porshe"]}]
