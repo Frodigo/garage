@@ -14,5 +14,5 @@ many modern computers don’t have command-line at all
   - people will use your software in a way you can’t even imagine
   - Where possible, a CLI should follow patterns that already exist.
   - Command should say not too much but at least something that user believes it’s working
-  - Programs must be eaysy to discover for users, intuitive
+  - Programs must be easy to discover for users, intuitive
   - In terminal user has a conversation with the program
