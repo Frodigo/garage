@@ -1,7 +1,7 @@
 many modern computers don’t have command-line at all
 
 - Corporations force people to use prepared marketplaces app stores
-- new no code approach replace programmers (side note - also ai)
+- new no-code approach replaces programmers (side note - also AI)
 - cli allows you to see how things really work
 - You can interact with computer at level much more deeper than any GUI offer
 - Some time ago editor was in terminal
