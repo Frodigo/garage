@@ -25,6 +25,7 @@ many modern computers don’t have command-line at all
   - enjoyable to use
     - feeling that soft is on the user side
     - help programmers solve their problems
+
 ## Guidelines
 
 What I can do to make my CLI better.
