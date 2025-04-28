@@ -223,7 +223,7 @@ Next section are nice to have. If I follow them, my CLi could be better than ave
 ### Analytics
 
 1. **Do not phone home usage or crash data without consent.**
-2. alternative analytycs
+2. alternative analytics
    1. Instrument your web docs
    2. Instrument your downloads.
    3. Talk to your users.
