@@ -61,7 +61,7 @@ Next section are nice to have. If I follow them, my CLi could be better than ave
 
 ### Documentation
 
-1. documentation should expand information that are toi long to keep show them in terminal
+1. documentation should expand information that are too long to keep show them in terminal
    1. It’s where people go to understand what your tool is for
    2. what it *isn’t* for
    3. how it works
