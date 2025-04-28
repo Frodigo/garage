@@ -7,15 +7,16 @@ _Items here are sorted from the newest to the oldest ones._
 
 ## Journals
 
+- [[11. 2025-04-28 - Learn about CLI tools best practices part 2]] #NitroDigest #Learning
 - 10. 2025-04-27 - Sunday, chill out
-- [[9. 2025-04-26 - CLI tools best practices]]
-- [[8. 2025-04-25 - CLI tools research]]
-- [[7. 2025-04-24 - the very first implementation of text chunks merged]]
-- [[6. 2025-04-23 - split text into chunks]]
-- [[5. 2025-04-22 - exploring Github education + learning Python]]
+- [[9. 2025-04-26 - Learn about CLI tools best practices part 1]] #NitroDigest #Learning
+- [[8. 2025-04-25 - CLI tools research]] #NitroDigest #Learning
+- [[7. 2025-04-24 - split text into chunks part 3]] #NitroDigest
+- [[6. 2025-04-23 - split text into chunks part 2]] #NitroDigest
+- [[5. 2025-04-22 - exploring Github education + learning Python]] #Garage #Learning #Python
 - 3 & 4. 2025-04-20-21 Sunday, chill out
-- [[2. 2025-04-19]]
-- [[1. 2025-04-18|1. 2025-04-18]]
+- [[2. 2025-04-19 - split text into chunks part 1]] #NitroDigest
+- [[1. 2025-04-18 - two steps prompting|1. 2025-04-18 - two steps prompting]] #NitroDigest
 - 0. [[Journals archive]]
 
 ### Stories
