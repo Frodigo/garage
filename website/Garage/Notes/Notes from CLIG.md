@@ -48,7 +48,7 @@ Next section are nice to have. If I follow them, my CLi could be better than ave
 1. **Display help text when passed no options, the `-h` flag, or the `--help` flag.**
 2. **Display a concise help text by default.**
    1. Click will handle this rule for me
-3. **Show full help when `-h` and `--help` is passed.**'
+3. **Show full help when `-h` and `--help` is passed.**
 4. **Provide a support path for feedback and issues.**
    1. for example: add link to github in the help text
 5. **In help text, link to the web version of the documentation.**
