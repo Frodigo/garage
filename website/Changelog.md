@@ -7,6 +7,7 @@ _Items here are sorted from the newest to the oldest ones._
 
 ## Journals
 
+- [[12. 2025-04-29 - design for NitroDigest CLI]] #NitroDigest
 - [[11. 2025-04-28 - Learn about CLI tools best practices part 2]] #NitroDigest #Learning
 - 10. 2025-04-27 - Sunday, chill out
 - [[9. 2025-04-26 - Learn about CLI tools best practices part 1]] #NitroDigest #Learning
