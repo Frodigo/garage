@@ -71,7 +71,7 @@ Next section are nice to have. If I follow them, my CLi could be better than ave
 3. **Provide terminal-based documentation.**
 4. **Consider providing man pages.**
    1. I can use [ronn](https://rtomayko.github.io/ronn/ronn.1.html)
-   2. but [click-man](https://github.com/click-contrib/click-man) will be better for me because I sue Click
+   2. but [click-man](https://github.com/click-contrib/click-man) will be better for me because I use Click
 
 ### Output
 
