@@ -21,7 +21,7 @@ This project is under development. I wish I had a prototype ready by the end of 
 
 Links:
 
-- [Code](https://github.com/Frodigo/garage/tree/main/tools/NitroDigest)
+- [Code](https://github.com/Frodigo/garage/tree/main/nitrodigest)
 - [Current milestone](https://github.com/Frodigo/garage/milestone/1)
 - [Project on GitHub](https://github.com/users/Frodigo/projects/4)
 

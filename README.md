@@ -1,18 +1,16 @@
 # Garage
 
-A place for engineers who value traditional programming over vibe coding.
+A place for engineers who value traditional programming.
 
 ## Why this exists
 
-Modern programming in the AI ​​era **relegates the programmer to the role of an editor**. Corporations force us to use AI for everything and tell us that it will be faster and better, but **is faster always better?**
+Modern programming in the AI ​​era **relegates the programmer to the role of an editor**. Coding with AI seems like a direction for the future and the only one proper way. Thanks to AI, we can be faster and better, but **is faster always better?**
 
-Besides, vibe coding makes us as programmers lazy and stops us from thinking. We become useless. This is not how we imagined our work when we wrote our first "Hello World!" in Turbo Pascal many years ago.
+Besides, vibe coding makes us as programmers lazy and stops us from thinking. We become useless. This is not how we imagined our work when we wrote our first `"Hello World!"` program in Turbo Pascal many years ago.
 
-Corporations with their challenges promise that AI will replace entire teams of programmers. Maybe someday it will, but should we allow it? **Should we give up without a fight?**
+Some people say that AI will replace entire teams of programmers. Maybe someday it will, but should we allow it? **Should we give up without a fight?**
 
-Where are the leaders? Well, they write books about Vibe coding.
-
-This garage exists as a space for people who want to **solve problems with code**. We also use AI here because we like new technologies. But **we use AI; AI doesn't use us**.
+This garage exists as a space for people who want to **solve problems by writing code**. We also use AI here because we like new technologies. But **we use AI; AI doesn't use us**.
 
 Even when our world crumbles and we're forced into vibe coding at corporate jobs, we can always come back to the garage and code the way we love—simply for the joy of programming itself.
 
