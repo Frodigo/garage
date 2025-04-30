@@ -26,7 +26,7 @@ I investigated why quality of my feed was so bad. It was because in feed generat
 	<title>Historical cryptography algorithms</title>
 
 	<link>
-https://frodigo.com/Garage/Cybersecurity/Historical+cryptography+algorithms
+https://frodigo.com/Blog/4.+Historical+cryptography+algorithms
 	</link>
 </item>
 ```
@@ -48,11 +48,11 @@ So for me proper RSS feed item looks like this:
 	</description>
 
 	<link>
-https://frodigo.com/Garage/Cybersecurity/Historical+cryptography+algorithms
+https://frodigo.com/Blog/4.+Historical+cryptography+algorithms
 	</link>
 
 	<guid isPermaLink="false">
-	https://frodigo.com/Garage/Cybersecurity/Historical+cryptography+algorithms
+	https://frodigo.com/Blog/4.+Historical+cryptography+algorithms
 	</guid>
 
 	<pubDate>Fri, 28 Mar 2025 00:00:00 GMT</pubDate>
