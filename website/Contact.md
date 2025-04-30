@@ -9,6 +9,7 @@
 - [Linkedin](https://www.linkedin.com/in/frodigo/ "LinkedIn")
 - [GitHub](https://github.com/Frodigo "GitHub")
 - [Medium](https://medium.com/@marcin_12725 "Medium")
+- [Mastodon](https://mastodon.social/@frodigo)
 
 ---
 

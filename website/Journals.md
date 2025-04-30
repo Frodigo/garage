@@ -5,8 +5,7 @@ It's pure and uncomplicated. Do little step, everyday. Recover if feel tired. Co
 
 _Items here are sorted from the newest to the oldest ones._
 
-## Journals
-
+- [[13. 2025-04-30 - research & development]] #NitroDigest #Garage #PinePhonePro
 - [[12. 2025-04-29 - design for NitroDigest CLI]] #NitroDigest
 - [[11. 2025-04-28 - Learn about CLI tools best practices part 2]] #NitroDigest #Learning
 - 10. 2025-04-27 - Sunday, chill out
@@ -19,14 +18,6 @@ _Items here are sorted from the newest to the oldest ones._
 - [[2. 2025-04-19 - split text into chunks part 1]] #NitroDigest
 - [[1. 2025-04-18 - two steps prompting|1. 2025-04-18 - two steps prompting]] #NitroDigest
 - 0. [[Journals archive]]
-
-### Stories
-
-- 4. [[Why I built my own RSS feed generator for the Obsidian Publish website]]
-- 3. [[What well-known life laws I confirmed when I did a kitchen renovation]]
-- 2. [[Why teaching kids how to program is not easy]]
-- 1. [[I migrated website from Astro.build to Obsidian publish]]
-- 0. [[Archived articles, migrated from previous blog]]
 
 ---
 
