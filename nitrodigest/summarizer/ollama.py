@@ -26,14 +26,14 @@ class OllamaSummarizer(BaseSummarizer):
     def __init__(
         self,
         model: str = "mistral",
-        base_url: str = "http://localhost:11434",
+        ollama_api_url: str = "http://localhost:11434",
         timeout: int = 300,
         prompt_file: Optional[str] = None,
         max_tokens: int = 1000
     ):
         super().__init__()
         self.model = model
-        self.base_url = base_url.rstrip('/')
+        self.ollama_api_url = ollama_api_url.rstrip('/')
         self.timeout = timeout
         self.max_tokens = max_tokens
 
@@ -53,7 +53,8 @@ class OllamaSummarizer(BaseSummarizer):
             ConfigurationError: If Ollama is not available
         """
         try:
-            response = requests.get(f"{self.base_url}/api/tags", timeout=5)
+            response = requests.get(
+                f"{self.ollama_api_url}/api/tags", timeout=5)
             if response.status_code != 200:
                 raise ConfigurationError(
                     f"Ollama server returned status code "
@@ -63,7 +64,7 @@ class OllamaSummarizer(BaseSummarizer):
         except requests.RequestException as e:
             raise ConfigurationError(
                 f"Failed to connect to Ollama server at "
-                f"{self.base_url}: {str(e)}"
+                f"{self.ollama_api_url}: {str(e)}"
             )
 
     def summarize(
@@ -243,7 +244,7 @@ class OllamaSummarizer(BaseSummarizer):
         """
         try:
             return requests.post(
-                f"{self.base_url}/api/generate",
+                f"{self.ollama_api_url}/api/generate",
                 headers=headers,
                 data=json.dumps(data),
                 timeout=300
@@ -253,7 +254,7 @@ class OllamaSummarizer(BaseSummarizer):
                 "Request to Ollama API timed out after 300 seconds")
         except requests.ConnectionError:
             raise APIConnectionError(
-                f"Failed to connect to Ollama API at {self.base_url}. "
+                f"Failed to connect to Ollama API at {self.ollama_api_url}. "
                 "Check if Ollama is running."
             )
 

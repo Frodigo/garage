@@ -119,7 +119,7 @@ Config structure:
   "summarizer": {
     "type": "ollama",
     "model": "nitroModel",
-    "base_url": "http://localhost:11434",
+    "ollama_api_url": "http://localhost:11434",
     "timeout": 300
   },
   "summaries_path": "summaries",
@@ -142,7 +142,7 @@ Config structure:
 
 - `summarizer.type`: One of "claude", "chatgpt", or "ollama"
 - `summarizer.model`: Model name to use (for Ollama)
-- `summarizer.base_url`: Base URL for Ollama (default: [http://localhost:11434])
+- `summarizer.ollama_api_url`: Base URL for Ollama (default: [http://localhost:11434])
 - `summarizer.api_key`: API key for Claude or ChatGPT (required for those services)
 - `summarizer.timeout`: time in seconds that summarizer waits for response from LLM
 

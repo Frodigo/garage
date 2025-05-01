@@ -1,17 +1,7 @@
 {
-    "email": {
-        "address": "your-email@gmail.com",
-        "password": "your-password-or-app-password",
-        "server": "imap.gmail.com",
-        "port": 993,
-        "folder": "INBOX"
-    },
-    "summarizer": {
-        "model": "nitroModel",
-        "base_url": "http://localhost:11434",
-        "timeout": 300
-    },
-    "summaries_path": "summaries",
-    "limit": 5,
-    "mark_as_read": true
+    "model": "nitroModel",
+    "ollama_api_url": "http://localhost:11434",
+    "timeout": 300,
+    "prompt_file": "prompt_template.txt",
+    "summaries_path": "summaries"
 }
