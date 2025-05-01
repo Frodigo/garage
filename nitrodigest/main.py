@@ -1,22 +1,19 @@
 from argparse import ArgumentParser
 import os
 import tempfile
+from datetime import datetime
 
-from email_processor import EmailProcessor
 from summarizer import (
-    ClaudeSummarizer,
-    ChatGPTSummarizer,
     OllamaSummarizer,
     ConfigurationError
 )
 from summary_writer import SummaryWriter
-from config import Config, SummarizerType
+from config import Config
 
 
 def main():
-    # Define possible program parameters
     parser = ArgumentParser(
-        description="NitroDigest - Email newsletter summarizer"
+        description="nitrodigest - TLDR text, privately"
     )
     parser.add_argument(
         "--config",
@@ -25,39 +22,13 @@ def main():
         help="Path to JSON configuration file (default: config.json)"
     )
     parser.add_argument(
-        "--limit",
-        type=int,
-        help="Maximum number of emails to process"
-    )
-    parser.add_argument(
         "--output-dir",
         help="Directory to save summaries"
     )
     parser.add_argument(
-        "--mark-as-read",
-        action="store_true",
-        help="Mark processed emails as read"
-    )
-    parser.add_argument(
-        "--email",
-        help="Email address (overrides config)"
-    )
-    parser.add_argument(
-        "--password",
-        help="Email password (overrides config)"
-    )
-    parser.add_argument(
-        "--server",
-        help="IMAP server (overrides config)"
-    )
-    parser.add_argument(
-        "--folder",
-        help="Email folder to process"
-    )
-    parser.add_argument(
         "--timeout",
         type=int,
-        help="Timeout in seconds for API requests"
+        help="Timeout in seconds for API requests to Ollama (default: 300)"
     )
     parser.add_argument(
         "--prompt-file",
@@ -67,129 +38,113 @@ def main():
         "--prompt",
         help="Direct prompt content (overrides both config and prompt-file)"
     )
+    parser.add_argument(
+        "--input",
+        help="Path to a single file or directory to summarize"
+    )
 
     args = parser.parse_args()
 
-    # Load configuration
+    if args.input and not os.path.exists(args.input):
+        print(f"Error: Input path '{args.input}' does not exist")
+        return -1
+
     try:
         if not os.path.exists(args.config):
             print(f"Error: Configuration file '{args.config}' not found")
-            return
+            return -1
 
         config = Config.from_json(args.config)
 
-        # Override config with command line arguments if provided
-        if args.limit:
-            config.limit = args.limit
         if args.output_dir:
             config.summaries_path = args.output_dir
-        if args.mark_as_read:
-            config.mark_as_read = True
-        if args.email:
-            config.email.address = args.email
-        if args.password:
-            config.email.password = args.password
-        if args.server:
-            config.email.server = args.server
-        if args.folder:
-            config.email.folder = args.folder
+
         if args.timeout:
-            config.summarizer.timeout = args.timeout
+            config.timeout = args.timeout
         if args.prompt_file:
-            config.summarizer.prompt_file = args.prompt_file
+            config.prompt_file = args.prompt_file
         if args.prompt:
-            # Create a temporary file with the prompt content
             with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
                 f.write(args.prompt)
-                config.summarizer.prompt_file = f.name
+                config.prompt_file = f.name
 
-        # Validate configuration
         config.validate()
 
     except Exception as e:
         print(f"Configuration error: {e}")
-        return
+        return -1
 
-    # Initialize components
-    email_processor = EmailProcessor(
-        config.email.address,
-        config.email.password,
-        config.email.server,
-        config.email.port
-    )
-
-    # Choose summarizer based on configuration
     try:
-        if config.summarizer.type == SummarizerType.CLAUDE:
-            if not config.summarizer.api_key:
-                raise ConfigurationError("Claude API key is required")
-            if not config.summarizer.model:
-                raise ConfigurationError("Model is required for Claude")
-            summarizer = ClaudeSummarizer(
-                api_key=config.summarizer.api_key,
-                model=config.summarizer.model,
-                timeout=config.summarizer.timeout,
-                prompt_file=config.summarizer.prompt_file
-            )
-        elif config.summarizer.type == SummarizerType.CHATGPT:
-            if not config.summarizer.api_key:
-                raise ConfigurationError("ChatGPT API key is required")
-            if not config.summarizer.model:
-                raise ConfigurationError("Model is required for ChatGPT")
-            summarizer = ChatGPTSummarizer(
-                api_key=config.summarizer.api_key,
-                model=config.summarizer.model,
-                timeout=config.summarizer.timeout,
-                prompt_file=config.summarizer.prompt_file
-            )
-        elif config.summarizer.type == SummarizerType.OLLAMA:
-            if not config.summarizer.model:
-                raise ConfigurationError("Model is required for Ollama")
-            summarizer = OllamaSummarizer(
-                model=config.summarizer.model,
-                base_url=config.summarizer.base_url,
-                timeout=config.summarizer.timeout,
-                prompt_file=config.summarizer.prompt_file
-            )
+        if not config.model:
+            raise ConfigurationError("Model is required for Ollama")
+
+        summarizer = OllamaSummarizer(
+            model=config.model,
+            ollama_api_url=config.ollama_api_url,
+            timeout=config.timeout,
+            prompt_file=config.prompt_file
+        )
     except ConfigurationError as e:
         print(f"Configuration error: {e}")
-        return
+        return -1
     except Exception as e:
         print(f"Unexpected error initializing summarizer: {e}")
-        return
+        return -1
 
     summary_writer = SummaryWriter(output_dir=config.summaries_path)
 
-    # Process emails
-    print(
-        f"Fetching up to {config.limit} unread emails from "
-        f"{config.email.folder}..."
-    )
-    emails = email_processor.get_unread_emails(
-        folder=config.email.folder, limit=config.limit)
+    # Handle input file or directory
+    if args.input:
+        if os.path.isfile(args.input):
+            process_file(args.input, summarizer, summary_writer)
+        elif os.path.isdir(args.input):
+            process_directory(args.input, summarizer, summary_writer)
+        else:
+            print(f"Error: '{args.input}' is neither a file nor a directory")
+            return -1
+    else:
+        print("Error: No input file or directory specified. Use --input to specify a file or directory to summarize.")
+        return -1
 
-    if not emails:
-        print("No unread emails found.")
-        return
+    # Clean up temporary prompt file if it was created
+    if (args.prompt and config.prompt_file and
+            os.path.exists(config.prompt_file)):
+        os.remove(config.prompt_file)
+        print("Cleaned up temporary prompt file.")
 
-    print(f"Found {len(emails)} unread emails. Processing...")
 
-    for i, email_data in enumerate(emails):
-        print(f"\nProcessing email {i+1}/{len(emails)}:")
-        print(f"Subject: {email_data['subject']}")
-        print(f"From: {email_data['from']}")
+def process_file(file_path, summarizer, summary_writer):
+    """Process a single file for summarization"""
+    try:
+        print(f"Processing file: {file_path}")
 
-        # Summarize
-        print("Generating summary...")
-        result = summarizer.summarize(email_data['body'], email_data)
+        # Read the file content
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        if not content.strip():
+            print(f"Warning: File '{file_path}' is empty")
+            return
+
+        # Create metadata from file info
+        file_name = os.path.basename(file_path)
+        metadata = {
+            'subject': file_name,
+            'from': 'file://' + os.path.abspath(file_path),
+            'date': datetime.fromtimestamp(os.path.getmtime(file_path)).strftime("%Y-%m-%d %H:%M:%S"),
+            'id': file_path
+        }
+
+        # Generate summary
+        print(f"Generating summary for {file_name}...")
+        result = summarizer.summarize(content, metadata)
 
         if not result.is_success():
             print(f"Failed to generate summary: {result.error}")
-            continue
+            return -1
 
         summary = result.summary
-
-        filepath = summary_writer.write_summary(summary, email_data)
+        filepath = summary_writer.write_summary(summary, metadata)
 
         if filepath:
             print(f"Summary saved to: {filepath}")
@@ -200,20 +155,32 @@ def main():
         else:
             print("Failed to save summary.")
 
-        # Mark as read if requested
-        if config.mark_as_read:
-            email_processor.mark_as_read(email_data['id'])
-            print("Email marked as read")
+    except Exception as e:
+        print(f"Error processing file '{file_path}': {e}")
 
-    # Disconnect from email server
-    email_processor.disconnect()
-    print("\nAll emails processed.")
 
-    # Clean up temporary prompt file if it was created
-    if (args.prompt and config.summarizer.prompt_file and
-            os.path.exists(config.summarizer.prompt_file)):
-        os.remove(config.summarizer.prompt_file)
-        print("Cleaned up temporary prompt file.")
+def process_directory(directory_path, summarizer, summary_writer):
+    """Process all text files in a directory for summarization"""
+    print(f"Processing directory: {directory_path}")
+
+    # Get all files in directory
+    file_count = 0
+    success_count = 0
+
+    for root, _, files in os.walk(directory_path):
+        for filename in files:
+            # Only process text files - check common text file extensions
+            if filename.lower().endswith(('.txt', '.md', '.html', '.htm', '.xml', '.json', '.csv', '.log')):
+                file_path = os.path.join(root, filename)
+                try:
+                    process_file(file_path, summarizer, summary_writer)
+                    success_count += 1
+                except Exception as e:
+                    print(f"Error processing '{file_path}': {e}")
+                file_count += 1
+
+    print(
+        f"Directory processing complete: {success_count} of {file_count} files processed successfully")
 
 
 if __name__ == "__main__":

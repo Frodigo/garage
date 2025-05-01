@@ -17,27 +17,16 @@ class SummaryWriter:
         # Create output directory if it doesn't exist
         if not os.path.exists(self.output_dir):
             os.makedirs(self.output_dir)
+            self.logger.info(f"Created output directory: {self.output_dir}")
 
     def write_summary(self, summary, metadata):
-        """Write a summary to the combined markdown file
-        with YAML frontmatter"""
+        """Write a summary to the file"""
         if not summary or not metadata:
             return None
 
         try:
             # Get current date for filename
-            current_date = datetime.now().strftime("%Y-%m-%d")
-            combined_file = os.path.join(
-                self.output_dir,
-                f"combined_summaries_{current_date}_{os.urandom(4).hex()}.md"
-            )
-
-            # Initialize file if it doesn't exist
-            if not os.path.exists(combined_file):
-                with open(combined_file, 'w', encoding='utf-8') as f:
-                    f.write(
-                        "# Combined Newsletter Summaries - "
-                        f"{current_date}\n\n")
+            summary_file = self._generate_filename(metadata)
 
             # Prepare YAML frontmatter
             frontmatter = {
@@ -49,8 +38,9 @@ class SummaryWriter:
                 'summary_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
 
-            # Append to combined file
-            with open(combined_file, 'a', encoding='utf-8') as f:
+            os.makedirs(os.path.dirname(summary_file), exist_ok=True)
+
+            with open(summary_file, 'a', encoding='utf-8') as f:
                 f.write('---\n')
                 yaml.dump(
                     frontmatter,
@@ -62,8 +52,9 @@ class SummaryWriter:
                 f.write(summary)
                 f.write('\n\n---\n\n')
 
-            self.logger.info(f"Summary added to {combined_file}")
-            return combined_file
+            self.logger.info(
+                f"Summary added to {os.path.basename(summary_file)} in {self.output_dir}")
+            return summary_file
 
         except (IOError, yaml.YAMLError) as e:
             self.logger.error(f"Error writing summary file: {e}")
@@ -93,7 +84,9 @@ class SummaryWriter:
         clean_subject = re.sub(r'\s+', '-', clean_subject).strip('-').lower()
         clean_subject = clean_subject[:50]  # Limit length
 
-        return f"{date_str}-{clean_subject}.md"
+        # Create full path including output directory
+        filename = f"{date_str}-{clean_subject}.md"
+        return os.path.join(self.output_dir, filename)
 
 
 # Example usage

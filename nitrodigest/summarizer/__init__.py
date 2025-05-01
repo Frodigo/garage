@@ -14,10 +14,7 @@ from summarizer.exceptions import (
     ContentProcessingError
 )
 
-# Import provider-specific summarizers
-from summarizer.providers.claude import ClaudeSummarizer
-from summarizer.providers.openai import ChatGPTSummarizer
-from summarizer.providers.ollama import OllamaSummarizer
+from .ollama import OllamaSummarizer
 
 __all__ = [
     'BaseSummarizer',
@@ -30,7 +27,5 @@ __all__ = [
     'APIAuthenticationError',
     'APIRateLimitError',
     'ContentProcessingError',
-    'ClaudeSummarizer',
-    'ChatGPTSummarizer',
     'OllamaSummarizer'
 ]
