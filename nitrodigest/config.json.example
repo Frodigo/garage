@@ -7,7 +7,6 @@
         "folder": "INBOX"
     },
     "summarizer": {
-        "type": "ollama",
         "model": "nitroModel",
         "base_url": "http://localhost:11434",
         "timeout": 300

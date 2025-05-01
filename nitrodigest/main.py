@@ -4,13 +4,11 @@ import tempfile
 
 from email_processor import EmailProcessor
 from summarizer import (
-    ClaudeSummarizer,
-    ChatGPTSummarizer,
     OllamaSummarizer,
     ConfigurationError
 )
 from summary_writer import SummaryWriter
-from config import Config, SummarizerType
+from config import Config
 
 
 def main():
@@ -120,37 +118,15 @@ def main():
 
     # Choose summarizer based on configuration
     try:
-        if config.summarizer.type == SummarizerType.CLAUDE:
-            if not config.summarizer.api_key:
-                raise ConfigurationError("Claude API key is required")
-            if not config.summarizer.model:
-                raise ConfigurationError("Model is required for Claude")
-            summarizer = ClaudeSummarizer(
-                api_key=config.summarizer.api_key,
-                model=config.summarizer.model,
-                timeout=config.summarizer.timeout,
-                prompt_file=config.summarizer.prompt_file
-            )
-        elif config.summarizer.type == SummarizerType.CHATGPT:
-            if not config.summarizer.api_key:
-                raise ConfigurationError("ChatGPT API key is required")
-            if not config.summarizer.model:
-                raise ConfigurationError("Model is required for ChatGPT")
-            summarizer = ChatGPTSummarizer(
-                api_key=config.summarizer.api_key,
-                model=config.summarizer.model,
-                timeout=config.summarizer.timeout,
-                prompt_file=config.summarizer.prompt_file
-            )
-        elif config.summarizer.type == SummarizerType.OLLAMA:
-            if not config.summarizer.model:
-                raise ConfigurationError("Model is required for Ollama")
-            summarizer = OllamaSummarizer(
-                model=config.summarizer.model,
-                base_url=config.summarizer.base_url,
-                timeout=config.summarizer.timeout,
-                prompt_file=config.summarizer.prompt_file
-            )
+        if not config.summarizer.model:
+            raise ConfigurationError("Model is required for Ollama")
+
+        summarizer = OllamaSummarizer(
+            model=config.summarizer.model,
+            base_url=config.summarizer.base_url,
+            timeout=config.summarizer.timeout,
+            prompt_file=config.summarizer.prompt_file
+        )
     except ConfigurationError as e:
         print(f"Configuration error: {e}")
         return
