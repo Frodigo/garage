@@ -199,7 +199,7 @@ ollama run llama2
 Run NitroDigest with the default configuration file (`config.json`):
 
 ```bash
-python main.py --input <file or directory you want to summarize
+python main.py --input <file or directory you want to summarize>
 ```
 
 ### Using a Custom Configuration File
