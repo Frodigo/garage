@@ -1,16 +1,13 @@
 # NitroDigest
 
-TL;DR your inbox, privately.
+TL;DR your data, privately.
 
-**NitroDigest – the privacy‑first, local‑LLM email‑summariser for developers.**
+**NitroDigest – the privacy‑first, local‑LLM tet‑summariser for developers.**
 
 ## Features
 
-- Pulls unread newsletters via IMAP
 - Runs 100 % on‑device with Ollama – your mail never leaves localhost
-- But if you prefer Cloud hosted LLMs, you can also use Open AI, or Antrophic (API key is needed then)
-- Extract text content from HTML emails
-- Save all summaries in a single combined Markdown file with YAML frontmatter
+- Save summarized data in a single Markdown file with YAML frontmatter
 - Command-line interface with various options
 - Completely free (open source, MIT license)
 
@@ -19,7 +16,6 @@ This project is in alpha phase.
 I have been working on a [prototype](https://github.com/Frodigo/garage/milestone/1), and I am looking for contributors to help with:
 
 - prompt improvements
-- cross‑provider testing (Gmail / self‑hosted) + different LLMs testing (Ollama, CLaude, Open AI)
 - refactoring
 - documenting
 - help with TUI, or simple web app
@@ -50,7 +46,7 @@ In any case, feel free to start/join a discussion. I am interested in what you t
 - More summary personalization options
 - Explore ML models for summarization
 - API & Authorization
-- Add other data sources: Github (Issues/PRs), Jira, Slack, Discord
+- Show use cases for various data sources: Github (Issues/PRs), Jira, Slack, Discord
 - Extract valuable code snippets, new terms and trends from data sources
 
 ---
@@ -67,7 +63,7 @@ Want to use this tool. Follow instructions below:
 ```bash
 # Clone the repository
 git clone https://github.com/Frodigo/garage
-cd tools/NitroDigest
+cd nitrodigest
 ```
 
 ### Create a virtual environment
@@ -109,57 +105,21 @@ Config structure:
 
 ```json
 {
-  "email": {
-    "address": "your-email@gmail.com",
-    "password": "your-password-or-app-password",
-    "server": "imap.gmail.com",
-    "port": 993,
-    "folder": "INBOX"
-  },
-  "summarizer": {
-    "type": "ollama",
-    "model": "nitroModel",
+    "model": "mistral",
     "ollama_api_url": "http://localhost:11434",
-    "timeout": 300
-  },
-  "summaries_path": "summaries",
-  "limit": 5,
-  "mark_as_read": true
+    "timeout": 300,
+    "prompt_file": "prompt_template.txt",
+    "summaries_path": "summaries"
 }
 ```
 
 ### Configuration Options
 
-#### Email Settings
-
-- `email.address`: Your email address
-- `email.password`: Your email password or app password
-- `email.server`: IMAP server (default: "imap.gmail.com")
-- `email.port`: IMAP port (default: 993)
-- `email.folder`: Email folder to process (default: "INBOX")
-
-#### Summarizer Settings
-
-- `summarizer.type`: One of "claude", "chatgpt", or "ollama"
-- `summarizer.model`: Model name to use (for Ollama)
-- `summarizer.ollama_api_url`: Base URL for Ollama (default: [http://localhost:11434])
-- `summarizer.api_key`: API key for Claude or ChatGPT (required for those services)
-- `summarizer.timeout`: time in seconds that summarizer waits for response from LLM
-
-#### General Settings
-
+- `model`: Model name to use
+- `ollama_api_url`: Base URL for Ollama (default: [http://localhost:11434])
+- `timeout`: time in seconds that summarizer waits for response from LLM
+- `prompt_file`: path to prompt file
 - `summaries_path`: Directory to save summaries (default: "summaries")
-- `limit`: Maximum number of emails to process (default: 5)
-- `mark_as_read`: Whether to mark processed emails as read (default: true)
-
-### Gmail Configuration
-
-If you're using Gmail, you'll need to:
-
-1. Enable IMAP in your Gmail settings. For personal accounts it is enabled already, and this option is not visible in settings.
-2. Create an app password if you have 2-factor authentication enabled, or if your regular password is not working, and you get authentication errors when attempting to use NitroDigest.
-   - Go to [app passwords settings](https://myaccount.google.com/apppasswords).
-   - Add new "app" with whatever name you want, then generate the 16-character password. This password can now be used instead of your regular password.
 
 ## Ollama docker setup
 
@@ -239,7 +199,7 @@ ollama run llama2
 Run NitroDigest with the default configuration file (`config.json`):
 
 ```bash
-python main.py
+python main.py --input <file or directory you want to summarize
 ```
 
 ### Using a Custom Configuration File
@@ -256,30 +216,19 @@ You can override any configuration setting using command line arguments:
 
 ```bash
 python main.py \
-    --limit 10 \
     --output-dir custom_summaries \
-    --summarizer ollama \
     --model mistral \
-    --mark-as-read \
-    --email custom@example.com \
-    --password custom-password \
-    --server imap.example.com \
-    --folder CUSTOM_FOLDER
+    --input file_to_summarize.txt
 ```
 
 Available arguments:
 
 - `--config`: Path to configuration file (default: config.json)
-- `--limit`: Maximum number of emails to process
 - `--output-dir`: Directory to save summaries
-- `--mark-as-read`: Mark processed emails as read
-- `--email`: Email address (overrides config)
-- `--password`: Email password (overrides config)
-- `--server`: IMAP server (overrides config)
-- `--folder`: Email folder to process
-- `--timeout`: Time in seconds that summarizer waits for response from LLM
+- `--timeout`: Time in seconds for API requests to Ollama (default: 300)
 - `--prompt-file`: Path to custom prompt template file (overrides config)
 - `--prompt`: Direct prompt content (overrides both config and prompt-file)
+- `--input`: Path to a single file or directory to summarize
 
 ### Prompt Configuration
 
@@ -289,9 +238,7 @@ You can specify the prompt template in three ways:
 
 ```json
 {
-  "summarizer": {
-    "prompt_file": "prompt_template.txt"
-  }
+  "prompt_file": "prompt_template.txt"
 }
 ```
 

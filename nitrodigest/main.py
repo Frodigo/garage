@@ -1,7 +1,6 @@
 from argparse import ArgumentParser
 import os
 import tempfile
-import sys
 from datetime import datetime
 
 from summarizer import (

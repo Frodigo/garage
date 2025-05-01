@@ -17,6 +17,7 @@ class SummaryWriter:
         # Create output directory if it doesn't exist
         if not os.path.exists(self.output_dir):
             os.makedirs(self.output_dir)
+            self.logger.info(f"Created output directory: {self.output_dir}")
 
     def write_summary(self, summary, metadata):
         """Write a summary to the file"""
@@ -25,7 +26,6 @@ class SummaryWriter:
 
         try:
             # Get current date for filename
-            current_date = datetime.now().strftime("%Y-%m-%d")
             summary_file = self._generate_filename(metadata)
 
             # Prepare YAML frontmatter
@@ -37,6 +37,8 @@ class SummaryWriter:
                 'email_id': metadata.get('id', ''),
                 'summary_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
+
+            os.makedirs(os.path.dirname(summary_file), exist_ok=True)
 
             with open(summary_file, 'a', encoding='utf-8') as f:
                 f.write('---\n')
@@ -50,7 +52,8 @@ class SummaryWriter:
                 f.write(summary)
                 f.write('\n\n---\n\n')
 
-            self.logger.info(f"Summary added to {summary_file}")
+            self.logger.info(
+                f"Summary added to {os.path.basename(summary_file)} in {self.output_dir}")
             return summary_file
 
         except (IOError, yaml.YAMLError) as e:
@@ -81,7 +84,9 @@ class SummaryWriter:
         clean_subject = re.sub(r'\s+', '-', clean_subject).strip('-').lower()
         clean_subject = clean_subject[:50]  # Limit length
 
-        return f"{date_str}-{clean_subject}.md"
+        # Create full path including output directory
+        filename = f"{date_str}-{clean_subject}.md"
+        return os.path.join(self.output_dir, filename)
 
 
 # Example usage

@@ -14,7 +14,7 @@ from summarizer.exceptions import (
     ContentProcessingError
 )
 
-from nitrodigest.summarizer.ollama import OllamaSummarizer
+from .ollama import OllamaSummarizer
 
 __all__ = [
     'BaseSummarizer',
