@@ -2,7 +2,7 @@
 
 TL;DR your data, privately.
 
-**NitroDigest – the privacy‑first, local‑LLM tet‑summariser for developers.**
+**NitroDigest – the privacy‑first, local‑LLM text‑summariser for developers.**
 
 ## Features
 
