@@ -124,7 +124,7 @@ def process_file(file_path, summarizer, summary_writer):
 
         if not content.strip():
             print(f"Warning: File '{file_path}' is empty")
-            return -1
+            return
 
         # Create metadata from file info
         file_name = os.path.basename(file_path)
