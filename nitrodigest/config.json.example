@@ -3,5 +3,4 @@
     "ollama_api_url": "http://localhost:11434",
     "timeout": 300,
     "prompt_file": "prompt_template.txt",
-    "summaries_path": "summaries"
 }

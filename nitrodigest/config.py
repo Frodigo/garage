@@ -10,7 +10,6 @@ class Config:
     ollama_api_url: str = "http://localhost:11434"
     timeout: int = 300
     prompt_file: Optional[str] = 'prompt_template.txt'
-    summaries_path: str = "summaries"
 
     def validate(self) -> None:
         """Validate configuration values."""
@@ -32,7 +31,6 @@ class Config:
                 'ollama_api_url', 'http://localhost:11434'),
             timeout=data.get('timeout', 300),
             prompt_file=data.get('prompt_file', 'prompt_template.txt'),
-            summaries_path=data.get('summaries_path', 'summaries'),
         )
 
     @classmethod
@@ -48,7 +46,6 @@ class Config:
             'model': self.model,
             'ollama_api_url': self.ollama_api_url,
             'timeout': self.timeout,
-            'summaries_path': self.summaries_path,
         }
 
         if self.prompt_file:
