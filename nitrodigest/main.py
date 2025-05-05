@@ -1,13 +1,14 @@
 from argparse import ArgumentParser
 import os
 import tempfile
+import sys
+import yaml
 from datetime import datetime
 
 from summarizer import (
     OllamaSummarizer,
     ConfigurationError
 )
-from summary_writer import SummaryWriter
 from config import Config
 
 
@@ -20,10 +21,6 @@ def main():
         type=str,
         default="config.json",
         help="Path to JSON configuration file (default: config.json)"
-    )
-    parser.add_argument(
-        "--output-dir",
-        help="Directory to save summaries"
     )
     parser.add_argument(
         "--timeout",
@@ -55,9 +52,6 @@ def main():
             return -1
 
         config = Config.from_json(args.config)
-
-        if args.output_dir:
-            config.summaries_path = args.output_dir
 
         if args.timeout:
             config.timeout = args.timeout
@@ -91,14 +85,12 @@ def main():
         print(f"Unexpected error initializing summarizer: {e}")
         return -1
 
-    summary_writer = SummaryWriter(output_dir=config.summaries_path)
-
     # Handle input file or directory
     if args.input:
         if os.path.isfile(args.input):
-            process_file(args.input, summarizer, summary_writer)
+            process_file(args.input, summarizer)
         elif os.path.isdir(args.input):
-            process_directory(args.input, summarizer, summary_writer)
+            process_directory(args.input, summarizer)
         else:
             print(f"Error: '{args.input}' is neither a file nor a directory")
             return -1
@@ -113,55 +105,64 @@ def main():
         print("Cleaned up temporary prompt file.")
 
 
-def process_file(file_path, summarizer, summary_writer):
+def process_file(file_path, summarizer):
     """Process a single file for summarization"""
     try:
-        print(f"Processing file: {file_path}")
+        print(f"Processing file: {file_path}", file=sys.stderr)
 
         # Read the file content
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
 
         if not content.strip():
-            print(f"Warning: File '{file_path}' is empty")
+            print(f"Warning: File '{file_path}' is empty", file=sys.stderr)
             return
 
         # Create metadata from file info
         file_name = os.path.basename(file_path)
         metadata = {
-            'subject': file_name,
-            'from': 'file://' + os.path.abspath(file_path),
+            'title': file_name,
+            'source': 'file://' + os.path.abspath(file_path),
             'date': datetime.fromtimestamp(os.path.getmtime(file_path)).strftime("%Y-%m-%d %H:%M:%S"),
             'id': file_path
         }
 
         # Generate summary
-        print(f"Generating summary for {file_name}...")
+        print(f"Generating summary for {file_name}...", file=sys.stderr)
         result = summarizer.summarize(content, metadata)
 
         if not result.is_success():
-            print(f"Failed to generate summary: {result.error}")
+            print(
+                f"Failed to generate summary: {result.error}", file=sys.stderr)
             return -1
 
         summary = result.summary
-        filepath = summary_writer.write_summary(summary, metadata)
 
-        if filepath:
-            print(f"Summary saved to: {filepath}")
-            print(
-                f"Used model: {result.model_used} "
-                f"({result.tokens_used} tokens)"
-            )
-        else:
-            print("Failed to save summary.")
+        print('---')
+        yaml.dump(
+            {
+                'title': metadata.get('title', 'Untitled'),
+                'source': metadata.get('source', 'Unknown'),
+                'date': metadata.get('date', datetime.now().strftime("%Y-%m-%d")),
+                'id': metadata.get('id', ''),
+                'summary_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                'model': result.model_used,
+                'tokens': result.tokens_used
+            },
+            sys.stdout,
+            default_flow_style=False,
+            allow_unicode=True
+        )
+        print('---\n')
+        print(summary)
 
     except Exception as e:
-        print(f"Error processing file '{file_path}': {e}")
+        print(f"Error processing file '{file_path}': {e}", file=sys.stderr)
 
 
-def process_directory(directory_path, summarizer, summary_writer):
+def process_directory(directory_path, summarizer):
     """Process all text files in a directory for summarization"""
-    print(f"Processing directory: {directory_path}")
+    print(f"Processing directory: {directory_path}", file=sys.stderr)
 
     # Get all files in directory
     file_count = 0
@@ -173,7 +174,7 @@ def process_directory(directory_path, summarizer, summary_writer):
             if filename.lower().endswith(('.txt', '.md', '.html', '.htm', '.xml', '.json', '.csv', '.log')):
                 file_path = os.path.join(root, filename)
                 try:
-                    process_file(file_path, summarizer, summary_writer)
+                    process_file(file_path, summarizer)
                     success_count += 1
                 except Exception as e:
                     print(f"Error processing '{file_path}': {e}")

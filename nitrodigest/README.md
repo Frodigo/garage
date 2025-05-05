@@ -7,7 +7,6 @@ TL;DR your data, privately.
 ## Features
 
 - Runs 100 % on‑device with Ollama – your mail never leaves localhost
-- Save summarized data in a single Markdown file with YAML frontmatter
 - Command-line interface with various options
 - Completely free (open source, MIT license)
 
@@ -109,7 +108,6 @@ Config structure:
     "ollama_api_url": "http://localhost:11434",
     "timeout": 300,
     "prompt_file": "prompt_template.txt",
-    "summaries_path": "summaries"
 }
 ```
 
@@ -119,7 +117,6 @@ Config structure:
 - `ollama_api_url`: Base URL for Ollama (default: [http://localhost:11434])
 - `timeout`: time in seconds that summarizer waits for response from LLM
 - `prompt_file`: path to prompt file
-- `summaries_path`: Directory to save summaries (default: "summaries")
 
 ## Ollama docker setup
 
@@ -199,7 +196,7 @@ ollama run llama2
 Run NitroDigest with the default configuration file (`config.json`):
 
 ```bash
-python main.py --input <file or directory you want to summarize>
+python main.py --input <file or directory you want to summarize> > summaries/summary.md
 ```
 
 ### Using a Custom Configuration File
