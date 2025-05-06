@@ -5,6 +5,9 @@ It's pure and uncomplicated. Do little step, everyday. Recover if feel tired. Co
 
 _Items here are sorted from the newest to the oldest ones._
 
+- [[19. 2025-05-06 - installing Linux]] #garage
+- [[18. 2025-05-05 - refactor saving summary in nitrodigest]] #NitroDigest 
+- Holiday
 - [[14. 2025-05-01 - nitrodigest refactor]] #NitroDigest
 - [[13. 2025-04-30 - research & development]] #NitroDigest #Garage #PinePhonePro
 - [[12. 2025-04-29 - design for NitroDigest CLI]] #NitroDigest

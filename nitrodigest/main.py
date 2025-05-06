@@ -14,7 +14,8 @@ from config import Config
 
 def main():
     parser = ArgumentParser(
-        description="nitrodigest - TLDR text, privately"
+        description="nitrodigest - TLDR text, privately",
+        epilog="Visit docs, if you need more information: https://docs.nitrodigest.frodigo.com, or report issues: https://github.com/frodigo/garage/issues if something doesn't work as expected."
     )
     parser.add_argument(
         "--config",
