@@ -5,6 +5,7 @@ It's pure and uncomplicated. Do little step, everyday. Recover if feel tired. Co
 
 _Items here are sorted from the newest to the oldest ones._
 
+- [[20. 2025-05-07 - project F125Rally]] #learning #projectF125Rally
 - [[19. 2025-05-06 - installing Linux]] #garage
 - [[18. 2025-05-05 - refactor saving summary in nitrodigest]] #NitroDigest
 - Holiday
@@ -14,7 +15,7 @@ _Items here are sorted from the newest to the oldest ones._
 - [[11. 2025-04-28 - Learn about CLI tools best practices part 2]] #NitroDigest #Learning
 - 10. 2025-04-27 - Sunday, chill out
 - [[9. 2025-04-26 - Learn about CLI tools best practices part 1]] #NitroDigest #Learning
-- [[8. 2025-04-25 - CLI tools research]] #NitroDigest #Learning
+- [[8. 2025-04-25 - CLI tools research]] #NitroDigest #learning
 - [[7. 2025-04-24 - split text into chunks part 3]] #NitroDigest
 - [[6. 2025-04-23 - split text into chunks part 2]] #NitroDigest
 - [[5. 2025-04-22 - exploring Github education + learning Python]] #Garage #Learning #Python

@@ -8,8 +8,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: lab
-      MYSQL_USER: root
-      MYSQL_PASSWORD: admin
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:

@@ -1,5 +1,3 @@
-This is a hands-on learning roadmap for Databses.
-
 ## Level 0: Get comfortable with SQL & Tools
 
 **Goal:** Learn basic SQL syntax and how to use MySQL Workbench.
