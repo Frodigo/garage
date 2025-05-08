@@ -1,10 +1,6 @@
 import nltk
 from typing import Optional, Dict, Any
-
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
+nltk.download('punkt_tab')
 
 """
  Split text to chunks based on token budget
