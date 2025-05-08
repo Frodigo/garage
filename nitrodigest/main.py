@@ -182,7 +182,7 @@ def process_directory(directory_path, summarizer):
                 file_count += 1
 
     print(
-        f"Directory processing complete: {success_count} of {file_count} files processed successfully")
+        f"Directory processing complete: {success_count} of {file_count} files processed successfully", file=sys.stderr)
 
 
 if __name__ == "__main__":
