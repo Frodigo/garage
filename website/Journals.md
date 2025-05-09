@@ -5,6 +5,8 @@ It's pure and uncomplicated. Do little step, everyday. Recover if feel tired. Co
 
 _Items here are sorted from the newest to the oldest ones._
 
+- [[22. 2025-05-09 - designing data model]] #Learning #projectF125Rally
+- 21. 2025-05-08 - learning about modeling and designing databases #Learning #projectF125Rally
 - [[20. 2025-05-07 - project F125Rally]] #learning #projectF125Rally
 - [[19. 2025-05-06 - installing Linux]] #garage
 - [[18. 2025-05-05 - refactor saving summary in nitrodigest]] #NitroDigest
