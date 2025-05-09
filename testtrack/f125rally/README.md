@@ -41,3 +41,4 @@ students, groups, subjects, and grades.**
 
 1. [First, unnormalized diagram](./unnormalized-diagram.md)
 2. [Second, normalized diagram](./normalized-diagram-v1.md)
+3. [Final schema](./schema.png)
