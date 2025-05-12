@@ -62,7 +62,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: feed-and-links
-          path: website
+          path: Utils/RSSfeed
 
       - name: Install Playwright browsers
         working-directory: Utils/RSSfeed/
