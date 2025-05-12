@@ -5,9 +5,9 @@ on:
     branches:
       - main
     paths:
-      - 'website/**/*.md'
-      - 'website/**/*.js'
-      - 'website/**/*.json'
+      - 'Utils/RSSfeed/**/*.md'
+      - 'Utils/RSSfeed/**/*.js'
+      - 'Utils/RSSfeed/**/*.json'
 
 jobs:
   generate:
@@ -21,14 +21,14 @@ jobs:
         with:
           node-version: 'latest'
           cache: 'npm'
-          cache-dependency-path: website/package.json
+          cache-dependency-path: Utils/RSSfeed/package.json
 
       - name: Install dependencies
-        working-directory: ./website
+        working-directory: Utils/RSSfeed/
         run: npm install
 
       - name: Generate RSS feed and links file
-        working-directory: ./website
+        working-directory: Utils/RSSfeed/
         run: node feed.xml.js
 
       - name: Upload RSS feed and links file
@@ -36,8 +36,8 @@ jobs:
         with:
           name: feed-and-links
           path: |
-            website/public/
-            website/links-to-test.json
+            Utils/RSSfeed/public/
+            Utils/RSSfeed/links-to-test.json
           retention-days: 1
 
   e2e-test-and-deploy:
@@ -52,10 +52,10 @@ jobs:
         with:
           node-version: 'latest'
           cache: 'npm'
-          cache-dependency-path: website/package.json
+          cache-dependency-path: Utils/RSSfeed/package.json
 
       - name: Install dependencies
-        working-directory: ./website
+        working-directory: Utils/RSSfeed/
         run: npm install
 
       - name: Download RSS feed and links file
@@ -65,11 +65,11 @@ jobs:
           path: website
 
       - name: Install Playwright browsers
-        working-directory: ./website
+        working-directory: Utils/RSSfeed/
         run: npx playwright install --with-deps
 
       - name: Run e2e tests
-        working-directory: ./website
+        working-directory: Utils/RSSfeed/
         run: npm run test:e2e
 
       - name: Upload test results
@@ -78,8 +78,8 @@ jobs:
         with:
           name: test-results
           path: |
-            website/playwright-report/
-            website/test-results/
+            Utils/RSSfeed/playwright-report/
+            Utils/RSSfeed/test-results/
           retention-days: 30
 
       - name: Deploy to Cloudflare Pages
@@ -88,4 +88,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy website/public --project-name=frodigo-rss
+          command: pages deploy Utils/RSSfeed/public --project-name=frodigo-rss

@@ -46,3 +46,28 @@ samples/
 __pycache__/
 venv/
 .venv/
+
+.obsidian/
+priv/
+.trash/
+node_modules/
+public/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+screenshots/
+
+# RSS Feed
+links-to-test.json
+
+# Ignore all .env files
+.env
+
+# Ignore all __pycache__ directories
+__pycache__/
+
+# Ignore all draft files
+*.draft.md
