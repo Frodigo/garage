@@ -5,9 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'Utils/RSSfeed/**/*.md'
-      - 'Utils/RSSfeed/**/*.js'
-      - 'Utils/RSSfeed/**/*.json'
+      - '**/*.md'
 
 jobs:
   generate:
