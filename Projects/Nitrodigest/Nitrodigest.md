@@ -1,8 +1,8 @@
-# NitroDigest
+# Nitrodigest
 
 TL;DR your data, privately.
 
-**NitroDigest – the privacy‑first, local‑LLM text‑summariser for developers.**
+**Nitrodigest – the privacy‑first, local‑LLM text‑summariser for developers.**
 
 ## Features
 
