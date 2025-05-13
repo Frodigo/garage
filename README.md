@@ -22,7 +22,7 @@ Even when our world crumbles and we're forced into vibe coding at corporate jobs
 
 1. Independence over dependency
 2. Creation over consumption
-3. [[Progress over perfection]]
+3. Progress over perfection
 4. Open-source over closed-source
 5. Honesty over marketing BS
 6. Asynchronous collaboration over unproductive meetings
@@ -33,14 +33,14 @@ Even when our world crumbles and we're forced into vibe coding at corporate jobs
 ## What you can find here
 
 - README (this page)
-- [[About]] - in case if you want to read more about me
-- [[Now]] - describes what I am currently focusing on and what I am doing
-- [[Contact]] - contact information
-- [[Blog]] - (under development) my stories
-- [[Projects]] - (under development) shows my recent and current projects
-- [[Testimonials]] - here you can check what others say about me
-- [[Privacy policy]] - a page that clearly says that I don't use cookies and I don't collect any your data. You are safe in my garage
-- [[Atlas/README|Atlas]] - notes, learning and discovered knowledge
+- [About](About.md) - in case if you want to read more about me
+- [Now](Now.md) - describes what I am currently focusing on and what I am doing
+- [Contact](Contact.md) - contact information
+- [Blog](Blog.md) - (under development) my stories
+- [Projects](Projects.md) - (under development) shows my recent and current projects
+- [Testimonials](Testimonials.md) - here you can check what others say about me
+- [Privacy policy](Privacy%20policy.md) - a page that clearly says that I don't use cookies and I don't collect any your data. You are safe in my garage
+- [Atlas](Atlas/README.md) - notes, learning and discovered knowledge
 
 The best way to read content here is to use a navigation and explore content grouped by folders.
 
@@ -65,7 +65,7 @@ All you can find here is open source and available in two places:
 
 ### Licensing
 
-Information about how this repository is licensed is [[Licensing|here]].
+Information about how this repository is licensed is [here](Licensing.md).
 
 ### Contributing
 
@@ -75,4 +75,4 @@ I appreciate any help. Here's how you can help:
 - **Suggest ideas** by starting a discussion
 - **Submit pull requests** for bug fixes or new features
 
-More info about contributing is [[Contributing|here]]
+More info about contributing is [here](Contributing.md)
