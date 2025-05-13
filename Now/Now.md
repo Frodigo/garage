@@ -70,4 +70,4 @@ I look for contributors. Maybe you?
 
 Below you can find my historical now pages. Date along the title means a day when a page was moved to the history.
 
-- [[25-03-2025]]
+- [25-03-2025](25-03-2025.md)

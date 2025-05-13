@@ -19,4 +19,4 @@ And most importantly — patience to match their learning pace.
 
 Read more on Medium: <https://medium.com/@frodigo/why-teaching-kids-how-to-program-isnt-easy-50817bcd5af4>
 
-Learning roadmap: [[Programming for Kids]]
+Learning roadmap: [Programming for Kids](Programming%20for%20Kids.md)
