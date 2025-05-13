@@ -1,4 +1,3 @@
-.vscode/
 # Local .terraform directories
 **/.terraform/*
 
@@ -34,24 +33,7 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-# Igonre samples directory
-samples/
 
-.DS_Store
-
-# Ignore all .env files
-.env
-
-# Ignore python-specific directories
-__pycache__/
-venv/
-.venv/
-
-.obsidian/
-priv/
-.trash/
-node_modules/
-public/
 
 # Playwright
 /test-results/
@@ -60,14 +42,45 @@ public/
 /playwright/.cache/
 screenshots/
 
+# Build artifacts
+*.egg-info/
+dist/
+build/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.eggs/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.env/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
 # RSS Feed
 links-to-test.json
 
-# Ignore all .env files
-.env
-
-# Ignore all __pycache__ directories
-__pycache__/
-
 # Ignore all draft files
 *.draft.md
+
+# project files
+.obsidian/
+priv/
+.trash/
+node_modules/
+public/
+samples/
