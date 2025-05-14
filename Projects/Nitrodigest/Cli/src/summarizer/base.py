@@ -5,10 +5,9 @@ This module defines the base summarizer class that all specific
 summarizer implementations should inherit from.
 """
 
-import logging
 from typing import Optional, Dict, Any
 
-from prompt import Prompt
+from summarizer.prompt import Prompt
 from summarizer.models import SummaryResult
 from summarizer.utils.logging import get_logger
 

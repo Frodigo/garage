@@ -107,7 +107,7 @@ Config structure:
     "model": "mistral",
     "ollama_api_url": "http://localhost:11434",
     "timeout": 300,
-    "prompt_file": "prompt_template.txt",
+    "prompt_file": "summarizer/prompt_template.txt",
 }
 ```
 
