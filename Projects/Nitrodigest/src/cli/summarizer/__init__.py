@@ -2,9 +2,9 @@
 Summarizer package for generating summaries from text using various LLM providers.
 """
 
-from summarizer.base import BaseSummarizer
-from summarizer.models import SummaryResult, ModelStatus
-from summarizer.exceptions import (
+from .base import BaseSummarizer
+from .models import SummaryResult, ModelStatus
+from .exceptions import (
     SummarizerError,
     ConfigurationError,
     APIConnectionError,
@@ -15,6 +15,7 @@ from summarizer.exceptions import (
 )
 
 from .ollama import OllamaSummarizer
+from .prompt import Prompt
 
 __all__ = [
     'BaseSummarizer',
@@ -27,5 +28,6 @@ __all__ = [
     'APIAuthenticationError',
     'APIRateLimitError',
     'ContentProcessingError',
-    'OllamaSummarizer'
+    'OllamaSummarizer',
+    'Prompt',
 ]
