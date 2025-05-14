@@ -14,7 +14,7 @@ on:
 
 defaults:
   run:
-    working-directory: Projects/Nitrodigest/Cli
+    working-directory: Projects/Nitrodigest
 
 jobs:
   build-and-publish:
@@ -47,4 +47,4 @@ jobs:
 
         with:
           repository-url: ${{ inputs.environment == 'pypi' && 'https://upload.pypi.org/legacy/' || 'https://test.pypi.org/legacy/' }}
-          packages-dir: Projects/Nitrodigest/Cli/dist/
+          packages-dir: Projects/Nitrodigest/dist/
