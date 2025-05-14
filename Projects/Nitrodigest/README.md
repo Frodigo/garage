@@ -62,7 +62,7 @@ Want to use this tool. Follow instructions below:
 ```bash
 # Clone the repository
 git clone https://github.com/Frodigo/garage
-cd Projects/Nitrodigest/core
+cd Projects/Nitrodigest/src
 ```
 
 ### Create a virtual environment
@@ -93,7 +93,7 @@ conda activate nitrodigest
 ### Install dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install -r cli/requirements.txt
 ```
 
 ## Configuration
@@ -107,7 +107,7 @@ Config structure:
     "model": "mistral",
     "ollama_api_url": "http://localhost:11434",
     "timeout": 300,
-    "prompt_file": "summarizer/prompt_template.txt",
+    "prompt_file": "prompt_template.txt",
 }
 ```
 
@@ -195,8 +195,11 @@ ollama run llama2
 
 Run NitroDigest with the default configuration file (`config.json`):
 
+Make sure you are in the src directory and run command:
+
 ```bash
-python main.py --input <file or directory you want to summarize> > summaries/summary.md
+mkdir summaries
+python run-nitrodigest-cli.py --input <file or directory you want to summarize> > summaries/summary.md
 ```
 
 ### Using a Custom Configuration File

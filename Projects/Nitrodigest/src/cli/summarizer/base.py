@@ -7,9 +7,9 @@ summarizer implementations should inherit from.
 
 from typing import Optional, Dict, Any
 
-from summarizer.prompt import Prompt
-from summarizer.models import SummaryResult
-from summarizer.utils.logging import get_logger
+from .prompt import Prompt
+from .models import SummaryResult
+from .utils.logging import get_logger
 
 logger = get_logger(__name__)
 

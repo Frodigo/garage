@@ -5,11 +5,11 @@ import sys
 import yaml
 from datetime import datetime
 
-from summarizer import (
+from .summarizer import (
     OllamaSummarizer,
     ConfigurationError
 )
-from config import Config
+from .config import Config
 
 
 def main():

@@ -6,18 +6,18 @@ import json
 import requests
 from typing import Dict, Any, Optional
 
-from summarizer.base import BaseSummarizer
-from summarizer.models import SummaryResult, ModelStatus
-from summarizer.exceptions import (
+from .base import BaseSummarizer
+from .models import SummaryResult, ModelStatus
+from .exceptions import (
     ConfigurationError,
     APIConnectionError,
     APIResponseError,
     ContentProcessingError,
     SummarizerError
 )
-from summarizer.utils.retry import retry
-from summarizer.utils.token_budget_segmenter import TokenBudgetSegmenter
-from summarizer.utils.simple_tokenizer import SimpleTokenizer
+from .utils.retry import retry
+from .utils.token_budget_segmenter import TokenBudgetSegmenter
+from .utils.simple_tokenizer import SimpleTokenizer
 
 
 class OllamaSummarizer(BaseSummarizer):
