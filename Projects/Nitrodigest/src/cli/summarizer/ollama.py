@@ -31,16 +31,13 @@ class OllamaSummarizer(BaseSummarizer):
         prompt_file: Optional[str] = None,
         max_tokens: int = 1000
     ):
-        super().__init__()
+        super().__init__(prompt_file)
         self.model = model
         self.ollama_api_url = ollama_api_url.rstrip('/')
         self.timeout = timeout
         self.max_tokens = max_tokens
 
         self.tokenizer = SimpleTokenizer(model_name=model)
-
-        if prompt_file:
-            self.prompt.set_template_path(prompt_file)
 
         # Verify Ollama is available
         self._verify_ollama_availability()
@@ -76,10 +73,10 @@ class OllamaSummarizer(BaseSummarizer):
             self._validate_input(content)
             headers = self._prepare_headers()
 
-            prompt_template = self.prompt.get_template()
+            prompt = self.prompt.get_prompt()
 
             segmenter = TokenBudgetSegmenter(
-                prompt=prompt_template,
+                prompt=prompt,
                 tokenizer=self.tokenizer.calculate_tokens,
                 budget=self.max_tokens,
                 language="english"

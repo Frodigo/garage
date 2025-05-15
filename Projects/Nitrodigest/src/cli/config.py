@@ -30,7 +30,7 @@ class Config:
             ollama_api_url=data.get(
                 'ollama_api_url', 'http://localhost:11434'),
             timeout=data.get('timeout', 300),
-            prompt_file=data.get('prompt_file', 'prompt_template.txt'),
+            prompt_file=data.get('prompt_file'),
         )
 
     @classmethod
