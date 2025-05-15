@@ -52,7 +52,7 @@ Content:
         metadata_str = ""
         if metadata:
             metadata_str = (
-                f"This email is from: {metadata.get('from', 'Unknown')}\n"
+                f"Source: {metadata.get('from', 'Unknown')}\n"
                 f"Subject: {metadata.get('subject', 'Unknown')}\n"
                 f"Date: {metadata.get('date', 'Unknown')}\n"
             )
