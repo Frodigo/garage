@@ -223,12 +223,12 @@ python main.py \
 
 Available arguments:
 
-- `--config`: Path to configuration file (default: config.json)
-- `--output-dir`: Directory to save summaries
 - `--timeout`: Time in seconds for API requests to Ollama (default: 300)
-- `--prompt-file`: Path to custom prompt template file (overrides config)
-- `--prompt`: Direct prompt content (overrides both config and prompt-file)
+- `--prompt-file`: Path to custom prompt template file (overrides default one)
+- `--prompt`: Direct prompt content (overrides prompt-file)
 - `--input`: Path to a single file or directory to summarize
+- `--model`: Model that will be used for summarization
+- `--ollama_api_url`: URL of Ollama API
 
 ### Prompt Configuration
 

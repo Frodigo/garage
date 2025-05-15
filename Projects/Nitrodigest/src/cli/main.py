@@ -18,10 +18,18 @@ def main():
         epilog="Visit docs, if you need more information: https://frodigo.com/Projects/Nitrodigest/Docs/README, or report issues: https://github.com/frodigo/garage/issues if something doesn't work as expected."
     )
     parser.add_argument(
-        "--config",
-        type=str,
-        default="config.json",
-        help="Path to JSON configuration file (default: config.json)"
+        "--input",
+        help="Path to a single file or directory to summarize"
+    )
+    parser.add_argument(
+        "--model",
+        default="mistral",
+        help="Model to use for summarization (default: mistral)"
+    )
+    parser.add_argument(
+        "--ollama-api-url",
+        default="http://localhost:11434",
+        help="URL of the local Ollama API (default: http://localhost:11434)"
     )
     parser.add_argument(
         "--timeout",
@@ -36,10 +44,6 @@ def main():
         "--prompt",
         help="Direct prompt content (overrides both config and prompt-file)"
     )
-    parser.add_argument(
-        "--input",
-        help="Path to a single file or directory to summarize"
-    )
 
     args = parser.parse_args()
 
@@ -48,31 +52,28 @@ def main():
         return -1
 
     try:
-        if not os.path.exists(args.config):
-            print(f"Error: Configuration file '{args.config}' not found")
-            return -1
-
-        config = Config.from_json(args.config)
-
-        if args.timeout:
-            config.timeout = args.timeout
-        if args.prompt_file:
-            config.prompt_file = args.prompt_file
+        temp_prompt_file = None
         if args.prompt:
-            with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
-                f.write(args.prompt)
-                config.prompt_file = f.name
+            temp = tempfile.NamedTemporaryFile(mode='w', delete=False)
+            temp.write(args.prompt)
+            temp.close()
+            temp_prompt_file = temp.name
 
-        config.validate()
+        config = Config(
+            model=args.model,
+            ollama_api_url=args.ollama_api_url,
+            timeout=args.timeout,
+            prompt_file=temp_prompt_file
+        )
+
+        print(
+            f"Configuration initialized with : {config.__dict__}", file=sys.stderr)
 
     except Exception as e:
         print(f"Configuration error: {e}")
         return -1
 
     try:
-        if not config.model:
-            raise ConfigurationError("Model is required for Ollama")
-
         summarizer = OllamaSummarizer(
             model=config.model,
             ollama_api_url=config.ollama_api_url,
