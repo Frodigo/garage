@@ -165,6 +165,15 @@ Run tests using pytest:
 pytest
 ```
 
+### Test package on local
+
+To build and test package on local use these commands from `garage/Projects/Nitrodigest` directory:
+
+```bash
+python -m build
+pip install -e .
+```
+
 ## Basic Usage
 
 Run NitroDigest with the default configuration:
