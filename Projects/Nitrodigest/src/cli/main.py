@@ -66,9 +66,6 @@ def main():
             prompt_file=temp_prompt_file
         )
 
-        print(
-            f"Configuration initialized with : {config.__dict__}", file=sys.stderr)
-
     except Exception as e:
         print(f"Configuration error: {e}")
         return -1
