@@ -17,8 +17,8 @@ logger = get_logger(__name__)
 class BaseSummarizer:
     """Base class for all summarizers"""
 
-    def __init__(self):
-        self.prompt = Prompt()
+    def __init__(self, template_path: Optional[str] = None):
+        self.prompt = Prompt(template_path)
         self.logger = logger.getChild(self.__class__.__name__)
 
     def summarize(self, text: str, metadata: Optional[Dict[str, Any]] = None) -> SummaryResult:
