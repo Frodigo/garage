@@ -101,7 +101,7 @@ The prompt template should contain placeholders:
 
 Do you want to contribute this tool? Check the COntributing page:
 
-[Contributing](./Docs/Contributing.md)
+[Getting started](Getting%20started.md)
 
 ## Report an issue
 
