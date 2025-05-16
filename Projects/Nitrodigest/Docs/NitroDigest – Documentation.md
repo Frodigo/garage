@@ -3,7 +3,7 @@ permalink: projects/nitrodigest/docs
 ---
 ## Introduction
 
-**NitroDigest** is a cross-platform command-line tool that **summarizes text files** – such as newsletters, emails, logs, notifications, markdown documents – into **TL;DR** form. It's distybuted as Python package and runs on **Linux, macOS, and Windows.** It uses local Large Language Models via **Ollama** for processing. This means you can get TL;DR summaries **privately and offline**, without sending data to any cloud. NitroDigest can handle single files or batches of files, automatically chunking large texts to fit model token limits. It outputs summaries in a structured Markdown format that includes metadata, making it easy to read or integrate into other systems.
+**NitroDigest** is a cross-platform command-line tool that **summarizes text files** – such as newsletters, emails, logs, notifications, markdown documents – into **TL;DR** form. It's distributed as Python package and runs on **Linux, macOS, and Windows.** It uses local Large Language Models via **Ollama** for processing. This means you can get TL;DR summaries **privately and offline**, without sending data to any cloud. NitroDigest can handle single files or batches of files, automatically chunking large texts to fit model token limits. It outputs summaries in a structured Markdown format that includes metadata, making it easy to read or integrate into other systems.
 
 **Key Features:**
 
