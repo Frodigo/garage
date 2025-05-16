@@ -2,28 +2,23 @@
 
 ### NitroDigest
 
-A Python tool for automatically summarizing email newsletters using AI.
+A Python tool for automatically summarizing text using local LLM.
 
 ### Features
 
-- Connect to IMAP email servers to retrieve unread newsletters
-- Extract text content from HTML emails
-- Summarize content using various AI models:
-  - Claude (Anthropic)
-  - ChatGPT (OpenAI)
-  - Ollama (local models)
-- Save summaries as Markdown files with YAML frontmatter
+- Runs 100 % on‑device with Ollama – your mail never leaves localhost
 - Command-line interface with various options
+- Completely free (open source, MIT license)
 
 ### Status
 
-This project is under development. I wish I had a prototype ready by the end of April.
+This project is under development. Alpha version is available, you can try it out!
 
 Links:
 
 - [Code](https://github.com/Frodigo/garage/tree/main/Projects/Nitrodigest)
-- [Current milestone](https://github.com/Frodigo/garage/milestone/1)
-- [Project on GitHub](https://github.com/users/Frodigo/projects/4)
+- [Documentation](NitroDigest%20–%20Documentation.md)
+- [Package](https://pypi.org/project/nitrodigest-cli/)
 
 ---
 
