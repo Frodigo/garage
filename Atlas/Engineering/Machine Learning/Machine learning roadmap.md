@@ -9,10 +9,7 @@ This is a learning roadmap for anyone who want to be a ML Engineer. I created it
 
 ### Topics
 
-- Python basics (variables, functions, loops, classes)
-  - Read Python Tutorial: [https://docs.python.org/3/tutorial/index.html](https://docs.python.org/3/tutorial/index.html)
-  - Read the "A Byte of Python" free online book: [https://python.swaroopch.com](https://python.swaroopch.com)
-  - Read "Obey the Testing Goat!" free online book: [https://www.obeythetestinggoat.com/pages/book.html#toc](https://www.obeythetestinggoat.com/pages/book.html#toc)
+- Python basics (variables, functions, loops, classes, data structures, testing)
 - NumPy
 - pandas
 - Matplotlib & Seaborn for visualization
@@ -20,7 +17,8 @@ This is a learning roadmap for anyone who want to be a ML Engineer. I created it
 
 ### Mini-projects
 
-- Jupyter Notebook that shows Python basics
+- Jupyter Notebook that shows Python basics: [Notes from the Python tutorial](./Level%200%20-%20Python%20basics/Python%20Tutorial%20Notes.ipynb) ✅🏁💯
+- [Basic Python programs](./Level%200%20-%20Python%20basics/Basic%20Python%20Programs/Basic%20Python%20Programs.md)
 - Text Analyzer — show list comprehensions, lambda functions, text operations
 - Task Manager CLI app — mix object-oriented and procedural styles
 - Backup Automation Script — work with files and directories
@@ -29,6 +27,13 @@ This is a learning roadmap for anyone who want to be a ML Engineer. I created it
 - CSV/PDF Report Generator — automate report formatting
 - Note Manager GUI — use Tkinter for building a visual tool
 - Random Test Data Generator — generate data for testing other projects
+
+### Resources
+
+- [Python Tutorial](https://docs.python.org/3/tutorial/index.html) ✅🏁💯
+- [A Byte of Python" free online book](https://python.swaroopch.com)
+- [Obey the Testing Goat!" free online book](https://www.obeythetestinggoat.com/pages/book.html#toc)
+- [Crafting Test-Driven Software with Python: Write test suites that scale with your applications' needs and complexity using Python and PyTest](https://www.amazon.com/Crafting-Test-Driven-Software-Python-applications-ebook/dp/B08PP4FT2B)
 
 ---
 
