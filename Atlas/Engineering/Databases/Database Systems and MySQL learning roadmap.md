@@ -132,3 +132,7 @@
 - Groups (name, year, supervisor)
 - Subjects & grades (partial and final)
 - Teacher-subject-student relationships
+
+---
+
+#AI #AIgeneratedContent

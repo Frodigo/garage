@@ -141,3 +141,7 @@ This is a hands-on learning roadmap for Cybersecurity.
 - Simulate intrusion detection with Snort
 - Build a log monitoring dashboard (e.g., ELK stack basics)
 - Combine UFW, fail2ban, and logs into a simple security setup
+
+---
+
+#AI #AIgeneratedContent
