@@ -1,4 +1,6 @@
 name: Generate and Test RSS Feed
+permissions:
+  contents: read
 
 on:
   push:
