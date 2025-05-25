@@ -6,7 +6,7 @@ All code in this repository is licensed under the MIT License. This includes all
 
 ### Content License
 
-All website content including blog posts, articles, documentation, images, and other media files is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
+All website content including blog posts, articles, documentation, images, and other media files is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0).
 
 This means you are free to:
 
