@@ -1,16 +1,10 @@
-### 1. Fuel‑consumption analysis
+# Basic Python Programs for learning purposes
 
-- **Description:** Suppose you have a list (or a CSV file) with fuel‑consumption data under different driving conditions (e.g., city, highway, mixed). Write a program that:
-
-  1. Reads the consumption data (e.g., a list called `liters_per_100km`).
-  2. Calculates average, maximum and minimum consumption.
-  3. Displays the results in a readable way (e.g., “Average consumption is 7.2 l/100 km”).
-
-- **Extension:** Also convert l/100 km values to MPG (miles per gallon).
+1. [Fuel-consumption analysis](./Fuel%20Consumption%20Analysis/README.md)
 
 ---
 
-### 2. Engine‑power conversion (HP ↔ kW)
+## 2. Engine‑power conversion (HP ↔ kW)
 
 - **Description:** Converting between horsepower (HP) and kilowatts (kW) is a common task.
 
@@ -22,7 +16,7 @@
 
 ---
 
-### 3. Filtering a car list by CO₂ emissions
+## 3. Filtering a car list by CO₂ emissions
 
 - **Description:** You have a list of car models and their CO₂ emissions (g/km). Write a program that:
 
@@ -34,7 +28,7 @@
 
 ---
 
-### 4. Reading engine‑temperature logs
+## 4. Reading engine‑temperature logs
 
 - **Description:** You have a file `engine_temps.txt` that stores engine temperatures (°C) every 10 seconds, one temperature per line.
   - Write a program that:
@@ -47,7 +41,7 @@
 
 ---
 
-### 5. Dictionary of car‑model information
+## 5. Dictionary of car‑model information
 
 - **Description:** Create a dictionary in which the keys are car‑model names and the values are dictionaries with additional info, e.g.:
 
@@ -66,7 +60,7 @@
 
 ---
 
-### 6. Calculating motorway‑toll cost
+## 6. Calculating motorway‑toll cost
 
 - **Description:** Imagine you have a table of motorway tolls that depend on trip length and vehicle category (e.g., `car`, `motorcycle`, `truck`).
   - Write a program that:
@@ -79,7 +73,7 @@
 
 ---
 
-### 7. Insurance‑class calculation
+## 7. Insurance‑class calculation
 
 - **Description:** Assume that an insurance premium depends on:
 
@@ -94,7 +88,7 @@
 
 ---
 
-### 8. Gear‑shift simulation
+## 8. Gear‑shift simulation
 
 - **Description:** Write a function that simulates gear changes in a car, taking the current speed as a parameter. Assume speed thresholds (e.g., 0–20 km/h → 1st gear, 21–40 → 2nd, etc.).
   - Depending on the input speed, the function returns which gear should be engaged.
@@ -102,7 +96,7 @@
 
 ---
 
-### 9. Trip analysis (GPS log)
+## 9. Trip analysis (GPS log)
 
 - **Description:** Assume you have a list (or a CSV file) with sequential GPS points from a trip (e.g., every minute) and the speed at each point.
   - Write a program that calculates:
@@ -113,7 +107,7 @@
 
 ---
 
-### 10. Fleet‑analysis statistics
+## 10. Fleet‑analysis statistics
 
 - **Description:** Imagine a company owns a fleet of several dozen vehicles. For each vehicle you store, for example:
   - Year of manufacture
