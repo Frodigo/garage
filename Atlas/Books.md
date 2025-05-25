@@ -1,4 +1,4 @@
-	Here I list books I read and used in my learning journey.
+Here I list books I read and used in my learning journey.
 
 ## Cryptography
 
@@ -7,3 +7,7 @@
 ## Algorithms
 
 - [Grokking Algorithms - An illustrated guide for programmers and other curious people](./Algorithms/Grokking%20Algorithms%20-%20An%20illustrated%20guide%20for%20programmers%20and%20other%20curious%20people.md)
+
+## Databases
+
+- [Learning MySQL, 2nd Edition](Learning%20MySQL,%202nd%20Edition.md)
