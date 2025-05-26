@@ -176,7 +176,7 @@ nitrodigest --input image.jpg
 If processing very large files takes too long:
 
 - Consider breaking the file into smaller sections
-- Make sure that Ollama use GPU
+- Make sure that Ollama uses GPU
 - If your computer does not have enough processing power, consider deploying Ollama on a server with enough resources.
 
 ## Best Practices
