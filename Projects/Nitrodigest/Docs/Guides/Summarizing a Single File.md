@@ -51,7 +51,7 @@ nitrodigest --input data.json
 nitrodigest --input report.csv
 ```
 
-**Note:** when you process files like HTML that can contain many HTML tags, please try to extract text from the HTML before you run NitroDigest. It will encrease quality of the summary and decrease processing time.
+**Note:** when you process files like HTML that can contain many HTML tags, please try to extract text from the HTML before you run NitroDigest. It will increase quality of the summary and decrease processing time.
 
 ## Output Options
 
@@ -79,15 +79,7 @@ title: example.txt
 tokens: 189
 ---
 
-1. Guide on renaming and moving notes in Obsidian, with redirection of old links to new ones ([URL](https://publish.obsidian.md/username/about))
-    - To rename a note and redirect old links:
-      - Add the "permalink" property to your note's Properties.
-      - Rename the URL according to your preference.
-    - To move a note and redirect old links:
-      - Move the note to its new location within the vault.
-      - Obsidian automatically updates internal links, but external links may still point to the old location.
-    - To redirect readers from old notes to new ones:
-      - Add an alias in the note you want to redirect to, using the full path to the old note.
+<summary of a file>
 
 ```
 
