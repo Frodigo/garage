@@ -30,6 +30,7 @@ Note: this documentation is under development just like the tool. Not all sectio
     - [Understanding the Output Format](Understanding%20the%20Output%20Format.md)
 - **Use Cases**
     - [Summarizing Email Newsletters](Summarizing%20Email%20Newsletters.md)
+    - [Summarizing Web Pages](Summarizing%20Web%20Pages.md)
     - [Summarizing Slack Messages](Summarizing%20Slack%20Messages.md)
     - [Summarizing GitHub Pull Requests](Summarizing%20GitHub%20Pull%20Requests.md)
 - **Customization**
