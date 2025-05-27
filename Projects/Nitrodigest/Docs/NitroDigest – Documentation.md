@@ -37,7 +37,7 @@ Note: this documentation is under development just like the tool. Not all sectio
     - [Custom Prompt Templates](Custom%20Prompt%20Templates.md)
     - [Switching Models (Ollama Integration)](Switching%20Models%20(Ollama%20Integration).md)
     - [Adjusting Token Budgets & Segmentation](Adjusting%20Token%20Budgets%20&%20Segmentation.md)
-- **Contributing
+- **Contributing**
 	- [Getting started](Getting%20started.md)
 	- [Ollama setup](Ollama%20setup.md)
 
