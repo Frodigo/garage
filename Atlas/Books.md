@@ -11,3 +11,7 @@ Here I list books I read and used in my learning journey.
 ## Databases
 
 - [Learning MySQL, 2nd Edition](Learning%20MySQL,%202nd%20Edition.md)
+
+## Machine Learning
+
+- [Machine Learning for Absolute Beginners](Machine%20Learning%20for%20Absolute%20Beginners.md)
