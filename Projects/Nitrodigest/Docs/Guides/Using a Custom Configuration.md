@@ -106,7 +106,7 @@ nitro-fast --input example.txt
 
 ### Configuration Scripts
 
-You can create reusable configuration scripts for different use cases. Take loot at the example below.
+You can create reusable configuration scripts for different use cases. Take a look at the example below.
 
 **fast-processing.sh:**
 
