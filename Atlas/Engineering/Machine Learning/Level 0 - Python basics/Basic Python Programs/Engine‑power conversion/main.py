@@ -11,7 +11,7 @@ number = None
 
 while number is None:
     try:
-        number = int(input("Please provide a value you want to convert: "))
+        number = float(input("Please provide a value you want to convert: "))
         if number < 0:
             print("Please enter a positive number")
             number = None
