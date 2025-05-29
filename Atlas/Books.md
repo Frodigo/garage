@@ -11,7 +11,16 @@ Here I list books I read and used in my learning journey.
 ## Databases
 
 - [Learning MySQL, 2nd Edition](Learning%20MySQL,%202nd%20Edition.md)
+- The Language of SQL, 3rd Edition - Larry Rockoff
 
 ## Machine Learning
 
-- [Machine Learning for Absolute Beginners](Machine%20Learning%20for%20Absolute%20Beginners.md)
+- [Machine Learning for Absolute Beginners](Machine%20Learning%20for%20Absolute%20Beginners.md) ✅🏁💯
+- Machine learning i natural language processing w programowaniu. Podręcznik z ćwiczeniami w Pythonie, Piotr Wróblewski
+- Uczenie maszynowe dla programistów Drew Conway, John Myles White
+- Data Science i uczenie maszynowe, Marcin Szeliga
+- Zaawansowane techniki przetwarzania języka naturalnego. Od podstaw do modeli LLM i zastosowań biznesowych w Pythonie
+- Python w analizie danych. Przetwarzanie danych za pomocą pakietów pandas i NumPy oraz środowiska Jupyter. Wydanie III Wes McKinney
+- Podstawy matematyki w data science. Algebra liniowa, rachunek prawdopodobieństwa i statystyka, Thomas Nield
+- Data science od podstaw. Analiza danych w Pythonie. Wydanie II Joel Grus
+- Uczenie maszynowe z użyciem Scikit-Learn, Keras i TensorFlow. Wydanie III
