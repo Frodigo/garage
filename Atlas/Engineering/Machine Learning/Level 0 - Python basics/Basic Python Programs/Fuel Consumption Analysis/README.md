@@ -1,4 +1,4 @@
-### 1. Fuel‑consumption analysis
+## Fuel‑consumption analysis
 
 - **Description:** Suppose you have a list (or a CSV file) with fuel‑consumption data under different driving conditions (e.g., city, highway, mixed). Write a program that:
 
