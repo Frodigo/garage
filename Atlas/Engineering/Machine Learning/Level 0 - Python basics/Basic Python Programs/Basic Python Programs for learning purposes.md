@@ -1,18 +1,6 @@
-# Basic Python Programs for learning purposes
 
 1. [Fuel-consumption analysis](./Fuel%20Consumption%20Analysis/README.md)
-
----
-
-## 2. Engine‑power conversion (HP ↔ kW)
-
-- **Description:** Converting between horsepower (HP) and kilowatts (kW) is a common task.
-
-  - Assume `1 HP ≈ 0.7355 kW`.
-  - The user enters a value and chooses whether to convert from HP to kW or from kW to HP.
-  - Show the result rounded appropriately (e.g., to 2 decimal places).
-
-- **Extension:** Add error handling if the user types an invalid number or conversion type.
+2. [Engine-power conversion](Atlas/Engineering/Machine%20Learning/Level%200%20-%20Python%20basics/Basic%20Python%20Programs/Engine‑power%20conversion/README.md)
 
 ---
 
