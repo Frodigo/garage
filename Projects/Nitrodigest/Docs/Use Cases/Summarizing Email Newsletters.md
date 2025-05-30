@@ -1,7 +1,7 @@
 ---
 permalink: projects/nitrodigest/docs/use-cases/summarizing-email-newsletters
 ---
-In this document I want to show you ho process and summarize email newsletters using NitroDigest in combination with **Himalaya**, a command-line email client.
+In this document I want to show you how to process and summarize email newsletters using NitroDigest in combination with **Himalaya**, a command-line email client.
 ## Prerequisites
 
 Before starting, you'll need:
