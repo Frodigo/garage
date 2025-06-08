@@ -57,7 +57,7 @@ It's a method of training that allows to use a huge data sets that are bigger th
 
 It's required in the instance-based learning algorithm. This algorithm learns the trained data by heart and then compares each new instance to learned instances using similarity measure.
 
-### Explain the difference a parameter and a hiperparameter of a model
+### Explain the difference a parameter and a hyperparameter of a model
 
 Parameter describes what a model will predict given a new instance. Model can have one or more parameters. Hyperparameter is a parameter of learning algorithm itself, not a model.
 
