@@ -55,7 +55,7 @@ It's a method of training that allows to use a huge data sets that are bigger th
 
 ### In which algorithm is a similarity measure required to obtain predictions?
 
-It's required in the instance-based learning algorithm. This algorithm learns the trained data by hearth and then compares each new instance to learned instances using similarity measure.
+It's required in the instance-based learning algorithm. This algorithm learns the trained data by heart and then compares each new instance to learned instances using similarity measure.
 
 ### Explain the difference a parameter and a hiperparameter of a model
 
