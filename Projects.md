@@ -4,13 +4,13 @@
 
 A Python tool for automatically summarizing text using local LLM.
 
-### Features
+#### Features
 
 - Runs 100 % on‑device with Ollama – your mail never leaves localhost
 - Command-line interface with various options
 - Completely free (open source, MIT license)
 
-### Status
+#### Status
 
 This project is under development. Alpha version is available, you can try it out!
 

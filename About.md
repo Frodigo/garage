@@ -28,18 +28,17 @@ mindmap
     Professional
       Software Engineer
         C#
+        Node.js
+        Python
         Vue.js
         React
-        Node.js
         Google Cloud
         Terraform
         JavaScript
       Writing
-        Medium
-            Stories
-        Blog
-            Technical articles
-            Tutorials
+        Stories
+        Technical articles
+        Tutorials
     Personal
       Father
       Husband
@@ -53,11 +52,14 @@ mindmap
         Healthcare
             Noa Notes
       Open Source
-        GitHub "Garage"
+	    Garage
           Experiments
           Tools
           Learnings
           Proof of concepts
+		NitroDigest
+			Summarizing text
+			Ollama
 ```
 
 ## My Philosophy
@@ -131,32 +133,6 @@ After three years of being a tech leader I felt like I don't do what I really wa
 I found a new job at Docplanner where I am able to write code again and create new features I am working with C# and Vue.js.
 
 I like the Docplanner culture and the mission which is about making healthcare more human.
-
----
-
-### Me now and future me
-
-I want to focus on the engineering and turn into the AI engineer.
-
-#### The AI engineer
-
-Recently I experimented with AI and I want to go deeper into this area. Maybe transition from the fullstack developer to the AI engineer is a next turn on my road.
-
-Also I back to school! I started my master's degree in artificial intelligence and machine learning.
-
-Next two years I will be learning a lot of new things which I will share here.
-
-#### The educator
-
-After few years of drifting I want to go back to the roots and help others to learn.
-
-Because I like learning and I like writing I want to try to connect these two activities into one and share my knowledge with others.
-
-#### The Writer
-
-Writing a book is a big challenge, isn't it? The value of books in the AI area decreases every day.
-
-But I hope books will survive and will be valuable for a long time.
 
 ---
 

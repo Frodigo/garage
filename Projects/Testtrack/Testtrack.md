@@ -4,6 +4,7 @@ For fun I name the projects here using references to different cars. We are in a
 
 Projects:
 
-1. [f125rally- MySQL database for university](./f125rally-%20MySQL%20database%20for%20university/README.md)
+1. [Cinquecento - Ollama models](Projects/Testtrack/Cinquecento%20-%20Ollama%20models/README.md)
 2. [p911 - Simple eCommerceBackend](./p911%20-%20Simple%20eCommerce%20backend/README.md)
 3. [miniS - Algorithms Sandbox](./miniS%20-%20Algoritms%20sandbox/README.md)
+4. [fGT40 - Python basics](Projects/Testtrack/fGT40%20-%20Python%20basics/README.md)

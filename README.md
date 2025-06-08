@@ -24,9 +24,7 @@ Even when our world crumbles and we're forced into vibe coding at corporate jobs
 2. Creation over consumption
 3. Progress over perfection
 4. Open-source over closed-source
-5. Honesty over marketing BS
-6. Asynchronous collaboration over unproductive meetings
-7. Fixed price over hourly rate
+5. Quality over quantity
 
 ---
 
@@ -37,10 +35,12 @@ Even when our world crumbles and we're forced into vibe coding at corporate jobs
 - [Now](Now.md) - describes what I am currently focusing on and what I am doing
 - [Contact](Contact.md) - contact information
 - [Blog](Blog.md) - (under development) my stories
-- [Projects](Projects.md) - (under development) shows my recent and current projects
+- [Projects](Projects.md) - shows my recent and current projects
 - [Testimonials](Testimonials.md) - here you can check what others say about me
 - [Privacy policy](Privacy%20policy.md) - a page that clearly says that I don't use cookies and I don't collect any your data. You are safe in my garage
-- [Atlas](Atlas/README.md) - notes, learning and discovered knowledge
+- [AI usage](AI%20usage.md) - describes how I use AI in the garage
+- [Contributing](Contributing.md) - how to contribute
+- [Licensing](Licensing.md) - information about license of the content and code
 
 The best way to read content here is to use a navigation and explore content grouped by folders.
 
