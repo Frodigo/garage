@@ -47,7 +47,7 @@ It's a part of supervised learning because we can have a labeled training set wi
 ### What is an online learning system?
 
 It can learn incrementally. You can add new data and train model this new data. Each training step is fast and system can learn often with new data.
-Oposite of this approach is a batch learning.
+Opposite of this approach is a batch learning.
 
 ### What is out-of-core learning?
 
