@@ -1,4 +1,4 @@
-# Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow: Concepts, Tools and Techniques to Build Inteligent Systems, 3rd Edition
+# Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow: Concepts, Tools and Techniques to Build Intelligent Systems, 3rd Edition
 
 ISBN: 978-83-8222-423-7
 
