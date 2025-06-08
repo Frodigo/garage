@@ -1390,6 +1390,7 @@ what causes this? - .CodeMirror.cm-spell-error setting red a squiggly line as ba
 .site-body-left-column-site-logo img {
   margin-left: 0;
   margin-right: 0;
+  max-width: 200px;
 }
 
 .site-body-left-column-site-name, .site-header-text {
