@@ -13,7 +13,7 @@ Machine learning is a part of computer science that allows computers to learn fr
 1. Complex problems that are hard to resolve using traditional method, for example detecting spam.
 2. problems that need to be tuned frequently or have a large number of rules
 3. building systems that adapt to fluctuating environments
-4. help people learn, example: data minning
+4. help people learn, example: data mining
 
 ### What is a labeled training set?
 
