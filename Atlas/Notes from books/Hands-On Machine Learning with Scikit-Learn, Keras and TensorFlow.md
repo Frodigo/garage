@@ -70,7 +70,7 @@ Model learning algorithms typically looks for the best value for given new insta
 1. lack of data
 2. poor data quality
 3. nonrepresentative data
-4. uninformative features`
+4. uninformative features
 
 ### What do we have if a model performs great on the training data, but fails to generalize to new samples?
 
