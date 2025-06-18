@@ -1,6 +1,6 @@
 
 - IDS - Intrusion Detection System
-- IPS - Intrusion Prevension System
+- IPS - Intrusion Prevention System
 - HIDS
 - NIDS
 - Honeypot
