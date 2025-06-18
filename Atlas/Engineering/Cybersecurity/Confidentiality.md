@@ -1,4 +1,4 @@
-It means that data is not accessible for unauthorized.
+It means that data is not accessible to unauthorized users.
 
 What supports confidentiality?
 
