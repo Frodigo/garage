@@ -1,4 +1,4 @@
-Threats can by divided by:
+Threats can be divided into:
 
 - source of origin
 	- internal
