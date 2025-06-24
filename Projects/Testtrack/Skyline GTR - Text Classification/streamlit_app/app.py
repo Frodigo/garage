@@ -1,37 +1,26 @@
 import streamlit as st
-import joblib
-import pickle
+import re
+import numpy as np
 import pandas as pd
 import plotly.express as px
-import re
-
+import plotly.graph_objects as go
+from datetime import datetime
 import os
+
+from sklearn.datasets import fetch_20newsgroups
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from sklearn.model_selection import GridSearchCV
 
 st.set_page_config(
     page_title="Text Classification ML Experiment",
+    page_icon="🏷️",
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-
-@st.cache_resource
-def load_model_components():
-    """Load saved model, vectorizer and metadata"""
-    try:
-        if not os.path.exists('../models/text_classifier_model.pkl'):
-            return None, None, None
-
-        model = joblib.load('../models/text_classifier_model.pkl')
-        vectorizer = joblib.load('../models/tfidf_vectorizer.pkl')
-
-        with open('../models/model_metadata.pkl', 'rb') as f:
-            metadata = pickle.load(f)
-
-        return model, vectorizer, metadata
-
-    except Exception as e:
-        st.error(f"Error loading model: {e}")
-        return None, None, None
 
 
 def preprocess_text(text):
@@ -39,6 +28,114 @@ def preprocess_text(text):
     text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
     text = re.sub(r'\s+', ' ', text)
     return text.strip()
+
+
+@st.cache_data
+def download_and_prepare_data():
+    """Download and prepare 20 newsgroups data"""
+
+    categories = [
+        'alt.atheism',
+        'comp.graphics',
+        'comp.os.ms-windows.misc',
+        'comp.sys.ibm.pc.hardware',
+        'rec.autos',
+        'rec.motorcycles',
+        'sci.space',
+        'talk.politics.misc'
+    ]
+
+    newsgroups_train = fetch_20newsgroups(
+        subset='train',
+        categories=categories,
+        shuffle=True,
+        random_state=42,
+        remove=('headers', 'footers', 'quotes')
+    )
+
+    newsgroups_test = fetch_20newsgroups(
+        subset='test',
+        categories=categories,
+        shuffle=True,
+        random_state=42,
+        remove=('headers', 'footers', 'quotes')
+    )
+
+    # Preprocessing
+    X_train_raw = [preprocess_text(text) for text in newsgroups_train.data]
+    X_test_raw = [preprocess_text(text) for text in newsgroups_test.data]
+    y_train = newsgroups_train.target
+    y_test = newsgroups_test.target
+
+    return X_train_raw, X_test_raw, y_train, y_test, newsgroups_test.target_names
+
+
+@st.cache_resource
+def train_and_cache_model():
+    """Train model and cache it (runs only once)"""
+
+    X_train_raw, X_test_raw, y_train, y_test, categories = download_and_prepare_data()
+
+    vectorizer = TfidfVectorizer(
+        max_features=10000,
+        min_df=2,
+        max_df=0.95,
+        stop_words='english',
+        ngram_range=(1, 2)
+    )
+
+    X_train_tfidf = vectorizer.fit_transform(X_train_raw)
+    X_test_tfidf = vectorizer.transform(X_test_raw)
+
+    models = {
+        'Logistic Regression': LogisticRegression(random_state=42, max_iter=1000),
+        'Random Forest': RandomForestClassifier(n_estimators=100, random_state=42),
+        'SVM': SVC(kernel='linear', random_state=42, probability=True)
+    }
+
+    results = {}
+    for name, model in models.items():
+        model.fit(X_train_tfidf, y_train)
+        y_pred = model.predict(X_test_tfidf)
+        accuracy = accuracy_score(y_test, y_pred)
+        results[name] = {
+            'accuracy': accuracy,
+            'predictions': y_pred,
+            'model': model
+        }
+
+    best_model_name = max(results, key=lambda x: results[x]['accuracy'])
+    best_model = results[best_model_name]['model']
+    final_accuracy = results[best_model_name]['accuracy']
+
+    final_predictions = results[best_model_name]['predictions']
+    classification_rep = classification_report(
+        y_test, final_predictions,
+        target_names=categories,
+        output_dict=True
+    )
+
+    metadata = {
+        'model_name': best_model_name,
+        'final_accuracy': final_accuracy,
+        'categories': categories,
+        'training_date': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'training_samples': len(X_train_raw),
+        'test_samples': len(X_test_raw),
+        'vocabulary_size': len(vectorizer.get_feature_names_out()),
+        'classification_report': classification_rep,
+        'model_comparison': {name: data['accuracy'] for name, data in results.items()},
+        'preprocessing_info': {
+            'tfidf_params': {
+                'max_features': vectorizer.max_features,
+                'min_df': vectorizer.min_df,
+                'max_df': vectorizer.max_df,
+                'ngram_range': vectorizer.ngram_range
+            }
+        }
+    }
+
+    return best_model, vectorizer, metadata
 
 
 def predict_text_tags(text, model, vectorizer, categories):
@@ -70,10 +167,20 @@ def predict_text_tags(text, model, vectorizer, categories):
         st.error(f"Prediction error: {e}")
         return None
 
+# =====================================================
+# LOAD/TRAIN MODEL
+# =====================================================
 
-# Load model components
-with st.spinner('Loading model components...'):
-    model, vectorizer, metadata = load_model_components()
+
+with st.spinner('Loading/Training model... This may take a few minutes on first run.'):
+    try:
+        model, vectorizer, metadata = train_and_cache_model()
+        model_loaded = True
+        st.success("Model ready!")
+    except Exception as e:
+        st.error(f"Model training failed: {e}")
+        model_loaded = False
+        model, vectorizer, metadata = None, None, None
 
 # =====================================================
 # SIDEBAR
@@ -85,14 +192,14 @@ page = st.sidebar.selectbox(
     ["Home", "Demo", "Analytics", "About"]
 )
 
-if model is not None:
+if model_loaded:
     st.sidebar.success("Model loaded successfully!")
     st.sidebar.info(f"**Model:** {metadata['model_name']}")
     st.sidebar.info(f"**Accuracy:** {metadata['final_accuracy']:.1%}")
     st.sidebar.info(f"**Categories:** {len(metadata['categories'])}")
 else:
     st.sidebar.error("Model not loaded!")
-    st.sidebar.warning("Please run the training notebook first")
+    st.sidebar.warning("Training failed or in progress...")
 
 # =====================================================
 # MAIN HEADER
@@ -100,10 +207,18 @@ else:
 
 st.markdown("""
 <div style="text-align: center; padding: 2rem 0;">
-    <h1 style="color: #1f77b4; font-size: 3rem;">Text Classification ML Experiment</h1>
+    <h1 style="color: #1f77b4; font-size: 3rem;">Text Classification ML</h1>
     <p style="font-size: 1.2rem; color: #666;">Automatic text tagging using Machine Learning</p>
 </div>
 """, unsafe_allow_html=True)
+
+# Add training info banner
+if model_loaded:
+    st.info(
+        f"Model trained successfully! Algorithm: **{metadata['model_name']}** | Accuracy: **{metadata['final_accuracy']:.1%}**")
+else:
+    st.warning(
+        "Model training in progress or failed. Please wait or refresh the page.")
 
 # =====================================================
 # PAGE: HOME
@@ -112,7 +227,7 @@ st.markdown("""
 if page == "Home":
     st.header("Welcome to Text Classification Demo")
 
-    if metadata is not None:
+    if model_loaded and metadata is not None:
         # Model statistics
         col1, col2, col3, col4 = st.columns(4)
 
@@ -155,7 +270,8 @@ if page == "Home":
                 st.info(f"**{category}**")
 
     else:
-        st.error("Model not available. Please run the training notebook first!")
+        st.error(
+            "Model training failed or in progress. Please wait or refresh the page.")
 
 # =====================================================
 # PAGE: DEMO
@@ -164,7 +280,7 @@ if page == "Home":
 elif page == "Demo":
     st.header("Try the Text Classifier")
 
-    if model is not None:
+    if model_loaded and model is not None:
         # Example texts
         examples = {
             "Cars": "I just bought a new car with amazing acceleration and great fuel economy. The engine performance is outstanding.",
@@ -182,6 +298,7 @@ elif page == "Demo":
         with col1:
             st.subheader("Enter text to classify:")
 
+            # Example selector
             selected_example = st.selectbox(
                 "Or choose an example:",
                 [""] + list(examples.keys())
@@ -210,35 +327,35 @@ elif page == "Demo":
                         )
 
                     if result:
+                        # Main prediction
                         st.success("Classification completed!")
 
                         col_a, col_b = st.columns(2)
                         with col_a:
                             st.metric(
-                                "🏷️ Predicted Category",
+                                "Predicted Category",
                                 result['main_tag_short'].title(),
                                 f"Confidence: {result['confidence']:.1%}"
                             )
 
                         with col_b:
                             st.metric(
-                                "📝 Text Length",
+                                "Text Length",
                                 f"{len(user_text.split())} words",
                                 f"Processed: {len(preprocess_text(user_text).split())} words"
                             )
 
                         # Top 3 predictions
-                        st.subheader("📊 Top 3 Predictions:")
+                        st.subheader("Top 3 Predictions:")
 
                         for i, tag_info in enumerate(result['top_3_tags']):
                             prob = tag_info['probability']
                             tag_name = tag_info['tag_short'].title()
 
-                            # Medal emoji
-                            medal = "🥇" if i == 0 else "🥈" if i == 1 else "🥉"
+                            rank = f"#{i+1}" if i < 3 else ""
 
                             # Progress bar
-                            st.write(f"{medal} **{tag_name}** - {prob:.1%}")
+                            st.write(f"{rank} **{tag_name}** - {prob:.1%}")
                             st.progress(prob)
 
                         # Visualization
@@ -277,12 +394,12 @@ elif page == "Demo":
                 **Training Date:** {metadata['training_date'].split()[0]}
                 """)
 
-            st.subheader("🏷️ Categories")
+            st.subheader("Categories")
             for cat in metadata['categories']:
                 st.write(f"• {cat.split('.')[-1].title()}")
 
     else:
-        st.error("Model not loaded. Run the training notebook first!")
+        st.error("Model not available. Training failed or in progress.")
 
 # =====================================================
 # PAGE: ANALYTICS
@@ -291,7 +408,7 @@ elif page == "Demo":
 elif page == "Analytics":
     st.header("Model Analytics")
 
-    if metadata is not None:
+    if model_loaded and metadata is not None:
         # Model overview
         col1, col2, col3 = st.columns(3)
 
@@ -385,7 +502,7 @@ elif page == "Analytics":
                 """)
 
     else:
-        st.error("Analytics not available. Model metadata missing!")
+        st.error("Analytics not available. Model training failed or in progress.")
 
 # =====================================================
 # PAGE: ABOUT
@@ -421,29 +538,30 @@ elif page == "About":
     - Classic text classification benchmark
     - 8 selected categories from original 20
     - Real-world text data from online forums
-    - Balanced across different topics
+    - Automatically downloaded and processed
 
     ## ML Pipeline
 
-    1. **Data Collection** - 20 Newsgroups dataset
+    1. **Data Download** - Automatic 20 Newsgroups fetching
     2. **Text Preprocessing** - Cleaning and normalization
     3. **Feature Extraction** - TF-IDF vectorization with n-grams
     4. **Model Training** - Multiple algorithm comparison
-    5. **Model Evaluation** - Comprehensive metrics analysis
-    6. **Model Deployment** - Web application interface
+    5. **Model Selection** - Best performer selection
+    6. **Caching** - Model stored in Streamlit cache
+    7. **Inference** - Real-time text classification
 
     ## Results
     """)
 
-    if metadata:
+    if model_loaded and metadata:
         st.success(f"""
-        **Final Model Performance:**
+        **Current Model Performance:**
         - **Algorithm:** {metadata['model_name']}
         - **Test Accuracy:** {metadata['final_accuracy']:.1%}
-        - **Training Date:** {metadata['training_date']}
+        - **Training Completed:** {metadata['training_date']}
         - **Categories:** {len(metadata['categories'])} classes
+        - **Vocabulary:** {metadata['vocabulary_size']:,} features
         """)
-
 
 # =====================================================
 # FOOTER
@@ -451,10 +569,11 @@ elif page == "About":
 
 st.markdown("---")
 st.markdown(
-    """
+    f"""
     <div style="text-align: center; color: #666; padding: 1rem;">
-        🎓 Machine Learning Project | Text Classification System<br>
-        Made with <span style="color: red;">❤️</span> using Python, Scikit-learn & Streamlit
+        Machine Learning Project | Text Classification System<br>
+        Made using Python, Scikit-learn & Streamlit Cloud<br>
+        {f"Model: {metadata['model_name']} | Accuracy: {metadata['final_accuracy']:.1%}" if model_loaded else "Model training in progress..."}
     </div>
     """,
     unsafe_allow_html=True
