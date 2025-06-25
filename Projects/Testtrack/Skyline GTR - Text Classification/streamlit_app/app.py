@@ -548,7 +548,7 @@ elif page == "🎯 Demo":
                 placeholder="Enter your text here..."
             )
 
-            if st.button("🎯 Classify Text", type="primary", use_container_width=True):
+            if st.button("🎯 Classify Text", type="primary"):
                 if user_text.strip():
                     with st.spinner('Analyzing text...'):
                         result = predict_text_tags(
