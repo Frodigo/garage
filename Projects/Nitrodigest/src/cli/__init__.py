@@ -1,6 +1,6 @@
 """nitrodigest CLI package"""
 
-__version__ = "0.1.6"
+__version__ = "0.1.7"
 
 from .main import main
 from .config import Config

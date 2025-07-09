@@ -99,7 +99,7 @@ The prompt template should contain placeholders:
 
 ## Contributing
 
-Do you want to contribute this tool? Check the COntributing page:
+Do you want to contribute this tool? Check the Contributing page:
 
 [Getting started](Getting%20started.md)
 

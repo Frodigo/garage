@@ -18,6 +18,7 @@ from .exceptions import (
 from .utils.retry import retry
 from .utils.token_budget_segmenter import TokenBudgetSegmenter
 from .utils.simple_tokenizer import SimpleTokenizer
+from .utils.preprocessors import preprocess
 
 
 class OllamaSummarizer(BaseSummarizer):
@@ -29,7 +30,7 @@ class OllamaSummarizer(BaseSummarizer):
         ollama_api_url: str = "http://localhost:11434",
         timeout: int = 300,
         prompt_file: Optional[str] = None,
-        max_tokens: int = 1000
+        max_tokens: int = 1500
     ):
         super().__init__(prompt_file)
         self.model = model
@@ -71,6 +72,7 @@ class OllamaSummarizer(BaseSummarizer):
     ) -> SummaryResult:
         try:
             self._validate_input(content)
+            content = preprocess(content)
             headers = self._prepare_headers()
 
             prompt = self.prompt.get_prompt()
@@ -124,26 +126,8 @@ class OllamaSummarizer(BaseSummarizer):
                     total_tokens_used += response_data.get("eval_count", 0)
 
                 # Combine intermediate summaries if necessary
-                if len(intermediate_summaries) > 1:
-                    combined_summaries = " ".join(intermediate_summaries)
-
-                    # Check if combined summaries need
-                    # another round of summarization
-                    combined_tokens = self.tokenizer.calculate_tokens(
-                        combined_summaries)
-
-                    # Leave room for prompt
-                    if combined_tokens > (self.max_tokens - 200):
-                        # Recursively summarize the intermediate summaries
-                        self.logger.info(
-                            "Combined intermediate summaries are too long. "
-                            "Summarizing again.")
-                        return self.summarize(combined_summaries, metadata)
-                    else:
-                        summary = combined_summaries
-                else:
-                    summary = intermediate_summaries[0]
-
+                combined_summaries = " ".join(intermediate_summaries)
+                summary = combined_summaries
                 tokens_used = total_tokens_used
 
             return SummaryResult(

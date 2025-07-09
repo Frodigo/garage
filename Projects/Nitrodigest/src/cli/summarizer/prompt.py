@@ -4,18 +4,16 @@ import os
 class Prompt:
     """Class to handle prompt template and formatting"""
 
-    default_prompt = """You are a expert in research and summarization.
-Summarize the following text into a TL;DR list.
-Example:
-- Foo Unveils AR Platform, RealityOS - Integrates with existing devices and new lightweight AR glasses coming in September. Read more: https://techweekly.com/foo-ar
-- Bar Acquires AI Startup Nexus Minds - $3.8 billion deal for Toronto-based firm known for natural language processing. Read more: https://techweekly.com/bar-nexus
-Each bullet should be a single sentence summarizing a key point.
-For each point, find and include the most relevant URL from the original text.
-The summary should have only bullet points, no otheRead more: https:// text.
+    default_prompt = """You are an expert in research and summarization.
+    Summarize the following text into a TL;DR list. **The summary *must* be formatted as a bulleted list,
+    with each bullet point being a single, concise sentence.**
+    Example:
+    - Foo Unveils AR Platform, RealityOS
+    - Integrates with existing devices and new lightweight AR glasses coming in September.
+    - Bar Acquires AI Startup Nexus Minds
+    - $3.8 billion deal for Toronto-based firm known for natural language processing.
 
-Content:
-{metadata}
-{text}
+    Content to summarize {metadata} {text}
 """
 
     def __init__(self, template_path=None):
