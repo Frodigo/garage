@@ -36,6 +36,7 @@ def preprocess(text: str) -> str:
     text = _remove_emojis(text)
     text = _remove_email_addresses(text)
     text = _remove_phone_numbers(text)
+    text = _remove_urls(text)
     text = _remove_special_chars(text)
     text = _remove_extra_whitespace(text)
 
