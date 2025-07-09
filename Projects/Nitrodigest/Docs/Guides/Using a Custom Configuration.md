@@ -21,16 +21,16 @@ Choose which AI model to use for summarization:
 
 ```bash
 # Use the default Mistral model
-nitrodigest --input document.txt
+nitrodigest document.txt
 
 # Use Llama 2 model
-nitrodigest --input document.txt --model llama2
+nitrodigest document.txt --model llama2
 
 # Use a specific model version
-nitrodigest --input document.txt --model llama2:13b
+nitrodigest document.txt --model llama2:13b
 
 # Use CodeLlama for technical documentation
-nitrodigest --input code-docs.md --model codellama
+nitrodigest code-docs.md --model codellama
 ```
 
 **Available Models** depends on what you have installed in Ollama.
@@ -43,13 +43,13 @@ Configure connection to your Ollama instance:
 
 ```bash
 # Connect to Ollama on different port
-nitrodigest --input document.txt --ollama-api-url http://localhost:8080
+nitrodigest  document.txt --ollama-api-url http://localhost:8080
 
 # Connect to remote Ollama server
-nitrodigest --input document.txt --ollama-api-url http://your-server.com:11434
+nitrodigest  document.txt --ollama-api-url http://your-server.com:11434
 
 # Connect to Ollama with custom path
-nitrodigest --input document.txt --ollama-api-url http://localhost:11434/v1
+nitrodigest  document.txt --ollama-api-url http://localhost:11434/v1
 ```
 
 ### Timeout Configuration
@@ -60,13 +60,13 @@ Adjust timeout for API requests to handle large documents or slower models:
 
 ```bash
 # Short timeout for quick processing
-nitrodigest --input small-file.txt --timeout 60
+nitrodigest  small-file.txt --timeout 60
 
 # Extended timeout for large documents
-nitrodigest --input large-report.pdf --timeout 900
+nitrodigest  large-report.pdf --timeout 900
 
 # Very long timeout for complex analysis
-nitrodigest --input massive-dataset.csv --timeout 1800
+nitrodigest  massive-dataset.csv --timeout 1800
 ```
 
 This configuration can be helpful when Ollama runs on CPU because in this case it's much slower than on GPU.
@@ -77,10 +77,10 @@ Set a default prompt template that will be used unless overridden:
 
 ```bash
 # Use custom prompt file as default
-nitrodigest --input document.txt --prompt-file my-template.txt
+nitrodigest  document.txt --prompt-file my-template.txt
 
 # Command-line arguments override prompt files
-nitrodigest --input document.txt --prompt-file my-template.txt --prompt "Quick summary only"
+nitrodigest  document.txt --prompt-file my-template.txt --prompt "Quick summary only"
 ```
 
 More about prompt configuration: [Overriding Prompt Templates](Overriding%20Prompt%20Templates.md)
@@ -95,13 +95,13 @@ At the moment NitroDigest doesn't directly support environment variables, you ca
 alias nitro-fast="nitrodigest --model phi --timeout 120"
 
 # Usage
-nitro-fast --input quick-notes/
+nitro-fast quick-notes/
 ```
 
 Then you can use this command just like this:
 
 ```bash
-nitro-fast --input example.txt
+nitro-fast example.txt
 ```
 
 ### Configuration Scripts
@@ -122,7 +122,7 @@ exec nitrodigest \
 Then, use your predefined script:
 
 ```bash
-sh fast-processing.sh --input example.txt
+sh fast-processing.sh example.txt
 ```
 
 ## Next Steps
