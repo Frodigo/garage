@@ -10,6 +10,5 @@ pytest-cov>=4.1.0
 # NLP dependencies
 nltk>=3.9.1
 
-
-## preprocessing utilities
+# preprocessing utilities
 emoji>=2.14.1
