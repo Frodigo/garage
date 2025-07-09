@@ -38,7 +38,7 @@ To run this tool, you needs to have [Ollama](https://ollama.com/download) and [P
 Run NitroDigest with the default configuration:
 
 ```bash
-nitrodigest --input <file or directory you want to summarize> > <destination where to want to save summary>
+nitrodigest <file or directory you want to summarize> > <destination where to want to save summary>
 ```
 
 #### Examples
@@ -46,13 +46,13 @@ nitrodigest --input <file or directory you want to summarize> > <destination whe
 Summarize one file and save it to summary.md:
 
 ```bash
-nitrodigest --input my_long_text.html > summary.md
+nitrodigest my_long_text.html > summary.md
 ```
 
 Summarize files in a directory and save them in a summary.md:
 
 ```bash
-nitrodigest --input my_directory/ > summary.md
+nitrodigest my_directory/ > summary.md
 ```
 
 ### Command Line Arguments
@@ -70,7 +70,6 @@ Available arguments:
 - `--timeout`: Time in seconds for API requests to Ollama (default: 300)
 - `--prompt-file`: Path to custom prompt template file (overrides default one)
 - `--prompt`: Direct prompt content (overrides prompt-file)
-- `--input`: Path to a single file or directory to summarize
 - `--model`: Model that will be used for summarization (default: mistral)
 - `--ollama_api_url`: URL of Ollama API (default: <http://localhost:11434>)
 

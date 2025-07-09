@@ -8,7 +8,7 @@ This guide shows you how to process multiple files at once by pointing NitroDige
 The simplest way to process all supported files in a directory is:
 
 ```bash
-nitrodigest --input /path/to/directory
+nitrodigest /path/to/directory
 ```
 
 This command will:
@@ -47,7 +47,7 @@ documents/
 Running:
 
 ```bash
-nitrodigest --input documents/
+nitrodigest documents/
 ```
 
 Will process `meeting-notes.txt`, `project-report.md`, `data-analysis.csv`, `webpage.html`, and `subdirectory/more-notes.txt`. The `image.jpg` file will be skipped since it's not a supported text format.
@@ -59,7 +59,7 @@ Will process `meeting-notes.txt`, `project-report.md`, `data-analysis.csv`, `web
 By default, all summaries are displayed in your terminal one after another:
 
 ```bash
-nitrodigest --input documents/
+nitrodigest documents/
 ```
 
 You'll see processing messages and formatted summaries for each file:
@@ -92,7 +92,7 @@ Directory processing complete: 4 of 4 files processed successfully
 To collect all summaries in a single file:
 
 ```bash
-nitrodigest --input documents/ > all_summaries.md
+nitrodigest documents/ > all_summaries.md
 ```
 
 This creates a comprehensive document with all summaries combined, making it easy to review everything at once.
@@ -102,7 +102,7 @@ This creates a comprehensive document with all summaries combined, making it eas
 To add directory summaries to an existing summary collection:
 
 ```bash
-nitrodigest --input new_documents/ >> existing_summaries.md
+nitrodigest new_documents/ >> existing_summaries.md
 ```
 
 ## Working with Different Directory Sizes
@@ -112,7 +112,7 @@ nitrodigest --input new_documents/ >> existing_summaries.md
 For directories with just a few files, processing is straightforward and fast:
 
 ```bash
-nitrodigest --input my_notes/
+nitrodigest my_notes/
 ```
 
 ## Directory Processing Behavior
@@ -146,7 +146,7 @@ Files are processed in the order they're discovered by the file system, which ty
 Process a folder of research papers or articles:
 
 ```bash
-nitrodigest --input research_papers/ > research_summary.md
+nitrodigest research_papers/ > research_summary.md
 ```
 
 ### Project Documentation
@@ -154,7 +154,7 @@ nitrodigest --input research_papers/ > research_summary.md
 Summarize all documentation in a project:
 
 ```bash
-nitrodigest --input project_docs/ > project_overview.md
+nitrodigest project_docs/ > project_overview.md
 ```
 
 ### Email Archive
@@ -162,7 +162,7 @@ nitrodigest --input project_docs/ > project_overview.md
 Process exported email files:
 
 ```bash
-nitrodigest --input email_exports/ > email_summaries.md
+nitrodigest email_exports/ > email_summaries.md
 ```
 
 ### Meeting Notes Collection
@@ -170,7 +170,7 @@ nitrodigest --input email_exports/ > email_summaries.md
 Summarize a month's worth of meeting notes:
 
 ```bash
-nitrodigest --input meeting_notes_march/ > march_meetings_summary.md
+nitrodigest meeting_notes_march/ > march_meetings_summary.md
 ```
 
 ## Tips and Best Practices
@@ -192,7 +192,7 @@ documents/
 If you want to process only recent files, consider organizing them by date first, then process specific subdirectories:
 
 ```bash
-nitrodigest --input documents/2025-may/
+nitrodigest documents/2025-may/
 ```
 
 ### Preview Before Processing
@@ -225,7 +225,7 @@ Directory processing complete: 0 of 0 files processed successfully
 Use a different model for the entire directory:
 
 ```bash
-nitrodigest --input documents/ --model llama2 > llama2_summaries.md
+nitrodigest documents/ --model llama2 > llama2_summaries.md
 ```
 
 ### Custom Prompts for Specialized Content
@@ -233,7 +233,7 @@ nitrodigest --input documents/ --model llama2 > llama2_summaries.md
 If your directory contains specialized content, use a custom prompt:
 
 ```bash
-nitrodigest --input technical_docs/ --prompt "Summarize this technical document focusing on implementation details and requirements" > tech_summaries.md
+nitrodigest technical_docs/ --prompt "Summarize this technical document focusing on implementation details and requirements" > tech_summaries.md
 ```
 
 ## Next Steps

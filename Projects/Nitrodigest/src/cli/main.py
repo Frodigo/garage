@@ -18,8 +18,9 @@ def main():
         epilog="Visit docs, if you need more information: https://frodigo.com/projects/nitrodigest/docs, or report issues: https://github.com/frodigo/garage/issues if something doesn't work as expected."
     )
     parser.add_argument(
-        "--input",
-        help="Path to a single file or directory to summarize"
+        "content",
+        nargs='?',
+        help="Text to summarize",
     )
     parser.add_argument(
         "--model",
@@ -46,10 +47,6 @@ def main():
     )
 
     args = parser.parse_args()
-
-    if args.input and not os.path.exists(args.input):
-        print(f"Error: Input path '{args.input}' does not exist")
-        return -1
 
     try:
         temp_prompt_file = None
@@ -84,24 +81,40 @@ def main():
         print(f"Unexpected error initializing summarizer: {e}")
         return -1
 
-    # Handle input file or directory
-    if args.input:
-        if os.path.isfile(args.input):
-            process_file(args.input, summarizer)
-        elif os.path.isdir(args.input):
-            process_directory(args.input, summarizer)
-        else:
-            print(f"Error: '{args.input}' is neither a file nor a directory")
-            return -1
+    if not sys.stdin.isatty():
+        content = sys.stdin.read()
+        process_text(content, summarizer)
     else:
-        print("Error: No input file or directory specified. Use --input to specify a file or directory to summarize.")
-        return -1
+        if os.path.isfile(args.content):
+            process_file(args.content, summarizer)
+        elif os.path.isdir(args.content):
+            process_directory(args.content, summarizer)
+        else:
+            process_text(args.content, summarizer)
 
-    # Clean up temporary prompt file if it was created
+    # Clean up a temporary prompt file if it was created
     if (args.prompt and config.prompt_file and
             os.path.exists(config.prompt_file)):
         os.remove(config.prompt_file)
-        print("Cleaned up temporary prompt file.")
+
+    return 0
+
+
+def process_text(content: str, summarizer: OllamaSummarizer) -> int:
+    try:
+        print("Processing text...", file=sys.stderr)
+
+        metadata = {
+            "title": f"{content[:30]}...",
+            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "source": "text"
+        }
+
+        return _generate_summary(content, summarizer, metadata)
+
+    except Exception as e:
+        print(f"Error processing text: {e}", file=sys.stderr)
+        return -1
 
 
 def process_file(file_path, summarizer):
@@ -115,7 +128,7 @@ def process_file(file_path, summarizer):
 
         if not content.strip():
             print(f"Warning: File '{file_path}' is empty", file=sys.stderr)
-            return
+            return -1
 
         # Create metadata from file info
         file_name = os.path.basename(file_path)
@@ -128,35 +141,11 @@ def process_file(file_path, summarizer):
 
         # Generate summary
         print(f"Generating summary for {file_name}...", file=sys.stderr)
-        result = summarizer.summarize(content, metadata)
-
-        if not result.is_success():
-            print(
-                f"Failed to generate summary: {result.error}", file=sys.stderr)
-            return -1
-
-        summary = result.summary
-
-        print('---')
-        yaml.dump(
-            {
-                'title': metadata.get('title', 'Untitled'),
-                'source': metadata.get('source', 'Unknown'),
-                'date': metadata.get('date', datetime.now().strftime("%Y-%m-%d")),
-                'id': metadata.get('id', ''),
-                'summary_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                'model': result.model_used,
-                'tokens': result.tokens_used
-            },
-            sys.stdout,
-            default_flow_style=False,
-            allow_unicode=True
-        )
-        print('---\n')
-        print(summary)
+        return _generate_summary(content, summarizer, metadata)
 
     except Exception as e:
         print(f"Error processing file '{file_path}': {e}", file=sys.stderr)
+        return -1
 
 
 def process_directory(directory_path, summarizer):
@@ -181,6 +170,37 @@ def process_directory(directory_path, summarizer):
 
     print(
         f"Directory processing complete: {success_count} of {file_count} files processed successfully", file=sys.stderr)
+
+
+def _generate_summary(content, summarizer, metadata):
+    result = summarizer.summarize(content, metadata)
+
+    if not result.is_success():
+        print(
+            f"Failed to generate summary: {result.error}", file=sys.stderr)
+        return -1
+
+    summary = result.summary
+
+    print('---')
+    yaml.dump(
+        {
+            'title': metadata.get('title', 'Untitled'),
+            'source': metadata.get('source', 'Unknown'),
+            'date': metadata.get('date', datetime.now().strftime("%Y-%m-%d")),
+            'id': metadata.get('id', ''),
+            'summary_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            'model': result.model_used,
+            'tokens': result.tokens_used
+        },
+        sys.stdout,
+        default_flow_style=False,
+        allow_unicode=True
+    )
+    print('---\n')
+    print(summary)
+
+    return 0
 
 
 if __name__ == "__main__":

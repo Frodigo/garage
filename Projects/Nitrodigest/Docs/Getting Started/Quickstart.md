@@ -10,7 +10,7 @@ Create a simple text file `example.txt` with some content (for instance, you can
 ## 2. Run NitroDigest on the file
 
 ```bash
-nitrodigest --input example.txt
+nitrodigest example.txt
 ```
 
 This command will use the default settings to summarize `example.txt`. The tool will connect to the local Ollama model, generate a summary, and save the result.
@@ -30,7 +30,7 @@ When the process is done, you will see a summary in terminal.
 If you want to save the summary into a file, please use command like this:
 
 ```bash
-nitrodigest --input example.txt > summary.md
+nitrodigest example.txt > summary.md
 ```
 
 When the process is done, you can simply see the summary from file. Example:

@@ -118,5 +118,5 @@ Make sure you are in the src directory and run command:
 
 ```bash
 mkdir summaries
-python run-nitrodigest-cli.py --input <file or directory you want to summarize> > summaries/summary.md
+python run-nitrodigest-cli.py <file or directory you want to summarize> > summaries/summary.md
 ```

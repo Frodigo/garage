@@ -71,7 +71,7 @@ After the YAML frontmatter, the actual summary content follows. The format depen
 ### Single File Processing
 
 ```bash
-nitrodigest --input document.txt
+nitrodigest document.txt
 ```
 
 **Output:**
@@ -97,7 +97,7 @@ tokens: 156
 When processing multiple files, each file gets its own complete output block:
 
 ```bash
-nitrodigest --input documents/
+nitrodigest documents/
 ```
 
 **Output:**
@@ -139,19 +139,19 @@ tokens: 287
 **Single Summary:**
 
 ```bash
-nitrodigest --input document.txt > summary.md
+nitrodigest document.txt > summary.md
 ```
 
 **Multiple Summaries:**
 
 ```bash
-nitrodigest --input documents/ > all-summaries.md
+nitrodigest documents/ > all-summaries.md
 ```
 
 **Appending to Existing File:**
 
 ```bash
-nitrodigest --input new-document.txt >> existing-summaries.md
+nitrodigest new-document.txt >> existing-summaries.md
 ```
 
 ## Custom Output Formats

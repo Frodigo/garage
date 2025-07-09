@@ -28,7 +28,7 @@ NitroDigest offers three ways to customize prompts, in order of priority:
 Use the `--prompt` argument to provide prompt content directly in the command line:
 
 ```bash
-=nitrodigest --input document.txt --prompt "Summarize this document focusing on action items and deadlines. Format the output as a bulleted list."=
+=nitrodigest document.txt --prompt "Summarize this document focusing on action items and deadlines. Format the output as a bulleted list."=
 ```
 
 ### Advantages
@@ -46,13 +46,13 @@ Use the `--prompt` argument to provide prompt content directly in the command li
 ### Example: Meeting Notes Focus
 
 ```bash
-nitrodigest --input meeting.txt --prompt "Extract and summarize the key decisions, action items, and deadlines from this meeting. Format as: DECISIONS: ..., ACTION ITEMS: ..., DEADLINES: ..."
+nitrodigest meeting.txt --prompt "Extract and summarize the key decisions, action items, and deadlines from this meeting. Format as: DECISIONS: ..., ACTION ITEMS: ..., DEADLINES: ..."
 ```
 
 ### Example: Technical Documentation
 
 ```bash
-nitrodigest --input api-docs.md --prompt "Summarize this technical documentation highlighting: 1) Main purpose/functionality, 2) Key parameters and methods, 3) Usage examples, 4) Important limitations or considerations."
+nitrodigest api-docs.md --prompt "Summarize this technical documentation highlighting: 1) Main purpose/functionality, 2) Key parameters and methods, 3) Usage examples, 4) Important limitations or considerations."
 ```
 
 ## Method 2: Prompt Template Files
@@ -60,7 +60,7 @@ nitrodigest --input api-docs.md --prompt "Summarize this technical documentation
 For reusable prompts, create template files and reference them with `--prompt-file`:
 
 ```bash
-nitrodigest --input document.txt --prompt-file custom-prompt.txt
+nitrodigest document.txt --prompt-file custom-prompt.txt
 ```
 
 ### Creating Prompt Template Files
@@ -125,13 +125,13 @@ Keep the summary academic but accessible, suitable for someone familiar with the
 
 ```bash
 # Use technical summary template
-nitrodigest --input api-documentation.md --prompt-file prompt_technical_summary.txt
+nitrodigest api-documentation.md --prompt-file prompt_technical_summary.txt
 
 # Use meeting notes template
-nitrodigest --input team-meeting.txt --prompt-file prompt_meeting_notes.txt
+nitrodigest team-meeting.txt --prompt-file prompt_meeting_notes.txt
 
 # Use research template
-nitrodigest --input research-paper.pdf --prompt-file prompt_research_paper.txt
+nitrodigest research-paper.pdf --prompt-file prompt_research_paper.txt
 ```
 
 ### Template File Best Practices
@@ -153,13 +153,13 @@ One powerful technique is to run Nitrodigest two times on the same set of data. 
 #### First Pass - Extract Content
 
 ```bash
-nitrodigest --input document.pdf --prompt "Summarize the key points, findings, and important information from this document. Focus on capturing all essential content. Return a bullet lists" > raw-summary.md
+nitrodigest document.pdf --prompt "Summarize the key points, findings, and important information from this document. Focus on capturing all essential content. Return a bullet lists" > raw-summary.md
 ```
 
 #### Second Pass - Format Refinement
 
 ```bash
-nitrodigest --input raw-summary.md --prompt "Forrmat this summary into a bullet list that have heading + paragraph" > final-summary.md
+nitrodigest raw-summary.md --prompt "Forrmat this summary into a bullet list that have heading + paragraph" > final-summary.md
 ```
 
 #### Single Command
@@ -167,7 +167,7 @@ nitrodigest --input raw-summary.md --prompt "Forrmat this summary into a bullet 
 You can chain both passes in one command using shell piping:
 
 ```bash
-nitrodigest --input document.pdf --prompt "Summarize key points and findings" | nitrodigest --input /dev/stdin --prompt "Reformat this content with clear headings, bullet points, and professional structure" > formatted-summary.md
+nitrodigest example.txt --prompt "Summarize key points and findings" | nitrodigest --prompt "Reformat this content with clear headings, bullet points, and professional structure" > formatted-summary.md
 ```
 
 ### Directory Processing with Custom Prompts
@@ -176,7 +176,7 @@ Apply the same custom prompt to all files in a directory:
 
 ```bash
 # Summarize all meeting notes with consistent format
-nitrodigest --input meeting-notes-folder/ --prompt-file meeting-template.txt > all-meetings-summary.md
+nitrodigest meeting-notes-folder/ --prompt-file meeting-template.txt > all-meetings-summary.md
 ```
 
 ### Prompt Optimization Tips

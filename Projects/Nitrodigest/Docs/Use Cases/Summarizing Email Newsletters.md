@@ -61,10 +61,10 @@ Create a summary of the email content:
 
 ```bash
 # Generate summary to separate file
-nitrodigest --input message.md > message_summary.md
+nitrodigest message.md > message_summary.md
 
 # Or append summary to the original email file
-nitrodigest --input message.md >> message.md
+nitrodigest message.md >> message.md
 ```
 
 ---
