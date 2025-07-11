@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -24,9 +24,21 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    { "folke/tokyonight.nvim", config = function() vim.cmd.colorscheme "tokyonight" end },
+    --{ "folke/tokyonight.nvim", config = function() vim.cmd.colorscheme "tokyonight" end },
+    --{ "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
+    {
+      "navarasu/onedark.nvim",
+      priority = 1000, -- make sure to load this before all the other start plugins
+      config = function()
+        require('onedark').setup {
+          style = 'darker'
+        }
+        -- Enable theme
+        require('onedark').load()
+      end
+    },
     -- import your plugins
     { import = "config.plugins" },
-    { "ThePrimeagen/vim-be-good"}
+    { "ThePrimeagen/vim-be-good" }
   },
 })
