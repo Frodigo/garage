@@ -11,6 +11,10 @@ from .summarizer import (
 )
 from .config import Config
 
+from .summarizer.utils.logging import get_logger
+
+logger = get_logger(__name__)
+
 
 def main():
     parser = ArgumentParser(
@@ -75,10 +79,10 @@ def main():
             prompt_file=config.prompt_file
         )
     except ConfigurationError as e:
-        print(f"Configuration error: {e}")
+        logger.error(f"Configuration error: {e}")
         return -1
     except Exception as e:
-        print(f"Unexpected error initializing summarizer: {e}")
+        logger.error(f"Unexpected error initializing summarizer: {e}")
         return -1
 
     if not sys.stdin.isatty():
@@ -102,7 +106,7 @@ def main():
 
 def process_text(content: str, summarizer: OllamaSummarizer) -> int:
     try:
-        print("Processing text...", file=sys.stderr)
+        logger.info("Processing text...")
 
         metadata = {
             "title": f"{content[:30]}...",
@@ -113,21 +117,21 @@ def process_text(content: str, summarizer: OllamaSummarizer) -> int:
         return _generate_summary(content, summarizer, metadata)
 
     except Exception as e:
-        print(f"Error processing text: {e}", file=sys.stderr)
+        logger.error(f"Error processing text: {e}")
         return -1
 
 
 def process_file(file_path, summarizer):
     """Process a single file for summarization"""
     try:
-        print(f"Processing file: {file_path}", file=sys.stderr)
+        logger.info(f"Processing file: {file_path}")
 
         # Read the file content
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
 
         if not content.strip():
-            print(f"Warning: File '{file_path}' is empty", file=sys.stderr)
+            logger.warning(f"Warning: File '{file_path}' is empty")
             return -1
 
         # Create metadata from file info
@@ -139,20 +143,17 @@ def process_file(file_path, summarizer):
             'id': file_path
         }
 
-        # Generate summary
-        print(f"Generating summary for {file_name}...", file=sys.stderr)
+        logger.info(f"Generating summary for {file_name}...")
         return _generate_summary(content, summarizer, metadata)
 
-    except Exception as e:
-        print(f"Error processing file '{file_path}': {e}", file=sys.stderr)
-        return -1
+    except Exception:
+        raise
 
 
 def process_directory(directory_path, summarizer):
     """Process all text files in a directory for summarization"""
-    print(f"Processing directory: {directory_path}", file=sys.stderr)
+    logger.info(f"Processing directory: {directory_path}")
 
-    # Get all files in directory
     file_count = 0
     success_count = 0
 
@@ -164,20 +165,23 @@ def process_directory(directory_path, summarizer):
                 try:
                     process_file(file_path, summarizer)
                     success_count += 1
+                    logger.info(f"File {success_count} proccessed sucessfully")
                 except Exception as e:
-                    print(f"Error processing '{file_path}': {e}")
-                file_count += 1
+                    logger.error(
+                        f"Error when processing file {file_path}: {e}")
+                finally:
+                    file_count += 1
 
-    print(
-        f"Directory processing complete: {success_count} of {file_count} files processed successfully", file=sys.stderr)
+    logger.info(
+        f"Directory processing complete: {success_count} of {file_count} files processed successfully")
 
 
 def _generate_summary(content, summarizer, metadata):
     result = summarizer.summarize(content, metadata)
 
     if not result.is_success():
-        print(
-            f"Failed to generate summary: {result.error}", file=sys.stderr)
+        logger.error(
+            f"Failed to generate summary: {result.error}")
         return -1
 
     summary = result.summary
