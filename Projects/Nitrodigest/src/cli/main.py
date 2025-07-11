@@ -165,7 +165,7 @@ def process_directory(directory_path, summarizer):
                 try:
                     process_file(file_path, summarizer)
                     success_count += 1
-                    logger.info(f"File {success_count} proccessed sucessfully")
+                    logger.info(f"File {success_count} processed successfully")
                 except Exception as e:
                     logger.error(
                         f"Error when processing file {file_path}: {e}")
