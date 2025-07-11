@@ -4,9 +4,9 @@
   "mini.nvim": { "branch": "main", "commit": "18889a4993a2c6de64eb07f91e7ad8666793441a" },
   "nvim-lspconfig": { "branch": "master", "commit": "ac1dfbe3b60e5e23a2cff90e3bd6a3bc88031a57" },
   "nvim-treesitter": { "branch": "master", "commit": "066fd6505377e3fd4aa219e61ce94c2b8bdb0b79" },
+  "onedark.nvim": { "branch": "master", "commit": "11de4da47f3e69cb70c3ae9816bd8af166cbe121" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "1f08ed60cafc8f6168b72b80be2b2ea149813e55" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
-  "tokyonight.nvim": { "branch": "main", "commit": "057ef5d260c1931f1dffd0f052c685dcd14100a3" },
   "vim-be-good": { "branch": "master", "commit": "0ae3de14eb8efc6effe7704b5e46495e91931cc5" }
 }
