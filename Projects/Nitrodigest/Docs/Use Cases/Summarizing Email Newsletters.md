@@ -67,6 +67,56 @@ nitrodigest message.md > message_summary.md
 nitrodigest message.md >> message.md
 ```
 
+## Advanced Email Processing Workflow
+
+You can speed up reading emails with a bash script that reads multiple emails at a time and saves them to separate files.
+
+You can find script here [https://gist.github.com/Frodigo/7b04dbf4098684e61188d8f4957f7ed5](https://gist.github.com/Frodigo/7b04dbf4098684e61188d8f4957f7ed5).
+
+### Step 1: Download the script and make it executable
+
+Download it and save as `process-emails.sh`.
+
+Make it executable:
+
+```bash
+chmod +x process-emails.sh
+```
+
+### Step 2: Save unread emails to json file
+
+Himalaya has a nice option `--output` that allows to save emails to json file. Usage:
+
+```bash
+himalaya envelope list --output json  not flag seen >> emails.json
+```
+
+When this command is done, you will have your email list in the JSON file.
+
+### Step 4: Read email content
+
+In JSON file we have an array with emails. Each item include email ID and subject (+ other information).
+The bash script you downloaded is looping through this array and read specific email.
+Content of email is saved to directory you specified.
+
+Usage:
+
+```bash
+./process-emails.sh emails.json messages_to_read
+```
+
+In this case script reads information about emails from the `emails.json` file and save emails content in the `messages_to_read` directory
+
+### Step 5: Summarize emails
+
+Now you can summarize emails you fetched in the previous steps using NitroDigest. You can summarize all of them at once, or one by one.
+
+Command below summarizes email and adds summary to the same file:
+
+```bash
+nitrodigest my_email.md >> my_email.md
+```
+
 ---
 
 Found an issue? Report a bug: [https://github.com/Frodigo/garage/issues/new](https://github.com/Frodigo/garage/issues/new)
