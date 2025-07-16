@@ -69,7 +69,7 @@ nitrodigest message.md >> message.md
 
 ## Advanced Email Processing Workflow
 
-You can speed up reading emails witha bash script that reads multiple email at the time and save them to separate files.
+You can speed up reading emails with a bash script that reads multiple emails at a time and saves them to separate files.
 
 You can find script here [https://gist.github.com/Frodigo/7b04dbf4098684e61188d8f4957f7ed5](https://gist.github.com/Frodigo/7b04dbf4098684e61188d8f4957f7ed5).
 
