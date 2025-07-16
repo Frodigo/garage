@@ -50,16 +50,17 @@ mindmap
     Projects
       Docplanner
         Healthcare
-            Noa Notes
+          Noa Notes
       Open Source
-	    Garage
+        Garage
           Experiments
           Tools
           Learnings
           Proof of concepts
-		NitroDigest
-			Summarizing text
-			Ollama
+        NitroDigest
+          Summarizing text
+          Ollama
+
 ```
 
 ## My Philosophy
