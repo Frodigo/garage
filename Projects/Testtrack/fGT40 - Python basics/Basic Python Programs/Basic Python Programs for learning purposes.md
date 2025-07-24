@@ -1,18 +1,7 @@
 
-1. [Fuel-consumption analysis](Projects/Testtrack/fGT40%20-%20Python%20basics/Basic%20Python%20Programs/Fuel%20Consumption%20Analysis/README.md)
-2. [Engine-power conversion](Atlas/Engineering/Machine%20Learning/Level%200%20-%20Python%20basics/Basic%20Python%20Programs/Engine‑power%20conversion/README.md)
-
----
-
-## 3. Filtering a car list by CO₂ emissions
-
-- **Description:** You have a list of car models and their CO₂ emissions (g/km). Write a program that:
-
-  1. Reads data such as `[("ModelA", 120), ("ModelB", 95), ("ModelC", 140), …]`.
-  2. Allows the user to enter a maximum permitted emission value (e.g., 100 g/km).
-  3. Returns a list of models that do not exceed this value.
-
-- **Extension:** Sort the results ascending by emissions or add a second criterion (e.g., engine power).
+1. [Fuel-consumption analysis](./Fuel Consumption Analysis/README.md)
+2. [Engine-power conversion](./Engine‑power conversion/README.md)
+3. [Filtering a car list](./Filtering a car list/README.md)
 
 ---
 
