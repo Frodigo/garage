@@ -1,10 +1,17 @@
-name: "[nitrodigest] Publish to PyPI"
+name: "Publish Package to PyPI"
 permissions:
   contents: read
 
 on:
   workflow_dispatch:
     inputs:
+      package:
+        description: "Package to publish"
+        required: true
+        type: choice
+        options:
+          - Nitrodigest
+          - Nitrowebfetch
       environment:
         description: "Where to publish (testpypi or pypi)"
         required: true
@@ -14,13 +21,9 @@ on:
           - testpypi
           - pypi
 
-defaults:
-  run:
-    working-directory: Projects/Nitrodigest
-
 jobs:
   build-and-publish:
-    name: Build and publish Python package
+    name: Build and publish ${{ inputs.package }}
     runs-on: ubuntu-latest
 
     environment: ${{ inputs.environment }}
@@ -42,11 +45,11 @@ jobs:
           pip install build
 
       - name: Build package
+        working-directory: Projects/${{ inputs.package }}
         run: python -m build
 
       - name: Publish package to ${{ inputs.environment }}
         uses: pypa/gh-action-pypi-publish@release/v1
-
         with:
           repository-url: ${{ inputs.environment == 'pypi' && 'https://upload.pypi.org/legacy/' || 'https://test.pypi.org/legacy/' }}
-          packages-dir: Projects/Nitrodigest/dist/
+          packages-dir: Projects/${{ inputs.package }}/dist/
