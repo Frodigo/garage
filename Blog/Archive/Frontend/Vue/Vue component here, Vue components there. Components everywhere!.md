@@ -1,9 +1,9 @@
 ---
-date: 2022-01-27
+date: 2023-01-27
 title: Vue component here, Vue components there. Components everywhere
 ---
 
-*Published at 27/01/2022*
+*Published at 27/01/2023
 
 Previously I showed you [[How to get started with Vue (part1)]], and I have promised that there will be a second part, and here you go!
 

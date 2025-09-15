@@ -1,8 +1,8 @@
 ---
-date: 2025-02-2022
+date: 2023-02-20
 title: Magento GraphQL - How to resolve URL
 ---
-*Last updated at 12/02/2022*
+*Last updated at 12/02/2023*
 
 Recently  I described the basics of Magento GraphQL. This time I want to show you a practical example of how to scaffold a headless app connected with Magento GraphQL and fetch appropriate data from Magento based on a given URL. This article is about:
 

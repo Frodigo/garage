@@ -1,8 +1,8 @@
 ---
-date: 2022-04-20
+date: 2023-04-20
 title: Hexagonal architecture (ports and adapters) - pros and cons
 ---
-*Last updated: 20/04/2022*
+*Last updated: 20/04/2023*
 
 Hexagonal architecture, also known as octagonal architecture or ports and adapters architecture, is an approach to software design in which business logic is isolated from the technical layer.
 

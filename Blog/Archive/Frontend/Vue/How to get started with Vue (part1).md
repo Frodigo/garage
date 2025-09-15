@@ -1,8 +1,8 @@
 ---
-date: 2022-01-14
+date: 2023-01-14
 title: How to get started with Vue (part1)
 ---
-*Published at 14/01/2022*
+*Published at 14/01/2023*
 
 Unknown word: Vue - this is the sentence that one of my tools that check grammar stands out to me. It's funny because, probably for most front-end developers, Vue is a known word. After all, we all love JavaScript frameworks.
 
