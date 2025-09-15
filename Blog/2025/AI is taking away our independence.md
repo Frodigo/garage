@@ -2,7 +2,7 @@
 date: 2025-12-09
 title: AI is taking away our independence
 ---
-*Published: 12/009/2025*
+*Published: 12/09/2025*
 
 I have been working with Cursor AI for 8 months intensively in my corporate job. Recently, I conducted an experiment that is quite unusual these days. I wanted to solve the task without using any help from AI. I have used web searches, Stack Overflow, and, more importantly, I have started writing code with my hands.
 

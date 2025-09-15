@@ -23,6 +23,7 @@
 - [Hexagonal architecture (ports and adapters) - pros and cons](Hexagonal%20architecture%20(ports%20and%20adapters)%20-%20pros%20and%20cons.md)
 - [Magento GraphQL - How to resolve URL](Magento%20GraphQL%20-%20How%20to%20resolve%20URL.md)
 - [How to import Magento GraphQL schema to Postman](How%20to%20import%20Magento%20GraphQL%20schema%20to%20Postman.md)
+- [How to build a high-quality PWA Studio extension](How%20to%20build%20a%20high-quality%20PWA%20Studio%20extension.md)
 
 ---
 ## 2022
@@ -46,6 +47,5 @@
 - [Getting started with Magento PWA Studio targetables](Getting%20started%20with%20Magento%20PWA%20Studio%20targetables.md)
 - [How to add support for Category Landing Pages to PWA Studio](How%20to%20add%20support%20for%20Category%20Landing%20Pages%20to%20PWA%20Studio.md)
 - [How to extend PWA Studio with new features](How%20to%20extend%20PWA%20Studio%20with%20new%20features.md)
-- [How to build a high-quality PWA Studio extensio](How%20to%20build%20a%20high-quality%20PWA%20Studio%20extensio.md)
 - [Magento 2 product types](Magento%202%20product%20types.md)
 - [What is the difference between PWA Studio and the current Magento frontend](What%20is%20the%20difference%20between%20PWA%20Studio%20and%20the%20current%20Magento%20frontend.md)
