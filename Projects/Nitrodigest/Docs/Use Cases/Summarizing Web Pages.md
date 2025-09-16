@@ -26,7 +26,7 @@ Below you can see the command to fetch the content for the website we want to su
 nitrowebfetch https://medium.com/gitconnected/how-saying-i-dont-know-can-make-you-a-better-software-engineer-7b85d7c9ed54
 ```
 
-After a few seconds, you should see the pretty markdown content of this article. You can easily pipe this content to Nitrdigest using a command like this:
+After a few seconds, you should see the pretty markdown content of this article. You can easily pipe this content to Nitrodigest using a command like this:
 
 ```bash
 nitrowebfetch https://medium.com/gitconnected/how-saying-i-dont-know-can-make-you-a-better-software-engineer-7b85d7c9ed54 | nitrodigest
