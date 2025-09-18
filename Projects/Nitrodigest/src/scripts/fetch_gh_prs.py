@@ -1,6 +1,7 @@
 import subprocess
 import os
 import json
+import sys
 from pathlib import Path
 from argparse import ArgumentParser
 
@@ -36,7 +37,7 @@ def _fetch_from_gh(command):
         return result.stdout
     except subprocess.CalledProcessError as e:
         print(f"Error when fetching from Github: {e}")
-        exit(-1)
+        return sys.exit(1)
 
 
 def _get_prs():
@@ -57,7 +58,7 @@ def _save_to_file(content, directory, filename):
         dest_dir.mkdir(parents=True, exist_ok=True)
 
         safe_filename = "".join(c for c in filename.strip(
-        ) if c.isalnum() or c in (' ', '-', '_')).rstrip().lstrip()
+        ) if c.isalnum() or c in (' ', '-', '_'))
 
         file_path = dest_dir / f"{safe_filename}.md"
 
@@ -69,15 +70,11 @@ def _save_to_file(content, directory, filename):
 
     except PermissionError:
         print(f"Error: Permission denied for directory {directory}")
-        return None
-
-    except FileNotFoundError:
-        print(f"Error: Directory {directory} not found")
-        return None
+        return sys.exit(1)
 
     except Exception as e:
         print(f"Unexpected error: {e}")
-        return None
+        return sys.exit(1)
 
 
 if __name__ == "__main__":
