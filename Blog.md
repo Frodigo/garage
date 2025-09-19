@@ -1,5 +1,6 @@
 ## 2025
 
+- [The authenticity of leadership](The%20authenticity%20of%20leadership.md)
 - [AI is taking away our independence](AI%20is%20taking%20away%20our%20independence.md)
 - [What well-known life laws I confirmed when I did a kitchen renovation](What%20well-known%20life%20laws%20I%20confirmed%20when%20I%20did%20a%20kitchen%20renovation.md)
 - [Why teaching kids how to program is not easy](Why%20teaching%20kids%20how%20to%20program%20is%20not%20easy.md)
