@@ -182,7 +182,7 @@ Now, we can fetch all opened pull requests with one command:
 fetch-gh-prs
 ```
 
-You can customize the directory where PRs will be saved by using the "--dest "flag (default directory is `pull-requests`.
+You can customize the directory where PRs will be saved by using the "--dest "flag (default directory is `pull-requests`).
 
 Here is the output of my fetching command:
 
