@@ -1,7 +1,6 @@
 ---
 permalink: projects/nitrodigest/docs/summarizing-web-pages
 ---
-
 ## Why summarizing web pages?
 
 Nitrodigest can help you recognize which content is worth your attention and which to skip. The purpose of website summarization isn't to summarize and read a condensed version, but to summarize it to determine whether the content on the page is worth your attention.
