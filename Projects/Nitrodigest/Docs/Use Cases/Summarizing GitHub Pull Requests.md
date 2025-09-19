@@ -64,7 +64,7 @@ ID     TITLE                                                                    
 
 ### Get PR description
 
-The next step is to file the PR description. I use this command:
+The next step is to fetch the PR description. I use this command:
 
 ```bash
 gh pr view ekaf:hotfix-3403 --comments > gh-pr-test.md
