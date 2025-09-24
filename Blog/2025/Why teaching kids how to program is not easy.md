@@ -1,9 +1,6 @@
 ---
 date: 2025-04-07
 ---
-
-#ProgrammingFundamentals  #Python #BestPractices  #ConceptExplanation  #CaseStudy  #Beginner
-
 ## TL;DR
 
 Teaching kids programming isn’t as simple as sharing your passion.
@@ -19,4 +16,5 @@ And most importantly — patience to match their learning pace.
 
 Read more on Medium: <https://medium.com/@frodigo/why-teaching-kids-how-to-program-isnt-easy-50817bcd5af4>
 
-Learning roadmap: [Programming for Kids](Programming%20for%20Kids.md)
+---
+*Published 07/04/2025* #blog #ProgrammingFundamentals  #Python #BestPractices  #ConceptExplanation  #CaseStudy  #Beginner

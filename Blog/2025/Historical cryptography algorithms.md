@@ -2,9 +2,6 @@
 date: 2025-03-28
 title: Historical cryptography algorithms
 ---
-
-*Last updated: 22/03/2025*
-
 My first task on the [Cybersecurity learning roadmap](Cybersecurity%20learning%20roadmap.md) course at studies was about experimenting with historical cryptography algorithms.
 
 I was sitting in the computer room, it was quite stuffy, and around me were 30 other students. It was the third class of the day. The lecturer came in, who looked like a rather strict gentleman. He explained to us briefly what the course would look like and what the rules were for passing.
@@ -401,4 +398,5 @@ During my studying I visited many places in the internet and also used Claude an
 
 Thanks for reading!
 
-#Cybersecurity #ProgrammingFundamentals #CSharp #Shell/Bash #Git #Cryptool #Tutorial #DeepDive #ProjectSetup #Intermediate #HistoricalCryptography
+---
+*Last updated: 22/03/2025* #Cybersecurity #ProgrammingFundamentals #CSharp #Shell/Bash #Git #Cryptool #Tutorial #DeepDive #ProjectSetup #Intermediate #HistoricalCryptography

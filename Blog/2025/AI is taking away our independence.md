@@ -2,8 +2,6 @@
 date: 2025-12-09
 title: AI is taking away our independence
 ---
-*Published: 12/09/2025*
-
 I have been working with Cursor AI for 8 months intensively in my corporate job. Recently, I conducted an experiment that is quite unusual these days. I wanted to solve the task without using any help from AI. I have used web searches, Stack Overflow, and, more importantly, I have started writing code with my hands.
 
 Guess what? I have felt mental pain because I needed to write this code. After a few hours, I was exhausted. Is this me? Am I the same person who some time ago could write code for hours in hyperfocus?
@@ -63,4 +61,4 @@ _If you’re unsure where to start, I recommend installing NeoVim. I did this, a
 Artificial intelligence is supposed to improve our quality of life and work, but the hidden cost is that we become dependent and subservient to machines and the corporations that produce them. We’ve outsourced so much thinking that we risk becoming consumers, rather than creators of knowledge. When we use AI, we need to consider whether we are using AI or if AI is actually using us.
 
 ---
-#AIImpact #FutureOfWork #AISkills #programming #CursorAI #digitalwellbeing
+*Published: 12/09/2025* #blog #AIImpact #FutureOfWork #AISkills #programming #CursorAI #digitalwellbeing
