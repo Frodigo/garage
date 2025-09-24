@@ -45,3 +45,6 @@ I tried a lot to recover, but finally, after three years, I decided that I neede
 I spent too long trying to be a tech lead, instead of simply being myself. The most valuable lesson I learned wasn't about management techniques or project planning.
 
 Actually, it was about the power of authenticity. A team leader doesn't have to be the same as all other managers. The goal is to build a team around your strengths and be honest about your weaknesses.
+
+---
+*Published: 12/09/2025* #blog #leadership

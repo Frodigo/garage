@@ -11,3 +11,6 @@ Some time ago I decided to renovate my kitchen instead of hiring professionals, 
 The best from this story is I survived.
 
 Read full story on [Medium](https://medium.com/@frodigo/913f7569e0c8).
+
+---
+*Published 13/04/2025* #blog #diy
