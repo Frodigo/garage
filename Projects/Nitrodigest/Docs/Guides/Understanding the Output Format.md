@@ -11,19 +11,30 @@ Output includes both metadata and the actual summary content. Here's what a typi
 
 ```yaml
 ---
-title: example.txt
-source: file:///home/user/documents/example.txt
-date: '2025-05-16 07:50:22'
-id: example.txt
-summary_date: '2025-05-26 07:55:46'
+date: '2025-09-19 19:25:20'
+id: README.md
 model: mistral
-tokens: 189
+source: file:///home/frodigo/Work/garage/README.md
+summary_date: '2025-09-29 07:51:03'
+title: README.md
+tokens: 262
 ---
 
-- Project kickoff meeting scheduled for June 3rd with stakeholders from engineering and design teams
-- New authentication system implementation 70% complete, requiring final testing phase next week
-- Database performance optimization needed to reduce query response time from 3 seconds to under 1 second
-- Updated design system documentation deadline set for Wednesday, including new accessibility compliance features
+# Summary
+
+1. The text discusses a programming space, referred to as 'the garage', that values traditional programming and independence. It expresses concern over the role of programmers in the AI era being reduced to editors, arguing for the importance of 'vibe coding' and human creativity. The text also introduces a list of principles inspired by the Zen of Python. It provides details about the structure and content available on the site, including blog posts, projects, testimonials, and licensing information.
+2. The text also mentions options for staying updated with the author's content such as RSS feed subscription, newsletter subscription, and following the author on GitHub. It emphasizes that all content is open-source and available online or in a GitHub repository.
+3. Lastly, it provides instructions for contributing to the open-source projects through reporting bugs, suggesting ideas, and submitting pull requests.
+
+# Tags
+
+1. programming
+2. traditional programming
+3. AI
+4. garage
+5. Zen of Python
+6. open source
+7. contributing
 ```
 
 ## Output Format Components
@@ -58,41 +69,31 @@ tokens: 189
 
 After the YAML frontmatter, the actual summary content follows. The format depends on your prompt template:
 
-**Default Format (Bullet Points):**
+**Default Format (Numbered lists):**
 
 ```bash
-- Key point 1 with relevant details and context
-- Key point 2 highlighting important information
-- Key point 3 including any action items or deadlines
+1. Key point 1 with relevant details and context
+2. Key point 2 highlighting important information
+3. Key point 3 including any action items or deadlines
 ```
 
-## Output Variations by Content Type
+### Tags
 
-### Single File Processing
+Nitrodigest extracts tags from text and return them as list. Thanks to tags you can see what topics are described in the provided text:
 
 ```bash
-nitrodigest document.txt
+# Tags
+
+1. programming
+2. traditional programming
+3. AI
+4. garage
+5. Zen of Python
+6. open source
+7. contributing
 ```
 
-**Output:**
-
-```yaml
----
-title: document.txt
-source: file:///home/user/document.txt
-date: '2025-05-16 08:30:15'
-id: document.txt
-summary_date: '2025-05-29 14:22:33'
-model: mistral
-tokens: 156
----
-
-- Document contains quarterly sales report showing 23% increase in revenue
-- Key performance indicators exceeded targets in Q2 with customer satisfaction at 4.8/5
-- Recommendations include expanding sales team and investing in customer support tools
-```
-
-### Directory Processing
+## Directory Processing
 
 When processing multiple files, each file gets its own complete output block:
 
@@ -113,9 +114,7 @@ model: mistral
 tokens: 142
 ---
 
-- Team meeting covered sprint planning and resource allocation for Q3 projects
-- Decision made to prioritize authentication feature over reporting dashboard
-- Next meeting scheduled for June 5th to review progress and address blockers
+<text 1 summary content>
 
 ---
 title: project-report.md
@@ -127,9 +126,7 @@ model: mistral
 tokens: 287
 ---
 
-- Project status shows 75% completion with June 15th target deadline on track
-- Technical challenges resolved in authentication system, testing phase begins next week
-- Budget utilization at 85% with remaining funds allocated for final testing and deployment
+<text 2 summary content>
 ```
 
 ## Working with Output
@@ -186,27 +183,68 @@ Create a summary table for this document:
 | Timeline | Important dates or deadlines |
 ```
 
-### JSON-like Structured Output
+### JSON Structured Output
 
-**Custom Prompt for JSON-style Output:**
+You can use the `--format` flag to change output format to JSON:
 
 ```bash
-Summarize this document in the following structured format:
+$ nitrodigest README.md --format json
 
-TOPIC: [Main subject]
-PRIORITY: [High/Medium/Low]
-SUMMARY: [2-3 sentence overview]
-DETAILS: [Key points as numbered list]
-ACTIONS: [Required actions if any]
-DEADLINE: [Important dates]
+{
+  "summary": [
+    "The text discusses a programming space that values traditional coding, expressing concern over the increasing reliance on AI in modern programming, which they believe is reducing the creativity and problem-solving skills of programmers. The authors argue for maintaining a balance between AI and traditional coding.",
+    "The text provides information about what can be found on the author's GitHub repository, including README, About, Now, Contact, Blog, Projects, Testimonials, Privacy policy, AI usage, Contributing, and Licensing files. It also mentions an RSS newsletter for staying updated.",
+    "The text concludes by stating that all content on the GitHub repository is open-source and provides details about how to contribute."
+  ],
+  "tags": [
+    "programming",
+    "AI",
+    "traditional coding",
+    "garage",
+    "balance",
+    "open-source"
+  ],
+  "metadata": {
+    "title": "README.md",
+    "source": "file:///home/frodigo/Work/garage/README.md",
+    "date": "2025-09-19 19:25:20",
+    "id": "README.md"
+  }
+}
 ```
 
-### Formatting Problems
+### Default JSON schema
 
-**Inconsistent bullet points or structure:**
+At the moment JSON schema used by NiutroDigest is hardcoded and looks like this:
 
-- Use custom prompt templates for better control
-- Consider two-pass processing for format refinement
+```json
+ "format": {
+	"type": "object",
+	"properties": {
+		"summary": {
+			"title": "Summary",
+			"description": "Summarize content into simple and short sentences",
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"tags": {
+			"title": "Tags",
+			"description": "Extract specific technical tags: programming languages, frameworks, design patterns, algorithms, and domain areas. Prioritize concrete technologies over abstract concepts.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		}
+	},
+	"required": [
+		"summary",
+		"tags"
+	]
+}
+
+```
 
 ## Next Steps
 

@@ -84,6 +84,17 @@ nitrodigest  document.txt --prompt-file my-template.txt --prompt "Quick summary 
 ```
 
 More about prompt configuration: [Overriding Prompt Templates](Overriding%20Prompt%20Templates.md)
+
+### Output format
+
+**Default:** `text`
+
+Change output format to `json`:
+
+```bash
+nitrodigest  document.txt --format json
+```
+
 ## Setting Up Default Configurations
 
 ### Environment Variables
