@@ -63,7 +63,8 @@ Available arguments:
 - `--prompt`: Direct prompt content (overrides prompt-file)
 - `--model`: Model that will be used for summarization (default: mistral)
 - `--ollama_api_url`: URL of Ollama API (default: <http://localhost:11434>)
-- `--format`: Output format. Can be `text` or `json` (default: text)"
+- `--format`: Output format. Can be `text` or `json` (default: text)
+- `--include-original`: Include original text in the summary output (default: False)
 
 ### Custom Prompt Configuration
 

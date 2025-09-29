@@ -39,6 +39,16 @@ When the process is done, you can simply see the summary from file. Example:
 cat summary.md
 ```
 
+## 4. Including Original Text (Optional)
+
+If you want to include the original text alongside the summary, use the `--include-original` flag:
+
+```bash
+nitrodigest example.txt --include-original > summary-with-original.md
+```
+
+This will append the original text to the output after the summary, which can be useful for reference or comparison purposes.
+
 Read next:
 
 - [Summarizing All Files in a Directory](Summarizing%20All%20Files%20in%20a%20Directory.md)

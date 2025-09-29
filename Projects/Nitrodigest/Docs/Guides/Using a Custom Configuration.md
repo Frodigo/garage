@@ -95,6 +95,22 @@ Change output format to `json`:
 nitrodigest  document.txt --format json
 ```
 
+### Include Original Text
+
+**Default:** `False`
+
+Include the original text alongside the summary in the output:
+
+```bash
+# Include original text in summary output
+nitrodigest document.txt --include-original
+
+# Exclude original text (default behavior)
+nitrodigest document.txt
+```
+
+When the `--include-original` flag is present, the original text will be appended after the summary in text format, or included as an `original_text` field in JSON format.
+
 ## Setting Up Default Configurations
 
 ### Environment Variables
