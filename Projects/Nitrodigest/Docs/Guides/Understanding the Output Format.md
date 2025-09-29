@@ -183,6 +183,61 @@ Create a summary table for this document:
 | Timeline | Important dates or deadlines |
 ```
 
+### Including Original Text
+
+By default, NitroDigest only outputs the summary. You can include the original text alongside the summary using the `--include-original` flag:
+
+```bash
+# Include original text with summary
+nitrodigest document.txt --include-original
+```
+
+**Text Format Output with Original:**
+
+```yaml
+---
+title: document-name.txt
+source: file:///absolute/path/to/document-name.txt
+date: '2025-05-16 07:50:22'
+id: document-name.txt
+summary_date: '2025-05-26 07:55:46'
+model: mistral
+tokens: 189
+---
+
+# Summary
+
+1. Key summary points here...
+2. Additional summary content...
+
+# Tags
+
+1. tag1
+2. tag2
+
+---
+
+## Original Text
+
+[The complete original text content would appear here]
+```
+
+**JSON Format with Original:**
+
+```json
+{
+  "summary": ["Summary content here..."],
+  "tags": ["tag1", "tag2"],
+  "metadata": {
+    "title": "document.txt",
+    "source": "file:///path/to/document.txt",
+    "date": "2025-05-16 07:50:22",
+    "id": "document.txt"
+  },
+  "original_text": "The complete original text content would appear here"
+}
+```
+
 ### JSON Structured Output
 
 You can use the `--format` flag to change output format to JSON:
