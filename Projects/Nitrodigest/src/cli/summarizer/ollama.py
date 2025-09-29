@@ -109,10 +109,11 @@ class OllamaSummarizer(BaseSummarizer):
                     f"Content exceeds token budget. "
                     f"Splitting into {len(chunks)} chunks.")
 
-                intermediate_summaries = []
                 total_tokens_used = 0
+                final_summary = {}
+                final_summary["summary"] = []
+                final_summary["tags"] = []
 
-                # Process each chunk separately
                 for i, chunk_with_prompt in enumerate(chunks):
                     self.logger.info(f"Processing chunk {i+1}/{len(chunks)}")
                     # self.logger.info(f"Chunk: {chunk_with_prompt}")
@@ -121,13 +122,14 @@ class OllamaSummarizer(BaseSummarizer):
                     response = self.call_ollama_api(headers, data)
                     self._check_response_status(response)
                     response_data = response.json()
-
-                    intermediate_summaries.append(response_data["response"])
+                    partial_summary = json.loads(response_data["response"])
+                    final_summary["summary"].extend(
+                        partial_summary["summary"])
+                    final_summary["tags"].extend(
+                        partial_summary["tags"])
                     total_tokens_used += response_data.get("eval_count", 0)
 
-                # Combine intermediate summaries if necessary
-                combined_summaries = " ".join(intermediate_summaries)
-                summary = combined_summaries
+                summary = json.dumps(final_summary)
                 tokens_used = total_tokens_used
 
             return SummaryResult(
@@ -177,7 +179,32 @@ class OllamaSummarizer(BaseSummarizer):
         return {
             "model": self.model,
             "prompt": prompt,
-            "stream": False
+            "stream": False,
+            "format": {
+                "type": "object",
+                "properties": {
+                    "summary": {
+                        "title": "Summary",
+                        "description": "Summarize content into simple and short sentences",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "tags": {
+                        "title": "Tags",
+                        "description": "Extract specific technical tags: programming languages, frameworks, design patterns, algorithms, and domain areas. Prioritize concrete technologies over abstract concepts.",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "summary",
+                    "tags"
+                ]
+            }
         }
 
     def _check_response_status(self, response: requests.Response) -> None:

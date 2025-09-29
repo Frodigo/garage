@@ -8,18 +8,9 @@ This project is in alpha phase.
 
 ## Features
 
-- Runs 100 % on‑device with Ollama – your mail never leaves localhost
+- Runs 100 % on‑device with Ollama – your private data never leaves localhost
 - Command-line interface with various options
 - Completely free (open source, MIT license)
-
-## Ideas for next steps
-
-- Add Terminal UI and/or simple web app
-- More summary personalization options
-- Explore ML models for summarization
-- API & Authorization
-- Show use cases for various data sources: Github (Issues/PRs), Jira, Slack, Discord
-- Extract valuable code snippets, new terms and trends from data sources
 
 ---
 
@@ -72,6 +63,7 @@ Available arguments:
 - `--prompt`: Direct prompt content (overrides prompt-file)
 - `--model`: Model that will be used for summarization (default: mistral)
 - `--ollama_api_url`: URL of Ollama API (default: <http://localhost:11434>)
+- `--format`: Output format. Can be `text` or `json` (default: text)"
 
 ### Custom Prompt Configuration
 

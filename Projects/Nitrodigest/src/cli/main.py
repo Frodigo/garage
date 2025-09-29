@@ -4,6 +4,7 @@ import tempfile
 import sys
 import yaml
 from datetime import datetime
+import json
 
 from .summarizer import (
     OllamaSummarizer,
@@ -49,6 +50,11 @@ def main():
         "--prompt",
         help="Direct prompt content (overrides both config and prompt-file)"
     )
+    parser.add_argument(
+        "--format",
+        default="text",
+        help="Output format. Can be 'text' or 'json' (default: text)"
+    )
 
     args = parser.parse_args()
 
@@ -87,14 +93,14 @@ def main():
 
     if not sys.stdin.isatty():
         content = sys.stdin.read()
-        process_text(content, summarizer)
+        process_text(content, summarizer, args.format)
     else:
         if os.path.isfile(args.content):
-            process_file(args.content, summarizer)
+            process_file(args.content, summarizer, args.format)
         elif os.path.isdir(args.content):
-            process_directory(args.content, summarizer)
+            process_directory(args.content, summarizer, args.format)
         else:
-            process_text(args.content, summarizer)
+            process_text(args.content, summarizer, args.format)
 
     # Clean up a temporary prompt file if it was created
     if (args.prompt and config.prompt_file and
@@ -104,7 +110,7 @@ def main():
     return 0
 
 
-def process_text(content: str, summarizer: OllamaSummarizer) -> int:
+def process_text(content: str, summarizer: OllamaSummarizer, format: str) -> int:
     try:
         logger.info("Processing text...")
 
@@ -114,14 +120,14 @@ def process_text(content: str, summarizer: OllamaSummarizer) -> int:
             "source": "text"
         }
 
-        return _generate_summary(content, summarizer, metadata)
+        return _generate_summary(content, summarizer, metadata, format)
 
     except Exception as e:
         logger.error(f"Error processing text: {e}")
         return -1
 
 
-def process_file(file_path, summarizer):
+def process_file(file_path, summarizer, format: str):
     """Process a single file for summarization"""
     try:
         logger.info(f"Processing file: {file_path}")
@@ -144,13 +150,13 @@ def process_file(file_path, summarizer):
         }
 
         logger.info(f"Generating summary for {file_name}...")
-        return _generate_summary(content, summarizer, metadata)
+        return _generate_summary(content, summarizer, metadata, format)
 
     except Exception:
         raise
 
 
-def process_directory(directory_path, summarizer):
+def process_directory(directory_path, summarizer, format: str):
     """Process all text files in a directory for summarization"""
     logger.info(f"Processing directory: {directory_path}")
 
@@ -163,7 +169,7 @@ def process_directory(directory_path, summarizer):
             if filename.lower().endswith(('.txt', '.md', '.html', '.htm', '.xml', '.json', '.csv', '.log')):
                 file_path = os.path.join(root, filename)
                 try:
-                    process_file(file_path, summarizer)
+                    process_file(file_path, summarizer, format)
                     success_count += 1
                     logger.info(f"File {success_count} processed successfully")
                 except Exception as e:
@@ -176,7 +182,7 @@ def process_directory(directory_path, summarizer):
         f"Directory processing complete: {success_count} of {file_count} files processed successfully")
 
 
-def _generate_summary(content, summarizer, metadata):
+def _generate_summary(content, summarizer, metadata, format):
     result = summarizer.summarize(content, metadata)
 
     if not result.is_success():
@@ -186,25 +192,56 @@ def _generate_summary(content, summarizer, metadata):
 
     summary = result.summary
 
-    print('---')
-    yaml.dump(
-        {
-            'title': metadata.get('title', 'Untitled'),
-            'source': metadata.get('source', 'Unknown'),
-            'date': metadata.get('date', datetime.now().strftime("%Y-%m-%d")),
-            'id': metadata.get('id', ''),
-            'summary_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            'model': result.model_used,
-            'tokens': result.tokens_used
-        },
-        sys.stdout,
-        default_flow_style=False,
-        allow_unicode=True
-    )
-    print('---\n')
-    print(summary)
-
+    if format == 'text':
+        print('---')
+        yaml.dump(
+            {
+                'title': metadata.get('title', 'Untitled'),
+                'source': metadata.get('source', 'Unknown'),
+                'date': metadata.get('date', datetime.now().strftime("%Y-%m-%d")),
+                'id': metadata.get('id', ''),
+                'summary_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                'model': result.model_used,
+                'tokens': result.tokens_used
+            },
+            sys.stdout,
+            default_flow_style=False,
+            allow_unicode=True
+        )
+        print('---\n')
+        print(_json_to_text(summary))
+    elif format == 'json':
+        json_summary = json.loads(summary)
+        json_summary["metadata"] = metadata
+        print(json.dumps(json_summary, ensure_ascii=False, indent=2))
+    else:
+        print(summary)
     return 0
+
+
+def _json_to_text(json_data):
+    """Convert JSON data to formatted text with headings and ordered lists."""
+
+    if isinstance(json_data, str):
+        data = json.loads(json_data)
+    else:
+        data = json_data
+
+    result = []
+
+    for key, value in data.items():
+        heading = key.capitalize()
+        result.append(f"# {heading}\n")
+
+        if isinstance(value, list):
+            for i, item in enumerate(value, 1):
+                result.append(f"{i}. {item}")
+        else:
+            result.append(f"{value}")
+
+        result.append("")
+
+    return "\n".join(result).strip()
 
 
 if __name__ == "__main__":
