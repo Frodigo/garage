@@ -100,6 +100,11 @@ def main():
     if not sys.stdin.isatty():
         content = sys.stdin.read()
         process_text(content, summarizer, args.format, args.include_original)
+    elif not args.content:
+        current_dir = os.getcwd()
+        process_directory(current_dir, summarizer,
+                          args.format, args.include_original)
+
     else:
         if os.path.isfile(args.content):
             process_file(args.content, summarizer,

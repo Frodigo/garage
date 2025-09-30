@@ -18,6 +18,16 @@ This command will:
 3. Process each file individually using your default model
 4. Output each summary to the terminal in sequence
 
+### Process Current Directory
+
+You can also run NitroDigest without any arguments to automatically process all supported files in your current working directory:
+
+```bash
+nitrodigest
+```
+
+This is particularly useful when you're already in the directory you want to process and don't want to specify the path explicitly.
+
 ## Supported File Types
 
 NitroDigest automatically processes files with these extensions:
@@ -113,6 +123,13 @@ For directories with just a few files, processing is straightforward and fast:
 
 ```bash
 nitrodigest my_notes/
+```
+
+Or if you're already in the directory:
+
+```bash
+cd my_notes/
+nitrodigest
 ```
 
 ## Directory Processing Behavior
