@@ -34,6 +34,12 @@ nitrodigest <file or directory you want to summarize> > <destination where to wa
 
 #### Examples
 
+**Process current directory** (summarize all files in the current working directory):
+
+```bash
+nitrodigest > summary.md
+```
+
 Summarize one file and save it to summary.md:
 
 ```bash

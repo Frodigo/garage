@@ -15,6 +15,16 @@ nitrodigest example.txt
 
 This command will use the default settings to summarize `example.txt`. The tool will connect to the local Ollama model, generate a summary, and save the result.
 
+### Alternative: Process Current Directory
+
+You can also run NitroDigest without any arguments to process all supported files in your current directory:
+
+```bash
+nitrodigest
+```
+
+This will automatically find and summarize all text files (`.txt`, `.md`, `.html`, `.json`, `.csv`, `.log`, etc.) in the current working directory.
+
 ## 3. Observe the output
 
 You should see console messages indicating the file is being processed and where the summary is saved. For example:
