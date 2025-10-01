@@ -12,3 +12,6 @@ nltk>=3.9.1
 
 # preprocessing utilities
 emoji>=2.14.1
+
+# progress bar
+tqdm>=4.67.1

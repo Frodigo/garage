@@ -10,7 +10,7 @@ permalink: projects/nitrodigest/docs
 - **Local AI Summarization:** Uses Ollama to run LLMs on your machine, preserving privacy and working offline.
 - **Multiple Input Formats:** Supports plain text, Markdown, HTML, CSV, JSON, and other text-based files.
 - **Multiple Output Formats: By default NitroDigest returns Text, but for advanced processing it can return JSON.
-- **Batch Processing:** Summarize a single file or all files in a directory in one command.
+- **Parallel Batch Processing:** Summarize a single file or process multiple files in a directory simultaneously with configurable parallel workers for faster processing.
 - **Configurable Prompts:** Uses prompt templates that you can customize to change the style or content of summaries.
 - **Extensible:** Easily switch to different models (e.g., use a larger or domain-specific Ollama model) and adjust token budgets or segmentation for large inputs.
 
