@@ -15,8 +15,9 @@ This command will:
 
 1. Scan the directory and all subdirectories
 2. Find all supported text files
-3. Process each file individually using your default model
-4. Output each summary to the terminal in sequence
+3. Process multiple files in parallel using your default model (up to 4 files simultaneously by default)
+4. Display a progress bar during processing
+5. Output all summaries at the end
 
 ### Process Current Directory
 
@@ -66,19 +67,22 @@ Will process `meeting-notes.txt`, `project-report.md`, `data-analysis.csv`, `web
 
 ### Terminal Output (Default)
 
-By default, all summaries are displayed in your terminal one after another:
+By default, all summaries are displayed in your terminal after processing completes:
 
 ```bash
 nitrodigest documents/
 ```
 
-You'll see processing messages and formatted summaries for each file:
+You'll see a progress bar during processing, followed by all summaries:
 
 ```bash
 Processing directory: documents/
-Processing file: documents/meeting-notes.txt
-Generating summary for meeting-notes.txt...
-2025-05-26 07:55:42,615 - cli.summarizer.base.OllamaSummarizer - INFO - Sending request to Ollama API using model mistral
+Found 5 files to process with 4 workers
+
+Processing:  100%|████████████████████| 5/5 [00:12<00:00, 2.45s/file] ✓ more-notes.txt
+
+Processing complete: 5 successful, 0 failed
+
 ---
 date: '2025-05-16 07:50:22'
 id: documents/meeting-notes.txt
@@ -91,10 +95,15 @@ tokens: 189
 
 <summary of meeting-notes.txt>
 
-Processing file: documents/project-report.md
-Generating summary for project-report.md...
+================================================================================
+
+---
+date: '2025-05-16 08:15:10'
+id: documents/project-report.md
 ...
-Directory processing complete: 4 of 4 files processed successfully
+---
+
+<summary of project-report.md>
 ```
 
 ### Save All Summaries to One File
@@ -149,12 +158,33 @@ project/
 
 All three files (`overview.md`, `specifications.txt`, and `notes.txt`) will be processed.
 
+### Parallel Processing
+
+NitroDigest processes multiple files simultaneously to improve performance. By default, it uses 4 parallel workers, meaning up to 4 files can be processed at the same time.
+
+#### Adjusting Parallel Workers
+
+You can control the number of parallel workers based on your system resources and needs:
+
+```bash
+# Use 8 workers for faster processing (good for powerful systems)
+nitrodigest documents/ --max-workers 8
+
+# Use 2 workers for slower systems or to reduce resource usage
+nitrodigest documents/ --max-workers 2
+
+# Use 1 worker for sequential processing
+nitrodigest documents/ --max-workers 1
+```
+
+**When to adjust workers:**
+- **Increase workers (6-8):** If you have a powerful system and want maximum speed
+- **Decrease workers (1-2):** If you have limited RAM, CPU, or want to reduce system load
+- **Keep default (4):** For most use cases, this provides a good balance
+
 ### File Ordering
 
-Files are processed in the order they're discovered by the file system, which typically means:
-
-- Files in the main directory first
-- Then files in subdirectories
+Files are processed in parallel, so they may complete in a different order than discovered. However, all files in the directory and subdirectories will be processed.
 
 ## Practical Use Cases
 
@@ -191,6 +221,20 @@ nitrodigest meeting_notes_march/ > march_meetings_summary.md
 ```
 
 ## Tips and Best Practices
+
+### Performance Optimization
+
+For best performance when processing large directories:
+
+```bash
+# Use more workers on powerful systems
+nitrodigest large_directory/ --max-workers 8 > summaries.md
+
+# Monitor your system resources (CPU, RAM) and adjust workers accordingly
+# If Ollama is running on the same machine, consider your model's resource needs
+```
+
+**Pro tip:** The optimal number of workers depends on your Ollama setup. If Ollama is using significant resources, fewer workers may actually be faster.
 
 ### Organize Your Input
 
@@ -251,6 +295,18 @@ If your directory contains specialized content, use a custom prompt:
 
 ```bash
 nitrodigest technical_docs/ --prompt "Summarize this technical document focusing on implementation details and requirements" > tech_summaries.md
+```
+
+### Combining Parallel Processing with Other Options
+
+You can combine `--max-workers` with other options for optimized processing:
+
+```bash
+# Fast processing with custom model and 8 workers
+nitrodigest documents/ --model llama3 --max-workers 8 > summaries.md
+
+# Slower but thorough processing with 2 workers and custom prompt
+nitrodigest research/ --max-workers 2 --prompt-file research_prompt.txt > research_summaries.md
 ```
 
 ## Next Steps

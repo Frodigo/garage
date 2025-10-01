@@ -71,6 +71,7 @@ Available arguments:
 - `--ollama_api_url`: URL of Ollama API (default: <http://localhost:11434>)
 - `--format`: Output format. Can be `text` or `json` (default: text)
 - `--include-original`: Include original text in the summary output (default: False)
+- `--max-workers`: Maximum number of parallel workers for directory processing (default: 4)
 
 ### Custom Prompt Configuration
 

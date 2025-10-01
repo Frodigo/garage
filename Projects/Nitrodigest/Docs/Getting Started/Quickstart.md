@@ -23,7 +23,7 @@ You can also run NitroDigest without any arguments to process all supported file
 nitrodigest
 ```
 
-This will automatically find and summarize all text files (`.txt`, `.md`, `.html`, `.json`, `.csv`, `.log`, etc.) in the current working directory.
+This will automatically find and summarize all text files (`.txt`, `.md`, `.html`, `.json`, `.csv`, `.log`, etc.) in the current working directory. NitroDigest processes multiple files in parallel (up to 4 simultaneously by default) and shows a progress bar during processing.
 
 ## 3. Observe the output
 

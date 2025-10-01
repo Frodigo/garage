@@ -5,6 +5,8 @@ import sys
 import yaml
 from datetime import datetime
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from tqdm import tqdm
 
 from .summarizer import (
     OllamaSummarizer,
@@ -61,6 +63,12 @@ def main():
         action="store_true",
         help="Include original text in the summary output"
     )
+    parser.add_argument(
+        "--max-workers",
+        type=int,
+        default=4,
+        help="Maximum number of parallel workers for directory processing (default: 4)"
+    )
 
     args = parser.parse_args()
 
@@ -103,7 +111,7 @@ def main():
     elif not args.content:
         current_dir = os.getcwd()
         process_directory(current_dir, summarizer,
-                          args.format, args.include_original)
+                          args.format, args.include_original, args.max_workers)
 
     else:
         if os.path.isfile(args.content):
@@ -111,7 +119,7 @@ def main():
                          args.format, args.include_original)
         elif os.path.isdir(args.content):
             process_directory(args.content, summarizer,
-                              args.format, args.include_original)
+                              args.format, args.include_original, args.max_workers)
         else:
             process_text(args.content, summarizer,
                          args.format, args.include_original)
@@ -142,7 +150,7 @@ def process_text(content: str, summarizer: OllamaSummarizer, format: str, includ
 
 
 def process_file(file_path, summarizer, format: str, include_original: bool):
-    """Process a single file for summarization"""
+    """Process a single file for summarization and print results"""
     try:
         logger.info(f"Processing file: {file_path}")
 
@@ -168,31 +176,164 @@ def process_file(file_path, summarizer, format: str, include_original: bool):
         raise
 
 
-def process_directory(directory_path, summarizer, format: str, include_original: bool):
-    """Process all text files in a directory for summarization"""
-    logger.info(f"Processing directory: {directory_path}")
+def _process_file_return_result(file_path, summarizer, format: str, include_original: bool):
+    """Process a single file and return the result without printing"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
 
-    file_count = 0
-    success_count = 0
+        if not content.strip():
+            return None
 
+        file_name = os.path.basename(file_path)
+        metadata = {
+            'title': file_name,
+            'source': 'file://' + os.path.abspath(file_path),
+            'date': datetime.fromtimestamp(os.path.getmtime(file_path)).strftime("%Y-%m-%d %H:%M:%S"),
+            'id': file_path
+        }
+
+        result = summarizer.summarize(content, metadata)
+
+        if not result.is_success():
+            return None
+
+        return {
+            'content': content,
+            'metadata': metadata,
+            'summary': result.summary,
+            'model_used': result.model_used,
+            'tokens_used': result.tokens_used,
+            'file_path': file_path
+        }
+
+    except Exception:
+        raise
+
+
+def process_directory(directory_path, summarizer, format: str, include_original: bool, max_workers: int = 4):
+    """Process all text files in a directory with parallel processing and progress tracking"""
+
+    files_to_process = []
     for root, _, files in os.walk(directory_path):
         for filename in files:
-            # Only process text files - check common text file extensions
             if filename.lower().endswith(('.txt', '.md', '.html', '.htm', '.xml', '.json', '.csv', '.log')):
                 file_path = os.path.join(root, filename)
-                try:
-                    process_file(file_path, summarizer,
-                                 format, include_original)
-                    success_count += 1
-                    logger.info(f"File {success_count} processed successfully")
-                except Exception as e:
-                    logger.error(
-                        f"Error when processing file {file_path}: {e}")
-                finally:
-                    file_count += 1
+                files_to_process.append(file_path)
 
-    logger.info(
-        f"Directory processing complete: {success_count} of {file_count} files processed successfully")
+    file_count = len(files_to_process)
+
+    if file_count == 0:
+        print("No text files found to process")
+        return
+
+    print(f"\nProcessing directory: {directory_path}")
+    print(f"Found {file_count} files to process with {max_workers} workers\n")
+
+    import logging
+    original_levels = {}
+    for log_name in ['cli.summarizer.base.OllamaSummarizer', 'cli.main']:
+        log = logging.getLogger(log_name)
+        original_levels[log_name] = log.level
+        log.setLevel(logging.WARNING)
+
+    results = []
+    errors = []
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_file = {
+            executor.submit(_process_file_return_result, file_path, summarizer, format, include_original): file_path
+            for file_path in files_to_process
+        }
+
+        with tqdm(
+            total=file_count,
+            desc="Processing",
+            unit="file",
+            bar_format='{desc}: {percentage:3.0f}%|{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]',
+            leave=True,
+            position=0
+        ) as pbar:
+            for future in as_completed(future_to_file):
+                file_path = future_to_file[future]
+                file_name = os.path.basename(file_path)
+
+                try:
+                    result = future.result()
+                    if result:
+                        results.append(result)
+                        pbar.set_postfix_str(
+                            f"✓ {file_name[:50]}", refresh=True)
+                    else:
+                        errors.append(
+                            (file_path, "Empty file or failed to generate summary"))
+                        pbar.set_postfix_str(
+                            f"✗ {file_name[:50]}", refresh=True)
+                except Exception as e:
+                    errors.append((file_path, str(e)))
+                    pbar.set_postfix_str(f"✗ {file_name[:50]}", refresh=True)
+                finally:
+                    pbar.update(1)
+
+    for log_name, level in original_levels.items():
+        logging.getLogger(log_name).setLevel(level)
+
+    print(
+        f"\nProcessing complete: {len(results)} successful, {len(errors)} failed\n")
+
+    if errors:
+        print("Failed files:")
+        for file_path, error in errors:
+            print(f"  - {os.path.basename(file_path)}: {error}")
+        print()
+
+    for idx, result in enumerate(results, 1):
+        _print_result(result, format, include_original)
+        if idx < len(results):
+            print("\n" + "=" * 80 + "\n")
+
+
+def _print_result(result, format: str, include_original: bool):
+    """Print a single result"""
+    metadata = result['metadata']
+    summary = result['summary']
+    content = result['content']
+
+    if format == 'text':
+        print('---')
+        yaml.dump(
+            {
+                'title': metadata.get('title', 'Untitled'),
+                'source': metadata.get('source', 'Unknown'),
+                'date': metadata.get('date', datetime.now().strftime("%Y-%m-%d")),
+                'id': metadata.get('id', ''),
+                'summary_date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                'model': result['model_used'],
+                'tokens': result['tokens_used']
+            },
+            sys.stdout,
+            default_flow_style=False,
+            allow_unicode=True
+        )
+        print('---\n')
+        print(_json_to_text(summary))
+
+        if include_original:
+            print("\n---\n")
+            print("## Original Text\n")
+            print(content)
+    elif format == 'json':
+        json_summary = json.loads(summary)
+        json_summary["metadata"] = metadata
+        json_summary["model_used"] = result['model_used']
+        json_summary["tokens_used"] = result['tokens_used']
+
+        if include_original:
+            json_summary["original_text"] = content
+
+        print(json.dumps(json_summary, ensure_ascii=False, indent=2))
+    else:
+        print(summary)
 
 
 def _generate_summary(content, summarizer, metadata, format, include_original=True) -> int:
