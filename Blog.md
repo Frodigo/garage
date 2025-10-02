@@ -5,12 +5,12 @@
 - [AI is taking away our independence](AI%20is%20taking%20away%20our%20independence.md)
 - [What well-known life laws I confirmed when I did a kitchen renovation](What%20well-known%20life%20laws%20I%20confirmed%20when%20I%20did%20a%20kitchen%20renovation.md)
 - [Why teaching kids how to program is not easy](Why%20teaching%20kids%20how%20to%20program%20is%20not%20easy.md)
-- [How I failed at writing a blog many times](https://medium.com/@frodigo/how-i-failed-at-writing-a-blog-many-times-d1e5040763a7) todo: migrate from medium
-- [Onboarding to coding](https://medium.com/docplanner-tech/onboarding-to-coding-9ff20c65c303) todo: migrate from medium
+- [How I failed at writing a blog many times and what I would do differently if I could turn back time](How%20I%20failed%20at%20writing%20a%20blog%20many%20times%20and%20what%20I%20would%20do%20differently%20if%20I%20could%20turn%20back%20time.md)
+- [Onboarding to coding after being a tech leader for 4 years](Onboarding%20to%20coding%20after%20being%20a%20tech%20leader%20for%204%20years.md)
 - [Historical cryptography algorithms](Historical%20cryptography%20algorithms.md)
-- [3. Caesar Cipher Implementation in C Sharp](Caesar%20Cipher%20Implementation%20in%20C%20Sharp.md)
-- [How and Why I Moved My Blog from WordPress to Astro and Markdown](https://medium.com/gitconnected/how-and-why-i-moved-my-blog-from-wordpress-to-astro-and-markdown-3549672d5a86) todo: migrate from medium
-- [How Saying ‘I Don’t Know’ Can Make You a Better Software Engineer](https://medium.com/gitconnected/how-saying-i-dont-know-can-make-you-a-better-software-engineer-7b85d7c9ed54) todo: migrate from medium
+- [Caesar Cipher Implementation in C Sharp](Caesar%20Cipher%20Implementation%20in%20C%20Sharp.md)
+- [How and why I moved my blog from WordPress to Astro and Markdown](How%20and%20why%20I%20moved%20my%20blog%20from%20WordPress%20to%20Astro%20and%20Markdown.md)
+- [How saying ‘I don’t know’ can make You a better Software Engineer](How%20saying%20‘I%20don’t%20know’%20can%20make%20You%20a%20better%20Software%20Engineer.md)
 
 ---
 ## 2024
