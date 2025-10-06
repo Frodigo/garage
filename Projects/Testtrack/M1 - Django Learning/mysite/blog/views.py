@@ -11,11 +11,14 @@ def post_list(request):
     )
 
 
-def post_detail(request, id):
+def post_detail(request, year, month, day, post):
     post = get_object_or_404(
         Post,
-        id=id,
-        status=Post.Status.PUBLISHED
+        status=Post.Status.PUBLISHED,
+        slug=post,
+        published_at__year=year,
+        published_at__month=month,
+        published_at__day=day
     )
 
     return render(
