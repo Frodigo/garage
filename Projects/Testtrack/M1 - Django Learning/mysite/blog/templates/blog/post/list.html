@@ -17,4 +17,5 @@
     {% empty %}
         <p>No posts available.</p>
     {% endfor %}
+    {% include "pagination.html" with page=posts %}
 {% endblock %}
