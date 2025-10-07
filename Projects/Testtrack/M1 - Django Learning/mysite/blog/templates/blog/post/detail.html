@@ -8,4 +8,7 @@
         Published on {{ post.published_at }} by {{post.author}}
     </p>
    {{ post.body|linebreaks }}</p>
+   <p>
+       <a href="{% url 'blog:post_share' post.pk %}">Share via email</a>
+   </p>
 {% endblock %}
