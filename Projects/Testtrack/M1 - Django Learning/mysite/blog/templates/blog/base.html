@@ -1,3 +1,4 @@
+{% load blog_tags %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,11 +10,11 @@
 </head>
 <body>
   <article id="content">
-        {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
   </article>
   <aside id="sidebar">
-        <h2>My blog</h2>
-        <p> Hello dude!</p>
+    <h2>My blog</h2>
+    <p>Hello dude! I published {% total_posts %} posts so far.</p>
   </aside>
 </body>
 </html>
