@@ -1,1 +1,2 @@
 python-decouple>=3.8
+django-taggit>=6.1.0
