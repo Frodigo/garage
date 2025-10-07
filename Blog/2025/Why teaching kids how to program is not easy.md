@@ -116,7 +116,5 @@ Teaching programming to kids requires luck, considerable strength, and abundant 
 
 And may your child become an even better programmer than you!
 
-If you are interested in learning how to teach kids programming, please check out my learning roadmap: [https://frodigo.com/Garage/Programming+for+Kids](https://frodigo.com/Garage/Programming+for+Kids)
-
 ---
 *Published 07/04/2025* #blog #ProgrammingFundamentals  #Python #BestPractices  #ConceptExplanation  #CaseStudy  #Beginner

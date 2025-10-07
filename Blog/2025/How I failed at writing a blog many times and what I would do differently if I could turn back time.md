@@ -122,7 +122,7 @@ I’m finally focusing on what matters: **writing**.
 
 ![obsidian blog](https://miro.medium.com/v2/resize:fit:1400/1*Hfi8Lapum4YdQoFAzAiU2A.png)
 
-My new ugly website. Source: [https://frodigo.com/Garage](https://frodigo.com/Garage)
+My new ugly website. Source: [https://frodigo.com](https://frodigo.com)
 
 So now I’m writing — and I’ve made a deal with myself: no replatforming for the next year.
 
