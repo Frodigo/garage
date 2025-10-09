@@ -1,38 +1,29 @@
 This is a [now](https://nownownow.com/about) page, and if you have your own site, you ~~should~~ can make one, too.
 
-Updated September 9, 2025 from Brzezina, Poland
+Updated October 8, 2025 from Brzezina, Poland
 
 ---
 
-## Nitrodigest CLI
+## Preparing for 10k run
 
-I'm finishing the Nitrodigest CLI by adding documentation for summarizing web pages, Slack messages, and GitHub pull requests. My goal is to create an automated information summarizing system by combining Nitrodigest with other tools.
-
----
-
-## Garden furniture refinishing
-
-I'm restoring a wooden garden table and chairs. This involves sanding off old paint and applying a new coat of stain.
+Finally, after many trials and tribulations, I was able to get back into running. I started with something relatively simple: the 10km Independence Run. I'm aiming to beat my personal best: 45 minutes. I train with Jeff, and he's really pushing me.
 
 ---
 
-## NextCloud PI setup
+## Learning Django
 
-I'm migrating my photos from Apple and Google to a self-hosted NextCloud instance on a Raspberry PI. I've already moved the photos to my local computer and am now transferring them to the server.
+I regret that I don't enjoy C# programming as much as I would like, I do hoping that I will not to do it forever, and I started learning Django. I'm working through the book "Django 5 by Example" by Antonio Mele, and so far I really like it.
 
----
-
-## Blog writing
-
-I'm restarting my blog, drawing content ideas from these projects.
+It's a great starting point when you can create a working frontend view and backend with a database in just a few lines of code. It's amazing how simple web development can be.
 
 ---
 
-## History
+## Studying
 
-Below you can find my historical now pages. Date along the title means a day when a page was moved to the history.
+October means returning to my studies. It looks promising: deep learning, natural language analysis methods, and an artificial intelligence project. Additionally, I believe it's time to select a topic for my master's thesis.
 
-- [4. 08-09-2025](4.%2008-09-2025.md)
-- [3. 16-07-2025](3.%2016-07-2025.md)
-- [2. 06-06-2025](2.%2006-06-2025.md)
-- [1. 25-03-2025](1.%2025-03-2025.md)
+---
+
+## Exploring NextCloud and Raspberry PI
+
+I recently successfully launched NextCloud on my PI, but I haven't fully enjoyed it yet. I'm finishing up my photo migration and enjoying exploring the features of NextCloud.
