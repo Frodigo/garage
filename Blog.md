@@ -1,5 +1,7 @@
 ## 2025
 
+- [Configuring AI coding tools is a new bike-shedding](Configuring%20AI%20coding%20tools%20is%20a%20new%20bike-shedding.md)
+- [Omarchy review after a month of using](Omarchy%20review%20after%20a%20month%20of%20using.md)
 - [Setting up Nextcloud on Raspberry Pi 5 using Docker](Setting%20up%20Nextcloud%20on%20Raspberry%20Pi%205%20using%20Docker.md)
 - [The authenticity of leadership](The%20authenticity%20of%20leadership.md)
 - [AI is taking away our independence](AI%20is%20taking%20away%20our%20independence.md)

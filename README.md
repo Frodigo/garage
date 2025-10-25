@@ -31,7 +31,7 @@ Even when our world crumbles and we're forced into vibe coding at corporate jobs
 ## What you can find here
 
 - README (this page)
-- [About](About.md) - in case if you want to read more about me
+- [About the owner](About%20the%20owner.md) - in case if you want to read more about creator of garage
 - [Now](Now.md) - describes what I am currently focusing on and what I am doing
 - [Contact](Contact.md) - contact information
 - [Blog](Blog.md) - (under development) my stories

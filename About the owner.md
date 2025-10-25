@@ -139,13 +139,11 @@ I like the Docplanner culture and the mission which is about making healthcare m
 
 ## My Services
 
-- Software engineering
-- Software architecture consulting
-- Technical content creation
-- Technical mentoring
-- Career development planning
+- Building proof of concepts, prototypes, product MVP
+- Designing and reviewing software architecture
+- Writing articles and documentation
 
-[[Contact|Hire me]]
+[Hire me](Contact.md)
 
 ---
 

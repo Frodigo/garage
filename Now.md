@@ -27,3 +27,15 @@ October means returning to my studies. It looks promising: deep learning, natura
 ## Exploring NextCloud and Raspberry PI
 
 I recently successfully launched NextCloud on my PI, but I haven't fully enjoyed it yet. I'm finishing up my photo migration and enjoying exploring the features of NextCloud.
+
+---
+
+## Learning about LLMs
+
+I do a course about [LLM from Hugging Face](https://huggingface.co/learn/llm-course/en/chapter1/1)
+
+---
+
+## Improving NitroDigest
+
+I found that instead of Ollama I can use [llama-cpp](https://github.com/abetlen/llama-cpp-python) and then the tool should be more accessible for other, I explore this direction
