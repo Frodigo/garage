@@ -6,18 +6,15 @@
 
 ## Social media
 
-- [Linkedin](https://www.linkedin.com/in/frodigo/ "LinkedIn")
-- [GitHub](https://github.com/Frodigo "GitHub")
-- [Medium](https://medium.com/@marcin_12725 "Medium")
-- [Mastodon](https://mastodon.social/@frodigo)
+- [Linkedin](https://www.linkedin.com/in/frodigo)
+- [GitHub](https://github.com/Frodigo)
+- [Medium](https://medium.com/@frodigo)
 
 ---
 
 ## Newsletter
 
-If you want to be updated with my new content you can subscribe to my newsletter.
-
-[Subscribe to the newsletter](https://marcinkwiatkowski.kit.com)
+If you want to be updated with my new content you can follow me and subscribe to my newsletter on [Medium](https://medium.com/@frodigo)
 
 ---
 
