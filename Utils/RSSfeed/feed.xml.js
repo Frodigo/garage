@@ -67,7 +67,7 @@ const baseConfig = {
     language: "en",
     ttl: 60,
   },
-  contentDir: path.join(__dirname, '..', '..'),
+  contentDir: path.join(__dirname, "..", ".."),
   excludeDirs: [
     "node_modules",
     ".git",
@@ -345,17 +345,68 @@ function generateRSSFeed(config) {
 }
 
 /**
+ * Check if a URL looks valid (not containing array notation or other invalid patterns)
+ * @param {string} url - URL to validate
+ * @returns {boolean} True if URL looks valid
+ */
+function isValidUrl(url) {
+  // Extract the path part after the domain
+  const pathMatch = url.match(/https:\/\/frodigo\.com\/(.+)$/);
+  if (!pathMatch) {
+    return false;
+  }
+  const path = pathMatch[1];
+
+  // Filter out URLs that are just numbers (likely extracted from array notation like [10, 20, 30])
+  if (/^\d+$/.test(path)) {
+    return false;
+  }
+
+  // Filter out URLs that contain array notation patterns
+  if (/\[.*?\]/.test(url)) {
+    return false;
+  }
+  // Filter out URLs that start with numbers followed by commas (array elements)
+  if (/\/\d+,\+/.test(url)) {
+    return false;
+  }
+  // Filter out URLs ending with array-like patterns
+  if (/,\+\d+[,\]]/.test(url)) {
+    return false;
+  }
+  // Filter out other invalid patterns
+  if (
+    url.includes("...") ||
+    url.includes("undefined") ||
+    url.includes("link") ||
+    url.includes("Wiki") ||
+    url.includes("&quot;")
+  ) {
+    return false;
+  }
+  return true;
+}
+
+/**
  * Extract links from RSS feed XML content
  * @param {string} feedContent - RSS feed XML content
  * @returns {Set<string>} Set of unique links
  */
 function extractLinksFromFeed(feedContent) {
   const allLinks = new Set();
-  const urlRegex = /https:\/\/frodigo\.com\/[^"\s<>]+/g;
+  // More restrictive regex: stop at brackets, parentheses, and other invalid URL characters
+  // Also stop at common punctuation that shouldn't be in URLs
+  const urlRegex = /https:\/\/frodigo\.com\/[^"\s<>\[\](){}|\\^`]+/g;
 
   // First, remove code blocks to avoid processing links within them
-  const contentWithoutCodeBlocks = feedContent.replace(
-    /<pre><code>[\s\S]*?<\/code><\/pre>/g,
+  // Also remove inline code with backticks
+  let contentWithoutCodeBlocks = feedContent.replace(
+    /<pre><code>[\s\S]*?<\/code><\/pre>/gi,
+    ""
+  );
+  // Remove inline code elements
+  contentWithoutCodeBlocks = contentWithoutCodeBlocks.replace(
+    /<code>[\s\S]*?<\/code>/gi,
     ""
   );
 
@@ -366,14 +417,8 @@ function extractLinksFromFeed(feedContent) {
   contentMatches.forEach((match) => {
     const contentUrls = match[1].match(urlRegex) || [];
     contentUrls.forEach((url) => {
-      // Filter out invalid links and links that look like code snippets
-      if (
-        !url.includes("...") &&
-        !url.includes("undefined") &&
-        !url.includes("link") &&
-        !url.includes("Wiki") &&
-        !url.includes("&quot;")
-      ) {
+      // Filter out invalid links using the validation function
+      if (isValidUrl(url)) {
         allLinks.add(url);
       }
     });
@@ -384,13 +429,7 @@ function extractLinksFromFeed(feedContent) {
   const linkMatches = [...contentWithoutCodeBlocks.matchAll(linkRegex)];
   linkMatches.forEach((match) => {
     const url = match[1];
-    if (
-      !url.includes("...") &&
-      !url.includes("undefined") &&
-      !url.includes("link") &&
-      !url.includes("Wiki") &&
-      !url.includes("&quot;")
-    ) {
+    if (isValidUrl(url)) {
       allLinks.add(url);
     }
   });
@@ -400,13 +439,7 @@ function extractLinksFromFeed(feedContent) {
   const guidMatches = [...contentWithoutCodeBlocks.matchAll(guidRegex)];
   guidMatches.forEach((match) => {
     const url = match[1];
-    if (
-      !url.includes("...") &&
-      !url.includes("undefined") &&
-      !url.includes("link") &&
-      !url.includes("Wiki") &&
-      !url.includes("&quot;")
-    ) {
+    if (isValidUrl(url)) {
       allLinks.add(url);
     }
   });
@@ -417,13 +450,7 @@ function extractLinksFromFeed(feedContent) {
   descMatches.forEach((match) => {
     const descUrls = match[1].match(urlRegex) || [];
     descUrls.forEach((url) => {
-      if (
-        !url.includes("...") &&
-        !url.includes("undefined") &&
-        !url.includes("link") &&
-        !url.includes("Wiki") &&
-        !url.includes("&quot;")
-      ) {
+      if (isValidUrl(url)) {
         allLinks.add(url);
       }
     });
@@ -435,13 +462,7 @@ function extractLinksFromFeed(feedContent) {
   const imageMatches = [...contentWithoutCodeBlocks.matchAll(imageRegex)];
   imageMatches.forEach((match) => {
     const url = match[1];
-    if (
-      !url.includes("...") &&
-      !url.includes("undefined") &&
-      !url.includes("link") &&
-      !url.includes("Wiki") &&
-      !url.includes("&quot;")
-    ) {
+    if (isValidUrl(url)) {
       allLinks.add(url);
     }
   });
@@ -510,4 +531,5 @@ module.exports = {
   createFeedItem,
   generateRSSFeed,
   extractLinksFromFeed,
+  isValidUrl,
 };
