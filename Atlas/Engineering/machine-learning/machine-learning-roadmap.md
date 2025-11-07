@@ -11,8 +11,8 @@ This is a learning roadmap for anyone who want to be a ML Engineer. I created it
 
 ### Topics
 
-- [Python basics (variables, functions, loops, classes, data structures, testing)](./level-0-python-and-math-essentials/python-tutorial-notes.ipynb) ✅
-- [NumPy](./level-0-python-and-math-essentials/numpy/numpy-essentials.md) ✅
+- [Python basics (variables, functions, loops, classes, data structures, testing)](https://github.com/Frodigo/garage/blob/main/Atlas/Engineering/machine-learning/level-0-python-and-math-essentials/python-tutorial-notes.ipynb) ✅
+- [NumPy](https://github.com/Frodigo/garage/blob/main/Atlas/Engineering/machine-learning/level-0-python-and-math-essentials/numpy/numpy-essentials.ipynb) ✅
 - pandas
 - Matplotlib & Seaborn for visualization
 - Basic linear algebra, probability, statistics

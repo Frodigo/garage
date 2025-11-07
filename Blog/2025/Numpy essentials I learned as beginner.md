@@ -1,10 +1,11 @@
 ---
 title: NumPy Essentials
 date: 2025-11-07
-permalink: atlas/engineering/machine-learning/learning-roadmap/numpy-essentials
+permalink: numpy-essentials-i-learned-as-a-beginner
 ---
+I’m learning machine learning and I’m at level 0, just getting started. Last week, I was exploring things related to NumPy, and the result of my learning is a Jupyter notebook, which I wanted to share with you.
 
-# NumPy Essentials
+Note: You can find [Jupyter Notebook source here](https://github.com/Frodigo/garage/blob/main/Atlas/Engineering/machine-learning/level-0-python-and-math-essentials/numpy/numpy-essentials.ipynb) (On blog you can see this notebook converted to text).
 
 NumPy (Numerical Python) is a Python library that makes working with numbers faster and easier. It offers new datatype: ndarray, vectorization and bunch of useful functions. NumPy is a tool that every ML or Data Engineer use daily.In this Notebook, I am going through NumPy features and show examples how it can be used.
 
@@ -751,6 +752,8 @@ In this notebook, we've covered some essential and practical aspects of using Nu
 - Common mistakes, including operating on Python lists vs NumPy arrays, mixing data types, and misunderstanding array shapes/dimensions
 - Useful attributes such as `.shape` and `.dtype`
 - Conversion between 1D and 2D arrays and understanding reshape behavior
+
+I spent approximatelly 1 hour every day in a week to learn, play, expermiment and write this notebook. If I did it, you can too!
 
 ## Topics for Further Learning
 
