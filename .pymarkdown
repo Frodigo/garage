@@ -41,6 +41,9 @@
     },
     "md014": {
       "enabled": false
+    },
+    "md046": {
+      "enabled": false
     }
   }
 }
