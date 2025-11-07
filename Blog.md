@@ -1,5 +1,6 @@
 ## 2025
 
+- [Numpy essentials I learned as beginner](Numpy%20essentials%20I%20learned%20as%20beginner.md)
 - [Configuring AI coding tools is a new bike-shedding](Configuring%20AI%20coding%20tools%20is%20a%20new%20bike-shedding.md)
 - [Omarchy review after a month of using](Omarchy%20review%20after%20a%20month%20of%20using.md)
 - [Setting up Nextcloud on Raspberry Pi 5 using Docker](Setting%20up%20Nextcloud%20on%20Raspberry%20Pi%205%20using%20Docker.md)
@@ -15,21 +16,24 @@
 - [How saying ‘I don’t know’ can make You a better Software Engineer](How%20saying%20‘I%20don’t%20know’%20can%20make%20You%20a%20better%20Software%20Engineer.md)
 
 ---
+
 ## 2024
 
 - [Monolith vs Microservices - Pros and Cons and How to Approach Transformation](Monolith%20vs%20Microservices%20-%20Pros%20and%20Cons%20and%20How%20to%20Approach%20Transformation.md)
 
 ---
+
 ## 2023
 
 - [Vue component here, Vue components there. Components everywhere!](Vue%20component%20here,%20Vue%20components%20there.%20Components%20everywhere!.md)
-- [How to get started with Vue (part1)](How%20to%20get%20started%20with%20Vue%20(part1).md)
-- [Hexagonal architecture (ports and adapters) - pros and cons](Hexagonal%20architecture%20(ports%20and%20adapters)%20-%20pros%20and%20cons.md)
+- [How to get started with Vue (part1)](<How%20to%20get%20started%20with%20Vue%20(part1).md>)
+- [Hexagonal architecture (ports and adapters) - pros and cons](<Hexagonal%20architecture%20(ports%20and%20adapters)%20-%20pros%20and%20cons.md>)
 - [Magento GraphQL - How to resolve URL](Magento%20GraphQL%20-%20How%20to%20resolve%20URL.md)
 - [How to import Magento GraphQL schema to Postman](How%20to%20import%20Magento%20GraphQL%20schema%20to%20Postman.md)
 - [How to build a high-quality PWA Studio extension](How%20to%20build%20a%20high-quality%20PWA%20Studio%20extension.md)
 
 ---
+
 ## 2022
 
 - [2 ways of handling GraphQL errors in Apollo Client](2%20ways%20of%20handling%20GraphQL%20errors%20in%20Apollo%20Client.md)
@@ -43,6 +47,7 @@
 - [10 Answers to Your Questions About Magento Enterprise Versions](10%20Answers%20to%20Your%20Questions%20About%20Magento%20Enterprise%20Versions.md)
 
 ---
+
 ## 2021
 
 - [What is JSX in React, and is it worth making friends with it](What%20is%20JSX%20in%20React,%20and%20is%20it%20worth%20making%20friends%20with%20it.md)
