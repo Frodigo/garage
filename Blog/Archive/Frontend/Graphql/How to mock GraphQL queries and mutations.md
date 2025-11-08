@@ -804,7 +804,7 @@ It's pretty simple. You should:
 
 ## Summary
 
-In this article, I showed you how to mock GraphQL queries and mutations. Compared to a REST API, mocking GraphQL queries is much easier. The subsequent transition to real data only really involves a change in [[The full-stack guide to the GraphQL query|GraphQL queries]] and resolvers’ removal. In my opinion, mocking data in GraphQL is much easier than in REST, which is unquestionably beneficial for everyone.
+In this article, I showed you how to mock GraphQL queries and mutations. Compared to a REST API, mocking GraphQL queries is much easier. The subsequent transition to real data only really involves a change in GraphQL queries and resolvers’ removal. In my opinion, mocking data in GraphQL is much easier than in REST, which is unquestionably beneficial for everyone.
 
 When you want to mock some fields or operations on the client side using Apollo Client, please follow these steps:
 

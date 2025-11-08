@@ -263,7 +263,7 @@ Then I use that function in effect. Before calling, I check if the search query 
 
 ### graphQL query
 
-The last thing we need to do is create a [[The full-stack guide to the GraphQL query|graphQl query]] used by the useQuickSearchSuggestions hook.
+The last thing we need to do is create a graphQl query used by the useQuickSearchSuggestions hook.
 
 ```javascript
 export const GET_QUICK_SEARCH_SUGGESTIONS = gql`
@@ -315,6 +315,6 @@ Apollo client provides a cache mechanism called InMemoryCache. Thanks to that, t
 
 ### Handling GraphQL errors
 
-Lazy query error handling is pretty the same as when you use the **useQuery** hook. Please follow [[2 ways of handling GraphQL errors in Apollo Client|this article]] if you want to get more about GraphQL errors.
+Lazy query error handling is pretty the same as when you use the **useQuery** hook.
 
 #WebDevelopment #FrontendDevelopment #JavaScript #React #GraphQL #ApolloClient #ReactBootstrap #Tutorial #ConceptExplanation #BestPractices #Intermediate #API

@@ -14,8 +14,6 @@ In hexagonal architecture, the application consists of three main parts:
 
 3. **Business logic** - the central part of the application that processes information passed by ports and adapters. Business logic is isolated from implementation details, which enables easy interchangeability of adapters and ports without changes to the business logic.
 
-![[hexagonal-architecture.png]]
-
 ---
 
 ## Ports
@@ -315,8 +313,6 @@ Even databases and external services need an application to function. In this ca
 ---
 
 ## Dependency inversion principle
-
-![[Dependency inversion.png]]
 
 Dependency Inversion Principle states that high-level modules that implement business logic should not depend on low-level modules. This means that interfaces should be defined by high-level modules. This makes the system more flexible and easier to modify, because changes made in one module will not affect the other modules, as long as the interfaces remain unchanged.
 

@@ -4,8 +4,7 @@ title: Vue component here, Vue components there. Components everywhere
 ---
 
 *Published at 27/01/2023*
-
-Previously I showed you [[How to get started with Vue (part1)]], and I have promised that there will be a second part, and here you go!
+Previously I showed you how to get started with Vue, and I have promised that there will be a second part, and here you go!
 
 Spoiler alert: there will even be a third series, but to the point!
 

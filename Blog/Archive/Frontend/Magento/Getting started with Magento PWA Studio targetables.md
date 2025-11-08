@@ -328,7 +328,7 @@ const ShortDescription = props => {
 };
 ```
 
-Note: Because I want to keep this example simple, I do not handle errors here. If you would to take a look at how error handling can be done, [[2 ways of handling GraphQL errors in Apollo Client| check this article, please.]]
+Note: Because I want to keep this example simple, I do not handle errors here.
 
 Now we can use data returned by the useQuery hook. For example: data.products.items\[0\].short_description.html, but this is not perfect.
 

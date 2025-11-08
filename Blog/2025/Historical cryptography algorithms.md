@@ -2,7 +2,7 @@
 date: 2025-03-28
 title: Historical cryptography algorithms
 ---
-My first task on the [Cybersecurity learning roadmap](Cybersecurity%20learning%20roadmap.md) course at studies was about experimenting with historical cryptography algorithms.
+My first task on the cybersecuirty learning roadmap course at studies was about experimenting with historical cryptography algorithms.
 
 I was sitting in the computer room, it was quite stuffy, and around me were 30 other students. It was the third class of the day. The lecturer came in, who looked like a rather strict gentleman. He explained to us briefly what the course would look like and what the rules were for passing.
 
@@ -54,7 +54,7 @@ Ok, so at this moment I can experiment with Cryptool and learn about crypto a bi
 
 In the scope of task I had: *Cesar*, *Vigenere*, *Hill* and *XOR*. Let's take a closer look at them
 
-### Caesar's [[Cipher]]
+### Caesar's cipher
 
 It's one of the oldest and simplest  [Encryption](Encryption.md) algorithm invented (or at least associated with) Julius Caesar.
 
@@ -252,7 +252,7 @@ Uh, a lot of theory and it's not easy, is it? Let's try to see how it work in pr
 
 ## Tasks & Experiments
 
-### 1. Compare plaintext [[Entropy]] values ​​for Polish, English and one other selected language
+### 1. Compare plaintext entropy values ​​for Polish, English and one other selected language
 
 I used these texts:
 
@@ -298,7 +298,7 @@ Because entropy is a a measure of unpredictability and polish had has the best s
 
 Based on that, polish is a good language for cryptography use cases.
 
-### 2. Compare the entropy values ​​of [[Plaintext]] and cryptogram depending on the algorithm (Caesar, Vigenere, Hill)
+### 2. Compare the entropy values ​​of pllaintext and cryptogram depending on the algorithm (Caesar, Vigenere, Hill)
 
 I used my polish plaintext and encrypted it using these trhee algorithms.
 

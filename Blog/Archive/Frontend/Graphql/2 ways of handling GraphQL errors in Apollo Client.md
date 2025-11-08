@@ -85,7 +85,7 @@ Network errors occur when there are communication problems with the GraphQL serv
 
 ### Error policies
 
-By default, the [[Introduction to the Apollo local state and reactive variables|Apollo]] server returns partial data when there is a resolver error, but you can change this behavior by changing the error policy. There are three error policies:
+By default, the [Apollo](Introduction%20to%20the%20Apollo%20local%20state%20and%20reactive%20variables.md) server returns partial data when there is a resolver error, but you can change this behavior by changing the error policy. There are three error policies:
 
 - **none** \- the default one - if there are errors the `graphQLErrorsthe` field is populated and the `data` field is set to undefined (even if the server returns some data in response)
 
@@ -99,7 +99,7 @@ You can specify error policy globally on or query/mutation level.
 
 ##### Global error policy
 
-You can set an error policy for [[How to mock GraphQL queries and mutations|queries and mutations]] using the `defaultOptions` object in the ApolloClient constructor. The example below shows an error policy all set for queries and an ignore policy for mutations.
+You can set an error policy for queries and mutations using the `defaultOptions` object in the ApolloClient constructor. The example below shows an error policy all set for queries and an ignore policy for mutations.
 
 ```javascript
 import { ApolloClient, InMemoryCache } from "@apollo/client";
@@ -134,7 +134,7 @@ To implement application-level error handling, we need to use a functionality ca
 
 The Apollo Link library helps you customize the data flow between Apollo Client and your **GraphQL** server. You can define your client's network behavior as a chain of **link** objects that execute in a **sequence**.
 
-Each link should represent either a self-contained modification to a [[How to create a quick search component using Apollo lazy query|GraphQL]] operation or a side effect (such as logging).
+Each link should represent either a self-contained modification to a GraphQL operation or a side effect (such as logging).
 
 Take a look at a sample implementation of application-level error handling.
 

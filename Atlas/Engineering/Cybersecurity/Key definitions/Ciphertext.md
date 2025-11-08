@@ -2,7 +2,7 @@ Can be named also cryptogram.
 
 Ciphertext is an encrypted version of plaintext.
 
-It's an output of the [[Encryption|Encryption]] algorithm.
+It's an output of the [encryption](Encryption.md) algorithm.
 Ciphertext appears as unreadable string of characters.
 
 Example: "5d41402abc4b2a76b9719d911017c592"
