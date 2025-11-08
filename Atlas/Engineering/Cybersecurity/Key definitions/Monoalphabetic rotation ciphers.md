@@ -1,7 +1,7 @@
 
 A type of substitution cipher.
 
-It shifts a letter in a [[Plaintext]] by a fixed number of position in the alphabet to produce the [[Ciphertext]]
+It shifts a letter in a [plaintext](Plaintext.md) by a fixed number of position in the alphabet to produce the [ciphertext](Ciphertext.md)
 
 ```mermaid
 flowchart LR

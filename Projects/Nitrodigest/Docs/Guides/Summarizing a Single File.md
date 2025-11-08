@@ -1,7 +1,7 @@
 ---
 permalink: projects/nitrodigest/docs/guides/summarizing-a-single-file
 ---
-This guide covers how to process individual files with NitroDigest in detail. While the [[Quickstart]] shows the basic workflow, this page explores different options, file types, and common scenarios you'll encounter when summarizing single files.
+This guide covers how to process individual files with NitroDigest in detail. While the [Quickstart](Quickstart.md) shows the basic workflow, this page explores different options, file types, and common scenarios you'll encounter when summarizing single files.
 
 ## Basic Command Structure
 

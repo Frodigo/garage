@@ -24,21 +24,7 @@ function configureMarkedRenderer() {
           ? text.text || text.title || hrefStr
           : String(text || hrefStr);
 
-      // Handle wiki links
-      if (hrefStr.startsWith("[[")) {
-        const linkText = hrefStr.slice(2, -2);
-        const url = generateUrl(null, linkText);
-        return `<a href="${url}">${textStr}</a>`;
-      }
-
-      // For regular links, extract the last part of the URL for the text and decode it
-      if (hrefStr.startsWith("https://frodigo.com/")) {
-        const lastPart = hrefStr.split("/").pop();
-        const decodedText = decodeURIComponent(lastPart.replace(/\+/g, " "));
-        return `<a href="${hrefStr}">${decodedText}</a>`;
-      }
-
-      // For regular links, ensure proper formatting
+      // Return standard link
       return `<a href="${hrefStr}">${textStr}</a>`;
     };
 
@@ -76,10 +62,9 @@ const baseConfig = {
     "dist",
     ".next",
     "priv",
+    "src",
+    "venv",
   ],
-  categories: {
-    "Software architecture": "Garage/Software+architecture",
-  },
 };
 
 // Feed-specific configurations
@@ -138,53 +123,16 @@ function findMarkdownFiles(dir, fileList = [], excludeDirs) {
 }
 
 /**
- * Generate a normalized URL from file path or link text
- * @param {string|null} filePath - Path to the file
- * @param {string|null} linkText - Text of a wiki link
+ * Generate a normalized URL from file path
+ * @param {string} filePath - Path to the file
  * @returns {string} Generated URL
  */
-function generateUrl(filePath, linkText = null) {
-  // Handle category links
-  if (linkText && baseConfig.categories[linkText.trim()]) {
-    return baseConfig.categories[linkText.trim()];
-  }
-
-  // Handle category files
-  if (filePath) {
-    const fileName = path.basename(filePath, ".md");
-    if (fileName.toLowerCase() === "software architecture") {
-      return "Garage/Software+architecture";
-    }
-
-    // For regular files
-    const relativePath = path.relative(baseConfig.contentDir, filePath);
-    return relativePath
-      .replace(/\.(md)$/, "")
-      .replace(/\\/g, "/")
-      .replace(/\s+/g, "+");
-  }
-
-  // Fallback for wiki links without special handling
-  return linkText ? linkText.replace(/\s+/g, "+") : "";
-}
-
-/**
- * Process markdown content to handle wiki links
- * @param {string} content - Raw markdown content
- * @param {string} filePath - Path to the file
- * @param {object} config - Feed configuration
- * @returns {string} Processed content with links resolved
- */
-function processWikiLinks(content, filePath, config) {
-  return content.replace(/\[\[(.*?)\]\]/g, (match, text) => {
-    if (text.includes("|")) {
-      const [link, displayText] = text.split("|");
-      const url = `${config.site.site_url}/${generateUrl(null, link)}`;
-      return `<a href="${url}">${displayText}</a>`;
-    }
-    const url = `${config.site.site_url}/${generateUrl(null, text)}`;
-    return `<a href="${url}">${text}</a>`;
-  });
+function generateUrl(filePath) {
+  const relativePath = path.relative(baseConfig.contentDir, filePath);
+  return relativePath
+    .replace(/\.(md)$/, "")
+    .replace(/\\/g, "/")
+    .replace(/\s+/g, "+");
 }
 
 /**
@@ -226,7 +174,7 @@ function createFeedItem(filePath, config) {
       return null;
     }
 
-    // First convert markdown to HTML
+    // Convert markdown to HTML
     const renderer = new marked.Renderer();
     renderer.link = (href, title, text) => {
       const hrefStr =
@@ -239,24 +187,17 @@ function createFeedItem(filePath, config) {
           ? text.text || text.title || hrefStr
           : String(text || hrefStr);
 
-      if (hrefStr.startsWith("https://frodigo.com/")) {
-        return `<a href="${hrefStr}">${textStr}</a>`;
-      }
-
       return `<a href="${hrefStr}">${textStr}</a>`;
     };
 
     marked.setOptions({ renderer, mangle: false, headerIds: false });
     const htmlContent = marked(content);
 
-    // Then process wiki links in the HTML
-    const processedContent = processWikiLinks(htmlContent, filePath, config);
-
     const url = `${config.site.site_url}/${generateUrl(filePath)}`;
 
     return {
       title: data.title || path.basename(filePath, ".md"),
-      description: getDescription(processedContent, data),
+      description: getDescription(htmlContent, data),
       url: url,
       guid: url,
       categories: data.categories || [],
@@ -270,7 +211,7 @@ function createFeedItem(filePath, config) {
             type: "image/jpeg",
           }
         : undefined,
-      custom_elements: [{ "content:encoded": { _cdata: processedContent } }],
+      custom_elements: [{ "content:encoded": { _cdata: htmlContent } }],
     };
   } catch (error) {
     console.error(`Error processing file ${filePath}:`, error);
@@ -526,7 +467,6 @@ if (require.main === module) {
 module.exports = {
   findMarkdownFiles,
   generateUrl,
-  processWikiLinks,
   getDescription,
   createFeedItem,
   generateRSSFeed,

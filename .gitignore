@@ -42,6 +42,10 @@ terraform.rc
 /playwright/.cache/
 screenshots/
 
+# RSS Feed
+/Utils/RSSfeed/test-results/
+/Utils/RSSfeed/playwright-report/
+
 # Build artifacts
 *.egg-info/
 dist/

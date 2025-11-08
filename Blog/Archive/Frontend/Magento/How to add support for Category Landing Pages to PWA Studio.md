@@ -229,7 +229,7 @@ export const useImprovedCategoryContent = (props) => {
 };
 ```
 
-Note: Because I want to keep this example simple, I do not handle errors here. If you would to take a look at how error handling can be done, [[2 ways of handling GraphQL errors in Apollo Client|check this article, please.]]
+Note: Because I want to keep this example simple, I do not handle errors here.
 
 That hook receives one parameter - categoryId, and it gets data from the Magento backend using the already declared **GET_CATEGORY_LANDING_PAGE** query.
 
